@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnibase | Investor Relations & Strategy</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg-obsidian: #050506;
+            --bg-surface: #0e0e11;
+            --bg-bento: #141418;
+            --brand-electric-blue: #0091FF;
+            --brand-soft-violet: #A085FF;
+            --brand-gold: #FFD700;
+            --text-primary: #f5f5f7;
+            --text-secondary: #989AA2;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(24px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        html.lenis, html.lenis body { height: auto; width: 100%; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        /* Ensure global bounds are respected without breaking internal sticky elements */
+        html, body {
+            overflow-x: clip; 
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-obsidian);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Cinematic Grain & Grid */
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .bg-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: -2;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.03em; text-wrap: balance; }
+        p { text-wrap: pretty; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+        /* Typography */
+        .text-gradient { background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-blue { background: linear-gradient(135deg, var(--brand-electric-blue) 0%, var(--brand-soft-violet) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-gold { background: linear-gradient(135deg, #FFF7D6 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .eyebrow { color: var(--brand-electric-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .eyebrow-gold { color: var(--brand-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+        /* Buttons */
+        .btn-primary, .btn-secondary {
+            padding: 14px 28px; border-radius: 980px; text-decoration: none; font-weight: 600; font-size: 15px;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); will-change: transform;
+        }
+        .btn-primary { background: var(--text-primary); color: var(--bg-obsidian); }
+        .btn-primary:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--glass-border); backdrop-filter: var(--glass-blur); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--glass-highlight); transform: translateY(-2px); }
+
+        /* Navigation */
+        nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 16px 0; background: rgba(5, 5, 6, 0.7); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--glass-border); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: nowrap; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+
+        /* Hero App Store Badge */
+        .hero-badge-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(20, 20, 24, 0.4); 
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 8px 22px;
+            border-radius: 999px;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
+        }
+
+        .hero-badge:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px rgba(0, 145, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-badge-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: #E2E2E5;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-badge-text::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--brand-electric-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--brand-electric-blue);
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(0, 145, 255, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(0, 145, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 145, 255, 0); }
+        }
+
+        .hero-badge-icons {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            padding-left: 16px;
+        }
+
+        .hero-badge-icons svg {
+            height: 22px; 
+            width: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .hero-badge-icons svg:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+        }
+
+        /* Hero Container */
+        .hero { 
+            padding-top: 240px; 
+            padding-bottom: 80px; 
+            text-align: center; 
+            position: relative; 
+            width: 100%; 
+            z-index: 10;
+        }
+        
+        .title-lg { font-size: clamp(48px, 8vw, 96px); line-height: 1.05; margin-bottom: 8px; }
+        .title-md { font-size: clamp(24px, 5vw, 48px); line-height: 1.1; margin-bottom: 16px; font-weight: 700; color: var(--text-secondary); }
+        .title-sm { font-size: clamp(18px, 4vw, 32px); line-height: 1.1; margin-bottom: 24px; }
+        .hero p { font-size: 20px; color: var(--text-secondary); max-width: 820px; margin: 0 auto 48px; font-weight: 400; }
+        .hero-glow { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 800px; height: 800px; background: radial-gradient(circle, rgba(0, 145, 255, 0.15) 0%, rgba(5, 5, 6, 0) 60%); z-index: -1; pointer-events: none; }
+        
+        .logo-wrapper { perspective: 2000px; display: inline-block; margin-top: 40px; }
+        .logo-3d-image { 
+            width: 280px; 
+            height: 280px; 
+            border-radius: 22.5%; /* Perfectly traces the Apple-style squircle */
+            background: transparent; /* Prevents the dark background from filling the gap */
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8); /* Removed inset shadow (inset doesn't render over <img> tags) */
+            display: block; 
+            max-width: 100%; 
+            height: auto; 
+        }
+        /* Sections */
+        .section-header { text-align: center; margin: 120px 0 64px; width: 100%; }
+        .section-header h2 { font-size: clamp(32px, 6vw, 56px); margin-bottom: 16px; }
+        .section-header p { font-size: 20px; color: var(--text-secondary); max-width: 750px; margin: 0 auto; }
+
+        /* Bento Grid */
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-bottom: 80px; width: 100%; }
+        .col-span-12 { grid-column: span 12; } .col-span-8 { grid-column: span 8; } .col-span-6 { grid-column: span 6; } .col-span-4 { grid-column: span 4; }
+        
+        .bento-card {
+            background: var(--bg-bento); border-radius: 32px; padding: 40px;
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
+            border: 1px solid transparent; 
+        }
+        .bento-card::after {
+            content: ""; position: absolute; inset: 0; border-radius: 32px;
+            padding: 1px; background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+        }
+        .bento-card::before {
+            content: ""; position: absolute; inset: 0; border-radius: inherit;
+            background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0, 145, 255, 0.08), transparent 40%);
+            opacity: 0; transition: opacity 0.5s ease; pointer-events: none; z-index: 1;
+        }
+        .bento-card:hover::before { opacity: 1; }
+        .bento-card > * { position: relative; z-index: 2; }
+        
+        .bento-card h3 { font-size: 32px; margin-bottom: 16px; color: #fff; }
+        .bento-card p { font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* Bullet Points */
+        .elite-features { margin-top: auto; border-top: 1px solid var(--glass-border); padding-top: 16px; }
+        .elite-features ul { list-style: none; color: var(--text-secondary); font-size: 15px; line-height: 1.8; }
+        .elite-features ul li { padding-bottom: 10px; position: relative; padding-left: 20px; }
+        .elite-features ul li::before { content: "→"; position: absolute; left: 0; color: var(--brand-electric-blue); font-weight: bold; }
+
+        /* Metrics */
+        .metrics-section { padding: 80px 0; text-align: center; position: relative; width: 100%; overflow: hidden; }
+        .chart-bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.03; pointer-events: none; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+        .metric-card { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 24px; backdrop-filter: var(--glass-blur); }
+        .metric-value { font-size: clamp(40px, 6vw, 64px); font-family: 'Manrope', sans-serif; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        .metric-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); font-weight: 600; }
+
+        /* UI Showcase (Staggered) */
+        .ui-gallery { display: flex; gap: 24px; justify-content: center; margin-top: 56px; overflow: hidden; padding: 20px 0; width: 100%; }
+        .ui-frame { background: var(--bg-bento); border: 1px solid var(--glass-border); border-radius: 32px; padding: 12px; width: 260px; flex-shrink: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transition: transform 0.4s ease; }
+        .ui-frame:nth-child(even) { transform: translateY(30px); }
+        .ui-frame:hover { transform: translateY(-10px) !important; border-color: var(--glass-highlight); z-index: 10; }
+        .ui-img { width: 100%; height: auto; border-radius: 20px; display: block; aspect-ratio: 9/19; object-fit: cover; border: 1px solid rgba(255,255,255,0.03); }
+
+        /* --- Seamless Founder Avatar & Orange Accent --- */
+.founder-avatar-wrapper {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 20px;
+}
+
+.founder-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Subtle orange-tinted glassmorphism ring */
+    border: 1.5px solid rgba(255, 122, 0, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 122, 0, 0.1);
+    background: var(--bg-surface);
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Reacts smoothly when hovering over the parent bento card */
+.bento-card:hover .founder-avatar {
+    transform: scale(1.06);
+    border-color: rgba(255, 122, 0, 0.7);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 122, 0, 0.25);
+}
+
+.founder-link {
+    color: #FF7A00; /* High-contrast electric amber-orange */
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.founder-link:hover {
+    color: #FFA149;
+    transform: translateX(2px);
+}
+
+.founder-link svg {
+    transition: transform 0.3s ease;
+}
+
+.founder-link:hover svg {
+    transform: translate(2px, -2px);
+}
+
+        /* LTV Loop Section Styles */
+        .loop-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin-top: 32px; 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 16px; 
+            padding: 24px; 
+            flex-wrap: wrap; 
+            gap: 16px; 
+            width: 100%;
+        }
+        .loop-step { 
+            text-align: center; 
+            flex: 1; 
+            min-width: 130px; 
+            font-weight: 600; 
+            color: #fff; 
+        }
+        .loop-arrow { 
+            color: var(--brand-electric-blue); 
+            font-weight: bold; 
+            font-size: 20px; 
+        }
+
+        /* Scrollytelling - Sticky Functional Architecture */
+        .scrollytelling-wrapper { display: flex; position: relative; padding: 80px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); background: var(--bg-surface); width: 100%; }
+        .scroll-text-col { flex: 1; padding-right: 60px; max-width: 100%; }
+        .scroll-step { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; opacity: 0.3; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(-20px); }
+        .scroll-step.active { opacity: 1; transform: translateX(0); }
+        .scroll-step h3 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 20px; }
+        
+        /* The surgical fix is here: align-self: flex-start unlocks the scrolling track for the flex child */
+        .sticky-visual-col { flex: 1; position: sticky; top: 120px; height: 600px; display: flex; align-items: center; justify-content: center; align-self: flex-start; }
+        
+        .sticky-mockup { width: 300px; height: 600px; background: #000; border-radius: 40px; border: 8px solid #1a1a1f; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-width: 100%; }
+
+        /* Utils */
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Competition Table */
+        .competition-matrix { width: 100%; border-collapse: collapse; margin-top: 24px; }
+        .competition-matrix th, .competition-matrix td { padding: 20px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 15px; }
+        .competition-matrix th { color: var(--text-secondary); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .competition-matrix td.highlight { color: var(--brand-electric-blue); font-weight: 600; }
+
+        /* --- Modal & Data Sources Styles --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 6, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 24px;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            width: 100%; max-width: 650px; transform: translateY(20px); 
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--bg-surface); z-index: 10000;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 24px; right: 24px; background: none; border: none;
+            color: var(--text-secondary); font-size: 28px; cursor: pointer; line-height: 1; transition: color 0.2s; z-index: 10;
+        }
+        .modal-close:hover { color: #fff; }
+        .sources-list { list-style: none; padding: 0; margin: 0; }
+        .sources-list li {
+            padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,0.02);
+            border-radius: 16px; border: 1px solid var(--glass-border); font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+        }
+        .sources-list li strong { color: var(--brand-electric-blue); display: block; margin-bottom: 4px; font-size: 15px; }
+/* --- Archetype Custom Styles --- */
+.verticals-scroll-container {
+    max-height: 55vh; /* Prevents it from overtaking the screen */
+    overflow-y: auto;
+    padding-right: 16px;
+    margin-top: 24px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Sleek Scrollbar */
+.verticals-scroll-container::-webkit-scrollbar { width: 6px; }
+.verticals-scroll-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
+.verticals-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+.verticals-scroll-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+.archetype-group { margin-bottom: 32px; }
+.archetype-group:last-child { margin-bottom: 16px; }
+
+.archetype-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.archetype-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--glass-border) 0%, transparent 100%);
+}
+
+.archetype-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.archetype-tag {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.archetype-tag:hover {
+    color: #fff;
+    border-color: var(--brand-electric-blue);
+    background: rgba(0, 145, 255, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 145, 255, 0.15);
+}
+        footer { padding: 80px 0 40px; text-align: center; color: var(--text-secondary); font-size: 14px; border-top: 1px solid var(--glass-border); width: 100%; }
+/* --- Elite Button Pulse (Attention Seeker) --- */
+.btn-pop {
+    border-color: rgba(0, 145, 255, 0.3) !important;
+    animation: breathingGlow 3s ease-in-out infinite alternate;
+}
+.btn-pop svg {
+    color: var(--brand-electric-blue); /* Makes the icons pop */
+    transition: transform 0.3s ease;
+}
+.btn-pop:hover svg {
+    transform: scale(1.1);
+}
+@keyframes breathingGlow {
+    0% { 
+        box-shadow: 0 0 12px rgba(0, 145, 255, 0.05); 
+    }
+    100% { 
+        box-shadow: 0 0 24px rgba(0, 145, 255, 0.25); 
+        border-color: rgba(0, 145, 255, 0.6) !important;
+    }
+}
+        /* Media Queries (Responsive Tuning) */
+        @media (max-width: 992px) {
+            .scrollytelling-wrapper { flex-direction: column; }
+            .sticky-visual-col { display: none; }
+            .scroll-text-col { padding-right: 0; }
+            .scroll-step { min-height: 40vh; transform: none; opacity: 1; padding: 40px 0; }
+            .col-span-8, .col-span-4, .col-span-6, .col-span-12 { grid-column: span 12; }
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero { padding-top: 220px; }
+            .logo-3d-image { width: 240px; height: 240px; }
+            .hero p, .section-header p { padding: 0 16px; }
+            
+            /* Center text gracefully on mobile for better balance */
+            .scroll-text-col .section-header { text-align: center !important; }
+
+            /* Table to Mobile Cards Conversion */
+            .competition-matrix thead { display: none; }
+            .competition-matrix, .competition-matrix tbody, .competition-matrix tr, .competition-matrix td { display: block; width: 100%; }
+            .competition-matrix tr { margin-bottom: 24px; border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px; background: var(--bg-bento); }
+            .competition-matrix td { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: left; font-size: 15px; }
+            .competition-matrix td:last-child { border-bottom: none; padding-bottom: 0; }
+            .competition-matrix td::before { content: attr(data-label); font-size: 11px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; font-weight: 800; letter-spacing: 0.05em; }
+            
+            /* LTV Loop Mobile Layout */
+            .loop-container { flex-direction: column; padding: 24px 16px; gap: 8px; }
+            .loop-arrow { transform: rotate(90deg); margin: 4px 0; }
+            
+            /* UI Gallery Mobile Fix */
+            .ui-gallery { flex-direction: column; align-items: center; }
+            .ui-frame { width: 100%; max-width: 320px; margin-bottom: 16px; }
+            .ui-frame:nth-child(even) { transform: none; }
+            .modal-content {
+                max-height: 85vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Updated Close Button */
+            .modal-close {
+                position: sticky;
+                top: -10px; /* Snugs the button near the top edge */
+                align-self: flex-end; /* Pushes it to the right within the flex column */
+                
+                /* Spacing to prevent overlap */
+                margin-top: -10px; 
+                margin-bottom: 16px; /* Pushes the "Due Diligence" text down */
+                
+                /* Visual styling to make it a solid floating action button */
+                background: var(--bg-surface);
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                z-index: 20;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); /* Adds depth so text cleanly slips underneath when scrolling */
+            }
+            /* Adding inner scroll container fix */
+            .verticals-scroll-container {
+                max-height: none;
+                overflow-y: visible;
+                margin-top: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            
+            /* Absolute clearance for the badge under the fixed nav */
+            .hero { padding-top: 240px; }
+            
+            /* Navigation Mobile Squish Fix */
+            .brand-logo { font-size: 16px; gap: 8px; }
+            .brand-logo svg { height: 22px !important; width: 17px !important; }
+            .btn-primary { padding: 10px 18px; font-size: 13px; }
+
+            .hero-cta { display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 16px; }
+            .hero-cta a { width: 100%; margin-left: 0 !important; }
+            .bento-card, .metric-card { padding: 32px 20px; }
+
+            /* App Store Badge Mobile Wrapping */
+            .hero-badge { display: flex; flex-direction: column; padding: 16px 24px; gap: 12px; border-radius: 24px; height: auto; text-align: center; }
+            .hero-badge-icons { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; width: 100%; justify-content: center; }
+            .hero-badge-text { font-size: 11px; text-align: center; justify-content: center; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="brand-logo">
+                <!-- SVG Logo -->
+                <svg viewBox="0 0 88.738258 113.22255" style="height: 28px; width: 22px; overflow: visible;">
+                    <defs>
+                        <linearGradient id="navGrad"><stop stop-color="#0091FF" offset="0"/><stop stop-color="#A085FF" offset="1"/></linearGradient>
+                    </defs>
+                    <path fill="url(#navGrad)" transform="translate(-60.6,-91.8)" d="m 105.46488,69.420052 c -24.470275,-10e-7 -44.369385,19.898598 -44.369384,44.368868 1e-6,13.19448 10.856134,29.25915 21.351668,42.74416 10.495533,13.48501 20.972876,24.04918 20.972876,24.04918 l 2.04484,2.06034 2.04277,-2.06034 c 0,0 10.47735,-10.56417 20.97288,-24.04918 10.49553,-13.48501 21.35322,-29.54968 21.35322,-42.74416 0,-24.470268 -19.89858,-44.368867 -44.36887,-44.368868 z m 0,5.755721 c 21.35952,10e-7 38.61315,17.253652 38.61315,38.613147 0,6.22547 -4.05605,15.15761 -9.66546,24.23549 -0.39204,0.63445 -0.79167,1.26962 -1.19803,1.90462 -0.27575,0.4309 -0.5469,0.36641 -0.60265,-0.14212 l -0.1906,-1.73876 -3.33925,-30.46247 c -0.16014,-1.45777 -1.39065,-2.56209 -2.85719,-2.56418 l -7.71374,-0.0119 c -0.0912,-3.34872 0.007,-7.425511 -2.02106,-10.261388 -2.45795,-3.437756 -6.75212,-6.320098 -10.97814,-6.341732 -4.31827,-0.02211 -8.747736,2.869619 -11.283553,6.364986 -2.035825,2.806177 -1.97069,6.835524 -2.046387,10.197314 l -7.531323,-0.0119 c -1.475283,-0.002 -2.713583,1.11091 -2.867525,2.57814 l -3.182258,30.48328 -0.191773,1.83702 c -0.05704,0.54637 -0.34633,0.61613 -0.642729,0.15362 -0.432443,-0.67481 -0.857323,-1.34984 -1.273613,-2.02405 -5.596784,-9.0643 -9.641015,-17.97952 -9.641016,-24.19599 -3e-6,-21.359495 17.253646,-38.613148 38.613147,-38.613147 z m 0.0233,18.986438 c 2.2153,0.01317 4.54655,1.362867 5.84978,3.15433 1.53191,2.10581 1.29682,4.690809 1.41076,7.683769 l -14.802711,-0.0227 c 0.101656,-2.97044 -0.114853,-5.531756 1.417485,-7.606252 1.369406,-1.853914 3.819896,-3.222852 6.124686,-3.209147 z m -16.21761,16.512169 2.891813,0.004 c 0.02223,3.52688 0.02515,2.19977 0.02498,3.37037 -2.67e-4,1.88715 1.465137,2.96861 2.836955,2.98164 1.367988,0.013 2.867513,-1.01907 2.885005,-2.91904 0.01579,-1.71513 0.03138,0.0111 0.0093,-3.42419 l 14.910197,0.0217 c 0.0132,3.48226 -0.003,-0.0304 0.0404,3.45933 0.0232,1.86099 1.4069,2.85663 2.76354,2.87831 1.35664,0.0217 2.92654,-1.0881 2.94663,-2.83187 0.0407,-3.53169 0.0188,0.0396 0.005,-3.4975 l 3.07888,0.005 c 1.14306,10e-4 2.1022,0.81979 2.22674,1.90015 l 3.2551,28.23238 c 0.146,1.26148 -0.89199,2.36427 -2.22674,2.36575 l -38.758352,0.0481 c -1.332324,0.002 -2.372607,-1.09447 -2.233973,-2.35438 L 87.0366,112.58459 c 0.119937,-1.08686 1.084603,-1.91161 2.233972,-1.90996 z m 37.21119,38.98046 c -0.34044,0.4582 -0.68219,0.91375 -1.02488,1.36629 -0.50423,0.66585 -1.01048,1.32517 -1.51763,1.97677 -8.6165,11.07077 -15.9427,18.7407 -18.47432,21.3558 -2.53105,-2.6145 -9.857863,-10.28437 -18.474841,-21.3558 -0.508967,-0.65394 -1.017002,-1.31558 -1.52298,-1.98379 -0.227349,-0.30024 -0.55332,-0.73643 -0.846993,-1.13064 -0.384119,-0.51563 -0.173202,-0.93517 0.469776,-0.9361 l 0.91266,-0.001 39.038178,-0.051 1.05661,-0.001 c 0.52338,-6.1e-4 0.69657,0.34091 0.38442,0.76102 z"/>
+                    </g>
+                </svg>
+                Omnibase
+            </div>
+            <div>
+                <a href="#invest" class="btn-primary">Access Data Room</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. THE HOOK -->
+    <header class="hero container">
+        <div class="hero-glow"></div>
+        <!-- App Store Badge -->
+        <div class="hero-badge-wrapper reveal-up">
+            <div class="hero-badge">
+                <span class="hero-badge-text">Mobile Apps Coming Soon To Stores</span>
+                <div class="hero-badge-icons">
+                    <!-- Apple App Store Logo (Rich Silver/White with Gradient) -->
+                    <svg viewBox="0 0 384 512">
+                        <defs>
+                            <linearGradient id="appleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="100%" stop-color="#d1d1d6" />
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#appleGrad)" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                    </svg>
+                    <!-- Google Play Logo (Official 4-Color Paths) -->
+                    <svg viewBox="0 0 1024 1024">
+                        <path fill="#4285F4" d="M129 135.5v753c0 23.3 13.5 43.8 33.5 53.5l369.3-388.7L129 135.5z"/>
+                        <path fill="#EA4335" d="M531.8 553.3l126.2-132.8-495.5-285c-11.5-6.6-24.5-9.2-37-8l406.3 425.8z"/>
+                        <path fill="#FBBC05" d="M658 420.5L861.3 538c35.3 20.3 35.3 53.7 0 74l-203.3 117.5L531.8 553.3 658 420.5z"/>
+                        <path fill="#34A853" d="M162.5 942c12.5 1.2 25.5-1.4 37-8l458.5-263.8L531.8 553.3 162.5 942z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <h1 class="text-gradient reveal-up title-lg">Omnibase</h1>
+        <h2 class="title-md reveal-up delay-100">The Unified Super App.</h2>
+        <h3 class="text-gradient reveal-up delay-200 title-sm">Consolidating 6 Verticals into One Ecosystem.</h3>
+        
+        <p class="reveal-up delay-300">
+            Fragmented markets bleed capital. Omnibase solves the friction in the consumer economy by fusing a unified discovery engine with an enterprise-grade operational suite. <br><br>We have completely de-risked the architecture to seamlessly scale across 137 professional classifications, 483 business specialties, and 779 core product and service types—dynamically expanding into ~10K++ of granular sub-types. Engineered for smooth vertical expansion by modifying a single server file, the platform achieves true zero-codebase duplication. This is a functional, production-ready ecosystem built to capture aggressive market share.
+        </p>
+        
+        <div class="hero-cta reveal-up delay-300">
+            <a href="#invest" class="btn-primary">Review the Business Case</a>
+            <a href="#architecture" class="btn-secondary" style="margin-left: 12px;">View Structural Moat</a>
+        </div>
+
+        <div class="logo-wrapper reveal-up delay-300" id="hero3DWrapper">
+            <img src="assets/omnibaselogo.png" alt="Omnibase Custom Logo" id="hero3DMockup" class="logo-3d-image">
+        </div>
+    </header>
+
+    <!-- 2. MARKET VALIDATION & SCOPE -->
+    <section class="metrics-section container reveal-up" id="metricsSection">
+        <svg class="chart-bg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+            <path class="chart-path" d="M 0,250 C 300,250 500,200 700,100 S 900,20 1000,10" fill="none" stroke="var(--brand-electric-blue)" stroke-width="2"></path>
+        </svg>
+
+        <h2 class="text-gradient" style="font-size: clamp(32px, 6vw, 48px); margin-bottom: 16px;">Market Opportunity.</h2>
+        <p style="color: var(--text-secondary); font-size: 20px; max-width: 600px; margin: 0 auto;">Positioned at the intersection of GCC digital transformation and unified consumer e-commerce.</p>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value text-gradient-blue">$<span class="count-up" data-target="185">0</span>B+</div>
+                <div class="metric-label">Regional Addressable Market</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value text-gradient-blue">$<span class="count-up" data-target="12">0</span>B+</div>
+                <div class="metric-label">Initial Serviceable Market</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value text-gradient-blue"><span class="count-up" data-target="22">0</span>.5%</div>
+                <div class="metric-label">B2B Digital Growth (CAGR)</div>
+            </div>
+        </div>
+
+        <!-- Data Sources Trigger -->
+        <div style="text-align: center; margin-top: 32px;">
+            <button class="btn-secondary btn-pop" id="openSourcesBtn" style="font-size: 13px; padding: 10px 24px; cursor: pointer;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                View Validation Sources
+            </button>
+        </div>
+    </section>
+
+    <!-- 3. THE SOLUTION (Archetypes & Psychology) -->
+    <section class="container" style="padding-top: 60px;">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">Polymorphic Architecture.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Form follows psychology. One unified codebase dynamically re-renders into six distinct, industry-optimized Super-Apps. Powered by our proprietary Server-Driven UI (SDUI), each archetype is mathematically engineered to trigger specific behavioral conversions.</p>
+        <div style="margin-top: 32px;">
+                <button class="btn-secondary btn-pop" id="openArchetypesBtn" style="font-size: 14px; padding: 12px 28px; cursor: pointer;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    View 137 Supported Verticals
+                </button>
+            </div>
+        </div>
+
+        <div class="bento-grid">
+            <!-- 1. Practitioner -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Trust & Authority
+                </div>
+                <h3>The Practitioner</h3>
+                <p><strong>Psychology:</strong> High Anxiety & Privacy. Users apply for the professional's time, establishing instant authority.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">SDUI Clinical Intake:</strong> Dynamic triage forms pre-qualify leads.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Case Vault:</strong> Immutable, HIPAA-grade timeline lock-in.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Double-Blind Handshake:</strong> Absolute B2C privacy boundaries.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Operator -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    Distress & Rescue
+                </div>
+                <h3>The Field Operator</h3>
+                <p><strong>Psychology:</strong> Urgency & Cognitive Depletion. Replaces tedious calendars with an adrenaline-focused SOS system.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">Quote & Dispatch:</strong> Rapid photo intake to live estimates.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Binding Chat Estimates:</strong> Hard UI cards eliminate pricing anxiety.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Fleet Dashboard:</strong> Geofenced radiuses & 24/7 SOS routing.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Artisan -->
+            <div class="bento-card col-span-4 reveal-up">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                    Aspirational Desire
+                </div>
+                <h3>The Artisan</h3>
+                <p>The "Veblen Good" engine transforms retail into prestige gallery commissions.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">"Books Closed":</strong> Scarcity controls demand.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Maker's Mark:</strong> NFTs/Certificates of Authenticity.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Destination -->
+            <div class="bento-card col-span-4 reveal-up delay-100">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                    FOMO & Status
+                </div>
+                <h3>The Destination</h3>
+                <p>Destroys chat-friction in favor of impulsive, atmospheric reservations.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">Instant Reserve:</strong> ~0ms VIP digital passes.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Host Kanban:</strong> Live floor management.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. Merchant -->
+            <div class="bento-card col-span-4 reveal-up delay-200">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    Speed & Volume
+                </div>
+                <h3>The Merchant</h3>
+                <p>An architecture built for relentless, high-density order fulfillment.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">RAM Cart Engine:</strong> 120fps local cart processing.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Silent Handoff:</strong> Instant chat checkout routing.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 6. Showroom -->
+            <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #111114 0%, #050506 100%);">
+                <div class="eyebrow-gold">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13"/><path d="M13 3l3 6-4 13"/></svg>
+                    Exclusivity & High-Stakes
+                </div>
+                <h3>The Showroom Mechanics.</h3>
+                <p>
+                    For Luxury Cars, Real Estate, and High-End Jewelry. We deploy scarcity mechanics and single-column 4K Lookbooks to separate casual browsers from high-intent acquisitions. Features like <strong>"Price Upon Request"</strong> algorithms and <strong>Collector's Portfolios</strong> establish provenance and strictly control high-ticket negotiation funnels.
+                </p>
+            </div>
+        </div>
+    </section>
+<!-- UI VISUAL PROOF
+    <section class="container" style="padding-bottom: 80px;">
+        <div class="ui-gallery reveal-up">
+            <div class="ui-frame"><img src="ui-home.png" alt="Home Discovery" class="ui-img"></div>
+            <div class="ui-frame"><img src="ui-map.png" alt="Geospatial Map" class="ui-img"></div>
+            <div class="ui-frame"><img src="ui-chat.png" alt="Messaging" class="ui-img"></div>
+            <div class="ui-frame"><img src="ui-booking.png" alt="Booking" class="ui-img"></div>
+        </div>
+    </section>
+-->
+    <!-- 4. THE BUSINESS MODEL & FINTECH MOAT (New Elite Section) -->
+    <section class="container" style="padding-top: 80px;">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">The Deep Infrastructure.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 750px; margin: 0 auto;">Omnibase is not just a UI layer. It is a mathematically sealed ecosystem designed to trap liquidity, leverage AI intent routing, and obliterate traditional database costs.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Tokenized Economics -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow">Closed-Loop FinTech</div>
+                <h3>Tokenized Liquidity Engine.</h3>
+                <p>Traditional marketplaces bleed 3% to Stripe and 30% to Apple. Omnibase is architected for the <strong>Omnibase Wallet</strong>. By utilizing physical redeem cards and local top-up agents in emerging markets, we bypass gateway fees entirely. Unspent user balances create a massive treasury float, while the closed-loop token economics lock users and merchants into the ecosystem permanently.</p>
+            </div>
+
+            <!-- Gemini AI Integration -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow">Semantic Routing</div>
+                <h3>Server-Side Gemini AI.</h3>
+                <p>Discovery isn't just faceted; it's semantic. Built directly into the core metadata schema, Omnibase leverages Google's Gemini LLM to interpret complex, natural language intent. Users don't search for "Plumber"; they type "My pipe burst under the sink," and the AI instantly routes them to the Operator SOS Dispatch funnel with ~zero cognitive load.</p>
+            </div>
+
+            <!-- LTV & Stickiness -->
+            <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #111114 0%, #08080a 100%);">
+                <div class="eyebrow">Maximizing Lifetime Value (LTV)</div>
+                <h3>The Sovereign Case Vault.</h3>
+                <p>
+                    Data retention is the ultimate switching cost. Omnibase features a tri-channel synchronization engine that writes directly to a secure, on-device SQLite database. 
+                    <br><br>
+                    Depending on the archetype, the Vault seamlessly mutates its schema: holding <strong>HIPAA-grade Clinical Records</strong> for doctors, <strong>Digital Receipts</strong> for merchants, and <strong>Ownership Titles</strong> for luxury showrooms. Users should not abandon a platform that holds the cryptographic proof of their valuable assets and medical history.
+                </p>
+                <div class="loop-container">
+                    <div class="loop-step">1. Discovery Engine<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">High-Intent Capture</span></div>
+                    <div class="loop-arrow">→</div>
+                    <div class="loop-step">2. Deep Chat<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">Frictionless Contact</span></div>
+                    <div class="loop-arrow">→</div>
+                    <div class="loop-step">3. Smart Transaction<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">Instant Revenue</span></div>
+                    <div class="loop-arrow">→</div>
+                    <div class="loop-step">4. Case Vault<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">Long-term Lock-in</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. THE TECH MOAT (Scrollytelling) -->
+    <section id="architecture" class="scrollytelling-wrapper">
+        <div class="container" style="display: flex; width: 100%;">
+            <div class="scroll-text-col">
+                <div class="section-header" style="text-align: left; margin: 0 0 40px 0;">
+                    <h2 class="text-gradient">The Structural Architecture.</h2>
+                    <p style="color: var(--text-secondary); font-size: 20px;">Engineered for hyper-margins and ruthlessly low cloud burn rates.</p>
+                </div>
+
+                <div class="scroll-step" id="step-1">
+                    <div class="eyebrow">90% Cost Reduction</div>
+                    <h3>Near~Zero Read Costs.</h3>
+                    <p>By utilizing strict Unidirectional Data Flow (UDF) and querying 1-millisecond chronological deltas, we update interfaces instantly without continuously pinging the database. Result: Enterprise-grade real-time interactions with radically compressed AWS/GCP burn rates.</p>
+                </div>
+
+                <div class="scroll-step" id="step-2">
+                    <div class="eyebrow">Scale & Reliability</div>
+                    <h3>Bulletproof Concurrency.</h3>
+                    <p>Eliminating edge cases eliminates customer support bloat. Our proprietary O(1) temporal locking system guarantees mathematically zero double-bookings via absolute Geographic and Temporal String Indexing.</p>
+                </div>
+
+                <div class="scroll-step" id="step-3">
+                    <div class="eyebrow">Performance Engine</div>
+                    <h3>Polyglot Persistence.</h3>
+                    <p>Firebase egress costs are neutralized. We route heavy queries away from expensive NoSQL architectures into our proprietary Typesense RAM cluster (0.002ms latency). Coupled with aggressive on-device LRU caching, the architecture uncouples user growth from linear server costs.</p>
+                </div>
+            </div>
+
+            <div class="sticky-visual-col">
+                <div class="sticky-mockup" id="stickyMockup">
+                    <span style="color: var(--brand-electric-blue); font-weight: 800; font-size: 20px; z-index: 2;" id="stickyText">
+                        REAL-TIME SYNC<br>~ZERO LATENCY
+                    </span>
+                    <div style="position: absolute; bottom: 30px; width: 100%; text-align: center; opacity: 0.4; font-size: 12px; color: #fff; z-index: 2;">
+                        [ Operational Architecture De-Risked ]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- START: Omnibase Ops (Admin Infrastructure) Section -->
+    <section class="container" style="padding-top: 80px; padding-bottom: 40px;">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">Omnibase Ops: The Command Node.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Execution is fully de-risked. We have engineered a proprietary administrative infrastructure to automate KYC compliance, enforce ecosystem integrity, and actively manage B2B yield at scale.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- KYC & Trust/Safety (Queue + Kill Switch) -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow" style="color: #FF453A;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Risk Mitigation & Compliance
+                </div>
+                <h3>KYC & Ecosystem Sanitization.</h3>
+                <p>Engineered for zero-liability growth. The Ops node features a centralized business registration pipeline for rapid merchant vetting. Coupled with a <strong>Global Kill Switch</strong>, compliance teams can instantly quarantine malicious actors and purge their data footprint from the edge search cluster in milliseconds, ensuring strict brand safety.</p>
+            </div>
+            
+            <!-- Telemetry & GMV (Top Cards & Matrix) -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    Macro-Level Observability
+                </div>
+                <h3>Real-Time GMV & Shard Telemetry.</h3>
+                <p>Aggregates cross-vertical liquidity and user velocity into a unified 30-day matrix. The dashboard provides executive operators with real-time visibility into Gross Merchandise Value (GMV), subscription cohorts, and active business states, eliminating the need for fragmented third-party analytics.</p>
+            </div>
+
+            <!-- Monetization (Gold Badge) -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow-gold">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    B2B Yield Optimization
+                </div>
+                <h3>Granular Monetization Operations.</h3>
+                <p>Absolute control over platform Monthly Recurring Revenue (MRR). The monetization console empowers operators to dynamically allocate or revoke algorithmic boosting mechanisms—such as the Premium Visibility Badge—directly influencing organic search ranking and driving B2B subscription upgrades.</p>
+            </div>
+
+            <!-- Heuristic Insights -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow" style="color: #A085FF;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                    Algorithmic Intelligence
+                </div>
+                <h3>Predictive Market Heuristics.</h3>
+                <p>A built-in neural tracking module actively ingests ecosystem volume and interaction data. As platform data scales, this module automatically transitions from raw collection to predictive trend analysis, continuously surfacing high-value market intelligence to guide strategic expansion.</p>
+            </div>
+        </div>
+    </section>
+    <!-- END: Omnibase Ops (Admin Infrastructure) Section -->
+    <!-- 6. COMPETITIVE LANDSCAPE -->
+    <section class="container" style="padding-top: 80px; margin-bottom: 80px;" id="competition">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">The Competitive Moat.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto;">Displacing single-purpose incumbents through superior utility, consolidated infrastructure, and zero context-switching.</p>
+        </div>
+        
+        <div class="bento-card col-span-12 reveal-up" style="padding: 24px;">
+            <div style="overflow-x: auto;">
+                <table class="competition-matrix">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th style="color: #fff; font-size: 15px;">Omnibase</th>
+                            <th>Niche Aggregators (Yelp, Zocdoc)</th>
+                            <th>Retail SaaS (Shopify, Square)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Capability">TAM Scaling</td>
+                            <td class="highlight" data-label="Omnibase">137 Verticals (Unified)</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Single Vertical Restricted</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">E-commerce Restricted</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">Infrastructure Codebase</td>
+                            <td class="highlight" data-label="Omnibase">Single SDUI Master Manifest</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Fragmented App Stores</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Dependent on 3rd-Party Plugins</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">Consumer Acquisition Cost</td>
+                            <td class="highlight" data-label="Omnibase">Cross-pollinated / Zero Marginal</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">High (Isolated audiences)</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Extremely High (Brand solely responsible)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">Real-Time B2C Chat</td>
+                            <td class="highlight" data-label="Omnibase">Native / Delta-Sync</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Fragmented / Non-existent</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Requires external integrations</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">B2B Operations Vault</td>
+                            <td class="highlight" data-label="Omnibase">HIPAA-Grade Immutable</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Basic CRM capabilities</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Basic Ledger</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. TEAM SECTION -->
+    <section class="container" style="padding: 40px 0 80px;" id="team">
+        <div class="section-header reveal-up" style="margin-bottom: 40px;">
+            <h2 class="text-gradient" style="font-size: 40px;">The Founding Team.</h2>
+            <p style="color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto;">Domain expertise spanning enterprise infrastructure, consumer marketplaces, and large-scale systems architecture.</p>
+        </div>
+        
+        <div class="bento-grid">
+            <div class="bento-card col-span-4 reveal-up team-profile">
+                <div class="founder-avatar-wrapper">
+                    <!-- Replace src with your headshot file path or URL -->
+                    <img src="assets/pf.png" alt="Ahmad Al Khatib" class="founder-avatar">
+                </div>
+                
+                <div class="team-role">Founder</div>
+                <h3 style="font-size: 24px; margin-bottom: 8px;">Ahmad Al Khatib</h3>
+                <p style="font-size: 14px;">
+                    <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
+                        www.ahmad-khatib.com
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    </a>
+                </p>
+            </div>
+            <div class="bento-card col-span-4 reveal-up team-profile">
+                <div class="founder-avatar-wrapper">
+                    <!-- Replace src with your headshot file path or URL -->
+                    <img src="assets/ahmad-profile.jpg" alt="Ahmad Al Khatib" class="founder-avatar">
+                </div>
+                
+                <div class="team-role">Scouting talents</div>
+                <h3 style="font-size: 24px; margin-bottom: 8px;">Scouting talents</h3>
+                <p style="font-size: 14px;">
+                    <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
+                        www.ahmad-khatib.com
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    </a>
+                </p>
+            </div>
+            <div class="bento-card col-span-4 reveal-up team-profile">
+                <div class="founder-avatar-wrapper">
+                    <!-- Replace src with your headshot file path or URL -->
+                    <img src="assets/ahmad-profile.jpg" alt="Ahmad Al Khatib" class="founder-avatar">
+                </div>
+                
+                <div class="team-role">Scouting talents</div>
+                <h3 style="font-size: 24px; margin-bottom: 8px;">Scouting talents</h3>
+                <p style="font-size: 14px;">
+                    <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
+                        www.ahmad-khatib.com
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    </a>
+                </p>
+            </div>
+    </section>
+
+    <!-- 8. THE ASK -->
+    <section class="container reveal-up" style="text-align: center; padding: 60px 0 100px;" id="invest">
+        <h2 style="font-size: 56px; margin-bottom: 24px;" class="text-gradient">Raising $ Seed.</h2>
+        <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto 48px;">
+            The engineering risk is mitigated. The architecture is production-ready. We are raising our Seed Round to fund 18 months of aggressive user acquisition and B2B onboarding. Your capital scales a proven system into a market-defining utility.
+        </p>
+        <a href="mailto:ahmad@ahmad-khatib.com" class="btn-primary" style="font-size: 16px; padding: 18px 36px;">Schedule Investor Briefing</a>
+    </section>
+<!-- Archetypes/Verticals Modal -->
+    <div class="modal-overlay" id="archetypesModal">
+        <div class="modal-content bento-card" style="max-width: 800px;">
+            <button class="modal-close" id="closeArchetypesBtn">&times;</button>
+            <div class="eyebrow">Taxonomy</div>
+            <h3 style="font-size: 28px; margin-bottom: 8px; color: #fff;">137 Supported Verticals</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 0;">Dynamically configured via a single Server-Driven UI schema.</p>
+            
+            <!-- Custom Scroll Container -->
+            <div class="verticals-scroll-container">
+                
+                <!-- Practitioner -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">Practitioner</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">Medical Clinics</span><span class="archetype-tag">Dental Clinics</span><span class="archetype-tag">Medical Labs</span><span class="archetype-tag">Physical Therapy</span><span class="archetype-tag">Vet Clinics</span><span class="archetype-tag">Elderly Care</span><span class="archetype-tag">Legal & Admin</span><span class="archetype-tag">Accounting & Audit</span><span class="archetype-tag">HR & Recruitment</span><span class="archetype-tag">Business Consulting</span><span class="archetype-tag">Translation</span><span class="archetype-tag">Engineering</span><span class="archetype-tag">Software Development</span><span class="archetype-tag">Tutoring</span><span class="archetype-tag">Schools</span><span class="archetype-tag">Nurseries</span><span class="archetype-tag">Marketing & Design</span><span class="archetype-tag">Babysitting & Nannies</span><span class="archetype-tag">Interior Design</span>
+                    </div>
+                </div>
+
+                <!-- Merchant -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">Merchant</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">Supermarkets</span><span class="archetype-tag">Mini Markets</span><span class="archetype-tag">Produce Stores</span><span class="archetype-tag">Butcheries</span><span class="archetype-tag">Fishmongers</span><span class="archetype-tag">Furn & Manakish</span><span class="archetype-tag">Bakeries & Patisseries</span><span class="archetype-tag">Dairy & Cheese</span><span class="archetype-tag">Roasteries</span><span class="archetype-tag">Men's Wear</span><span class="archetype-tag">Women's Wear</span><span class="archetype-tag">Kids & Baby Wear</span><span class="archetype-tag">Lingerie & Sleepwear</span><span class="archetype-tag">Pharmacies</span><span class="archetype-tag">Opticians</span><span class="archetype-tag">Cosmetics Stores</span><span class="archetype-tag">Medical Equipment</span><span class="archetype-tag">Orthopedics & Mobility</span><span class="archetype-tag">Dental & Lab Equipment</span><span class="archetype-tag">Curtains & Fabrics</span><span class="archetype-tag">Home Decor</span><span class="archetype-tag">$1 Discount Stores</span><span class="archetype-tag">Agriculture & Nurseries</span><span class="archetype-tag">Concrete & Blocks</span><span class="archetype-tag">Building Materials</span><span class="archetype-tag">Tiles & Marble</span><span class="archetype-tag">Sanitary & Plumbing</span><span class="archetype-tag">Hardware Stores</span><span class="archetype-tag">Paints & Coatings</span><span class="archetype-tag">Mobile Phones</span><span class="archetype-tag">Computers, Consoles & Accessories</span><span class="archetype-tag">Electronics & Appliances</span><span class="archetype-tag">Car Parts</span><span class="archetype-tag">Motorcycle Parts</span><span class="archetype-tag">Tire Shops</span><span class="archetype-tag">Toy Stores</span><span class="archetype-tag">Baby Stores</span><span class="archetype-tag">Baby Furniture</span><span class="archetype-tag">Bicycle Shops</span><span class="archetype-tag">Sports Equipment</span><span class="archetype-tag">Supplement Stores</span><span class="archetype-tag">Camping & Outdoors</span><span class="archetype-tag">Water Sports & Diving</span><span class="archetype-tag">Winter Sports</span><span class="archetype-tag">Racket Sports</span><span class="archetype-tag">Billiards</span><span class="archetype-tag">Hobbies & Models</span><span class="archetype-tag">Antiques & Collectibles</span><span class="archetype-tag">Stationery & Books</span><span class="archetype-tag">Pet Stores</span><span class="archetype-tag">Hookah & Charcoal</span><span class="archetype-tag">Vape & Tobacco</span><span class="archetype-tag">Commercial Kitchens</span><span class="archetype-tag">Retail Equipment</span><span class="archetype-tag">Asset Liquidation</span><span class="archetype-tag">Fuel & Oils</span><span class="archetype-tag">Auto Mechanics</span><span class="archetype-tag">Heavy Machinery</span><span class="archetype-tag">Car Rentals</span><span class="archetype-tag">Print Shops</span><span class="archetype-tag">Travel Agencies</span><span class="archetype-tag">Money Transfer</span>
+                    </div>
+                </div>
+
+                <!-- Destination -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">Destination</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">Restaurants</span><span class="archetype-tag">Fast Food</span><span class="archetype-tag">Cafes</span><span class="archetype-tag">Juice & Ice Cream</span><span class="archetype-tag">Event Catering</span><span class="archetype-tag">Beauty Salons</span><span class="archetype-tag">Hair Salons</span><span class="archetype-tag">Gyms & Fitness</span><span class="archetype-tag">Sports Courts</span><span class="archetype-tag">Gaming Lounges</span><span class="archetype-tag">Resorts & Pools</span>
+                    </div>
+                </div>
+
+                <!-- Operator -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">Operator</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">Laundry</span><span class="archetype-tag">Cleaning Services</span><span class="archetype-tag">Carpet Cleaning</span><span class="archetype-tag">Pet Grooming & Boarding</span><span class="archetype-tag">Water Refills & Delivery</span><span class="archetype-tag">Gas Suppliers</span><span class="archetype-tag">Generator Subs</span><span class="archetype-tag">ISPs</span><span class="archetype-tag">Satellite Services</span><span class="archetype-tag">Appliance Repair</span><span class="archetype-tag">HVAC Services</span><span class="archetype-tag">Plumbing Services</span><span class="archetype-tag">Electrical Services</span><span class="archetype-tag">Locksmiths</span><span class="archetype-tag">Auto Registration</span><span class="archetype-tag">Car Wash</span><span class="archetype-tag">Motorcycle Repair</span><span class="archetype-tag">Towing & Roadside</span><span class="archetype-tag">Taxis & Transport</span><span class="archetype-tag">Driving Schools</span><span class="archetype-tag">Couriers & Logistics</span><span class="archetype-tag">Moving & Storage</span>
+                    </div>
+                </div>
+
+                <!-- Artisan -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">Artisan</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">Apothecary & Spices</span><span class="archetype-tag">Florists & Gifts</span><span class="archetype-tag">Tailors</span><span class="archetype-tag">Leather Repair</span><span class="archetype-tag">Landscaping</span><span class="archetype-tag">Aluminum Workshops</span><span class="archetype-tag">Carpentry</span><span class="archetype-tag">Blacksmiths</span><span class="archetype-tag">Glass & Mirrors</span><span class="archetype-tag">Furniture Upholstery</span><span class="archetype-tag">Painting & Flooring</span><span class="archetype-tag">Photography</span>
+                    </div>
+                </div>
+
+                <!-- Showroom -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-gold">Showroom</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">Jewelry Shops</span><span class="archetype-tag">Watch Stores</span><span class="archetype-tag">Perfumes</span><span class="archetype-tag">Furniture</span><span class="archetype-tag">Solar Energy</span><span class="archetype-tag">Car Dealers</span><span class="archetype-tag">Commercial Vehicles</span><span class="archetype-tag">Motorcycle Sales</span><span class="archetype-tag">Watercraft Dealers</span><span class="archetype-tag">Industrial Equipment</span><span class="archetype-tag">Real Estate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Sources Modal -->
+    <div class="modal-overlay" id="sourcesModal">
+        <div class="modal-content bento-card">
+            <button class="modal-close" id="closeSourcesBtn">&times;</button>
+            <div class="eyebrow">Due Diligence</div>
+            <h3 style="font-size: 28px; margin-bottom: 12px; color: #fff;">Data Verification</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 24px;">Financial projections are grounded in regional economic reports for the GCC and MEA zones spanning 2025–2034.</p>
+            
+            <ul class="sources-list">
+                <li>
+                    <strong>$185B+ Regional Addressable Market (TAM)</strong> 
+                    Derived by combining the projected Middle East & Africa (MEA) e-commerce market (~$160B) with the GCC digital transformation market ($25.12B).
+                    <br><em style="font-size: 12px; opacity: 0.7;">Sources: Mordor Intelligence, IMARC Group</em>
+                </li>
+                <li>
+                    <strong>$12B+ Initial Serviceable Market (SAM)</strong> 
+                    Calculated by targeting a highly specific, fractional market share of the regional B2B software infrastructure spend and specialized service-based B2C e-commerce volume.
+                </li>
+                <li>
+                    <strong>22.5% B2B Digital Growth (CAGR)</strong> 
+                    Verified compound annual growth rate for the GCC Digital Transformation market, driven aggressively by Vision 2030 initiatives and enterprise tech upgrades.
+                    <br><em style="font-size: 12px; opacity: 0.7;">Source: IMARC Group</em>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="brand-logo" style="justify-content: center; opacity: 0.5; margin-bottom: 16px;">
+                <svg viewBox="0 0 88.738258 113.22255" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height: 24px; width: 19px; flex-shrink: 0; overflow: visible;">
+                    <defs>
+                        <linearGradient id="linearGradient15_foot"><stop style="stop-color:#4ed0f4;stop-opacity:1;" offset="0"/><stop style="stop-color:#722a97;stop-opacity:1;" offset="1"/></linearGradient>
+                        <linearGradient href="#linearGradient15_foot" id="linearGradient32_foot" gradientUnits="userSpaceOnUse" x1="61.910683" y1="117.5653" x2="149.01857" y2="134.49736"/>
+                    </defs>
+                    <g transform="translate(-60.630873,-91.888723)">
+                        <path style="fill:url(#linearGradient32_foot);" d="m 105.46488,69.420052 c -24.470275,-10e-7 -44.369385,19.898598 -44.369384,44.368868 1e-6,13.19448 10.856134,29.25915 21.351668,42.74416 10.495533,13.48501 20.972876,24.04918 20.972876,24.04918 l 2.04484,2.06034 2.04277,-2.06034 c 0,0 10.47735,-10.56417 20.97288,-24.04918 10.49553,-13.48501 21.35322,-29.54968 21.35322,-42.74416 0,-24.470268 -19.89858,-44.368867 -44.36887,-44.368868 z m 0,5.755721 c 21.35952,10e-7 38.61315,17.253652 38.61315,38.613147 0,6.22547 -4.05605,15.15761 -9.66546,24.23549 -0.39204,0.63445 -0.79167,1.26962 -1.19803,1.90462 -0.27575,0.4309 -0.5469,0.36641 -0.60265,-0.14212 l -0.1906,-1.73876 -3.33925,-30.46247 c -0.16014,-1.45777 -1.39065,-2.56209 -2.85719,-2.56418 l -7.71374,-0.0119 c -0.0912,-3.34872 0.007,-7.425511 -2.02106,-10.261388 -2.45795,-3.437756 -6.75212,-6.320098 -10.97814,-6.341732 -4.31827,-0.02211 -8.747736,2.869619 -11.283553,6.364986 -2.035825,2.806177 -1.97069,6.835524 -2.046387,10.197314 l -7.531323,-0.0119 c -1.475283,-0.002 -2.713583,1.11091 -2.867525,2.57814 l -3.182258,30.48328 -0.191773,1.83702 c -0.05704,0.54637 -0.34633,0.61613 -0.642729,0.15362 -0.432443,-0.67481 -0.857323,-1.34984 -1.273613,-2.02405 -5.596784,-9.0643 -9.641015,-17.97952 -9.641016,-24.19599 -3e-6,-21.359495 17.253646,-38.613148 38.613147,-38.613147 z m 0.0233,18.986438 c 2.2153,0.01317 4.54655,1.362867 5.84978,3.15433 1.53191,2.10581 1.29682,4.690809 1.41076,7.683769 l -14.802711,-0.0227 c 0.101656,-2.97044 -0.114853,-5.531756 1.417485,-7.606252 1.369406,-1.853914 3.819896,-3.222852 6.124686,-3.209147 z m -16.21761,16.512169 2.891813,0.004 c 0.02223,3.52688 0.02515,2.19977 0.02498,3.37037 -2.67e-4,1.88715 1.465137,2.96861 2.836955,2.98164 1.367988,0.013 2.867513,-1.01907 2.885005,-2.91904 0.01579,-1.71513 0.03138,0.0111 0.0093,-3.42419 l 14.910197,0.0217 c 0.0132,3.48226 -0.003,-0.0304 0.0404,3.45933 0.0232,1.86099 1.4069,2.85663 2.76354,2.87831 1.35664,0.0217 2.92654,-1.0881 2.94663,-2.83187 0.0407,-3.53169 0.0188,0.0396 0.005,-3.4975 l 3.07888,0.005 c 1.14306,10e-4 2.1022,0.81979 2.22674,1.90015 l 3.2551,28.23238 c 0.146,1.26148 -0.89199,2.36427 -2.22674,2.36575 l -38.758352,0.0481 c -1.332324,0.002 -2.372607,-1.09447 -2.233973,-2.35438 L 87.0366,112.58459 c 0.119937,-1.08686 1.084603,-1.91161 2.233972,-1.90996 z m 37.21119,38.98046 c -0.34044,0.4582 -0.68219,0.91375 -1.02488,1.36629 -0.50423,0.66585 -1.01048,1.32517 -1.51763,1.97677 -8.6165,11.07077 -15.9427,18.7407 -18.47432,21.3558 -2.53105,-2.6145 -9.857863,-10.28437 -18.474841,-21.3558 -0.508967,-0.65394 -1.017002,-1.31558 -1.52298,-1.98379 -0.227349,-0.30024 -0.55332,-0.73643 -0.846993,-1.13064 -0.384119,-0.51563 -0.173202,-0.93517 0.469776,-0.9361 l 0.91266,-0.001 39.038178,-0.051 1.05661,-0.001 c 0.52338,-6.1e-4 0.69657,0.34091 0.38442,0.76102 z"/>
+                    </g>
+                </svg>
+                Omnibase
+            </div>
+            <p>2026 Omnibase Architecture. Investor Relations Confidential.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 0. LENIS SMOOTH SCROLLING
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    direction: 'vertical',
+                    gestureDirection: 'vertical',
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: false,
+                    touchMultiplier: 2,
+                    infinite: false,
+                });
+
+                function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+                requestAnimationFrame(raf);
+            }
+
+            // 1. LERP PHYSICS FOR 3D HOVER
+            function lerp(start, end, factor) { return start + (end - start) * factor; }
+
+            const magneticButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
+            magneticButtons.forEach(btn => {
+                let currentX = 0, currentY = 0;
+                let targetX = 0, targetY = 0;
+
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    targetX = (e.clientX - rect.left - rect.width / 2) * 0.3;
+                    targetY = (e.clientY - rect.top - rect.height / 2) * 0.5;
+                });
+
+                btn.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
+
+                function animate() {
+                    currentX = lerp(currentX, targetX, 0.1);
+                    currentY = lerp(currentY, targetY, 0.1);
+                    btn.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            });
+
+            // 2. SPOTLIGHT HOVER FOR BENTO
+            document.querySelectorAll('.bento-card, .archetype-card, .metric-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                });
+            });
+            
+            // 3. STANDARD SCROLL REVEALS
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+
+            // 4. 3D SPATIAL PARALLAX (HERO LOGO) WITH LERP
+            const wrapper = document.getElementById('hero3DWrapper');
+            const mockup = document.getElementById('hero3DMockup');
+
+            if (wrapper && mockup) {
+                const isTouchDevice = window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(max-width: 768px)").matches;
+                let curRotX = 0, curRotY = 0;
+                let tarRotX = 0, tarRotY = 0;
+
+                if (!isTouchDevice) {
+                    document.querySelector('.hero').addEventListener('mousemove', (e) => {
+                        const rect = wrapper.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        
+                        // Reduced from 15 to 8 for a more subtle, elegant desktop tilt
+                        tarRotX = ((e.clientY - centerY) / (rect.height / 2)) * -8; 
+                        tarRotY = ((e.clientX - centerX) / (rect.width / 2)) * 8;
+                    });
+                    document.querySelector('.hero').addEventListener('mouseleave', () => { tarRotX = 0; tarRotY = 0; });
+                } else {
+                    window.addEventListener('scroll', () => {
+                        const rect = wrapper.getBoundingClientRect();
+                        const vh = window.innerHeight;
+                        if (rect.top <= vh && rect.bottom >= 0) {
+                            const progress = 1 - (rect.bottom / (vh + rect.height));
+                            
+                            // Reduced from 60/-40 to 20/-10 so the phone scroll doesn't spin wildly
+                            tarRotX = (progress - 0.5) * 20;
+                            tarRotY = (progress - 0.5) * -10;
+                        }
+                    }, { passive: true });
+                }
+
+                function animate3D() {
+                    // Reduced lerp factor from 0.1 to 0.04 for high-end smoothness
+                    curRotX = lerp(curRotX, tarRotX, 0.04);
+                    curRotY = lerp(curRotY, tarRotY, 0.04);
+                    mockup.style.transform = `rotateX(${curRotX}deg) rotateY(${curRotY}deg)`;
+                    requestAnimationFrame(animate3D);
+                }
+                animate3D();
+            }
+
+            // 5. SCROLLYTELLING OBSERVER
+            const steps = document.querySelectorAll('.scroll-step');
+            const stickyText = document.getElementById('stickyText');
+            const stepObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        steps.forEach(s => s.classList.remove('active'));
+                        entry.target.classList.add('active');
+                        const id = entry.target.id;
+                        if(id === 'step-1') stickyText.innerHTML = "REAL-TIME SYNC<br>~ZERO LATENCY";
+                        if(id === 'step-2') stickyText.innerHTML = "O(1) TEMPORAL<br>LOCK SECURED";
+                        if(id === 'step-3') stickyText.innerHTML = "TYPESENSE RAM<br>CLUSTER ACTIVE";
+                    }
+                });
+            }, { rootMargin: '-40% 0px -40% 0px' });
+            steps.forEach(step => stepObserver.observe(step));
+
+            // 6. ANIMATED SVG CHART & NUMBER COUNTERS TRIGGER
+            const metricsSection = document.getElementById('metricsSection');
+            let numbersAnimated = false;
+
+            function animateNumbers() {
+                if (numbersAnimated) return;
+                numbersAnimated = true;
+                document.querySelectorAll('.count-up').forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; const stepTime = 20; const steps = duration / stepTime;
+                    const increment = target / steps; let current = 0;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.innerText = target.toLocaleString();
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = Math.ceil(current).toLocaleString();
+                        }
+                    }, stepTime);
+                });
+            }
+
+            const metricsObserver = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    metricsSection.classList.add('drawn');
+                    animateNumbers();
+                    metricsObserver.unobserve(metricsSection);
+                }
+            }, { threshold: 0.3 });
+            if(metricsSection) metricsObserver.observe(metricsSection);
+
+            // 7. MODAL TOGGLE LOGIC
+            const modal = document.getElementById('sourcesModal');
+            const openBtn = document.getElementById('openSourcesBtn');
+            const closeBtn = document.getElementById('closeSourcesBtn');
+
+            if(openBtn && modal && closeBtn) {
+                // Open Modal
+                openBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modal.classList.add('active');
+                    if (typeof lenis !== 'undefined') lenis.stop(); // Stops smooth scrolling in background
+                });
+                
+                // Close Modal via Button
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    if (typeof lenis !== 'undefined') lenis.start();
+                });
+                
+                // Close Modal via Background Click
+                modal.addEventListener('click', (e) => {
+                    if(e.target === modal) {
+                        modal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+
+                // Close Modal via Escape Key
+                document.addEventListener('keydown', (e) => {
+                    if(e.key === 'Escape' && modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+            }
+
+            // 8. ARCHETYPES MODAL LOGIC
+            const archModal = document.getElementById('archetypesModal');
+            const openArchBtn = document.getElementById('openArchetypesBtn');
+            const closeArchBtn = document.getElementById('closeArchetypesBtn');
+
+            if(openArchBtn && archModal && closeArchBtn) {
+                // Open Modal
+                openArchBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    archModal.classList.add('active');
+                    if (typeof lenis !== 'undefined') lenis.stop(); // Stops background scroll
+                });
+                
+                // Close Modal via Button
+                closeArchBtn.addEventListener('click', () => {
+                    archModal.classList.remove('active');
+                    if (typeof lenis !== 'undefined') lenis.start();
+                });
+                
+                // Close Modal via Background Click
+                archModal.addEventListener('click', (e) => {
+                    if(e.target === archModal) {
+                        archModal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+
+                // Close Modal via Escape Key
+                document.addEventListener('keydown', (e) => {
+                    if(e.key === 'Escape' && archModal.classList.contains('active')) {
+                        archModal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
