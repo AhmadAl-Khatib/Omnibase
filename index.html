@@ -187,10 +187,10 @@
         .logo-3d-image { 
             width: 280px; 
             height: 280px; 
-            border-radius: 22.5%; /* Perfectly traces the Apple-style squircle */
-            background: transparent; /* Prevents the dark background from filling the gap */
+            border-radius: 22.5%; 
+            background: transparent; 
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8); /* Removed inset shadow (inset doesn't render over <img> tags) */
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8); 
             display: block; 
             max-width: 100%; 
             height: auto; 
@@ -248,55 +248,53 @@
         .ui-img { width: 100%; height: auto; border-radius: 20px; display: block; aspect-ratio: 9/19; object-fit: cover; border: 1px solid rgba(255,255,255,0.03); }
 
         /* --- Seamless Founder Avatar & Orange Accent --- */
-.founder-avatar-wrapper {
-    position: relative;
-    width: 72px;
-    height: 72px;
-    margin-bottom: 20px;
-}
+        .founder-avatar-wrapper {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 20px;
+        }
 
-.founder-avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    /* Subtle orange-tinted glassmorphism ring */
-    border: 1.5px solid rgba(255, 122, 0, 0.35);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 122, 0, 0.1);
-    background: var(--bg-surface);
-    display: block;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
-}
+        .founder-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid rgba(0, 145, 255, 0.35); /* Updated to Brand Blue for Solo Founder */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 145, 255, 0.1);
+            background: var(--bg-surface);
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
 
-/* Reacts smoothly when hovering over the parent bento card */
-.bento-card:hover .founder-avatar {
-    transform: scale(1.06);
-    border-color: rgba(255, 122, 0, 0.7);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 122, 0, 0.25);
-}
+        .bento-card:hover .founder-avatar {
+            transform: scale(1.06);
+            border-color: rgba(0, 145, 255, 0.7);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 145, 255, 0.25);
+        }
 
-.founder-link {
-    color: #FF7A00; /* High-contrast electric amber-orange */
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.3s ease;
-}
+        .founder-link {
+            color: var(--brand-electric-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
 
-.founder-link:hover {
-    color: #FFA149;
-    transform: translateX(2px);
-}
+        .founder-link:hover {
+            color: #4ed0f4;
+            transform: translateX(2px);
+        }
 
-.founder-link svg {
-    transition: transform 0.3s ease;
-}
+        .founder-link svg {
+            transition: transform 0.3s ease;
+        }
 
-.founder-link:hover svg {
-    transform: translate(2px, -2px);
-}
+        .founder-link:hover svg {
+            transform: translate(2px, -2px);
+        }
 
         /* LTV Loop Section Styles */
         .loop-container { 
@@ -332,7 +330,6 @@
         .scroll-step.active { opacity: 1; transform: translateX(0); }
         .scroll-step h3 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 20px; }
         
-        /* The surgical fix is here: align-self: flex-start unlocks the scrolling track for the flex child */
         .sticky-visual-col { flex: 1; position: sticky; top: 120px; height: 600px; display: flex; align-items: center; justify-content: center; align-self: flex-start; }
         
         .sticky-mockup { width: 300px; height: 600px; background: #000; border-radius: 40px; border: 8px solid #1a1a1f; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-width: 100%; }
@@ -375,88 +372,81 @@
             border-radius: 16px; border: 1px solid var(--glass-border); font-size: 14px; line-height: 1.6; color: var(--text-secondary);
         }
         .sources-list li strong { color: var(--brand-electric-blue); display: block; margin-bottom: 4px; font-size: 15px; }
-/* --- Archetype Custom Styles --- */
-.verticals-scroll-container {
-    max-height: 55vh; /* Prevents it from overtaking the screen */
-    overflow-y: auto;
-    padding-right: 16px;
-    margin-top: 24px;
-    -webkit-overflow-scrolling: touch;
-}
 
-/* Custom Sleek Scrollbar */
-.verticals-scroll-container::-webkit-scrollbar { width: 6px; }
-.verticals-scroll-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
-.verticals-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-.verticals-scroll-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+        /* --- Archetype Custom Styles --- */
+        .verticals-scroll-container {
+            max-height: 55vh; 
+            overflow-y: auto;
+            padding-right: 16px;
+            margin-top: 24px;
+            -webkit-overflow-scrolling: touch;
+        }
 
-.archetype-group { margin-bottom: 32px; }
-.archetype-group:last-child { margin-bottom: 16px; }
+        .verticals-scroll-container::-webkit-scrollbar { width: 6px; }
+        .verticals-scroll-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
+        .verticals-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .verticals-scroll-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
-.archetype-title {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.archetype-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--glass-border) 0%, transparent 100%);
-}
+        .archetype-group { margin-bottom: 32px; }
+        .archetype-group:last-child { margin-bottom: 16px; }
 
-.archetype-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
+        .archetype-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .archetype-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border) 0%, transparent 100%);
+        }
 
-.archetype-tag {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-secondary);
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
+        .archetype-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
-.archetype-tag:hover {
-    color: #fff;
-    border-color: var(--brand-electric-blue);
-    background: rgba(0, 145, 255, 0.1);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 145, 255, 0.15);
-}
+        .archetype-tag {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .archetype-tag:hover {
+            color: #fff;
+            border-color: var(--brand-electric-blue);
+            background: rgba(0, 145, 255, 0.1);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.15);
+        }
         footer { padding: 80px 0 40px; text-align: center; color: var(--text-secondary); font-size: 14px; border-top: 1px solid var(--glass-border); width: 100%; }
-/* --- Elite Button Pulse (Attention Seeker) --- */
-.btn-pop {
-    border-color: rgba(0, 145, 255, 0.3) !important;
-    animation: breathingGlow 3s ease-in-out infinite alternate;
-}
-.btn-pop svg {
-    color: var(--brand-electric-blue); /* Makes the icons pop */
-    transition: transform 0.3s ease;
-}
-.btn-pop:hover svg {
-    transform: scale(1.1);
-}
-@keyframes breathingGlow {
-    0% { 
-        box-shadow: 0 0 12px rgba(0, 145, 255, 0.05); 
-    }
-    100% { 
-        box-shadow: 0 0 24px rgba(0, 145, 255, 0.25); 
-        border-color: rgba(0, 145, 255, 0.6) !important;
-    }
-}
+        
+        /* --- Elite Button Pulse (Attention Seeker) --- */
+        .btn-pop {
+            border-color: rgba(0, 145, 255, 0.3) !important;
+            animation: breathingGlow 3s ease-in-out infinite alternate;
+        }
+        .btn-pop svg {
+            color: var(--brand-electric-blue); 
+            transition: transform 0.3s ease;
+        }
+        .btn-pop:hover svg {
+            transform: scale(1.1);
+        }
+        @keyframes breathingGlow {
+            0% { box-shadow: 0 0 12px rgba(0, 145, 255, 0.05); }
+            100% { box-shadow: 0 0 24px rgba(0, 145, 255, 0.25); border-color: rgba(0, 145, 255, 0.6) !important; }
+        }
+
         /* Media Queries (Responsive Tuning) */
         @media (max-width: 992px) {
             .scrollytelling-wrapper { flex-direction: column; }
@@ -471,11 +461,8 @@
             .hero { padding-top: 220px; }
             .logo-3d-image { width: 240px; height: 240px; }
             .hero p, .section-header p { padding: 0 16px; }
-            
-            /* Center text gracefully on mobile for better balance */
             .scroll-text-col .section-header { text-align: center !important; }
 
-            /* Table to Mobile Cards Conversion */
             .competition-matrix thead { display: none; }
             .competition-matrix, .competition-matrix tbody, .competition-matrix tr, .competition-matrix td { display: block; width: 100%; }
             .competition-matrix tr { margin-bottom: 24px; border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px; background: var(--bg-bento); }
@@ -483,56 +470,25 @@
             .competition-matrix td:last-child { border-bottom: none; padding-bottom: 0; }
             .competition-matrix td::before { content: attr(data-label); font-size: 11px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; font-weight: 800; letter-spacing: 0.05em; }
             
-            /* LTV Loop Mobile Layout */
             .loop-container { flex-direction: column; padding: 24px 16px; gap: 8px; }
             .loop-arrow { transform: rotate(90deg); margin: 4px 0; }
             
-            /* UI Gallery Mobile Fix */
             .ui-gallery { flex-direction: column; align-items: center; }
             .ui-frame { width: 100%; max-width: 320px; margin-bottom: 16px; }
             .ui-frame:nth-child(even) { transform: none; }
-            .modal-content {
-                max-height: 85vh;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-            }
+            .modal-content { max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
             
-            /* Updated Close Button */
             .modal-close {
-                position: sticky;
-                top: -10px; /* Snugs the button near the top edge */
-                align-self: flex-end; /* Pushes it to the right within the flex column */
-                
-                /* Spacing to prevent overlap */
-                margin-top: -10px; 
-                margin-bottom: 16px; /* Pushes the "Due Diligence" text down */
-                
-                /* Visual styling to make it a solid floating action button */
-                background: var(--bg-surface);
-                width: 36px;
-                height: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                z-index: 20;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); /* Adds depth so text cleanly slips underneath when scrolling */
+                position: sticky; top: -10px; align-self: flex-end; margin-top: -10px; margin-bottom: 16px; 
+                background: var(--bg-surface); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+                border-radius: 50%; z-index: 20; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); 
             }
-            /* Adding inner scroll container fix */
-            .verticals-scroll-container {
-                max-height: none;
-                overflow-y: visible;
-                margin-top: 16px;
-            }
+            .verticals-scroll-container { max-height: none; overflow-y: visible; margin-top: 16px; }
         }
 
         @media (max-width: 480px) {
             .container { padding: 0 16px; }
-            
-            /* Absolute clearance for the badge under the fixed nav */
             .hero { padding-top: 240px; }
-            
-            /* Navigation Mobile Squish Fix */
             .brand-logo { font-size: 16px; gap: 8px; }
             .brand-logo svg { height: 22px !important; width: 17px !important; }
             .btn-primary { padding: 10px 18px; font-size: 13px; }
@@ -541,12 +497,10 @@
             .hero-cta a { width: 100%; margin-left: 0 !important; }
             .bento-card, .metric-card { padding: 32px 20px; }
 
-            /* App Store Badge Mobile Wrapping */
             .hero-badge { display: flex; flex-direction: column; padding: 16px 24px; gap: 12px; border-radius: 24px; height: auto; text-align: center; }
             .hero-badge-icons { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; width: 100%; justify-content: center; }
             .hero-badge-text { font-size: 11px; text-align: center; justify-content: center; }
         }
-
     </style>
 </head>
 <body>
@@ -556,7 +510,6 @@
     <nav>
         <div class="container nav-content">
             <div class="brand-logo">
-                <!-- SVG Logo -->
                 <svg viewBox="0 0 88.738258 113.22255" style="height: 28px; width: 22px; overflow: visible;">
                     <defs>
                         <linearGradient id="navGrad"><stop stop-color="#0091FF" offset="0"/><stop stop-color="#A085FF" offset="1"/></linearGradient>
@@ -575,12 +528,11 @@
     <!-- 1. THE HOOK -->
     <header class="hero container">
         <div class="hero-glow"></div>
-        <!-- App Store Badge -->
         <div class="hero-badge-wrapper reveal-up">
             <div class="hero-badge">
-                <span class="hero-badge-text">Mobile Apps Coming Soon To Stores</span>
+                <span class="hero-badge-text">Core Architecture Deployed • Closed Beta Active</span>
                 <div class="hero-badge-icons">
-                    <!-- Apple App Store Logo (Rich Silver/White with Gradient) -->
+                    <!-- Apple App Store Logo -->
                     <svg viewBox="0 0 384 512">
                         <defs>
                             <linearGradient id="appleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -590,7 +542,7 @@
                         </defs>
                         <path fill="url(#appleGrad)" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
                     </svg>
-                    <!-- Google Play Logo (Official 4-Color Paths) -->
+                    <!-- Google Play Logo -->
                     <svg viewBox="0 0 1024 1024">
                         <path fill="#4285F4" d="M129 135.5v753c0 23.3 13.5 43.8 33.5 53.5l369.3-388.7L129 135.5z"/>
                         <path fill="#EA4335" d="M531.8 553.3l126.2-132.8-495.5-285c-11.5-6.6-24.5-9.2-37-8l406.3 425.8z"/>
@@ -602,10 +554,10 @@
         </div>
         <h1 class="text-gradient reveal-up title-lg">Omnibase</h1>
         <h2 class="title-md reveal-up delay-100">The Unified Super App.</h2>
-        <h3 class="text-gradient reveal-up delay-200 title-sm">Consolidating 6 Verticals into One Ecosystem.</h3>
+        <h3 class="text-gradient reveal-up delay-200 title-sm">Six Industries. One Mathematical Core.</h3>
         
         <p class="reveal-up delay-300">
-            Fragmented markets bleed capital. Omnibase solves the friction in the consumer economy by fusing a unified discovery engine with an enterprise-grade operational suite. <br><br>We have completely de-risked the architecture to seamlessly scale across 137 professional classifications, 483 business specialties, and 779 core product and service types—dynamically expanding into ~10K++ of granular sub-types. Engineered for smooth vertical expansion by modifying a single server file, the platform achieves true zero-codebase duplication. This is a functional, production-ready ecosystem built to capture aggressive market share.
+            Fragmented markets bleed capital. Omnibase solves the friction in the consumer economy by fusing a unified discovery engine with an enterprise-grade operational suite. <br><br>We have completely eradicated the engineering risk. The architecture natively scales across 137 professional classifications, 483 specialties, and 779 core product and service types—dynamically expanding into ~10K++ of granular sub-types, without a single line of codebase duplication. This is a production-ready monopoly built to capture aggressive market share.
         </p>
         
         <div class="hero-cta reveal-up delay-300">
@@ -651,11 +603,66 @@
         </div>
     </section>
 
+    <!-- 6. COMPETITIVE LANDSCAPE (MOVED UP FOR NARRATIVE FLOW) -->
+    <section class="container" style="padding-top: 40px; margin-bottom: 80px;" id="competition">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">The Competitive Moat.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto;">Displacing single-purpose incumbents through superior utility, consolidated infrastructure, and zero context-switching.</p>
+        </div>
+        
+        <div class="bento-card col-span-12 reveal-up" style="padding: 24px;">
+            <div style="overflow-x: auto;">
+                <table class="competition-matrix">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th style="color: #fff; font-size: 15px;">Omnibase</th>
+                            <th>Niche Aggregators (Yelp, Zocdoc)</th>
+                            <th>Retail SaaS (Shopify, Square)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Capability">TAM Scaling</td>
+                            <td class="highlight" data-label="Omnibase">137 Verticals (Unified)</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Single Vertical Restricted</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">E-commerce Restricted</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">Infrastructure Codebase</td>
+                            <td class="highlight" data-label="Omnibase">Single SDUI Master Manifest</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Fragmented App Stores</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Dependent on 3rd-Party Plugins</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">Consumer Acquisition Cost</td>
+                            <td class="highlight" data-label="Omnibase">Cross-pollinated / Zero Marginal</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">High (Isolated audiences)</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Extremely High (Brand solely responsible)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">Real-Time B2C Chat</td>
+                            <td class="highlight" data-label="Omnibase">Native / Delta-Sync</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Fragmented / Non-existent</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Requires external integrations</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Capability">B2B Operations Vault</td>
+                            <td class="highlight" data-label="Omnibase">HIPAA-Grade Immutable</td>
+                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Basic CRM capabilities</td>
+                            <td data-label="Retail SaaS (Shopify, Square)">Basic Ledger</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <!-- NEW: GO-TO-MARKET / WEDGE STRATEGY -->
-    <section class="container" style="padding-top: 80px; padding-bottom: 40px;" id="strategy">
+    <section class="container" style="padding-bottom: 40px;" id="strategy">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">The Wedge Strategy.</h2>
-            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Super-Apps may fail if they try to boil water in the ocean! We don't launch 137 verticals on Day 1. We infiltrate via high-friction, low-trust sectors, then cross-pollinate with zero marginal acquisition cost.</p>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Most Super-Apps fail by attempting to boil water inside the ocean. We don't aquire 137 verticals users on Day 1. We infiltrate through high-friction, low-trust sectors, then cross-pollinate users with zero marginal acquisition cost.</p>
         </div>
 
         <div class="bento-grid">
@@ -666,17 +673,17 @@
                     Phase 1: Infiltration
                 </div>
                 <h3>The High-Friction Anchor.</h3>
-                <p>We target verticals where existing software fails completely—such as <strong>Clinical Practitioners</strong> and <strong>Emergency Operators</strong>. Businesses are very likely to adopt Omnibase for our free exeptional HIPAA-grade Case Vaults and SOS Dispatch features, bringing their existing client bases onto the platform for us.</p>
+                <p>We target verticals where existing SaaS fails completely—such as <strong>Clinical Practitioners</strong> and <strong>Emergency Operators</strong>. We confidently expect that Businesses won't be able to turn down this offer and adopt Omnibase for our <strong>free</strong>, HIPAA-grade Case Vaults and SOS Dispatch engine. In doing so, they actively onboard their existing client bases onto our platform for us.</p>
             </div>
 
             <!-- Phase 2: Cross-Pollination -->
             <div class="bento-card col-span-4 reveal-up delay-100">
                 <div class="eyebrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                    Zero Marginal CAC
+                   Phase 2: Zero Marginal CAC
                 </div>
                 <h3>The Cross-Pollination Engine.</h3>
-                <p>Once a user downloads Omnibase for a vertical e.g. medical emergency, they are natively exposed to the other 136 verticals. We pay to acquire a user <em>once</em>, but monetize them across groceries, luxury showrooms, and retail permanently. <strong>Our blended Customer Acquisition Cost (CAC) trends toward zero.</strong></p>
+                <p>Once a user downloads Omnibase e.g. for a medical emergency, they are natively exposed to the other 136 verticals. We pay to acquire a user <em>once</em>, but monetize them across groceries, luxury showrooms, and retail permanently. <strong>Our blended Customer Acquisition Cost (CAC) trends toward zero.</strong></p>
             </div>
 
             <!-- Phase 3: Monopoly -->
@@ -686,7 +693,7 @@
                     Phase 3: Monopoly
                 </div>
                 <h3>Total Data Capture.</h3>
-                <p>Traditional aggregators (like Yelp) only handle reviews. Omnibase owns the <strong>Transaction Ledger</strong>. Because we host digital receipts, medical histories, and asset ownership titles natively on-device, the switching cost for both consumers and merchants becomes insurmountable.</p>
+                <p>Traditional aggregators (like Yelp) only handle reviews. Omnibase handle the <strong>Transaction Ledger</strong>. Because we host digital receipts, medical histories, and asset ownership titles natively on-device, the switching cost for both consumers and merchants becomes insurmountable.</p>
             </div>
         </div>
     </section>
@@ -717,7 +724,7 @@
                     <ul>
                         <li><strong style="color: var(--brand-electric-blue);">SDUI Clinical Intake:</strong> Dynamic triage forms pre-qualify leads.</li>
                         <li><strong style="color: var(--brand-electric-blue);">Case Vault:</strong> Immutable, HIPAA-grade timeline lock-in.</li>
-                        <li><strong style="color: var(--brand-electric-blue);">Double-Blind Handshake:</strong> Absolute B2C privacy boundaries.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">Double-Blind Handshake:</strong> Military grade B2C privacy boundaries.</li>
                     </ul>
                 </div>
             </div>
@@ -800,18 +807,8 @@
             </div>
         </div>
     </section>
-<!-- UI VISUAL PROOF
-    <section class="container" style="padding-bottom: 80px;">
-        <div class="ui-gallery reveal-up">
-            <div class="ui-frame"><img src="ui-home.png" alt="Home Discovery" class="ui-img"></div>
-            <div class="ui-frame"><img src="ui-map.png" alt="Geospatial Map" class="ui-img"></div>
-            <div class="ui-frame"><img src="ui-chat.png" alt="Messaging" class="ui-img"></div>
-            <div class="ui-frame"><img src="ui-booking.png" alt="Booking" class="ui-img"></div>
-        </div>
-    </section>
--->
 
-<!-- 4. REVENUE MODEL & INFRASTRUCTURE MOAT -->
+    <!-- 4. REVENUE MODEL & INFRASTRUCTURE MOAT -->
     <section class="container" style="padding-top: 80px;">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Unit Economics & Defensive Moats.</h2>
@@ -823,7 +820,7 @@
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow-gold">Compounding Revenue</div>
                 <h3>The B2B Monetization Engine.</h3>
-                <p>We do not rely solely on B2C transaction fees. Omnibase is intented to generate high-margin Monthly Recurring Revenue (MRR) by allowing businesses to upgrade to <strong>Premium Status</strong>. This grants them algorithmic boosting, verified gold badges, and priority placement in our 0ms Typesense search cluster, creating a localized bidding war for visibility.</p>
+                <p>We do not rely solely on B2C transaction fees. Omnibase relies on high-margin Monthly Recurring Revenue (MRR) by allowing businesses to upgrade to <strong>Premium Status</strong>. This grants them algorithmic boosting, verified gold badges, and priority placement in our 0ms Typesense search cluster, creating a localized bidding war for visibility.</p>
             </div>
 
             <!-- The OTA Encryption (How you protect IP) -->
@@ -838,7 +835,7 @@
                 <div class="eyebrow">Maximizing Lifetime Value (LTV)</div>
                 <h3>The Sovereign Case Vault.</h3>
                 <p>
-                    Data retention is the true switching cost. Omnibase features a tri-channel synchronization engine that writes directly to a secure, on-device SQLite database. 
+                    Data retention is an enormous switching cost. Omnibase features a tri-channel synchronization engine that writes directly to a secure, on-device SQLite database. 
                     <br><br>
                     Depending on the archetype, the Vault seamlessly mutates its schema: holding <strong>HIPAA-grade Clinical Records</strong> for doctors, <strong>Digital Receipts</strong> for merchants, and <strong>Ownership Titles</strong> for luxury showrooms. Users may not abandon a platform that holds the cryptographic proof of their valuable assets and medical history.
                 </p>
@@ -903,7 +900,8 @@
             </div>
         </div>
     </section>
-<!-- START: Omnibase Ops (Admin Infrastructure) Section -->
+
+    <!-- START: Omnibase Ops (Admin Infrastructure) Section -->
     <section class="container" style="padding-top: 80px; padding-bottom: 40px;">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Omnibase Ops: The Command Node.</h2>
@@ -918,7 +916,7 @@
                     Risk Mitigation & Compliance
                 </div>
                 <h3>KYC & Ecosystem Sanitization.</h3>
-                <p>Engineered for zero-liability growth. The Ops node features a centralized business registration pipeline for rapid merchant vetting. Coupled with a <strong>Global Kill Switch</strong>, compliance teams can instantly quarantine malicious actors and purge their data footprint from the edge search cluster in milliseconds, ensuring strict brand safety.</p>
+                <p>Engineered for De-Risked growth. The Ops node features a centralized business registration pipeline for rapid merchant vetting. Coupled with a <strong>Global Kill Switch</strong>, compliance teams can instantly quarantine malicious actors and purge their data footprint from the edge search cluster in milliseconds, ensuring strict brand safety.</p>
             </div>
             
             <!-- Telemetry & GMV (Top Cards & Matrix) -->
@@ -951,136 +949,62 @@
                 <p>A built-in neural tracking module actively ingests ecosystem volume and interaction data. As platform data scales, this module automatically transitions from raw collection to predictive trend analysis, continuously surfacing high-value market intelligence to guide strategic expansion.</p>
             </div>
 
+            <!-- Financial Reaper -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow" style="color: #00C853;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    Over-The-Air (OTA) Supremacy
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    Autonomous Ledger Reconciliation
                 </div>
-                <h3>AES-256 Encrypted Deployment.</h3>
-                <p>We bypass App Store monopolies and review bottlenecks. The Taxonomy Forge in our Next.js Admin Panel allows us to encrypt new UI architectures (SDUI) and push them directly to Android devices globally in 0ms. We can launch an entirely new industry vertical while competitors are still compiling code.</p>
+                <h3>The Financial Reaper Engine.</h3>
+                <p>Zero manual accounting required. At 2:00 AM daily, our autonomous Node.js cloud functions sweep the ecosystem for completed appointments, instantly lock the final transaction values, and update the global Gross Merchandise Value (GMV) ledger. Platform accounting is mathematically infallible and executes while the team sleeps.</p>
             </div>
         </div>
     </section>
     <!-- END: Omnibase Ops (Admin Infrastructure) Section -->
-    <!-- 6. COMPETITIVE LANDSCAPE -->
-    <section class="container" style="padding-top: 80px; margin-bottom: 80px;" id="competition">
-        <div class="section-header reveal-up">
-            <h2 class="text-gradient">The Competitive Moat.</h2>
-            <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto;">Displacing single-purpose incumbents through superior utility, consolidated infrastructure, and zero context-switching.</p>
-        </div>
-        
-        <div class="bento-card col-span-12 reveal-up" style="padding: 24px;">
-            <div style="overflow-x: auto;">
-                <table class="competition-matrix">
-                    <thead>
-                        <tr>
-                            <th>Capability</th>
-                            <th style="color: #fff; font-size: 15px;">Omnibase</th>
-                            <th>Niche Aggregators (Yelp, Zocdoc)</th>
-                            <th>Retail SaaS (Shopify, Square)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Capability">TAM Scaling</td>
-                            <td class="highlight" data-label="Omnibase">137 Verticals (Unified)</td>
-                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Single Vertical Restricted</td>
-                            <td data-label="Retail SaaS (Shopify, Square)">E-commerce Restricted</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Capability">Infrastructure Codebase</td>
-                            <td class="highlight" data-label="Omnibase">Single SDUI Master Manifest</td>
-                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Fragmented App Stores</td>
-                            <td data-label="Retail SaaS (Shopify, Square)">Dependent on 3rd-Party Plugins</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Capability">Consumer Acquisition Cost</td>
-                            <td class="highlight" data-label="Omnibase">Cross-pollinated / Zero Marginal</td>
-                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">High (Isolated audiences)</td>
-                            <td data-label="Retail SaaS (Shopify, Square)">Extremely High (Brand solely responsible)</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Capability">Real-Time B2C Chat</td>
-                            <td class="highlight" data-label="Omnibase">Native / Delta-Sync</td>
-                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Fragmented / Non-existent</td>
-                            <td data-label="Retail SaaS (Shopify, Square)">Requires external integrations</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Capability">B2B Operations Vault</td>
-                            <td class="highlight" data-label="Omnibase">HIPAA-Grade Immutable</td>
-                            <td data-label="Niche Aggregators (Yelp, Zocdoc)">Basic CRM capabilities</td>
-                            <td data-label="Retail SaaS (Shopify, Square)">Basic Ledger</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
 
-    <!-- 7. TEAM SECTION -->
+    <!-- 7. TEAM SECTION (10x Solo Founder Flex) -->
     <section class="container" style="padding: 40px 0 80px;" id="team">
         <div class="section-header reveal-up" style="margin-bottom: 40px;">
-            <h2 class="text-gradient" style="font-size: 40px;">The Founding Team.</h2>
-            <p style="color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto;">Domain expertise spanning enterprise infrastructure, consumer marketplaces, and large-scale systems architecture.</p>
+            <h2 class="text-gradient" style="font-size: 40px;">The Leadership.</h2>
+            <p style="color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto;">The entire Omnibase Ecosystem—Android Client, iOS Client, Next.js Command Node, and Firebase Infrastructure—was architected and deployed under the supervision of a single senior engineer, ensuring the whole system operates seamlessly at an elite level.</p>
         </div>
         
-        <div class="bento-grid">
-            <div class="bento-card col-span-4 reveal-up team-profile">
-                <div class="founder-avatar-wrapper">
+        <div class="bento-grid" style="justify-content: center; display: flex;">
+            <div class="bento-card col-span-6 reveal-up team-profile" style="width: 100%; max-width: 500px; align-items: center; text-align: center;">
+                <div class="founder-avatar-wrapper" style="width: 120px; height: 120px;">
                     <!-- Replace src with your headshot file path or URL -->
                     <img src="assets/pf.png" alt="Ahmad Al Khatib" class="founder-avatar">
                 </div>
                 
-                <div class="team-role">Founder</div>
-                <h3 style="font-size: 24px; margin-bottom: 8px;">Ahmad Al Khatib</h3>
-                <p style="font-size: 14px;">
+                <div class="team-role" style="color: var(--brand-electric-blue); font-weight: 800; letter-spacing: 1px; margin-bottom: 8px;">FOUNDER & LEAD ARCHITECT</div>
+                <h3 style="font-size: 32px; margin-bottom: 8px;">Ahmad Al Khatib</h3>
+                <p style="font-size: 16px;">
                     <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
-                        www.ahmad-khatib.com
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                        View Developer Portfolio
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                     </a>
                 </p>
             </div>
-            <div class="bento-card col-span-4 reveal-up team-profile">
-                <div class="founder-avatar-wrapper">
-                    <!-- Replace src with your headshot file path or URL -->
-                    <img src="assets/Omnibase.jpg" alt="Ahmad Al Khatib" class="founder-avatar">
-                </div>
-                
-                <div class="team-role">Scouting talents</div>
-                <h3 style="font-size: 24px; margin-bottom: 8px;">Scouting talents</h3>
-                <p style="font-size: 14px;">
-                    <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
-                        www.ahmad-khatib.com
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    </a>
-                </p>
-            </div>
-            <div class="bento-card col-span-4 reveal-up team-profile">
-                <div class="founder-avatar-wrapper">
-                    <!-- Replace src with your headshot file path or URL -->
-                    <img src="assets/Omnibase.jpg" alt="Ahmad Al Khatib" class="founder-avatar">
-                </div>
-                
-                <div class="team-role">Scouting talents</div>
-                <h3 style="font-size: 24px; margin-bottom: 8px;">Scouting talents</h3>
-                <p style="font-size: 14px;">
-                    <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
-                        www.ahmad-khatib.com
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    </a>
-                </p>
-            </div>
+        </div>
     </section>
 
-    <!-- 8.THE ASK -->
-    <section class="container reveal-up" style="text-align: center; padding: 60px 0 100px;" id="invest">
-        <h2 style="font-size: 56px; margin-bottom: 24px;" class="text-gradient">Raising $ Seed.</h2>
+    <!-- 8. THE ASK -->
+    <section class="container reveal-up" style="text-align: center; padding: 40px 0 100px;" id="invest">
+        <h2 style="font-size: 56px; margin-bottom: 24px;" class="text-gradient">Opening Seed Round.</h2>
         <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto 48px;">
-            The engineering risk is mitigated. The architecture is production-ready. We are raising our Seed Round to fund 18 months of aggressive user acquisition and B2B onboarding. Your capital scales a proven system into a market-defining utility.
+            The engineering risk is eliminated. The architecture is almost production-ready. We are opening our Seed Round to fund 18 months of aggressive user acquisition and B2B onboarding. We are not building software; we are scaling a monopoly.
         </p>
-        <a href="mailto:ahmad@ahmad-khatib.com" class="btn-primary" style="font-size: 16px; padding: 18px 36px;">Schedule Investor Briefing</a>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="mailto:ahmad@ahmad-khatib.com" class="btn-primary" style="font-size: 16px; padding: 18px 36px;">Schedule Investor Briefing</a>
+            <!-- Optional: Link to your compiled APK so VCs can test the 120fps UI -->
+            <a href="assets/omnibase-investor-apk.apk" download class="btn-secondary" style="font-size: 16px; padding: 18px 36px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Android Demo
+            </a>
+        </div>
     </section>
-<!-- Archetypes/Verticals Modal -->
+
+    <!-- Archetypes/Verticals Modal -->
     <div class="modal-overlay" id="archetypesModal">
         <div class="modal-content bento-card" style="max-width: 800px;">
             <button class="modal-close" id="closeArchetypesBtn">&times;</button>
@@ -1088,9 +1012,7 @@
             <h3 style="font-size: 28px; margin-bottom: 8px; color: #fff;">137 Supported Verticals</h3>
             <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 0;">Dynamically configured via a single Server-Driven UI schema.</p>
             
-            <!-- Custom Scroll Container -->
             <div class="verticals-scroll-container">
-                
                 <!-- Practitioner -->
                 <div class="archetype-group">
                     <h4 class="archetype-title text-gradient-blue">Practitioner</h4>
@@ -1141,6 +1063,7 @@
             </div>
         </div>
     </div>
+    
     <!-- Data Sources Modal -->
     <div class="modal-overlay" id="sourcesModal">
         <div class="modal-content bento-card">
@@ -1269,7 +1192,6 @@
                         const centerX = rect.left + rect.width / 2;
                         const centerY = rect.top + rect.height / 2;
                         
-                        // Reduced from 15 to 8 for a more subtle, elegant desktop tilt
                         tarRotX = ((e.clientY - centerY) / (rect.height / 2)) * -8; 
                         tarRotY = ((e.clientX - centerX) / (rect.width / 2)) * 8;
                     });
@@ -1281,7 +1203,6 @@
                         if (rect.top <= vh && rect.bottom >= 0) {
                             const progress = 1 - (rect.bottom / (vh + rect.height));
                             
-                            // Reduced from 60/-40 to 20/-10 so the phone scroll doesn't spin wildly
                             tarRotX = (progress - 0.5) * 20;
                             tarRotY = (progress - 0.5) * -10;
                         }
@@ -1289,7 +1210,6 @@
                 }
 
                 function animate3D() {
-                    // Reduced lerp factor from 0.1 to 0.04 for high-end smoothness
                     curRotX = lerp(curRotX, tarRotX, 0.04);
                     curRotY = lerp(curRotY, tarRotY, 0.04);
                     mockup.style.transform = `rotateX(${curRotX}deg) rotateY(${curRotY}deg)`;
