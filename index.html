@@ -586,6 +586,24 @@
             background: linear-gradient(to top, var(--bg-bento) 0%, transparent 100%);
             z-index: 5; pointer-events: none;
         }
+
+		/* Language Switcher */
+		.lang-switch {
+		    color: var(--text-secondary);
+		    text-decoration: none;
+		    font-size: 14px;
+		    font-weight: 700;
+		    transition: color 0.3s ease;
+		    display: inline-flex;
+		    align-items: center;
+		    gap: 6px;
+		}
+		.lang-switch:hover {
+		    color: #ffffff;
+		}
+		@media (max-width: 480px) {
+		    .lang-switch { font-size: 13px; }
+		}
 		
     </style>
 </head>
@@ -593,7 +611,7 @@
 
     <div class="bg-grid"></div>
 
-    <nav>
+	<nav>
         <div class="container nav-content">
             <div class="brand-logo">
                 <svg viewBox="0 0 88.738258 113.22255" style="height: 28px; width: 22px; overflow: visible;">
@@ -605,7 +623,12 @@
                 </svg>
                 Omnibase
             </div>
-            <div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <!-- Language Switcher -->
+                <a href="ar/index.html" class="lang-switch">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    العربية
+                </a>
                 <a href="#invest" class="btn-primary">Access Data Room</a>
             </div>
         </div>
