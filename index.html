@@ -1500,7 +1500,7 @@
 				const html = brands.map(brand => `
 					<div class="brand-tile" title="${brand.replace(/-/g, ' ').toUpperCase()}">
 						<!-- IMPORTANT: Ensure paths align with your actual directory structure -->
-						<img src="${category}/${brand}.png" alt="${brand} logo" loading="lazy">
+						<img src="assets/${category}/${brand}.png" alt="${brand} logo" loading="lazy">
 					</div>
 				`).join('');
 				grid.innerHTML = html;
