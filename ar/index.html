@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أومني بيس (Omnibase) | علاقات المستثمرين والاستراتيجية</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- تمت إضافة خطوط Cairo و Tajawal لدعم اللغة العربية بشكل احترافي يتناسب مع التصميم الأصلي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg-obsidian: #050506;
+            --bg-surface: #0e0e11;
+            --bg-bento: #141418;
+            --brand-electric-blue: #0091FF;
+            --brand-soft-violet: #A085FF;
+            --brand-gold: #FFD700;
+            --text-primary: #f5f5f7;
+            --text-secondary: #989AA2;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(24px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        html.lenis, html.lenis body { height: auto; width: 100%; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        /* Ensure global bounds are respected without breaking internal sticky elements */
+        html, body {
+            overflow-x: clip; 
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background-color: var(--bg-obsidian);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Cinematic Grain & Grid */
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .bg-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: -2;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Cairo', 'Manrope', sans-serif; letter-spacing: -0.01em; text-wrap: balance; }
+        p { text-wrap: pretty; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+        /* Typography */
+        .text-gradient { background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-blue { background: linear-gradient(135deg, var(--brand-electric-blue) 0%, var(--brand-soft-violet) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-gold { background: linear-gradient(135deg, #FFF7D6 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .eyebrow { color: var(--brand-electric-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .eyebrow-gold { color: var(--brand-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+        /* Buttons */
+        .btn-primary, .btn-secondary {
+            padding: 14px 28px; border-radius: 980px; text-decoration: none; font-weight: 600; font-size: 15px;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); will-change: transform;
+        }
+        .btn-primary { background: var(--text-primary); color: var(--bg-obsidian); }
+        .btn-primary:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--glass-border); backdrop-filter: var(--glass-blur); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--glass-highlight); transform: translateY(-2px); }
+
+        /* Navigation */
+        nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 16px 0; background: rgba(5, 5, 6, 0.7); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--glass-border); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: nowrap; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+
+        /* Language Switcher */
+        .lang-switch {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .lang-switch:hover {
+            color: #ffffff;
+        }
+
+        /* Hero App Store Badge */
+        .hero-badge-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(20, 20, 24, 0.4); 
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 8px 22px;
+            border-radius: 999px;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
+        }
+
+        .hero-badge:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px rgba(0, 145, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-badge-text {
+            font-size: 13px;
+            font-weight: 700;
+            color: #E2E2E5;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-badge-text::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--brand-electric-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--brand-electric-blue);
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(0, 145, 255, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(0, 145, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 145, 255, 0); }
+        }
+
+        .hero-badge-icons {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15); /* RTL adjusted */
+            padding-right: 16px; /* RTL adjusted */
+        }
+
+        .hero-badge-icons svg {
+            height: 22px; 
+            width: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .hero-badge-icons svg:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+        }
+
+        /* Hero Container */
+        .hero { 
+            padding-top: 240px; 
+            padding-bottom: 80px; 
+            text-align: center; 
+            position: relative; 
+            width: 100%; 
+            z-index: 10;
+        }
+        
+        .title-lg { font-size: clamp(48px, 8vw, 96px); line-height: 1.1; margin-bottom: 8px; }
+        .title-md { font-size: clamp(24px, 5vw, 48px); line-height: 1.2; margin-bottom: 16px; font-weight: 700; color: var(--text-secondary); }
+        .title-sm { font-size: clamp(18px, 4vw, 32px); line-height: 1.2; margin-bottom: 24px; }
+        .hero p { font-size: 20px; color: var(--text-secondary); max-width: 820px; margin: 0 auto 48px; font-weight: 400; }
+        .hero-glow { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 800px; height: 800px; background: radial-gradient(circle, rgba(0, 145, 255, 0.15) 0%, rgba(5, 5, 6, 0) 60%); z-index: -1; pointer-events: none; }
+        
+        .logo-wrapper { perspective: 2000px; display: inline-block; margin-top: 40px; }
+        .logo-3d-image { 
+            width: 280px; 
+            height: 280px; 
+            border-radius: 22.5%; 
+            background: transparent; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8); 
+            display: block; 
+            max-width: 100%; 
+            height: auto; 
+        }
+        /* Sections */
+        .section-header { text-align: center; margin: 120px 0 64px; width: 100%; }
+        .section-header h2 { font-size: clamp(32px, 6vw, 56px); margin-bottom: 16px; }
+        .section-header p { font-size: 20px; color: var(--text-secondary); max-width: 750px; margin: 0 auto; }
+
+        /* Bento Grid */
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-bottom: 80px; width: 100%; }
+        .col-span-12 { grid-column: span 12; } .col-span-8 { grid-column: span 8; } .col-span-6 { grid-column: span 6; } .col-span-4 { grid-column: span 4; }
+        
+        .bento-card {
+            background: var(--bg-bento); border-radius: 32px; padding: 40px;
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
+            border: 1px solid transparent; 
+        }
+        .bento-card::after {
+            content: ""; position: absolute; inset: 0; border-radius: 32px;
+            padding: 1px; background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+        }
+        .bento-card::before {
+            content: ""; position: absolute; inset: 0; border-radius: inherit;
+            background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0, 145, 255, 0.08), transparent 40%);
+            opacity: 0; transition: opacity 0.5s ease; pointer-events: none; z-index: 1;
+        }
+        .bento-card:hover::before { opacity: 1; }
+        .bento-card > * { position: relative; z-index: 2; }
+        
+        .bento-card h3 { font-size: 32px; margin-bottom: 16px; color: #fff; }
+        .bento-card p { font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* Bullet Points */
+        .elite-features { margin-top: auto; border-top: 1px solid var(--glass-border); padding-top: 16px; }
+        .elite-features ul { list-style: none; color: var(--text-secondary); font-size: 15px; line-height: 1.8; }
+        .elite-features ul li { padding-bottom: 10px; position: relative; padding-right: 20px; } /* RTL adjusted */
+        .elite-features ul li::before { content: "←"; position: absolute; right: 0; color: var(--brand-electric-blue); font-weight: bold; } /* RTL adjusted */
+
+        /* Metrics */
+        .metrics-section { padding: 80px 0; text-align: center; position: relative; width: 100%; overflow: hidden; }
+        .chart-bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.03; pointer-events: none; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+        .metric-card { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 24px; backdrop-filter: var(--glass-blur); }
+        .metric-value { font-size: clamp(40px, 6vw, 64px); font-family: 'Cairo', 'Manrope', sans-serif; font-weight: 800; color: #fff; margin-bottom: 8px; direction: ltr; display: inline-block; }
+        .metric-label { font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); font-weight: 600; }
+
+        /* UI Showcase (Staggered) */
+        .ui-gallery { display: flex; gap: 24px; justify-content: center; margin-top: 56px; overflow: hidden; padding: 20px 0; width: 100%; }
+        .ui-frame { background: var(--bg-bento); border: 1px solid var(--glass-border); border-radius: 32px; padding: 12px; width: 260px; flex-shrink: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transition: transform 0.4s ease; }
+        .ui-frame:nth-child(even) { transform: translateY(30px); }
+        .ui-frame:hover { transform: translateY(-10px) !important; border-color: var(--glass-highlight); z-index: 10; }
+        .ui-img { width: 100%; height: auto; border-radius: 20px; display: block; aspect-ratio: 9/19; object-fit: cover; border: 1px solid rgba(255,255,255,0.03); }
+
+        /* --- Seamless Founder Avatar & Orange Accent --- */
+        .founder-avatar-wrapper {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 20px;
+        }
+
+        .founder-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid rgba(0, 145, 255, 0.35); /* Updated to Brand Blue for Solo Founder */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 145, 255, 0.1);
+            background: var(--bg-surface);
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .bento-card:hover .founder-avatar {
+            transform: scale(1.06);
+            border-color: rgba(0, 145, 255, 0.7);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 145, 255, 0.25);
+        }
+
+        .founder-link {
+            color: var(--brand-electric-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .founder-link:hover {
+            color: #4ed0f4;
+            transform: translateX(-2px); /* RTL adjusted */
+        }
+
+        .founder-link svg {
+            transition: transform 0.3s ease;
+            transform: scaleX(-1); /* RTL flip arrow */
+        }
+
+        .founder-link:hover svg {
+            transform: translate(-2px, -2px) scaleX(-1); /* RTL adjusted */
+        }
+
+        /* LTV Loop Section Styles */
+        .loop-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin-top: 32px; 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 16px; 
+            padding: 24px; 
+            flex-wrap: wrap; 
+            gap: 16px; 
+            width: 100%;
+        }
+        .loop-step { 
+            text-align: center; 
+            flex: 1; 
+            min-width: 130px; 
+            font-weight: 600; 
+            color: #fff; 
+        }
+        .loop-arrow { 
+            color: var(--brand-electric-blue); 
+            font-weight: bold; 
+            font-size: 20px; 
+            display: inline-block;
+            transform: scaleX(-1); /* RTL flip */
+        }
+
+        /* Scrollytelling - Sticky Functional Architecture */
+        .scrollytelling-wrapper { display: flex; position: relative; padding: 80px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); background: var(--bg-surface); width: 100%; }
+        .scroll-text-col { flex: 1; padding-left: 60px; max-width: 100%; } /* RTL adjusted */
+        .scroll-step { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; opacity: 0.3; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(20px); } /* RTL adjusted */
+        .scroll-step.active { opacity: 1; transform: translateX(0); }
+        .scroll-step h3 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 20px; }
+        
+        .sticky-visual-col { flex: 1; position: sticky; top: 120px; height: 600px; display: flex; align-items: center; justify-content: center; align-self: flex-start; }
+        
+        .sticky-mockup { width: 300px; height: 600px; background: #000; border-radius: 40px; border: 8px solid #1a1a1f; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-width: 100%; }
+
+        /* Utils */
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Competition Table */
+        .competition-matrix { width: 100%; border-collapse: collapse; margin-top: 24px; }
+        .competition-matrix th, .competition-matrix td { padding: 20px; text-align: right; border-bottom: 1px solid var(--glass-border); font-size: 15px; } /* RTL adjusted */
+        .competition-matrix th { color: var(--text-secondary); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .competition-matrix td.highlight { color: var(--brand-electric-blue); font-weight: 600; }
+
+        /* --- Modal & Data Sources Styles --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 6, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 24px;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            width: 100%; max-width: 650px; transform: translateY(20px); 
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--bg-surface); z-index: 10000;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 24px; left: 24px; background: none; border: none; /* RTL adjusted */
+            color: var(--text-secondary); font-size: 28px; cursor: pointer; line-height: 1; transition: color 0.2s; z-index: 10;
+        }
+        .modal-close:hover { color: #fff; }
+        .sources-list { list-style: none; padding: 0; margin: 0; }
+        .sources-list li {
+            padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,0.02);
+            border-radius: 16px; border: 1px solid var(--glass-border); font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+        }
+        .sources-list li strong { color: var(--brand-electric-blue); display: block; margin-bottom: 4px; font-size: 15px; }
+
+        /* --- Archetype Custom Styles --- */
+        .verticals-scroll-container {
+            max-height: 55vh; 
+            overflow-y: auto;
+            padding-left: 16px; /* RTL adjusted */
+            margin-top: 24px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .verticals-scroll-container::-webkit-scrollbar { width: 6px; }
+        .verticals-scroll-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
+        .verticals-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .verticals-scroll-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+        .archetype-group { margin-bottom: 32px; }
+        .archetype-group:last-child { margin-bottom: 16px; }
+
+        .archetype-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .archetype-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(270deg, var(--glass-border) 0%, transparent 100%); /* RTL adjusted */
+        }
+
+        .archetype-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .archetype-tag {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .archetype-tag:hover {
+            color: #fff;
+            border-color: var(--brand-electric-blue);
+            background: rgba(0, 145, 255, 0.1);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.15);
+        }
+        footer { padding: 80px 0 40px; text-align: center; color: var(--text-secondary); font-size: 14px; border-top: 1px solid var(--glass-border); width: 100%; }
+        
+        /* --- Elite Button Pulse (Attention Seeker) --- */
+        .btn-pop {
+            border-color: rgba(0, 145, 255, 0.3) !important;
+            animation: breathingGlow 3s ease-in-out infinite alternate;
+        }
+        .btn-pop svg {
+            color: var(--brand-electric-blue); 
+            transition: transform 0.3s ease;
+        }
+        .btn-pop:hover svg {
+            transform: scale(1.1);
+        }
+        @keyframes breathingGlow {
+            0% { box-shadow: 0 0 12px rgba(0, 145, 255, 0.05); }
+            100% { box-shadow: 0 0 24px rgba(0, 145, 255, 0.25); border-color: rgba(0, 145, 255, 0.6) !important; }
+        }
+
+        /* RTL specific margins */
+        html[dir="rtl"] .hero-cta .btn-secondary { margin-right: 12px !important; margin-left: 0 !important; }
+        html[dir="rtl"] .btn-secondary svg { margin-left: 8px !important; margin-right: 0 !important; }
+
+        /* Media Queries (Responsive Tuning) */
+        @media (max-width: 992px) {
+            .scrollytelling-wrapper { flex-direction: column; }
+            .sticky-visual-col { display: none; }
+            .scroll-text-col { padding-left: 0; }
+            .scroll-step { min-height: 40vh; transform: none; opacity: 1; padding: 40px 0; }
+            .col-span-8, .col-span-4, .col-span-6, .col-span-12 { grid-column: span 12; }
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero { padding-top: 220px; }
+            .logo-3d-image { width: 240px; height: 240px; }
+            .hero p, .section-header p { padding: 0 16px; }
+            .scroll-text-col .section-header { text-align: center !important; }
+
+            .competition-matrix thead { display: none; }
+            .competition-matrix, .competition-matrix tbody, .competition-matrix tr, .competition-matrix td { display: block; width: 100%; }
+            .competition-matrix tr { margin-bottom: 24px; border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px; background: var(--bg-bento); }
+            .competition-matrix td { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: right; font-size: 15px; } /* RTL adjusted */
+            .competition-matrix td:last-child { border-bottom: none; padding-bottom: 0; }
+            .competition-matrix td::before { content: attr(data-label); font-size: 11px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; font-weight: 800; letter-spacing: 0.05em; }
+            
+            .loop-container { flex-direction: column; padding: 24px 16px; gap: 8px; }
+            .loop-arrow { transform: rotate(90deg); margin: 4px 0; } /* For vertical, flip not strictly needed but keeps visual flow */
+            
+            .ui-gallery { flex-direction: column; align-items: center; }
+            .ui-frame { width: 100%; max-width: 320px; margin-bottom: 16px; }
+            .ui-frame:nth-child(even) { transform: none; }
+            .modal-content { max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+            
+            .modal-close {
+                position: sticky; top: -10px; align-self: flex-start; margin-top: -10px; margin-bottom: 16px; /* RTL adjusted */
+                background: var(--bg-surface); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+                border-radius: 50%; z-index: 20; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); 
+            }
+            .verticals-scroll-container { max-height: none; overflow-y: visible; margin-top: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero { padding-top: 240px; }
+            .brand-logo { font-size: 16px; gap: 8px; }
+            .brand-logo svg { height: 22px !important; width: 17px !important; }
+            .btn-primary { padding: 10px 18px; font-size: 13px; }
+            .lang-switch { font-size: 13px; }
+
+            .hero-cta { display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 16px; }
+            .hero-cta a { width: 100%; margin-right: 0 !important; } /* RTL adjusted */
+            .bento-card, .metric-card { padding: 32px 20px; }
+
+            .hero-badge { display: flex; flex-direction: column; padding: 16px 24px; gap: 12px; border-radius: 24px; height: auto; text-align: center; }
+            .hero-badge-icons { border-right: none; padding-right: 0; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; width: 100%; justify-content: center; } /* RTL adjusted */
+            .hero-badge-text { font-size: 11px; text-align: center; justify-content: center; }
+        }
+		
+		/* --- Brand Ecosystem Showcase --- */
+        .brand-tabs-header {
+            display: flex; gap: 12px; padding: 24px; justify-content: center;
+            border-bottom: 1px solid var(--glass-border); background: rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .brand-tab {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
+            color: var(--text-secondary); padding: 12px 24px; border-radius: 999px;
+            font-weight: 600; font-size: 14px; cursor: pointer; display: flex;
+            align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .brand-tab:hover {
+            color: #fff; background: rgba(255, 255, 255, 0.08); transform: translateY(-2px);
+        }
+
+        .brand-tab.active {
+            background: rgba(0, 145, 255, 0.1); border-color: rgba(0, 145, 255, 0.4);
+            color: #fff; box-shadow: 0 4px 16px rgba(0, 145, 255, 0.15);
+        }
+
+        .brand-grid-wrapper {
+            position: relative; width: 100%; height: 450px; overflow: hidden;
+            background: var(--bg-bento);
+        }
+
+        .brand-scroll-container {
+            height: 100%; overflow-y: auto; padding: 32px 24px 64px 24px;
+            scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
+        }
+
+        .brand-scroll-container::-webkit-scrollbar { width: 6px; }
+        .brand-scroll-container::-webkit-scrollbar-track { background: transparent; }
+        .brand-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+        .brand-grid {
+            display: none; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 16px;
+            animation: gridFadeIn 0.5s ease forwards;
+        }
+
+        .brand-grid.active { display: grid; }
+
+        @keyframes gridFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-tile {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+            padding: 16px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+        }
+
+        .brand-tile:hover {
+            border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+
+        .brand-tile img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            filter: grayscale(100%) opacity(0.35) brightness(1.5);
+            transition: all 0.4s ease;
+        }
+
+        .brand-tile:hover img {
+            filter: grayscale(0%) opacity(1) brightness(1);
+        }
+
+        /* Gradient Fades for depth illusion */
+        .grid-fade-top {
+            position: absolute; top: 0; left: 0; width: 100%; height: 40px;
+            background: linear-gradient(to bottom, var(--bg-bento) 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+
+        .grid-fade-bottom {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 60px;
+            background: linear-gradient(to top, var(--bg-bento) 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+		
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="brand-logo">
+                <svg viewBox="0 0 88.738258 113.22255" style="height: 28px; width: 22px; overflow: visible;">
+                    <defs>
+                        <linearGradient id="navGrad"><stop stop-color="#0091FF" offset="0"/><stop stop-color="#A085FF" offset="1"/></linearGradient>
+                    </defs>
+                    <path fill="url(#navGrad)" transform="translate(-60.6,-91.8)" d="m 105.46488,69.420052 c -24.470275,-10e-7 -44.369385,19.898598 -44.369384,44.368868 1e-6,13.19448 10.856134,29.25915 21.351668,42.74416 10.495533,13.48501 20.972876,24.04918 20.972876,24.04918 l 2.04484,2.06034 2.04277,-2.06034 c 0,0 10.47735,-10.56417 20.97288,-24.04918 10.49553,-13.48501 21.35322,-29.54968 21.35322,-42.74416 0,-24.470268 -19.89858,-44.368867 -44.36887,-44.368868 z m 0,5.755721 c 21.35952,10e-7 38.61315,17.253652 38.61315,38.613147 0,6.22547 -4.05605,15.15761 -9.66546,24.23549 -0.39204,0.63445 -0.79167,1.26962 -1.19803,1.90462 -0.27575,0.4309 -0.5469,0.36641 -0.60265,-0.14212 l -0.1906,-1.73876 -3.33925,-30.46247 c -0.16014,-1.45777 -1.39065,-2.56209 -2.85719,-2.56418 l -7.71374,-0.0119 c -0.0912,-3.34872 0.007,-7.425511 -2.02106,-10.261388 -2.45795,-3.437756 -6.75212,-6.320098 -10.97814,-6.341732 -4.31827,-0.02211 -8.747736,2.869619 -11.283553,6.364986 -2.035825,2.806177 -1.97069,6.835524 -2.046387,10.197314 l -7.531323,-0.0119 c -1.475283,-0.002 -2.713583,1.11091 -2.867525,2.57814 l -3.182258,30.48328 -0.191773,1.83702 c -0.05704,0.54637 -0.34633,0.61613 -0.642729,0.15362 -0.432443,-0.67481 -0.857323,-1.34984 -1.273613,-2.02405 -5.596784,-9.0643 -9.641015,-17.97952 -9.641016,-24.19599 -3e-6,-21.359495 17.253646,-38.613148 38.613147,-38.613147 z m 0.0233,18.986438 c 2.2153,0.01317 4.54655,1.362867 5.84978,3.15433 1.53191,2.10581 1.29682,4.690809 1.41076,7.683769 l -14.802711,-0.0227 c 0.101656,-2.97044 -0.114853,-5.531756 1.417485,-7.606252 1.369406,-1.853914 3.819896,-3.222852 6.124686,-3.209147 z m -16.21761,16.512169 2.891813,0.004 c 0.02223,3.52688 0.02515,2.19977 0.02498,3.37037 -2.67e-4,1.88715 1.465137,2.96861 2.836955,2.98164 1.367988,0.013 2.867513,-1.01907 2.885005,-2.91904 0.01579,-1.71513 0.03138,0.0111 0.0093,-3.42419 l 14.910197,0.0217 c 0.0132,3.48226 -0.003,-0.0304 0.0404,3.45933 0.0232,1.86099 1.4069,2.85663 2.76354,2.87831 1.35664,0.0217 2.92654,-1.0881 2.94663,-2.83187 0.0407,-3.53169 0.0188,0.0396 0.005,-3.4975 l 3.07888,0.005 c 1.14306,10e-4 2.1022,0.81979 2.22674,1.90015 l 3.2551,28.23238 c 0.146,1.26148 -0.89199,2.36427 -2.22674,2.36575 l -38.758352,0.0481 c -1.332324,0.002 -2.372607,-1.09447 -2.233973,-2.35438 L 87.0366,112.58459 c 0.119937,-1.08686 1.084603,-1.91161 2.233972,-1.90996 z m 37.21119,38.98046 c -0.34044,0.4582 -0.68219,0.91375 -1.02488,1.36629 -0.50423,0.66585 -1.01048,1.32517 -1.51763,1.97677 -8.6165,11.07077 -15.9427,18.7407 -18.47432,21.3558 -2.53105,-2.6145 -9.857863,-10.28437 -18.474841,-21.3558 -0.508967,-0.65394 -1.017002,-1.31558 -1.52298,-1.98379 -0.227349,-0.30024 -0.55332,-0.73643 -0.846993,-1.13064 -0.384119,-0.51563 -0.173202,-0.93517 0.469776,-0.9361 l 0.91266,-0.001 39.038178,-0.051 1.05661,-0.001 c 0.52338,-6.1e-4 0.69657,0.34091 0.38442,0.76102 z"/>
+                    </g>
+                </svg>
+                أومني بيس (Omnibase)
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <!-- Language Switcher -->
+                <a href="index.html" class="lang-switch">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    English
+                </a>
+                <a href="#invest" class="btn-primary">الوصول إلى غرفة البيانات</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. THE HOOK -->
+    <header class="hero container">
+        <div class="hero-glow"></div>
+        <div class="hero-badge-wrapper reveal-up">
+            <div class="hero-badge">
+                <span class="hero-badge-text">تم نشر البنية الأساسية • النسخة التجريبية المغلقة نشطة</span>
+                <div class="hero-badge-icons">
+                    <!-- Apple App Store Logo -->
+                    <svg viewBox="0 0 384 512">
+                        <defs>
+                            <linearGradient id="appleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="100%" stop-color="#d1d1d6" />
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#appleGrad)" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                    </svg>
+                    <!-- Google Play Logo -->
+                    <svg viewBox="0 0 1024 1024">
+                        <path fill="#4285F4" d="M129 135.5v753c0 23.3 13.5 43.8 33.5 53.5l369.3-388.7L129 135.5z"/>
+                        <path fill="#EA4335" d="M531.8 553.3l126.2-132.8-495.5-285c-11.5-6.6-24.5-9.2-37-8l406.3 425.8z"/>
+                        <path fill="#FBBC05" d="M658 420.5L861.3 538c35.3 20.3 35.3 53.7 0 74l-203.3 117.5L531.8 553.3 658 420.5z"/>
+                        <path fill="#34A853" d="M162.5 942c12.5 1.2 25.5-1.4 37-8l458.5-263.8L531.8 553.3 162.5 942z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <h1 class="text-gradient reveal-up title-lg">أومني بيس (Omnibase)</h1>
+        <h2 class="title-md reveal-up delay-100">التطبيق الخارق الموحد.</h2>
+        <h3 class="text-gradient reveal-up delay-200 title-sm">ستة قطاعات رئيسية. نواة رياضية واحدة.</h3>
+        
+        <p class="reveal-up delay-300">
+            الأسواق المجزأة تستنزف رؤوس الأموال. تعالج أومني بيس (Omnibase) الاحتكاك في اقتصاد المستهلك من خلال دمج محرك اكتشاف موحد مع حزمة تشغيلية بمستوى المؤسسات. <br><br>لقد قمنا بالقضاء تماماً على المخاطر الهندسية. تم تصميم البنية البرمجية لتتوسع بشكل أصيل عبر 137 تصنيفاً مهنياً، 483 تخصصاً، و 779 نوعاً أساسياً من المنتجات والخدمات—وتتوسع ديناميكياً لتشمل ما يزيد عن 100 ألف نوع فرعي دقيق، دون الحاجة لتكرار سطر واحد من الشيفرة البرمجية. إنها منصة احتكارية جاهزة للإنتاج، بُنيت للاستحواذ القوي على حصة السوق.
+        </p>
+        
+        <div class="hero-cta reveal-up delay-300">
+            <a href="#invest" class="btn-primary">مراجعة دراسة الجدوى</a>
+            <a href="#architecture" class="btn-secondary">عرض الخندق الهيكلي</a>
+        </div>
+
+        <div class="logo-wrapper reveal-up delay-300" id="hero3DWrapper">
+            <img src="assets/omnibaselogo.png" alt="شعار أومني بيس المخصص" id="hero3DMockup" class="logo-3d-image">
+        </div>
+    </header>
+
+    <!-- 2. MARKET VALIDATION & SCOPE -->
+    <section class="metrics-section container reveal-up" id="metricsSection">
+        <svg class="chart-bg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+            <path class="chart-path" d="M 0,250 C 300,250 500,200 700,100 S 900,20 1000,10" fill="none" stroke="var(--brand-electric-blue)" stroke-width="2"></path>
+        </svg>
+
+        <h2 class="text-gradient" style="font-size: clamp(32px, 6vw, 48px); margin-bottom: 16px;">فرصة السوق.</h2>
+        <p style="color: var(--text-secondary); font-size: 20px; max-width: 600px; margin: 0 auto;">نقف عند نقطة التقاء التحول الرقمي في دول مجلس التعاون الخليجي (GCC) والتجارة الإلكترونية الموحدة للمستهلكين.</p>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value text-gradient-blue">$<span class="count-up" data-target="185">0</span>B+</div>
+                <div class="metric-label">السوق الإقليمية المستهدفة (TAM)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value text-gradient-blue">$<span class="count-up" data-target="12">0</span>B+</div>
+                <div class="metric-label">السوق المبدئية القابلة للخدمة (SAM)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value text-gradient-blue"><span class="count-up" data-target="22">0</span>.5%</div>
+                <div class="metric-label">النمو الرقمي للأعمال (CAGR)</div>
+            </div>
+        </div>
+
+        <!-- Data Sources Trigger -->
+        <div style="text-align: center; margin-top: 32px;">
+            <button class="btn-secondary btn-pop" id="openSourcesBtn" style="font-size: 13px; padding: 10px 24px; cursor: pointer;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                عرض مصادر التحقق
+            </button>
+        </div>
+    </section>
+
+    <!-- 6. COMPETITIVE LANDSCAPE (MOVED UP FOR NARRATIVE FLOW) -->
+    <section class="container" style="padding-top: 40px; margin-bottom: 80px;" id="competition">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">الخندق التنافسي.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto;">إزاحة الشركات التقليدية أحادية الغرض من خلال فائدة فائقة، وبنية تحتية موحدة، وبدون الحاجة لتبديل السياق (Zero context-switching).</p>
+        </div>
+        
+        <div class="bento-card col-span-12 reveal-up" style="padding: 24px;">
+            <div style="overflow-x: auto;">
+                <table class="competition-matrix">
+                    <thead>
+                        <tr>
+                            <th>القدرة</th>
+                            <th style="color: #fff; font-size: 15px;">أومني بيس (Omnibase)</th>
+                            <th>مجمعات متخصصة (Yelp, Zocdoc)</th>
+                            <th>برمجيات التجزئة (Shopify, Square)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="القدرة">توسيع السوق (TAM)</td>
+                            <td class="highlight" data-label="أومني بيس (Omnibase)">137 قطاعاً (موحداً)</td>
+                            <td data-label="مجمعات متخصصة (Yelp, Zocdoc)">مقتصرة على قطاع واحد</td>
+                            <td data-label="برمجيات التجزئة (Shopify, Square)">مقتصرة على التجارة الإلكترونية</td>
+                        </tr>
+                        <tr>
+                            <td data-label="القدرة">شيفرة البنية التحتية</td>
+                            <td class="highlight" data-label="أومني بيس (Omnibase)">مخطط واحد (SDUI) رئيسي</td>
+                            <td data-label="مجمعات متخصصة (Yelp, Zocdoc)">متاجر تطبيقات مجزأة</td>
+                            <td data-label="برمجيات التجزئة (Shopify, Square)">تعتمد على إضافات خارجية</td>
+                        </tr>
+                        <tr>
+                            <td data-label="القدرة">تكلفة الاستحواذ على العملاء</td>
+                            <td class="highlight" data-label="أومني بيس (Omnibase)">تبادلية / تكلفة هامشية صفرية</td>
+                            <td data-label="مجمعات متخصصة (Yelp, Zocdoc)">عالية (جماهير معزولة)</td>
+                            <td data-label="برمجيات التجزئة (Shopify, Square)">عالية جداً (العلامة التجارية مسؤولة بالكامل)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="القدرة">محادثة B2C فورية</td>
+                            <td class="highlight" data-label="أومني بيس (Omnibase)">مدمجة بالكامل / مزامنة حية</td>
+                            <td data-label="مجمعات متخصصة (Yelp, Zocdoc)">مجزأة / غير موجودة</td>
+                            <td data-label="برمجيات التجزئة (Shopify, Square)">تتطلب تكاملات خارجية</td>
+                        </tr>
+                        <tr>
+                            <td data-label="القدرة">خزنة عمليات الأعمال (B2B)</td>
+                            <td class="highlight" data-label="أومني بيس (Omnibase)">سجلات غير قابلة للتغيير بمعايير HIPAA</td>
+                            <td data-label="مجمعات متخصصة (Yelp, Zocdoc)">إمكانيات إدارة عملاء (CRM) أساسية</td>
+                            <td data-label="برمجيات التجزئة (Shopify, Square)">دفتر حسابات أساسي</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: GO-TO-MARKET / WEDGE STRATEGY -->
+    <section class="container" style="padding-bottom: 40px;" id="strategy">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">استراتيجية الاختراق (Wedge Strategy).</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">تفشل معظم التطبيقات الخارقة لمحاولتها السيطرة على السوق بأكمله دفعة واحدة (غلي المحيط). نحن لا نستحوذ على مستخدمين من 137 قطاعاً في اليوم الأول. بل نتسلل عبر القطاعات ذات الاحتكاك العالي والثقة المنخفضة، ثم نقوم بتبادل المستخدمين بتكلفة استحواذ هامشية صفرية.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Phase 1: Infiltration -->
+            <div class="bento-card col-span-4 reveal-up">
+                <div class="eyebrow" style="color: #FF453A;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    المرحلة الأولى: الاختراق
+                </div>
+                <h3>الركيزة ذات الاحتكاك العالي.</h3>
+                <p>نستهدف القطاعات التي تفشل فيها البرمجيات الحالية كلياً—مثل <strong>الممارسين الطبيين</strong> و<strong>مشغلي الطوارئ</strong>. نحن واثقون بأن الشركات لن تتمكن من رفض هذا العرض وستتبنى أومني بيس مجاناً من أجل خزائن السجلات المتوافقة مع HIPAA ومحرك استجابة الطوارئ (SOS). وبذلك، سيقومون بضم قواعد عملائهم الحالية إلى منصتنا نيابة عنا.</p>
+            </div>
+
+            <!-- Phase 2: Cross-Pollination -->
+            <div class="bento-card col-span-4 reveal-up delay-100">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                   المرحلة الثانية: تكلفة صفرية
+                </div>
+                <h3>محرك التبادل عبر القطاعات.</h3>
+                <p>بمجرد أن يقوم المستخدم بتحميل أومني بيس مثلاً لحالة طوارئ طبية، يتم تعريضه بشكل طبيعي للـ 136 قطاعاً الأخرى. نحن ندفع للاستحواذ على المستخدم <em>مرة واحدة</em>، لكننا نحقق أرباحاً منه عبر البقالات، معارض الفخامة، والتجزئة بشكل دائم. <strong>تكلفة الاستحواذ الإجمالية (CAC) لدينا تتجه نحو الصفر.</strong></p>
+            </div>
+
+            <!-- Phase 3: Monopoly -->
+            <div class="bento-card col-span-4 reveal-up delay-200">
+                <div class="eyebrow-gold">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                    المرحلة الثالثة: الاحتكار
+                </div>
+                <h3>مخطط التصنيف الرئيسي.</h3>
+                <p>نحن لا نعتمد على واجهات برمجية (APIs) خارجية هشة لهيكلة المخزون. تقوم أومني بيس بدمج <strong>5,716 علامة تجارية و 166,788 طرازاً ومواصفة مختلفة</strong> بشكل أصيل في عناقيد تشفيرية طرفية. تتيح شبكة البيانات الخاصة هذه للتجار إدراج أصولهم بدقة متناهية وفي وقت شبه صفري، مما يحصر السوق داخل نظامنا الموحد.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. THE SOLUTION (Archetypes & Psychology) -->
+    <section class="container" style="padding-top: 60px;">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">هيكلية برمجية متعددة الأشكال.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">التصميم يتبع سيكولوجية المستخدم. شيفرة برمجية واحدة موحدة تُعاد صياغتها ديناميكياً لتشكل ستة تطبيقات خارقة مميزة ومحسّنة لكل صناعة. مدعومة بتقنية واجهة المستخدم الموجهة بالخادم (SDUI) الخاصة بنا، تم هندسة كل نموذج رياضياً لتحفيز تحويلات سلوكية محددة.</p>
+        <div style="margin-top: 32px;">
+                <button class="btn-secondary btn-pop" id="openArchetypesBtn" style="font-size: 14px; padding: 12px 28px; cursor: pointer;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    عرض الـ 137 قطاعاً المدعوماً
+                </button>
+            </div>
+        </div>
+
+        <div class="bento-grid">
+            <!-- 1. Practitioner -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    الثقة والسلطة
+                </div>
+                <h3>الممارس (Practitioner)</h3>
+                <p><strong>السيكولوجية:</strong> قلق عالٍ وخصوصية. يقدم المستخدمون طلباً للحصول على وقت المحترف، مما يرسخ سلطة فورية.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">استقبال طبي عبر SDUI:</strong> نماذج تقييم ديناميكية تؤهل العملاء المحتملين مسبقاً.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">خزنة السجلات:</strong> سجل زمني حصين ومطابق لمعايير HIPAA لا يمكن تغييره.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">مصافحة مزدوجة التعمية:</strong> حواجز خصوصية عسكرية المستوى بين الشركة والعميل (B2C).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Operator -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    محنة وإنقاذ
+                </div>
+                <h3>المشغل الميداني (Field Operator)</h3>
+                <p><strong>السيكولوجية:</strong> إلحاح وإرهاق إدراكي. يستبدل التقويمات المملة بنظام طوارئ (SOS) يركز على الأدرينالين.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">تسعير وإرسال:</strong> استيعاب سريع للصور لتوفير تقديرات حية.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">تقديرات محادثة ملزمة:</strong> بطاقات واجهة صلبة تقضي على قلق التسعير.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">لوحة تحكم الأسطول:</strong> نطاقات جغرافية وتوجيه طوارئ (SOS) على مدار الساعة.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Artisan -->
+            <div class="bento-card col-span-4 reveal-up">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                    رغبة تطلعية
+                </div>
+                <h3>الحِرفي (Artisan)</h3>
+                <p>يحول تجارة التجزئة إلى عمولات فنية مرموقة أشبه بالمعارض الفنية.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">"حجوزات مغلقة":</strong> التحكم في الطلب عبر مبدأ الندرة.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">بصمة الصانع:</strong> شهادات توثيق وأصول رقمية (NFTs).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Destination -->
+            <div class="bento-card col-span-4 reveal-up delay-100">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                    الخوف من الضياع (FOMO) والوجاهة
+                </div>
+                <h3>الوجهة (Destination)</h3>
+                <p>تدمير احتكاك المحادثات لصالح حجوزات متهورة ذات طابع استثنائي.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">حجز فوري:</strong> بطاقات دخول (VIP) رقمية في وقت شبه صفري.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">إدارة المضيف (Kanban):</strong> إدارة طوابق حية.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. Merchant -->
+            <div class="bento-card col-span-4 reveal-up delay-200">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    السرعة والحجم
+                </div>
+                <h3>التاجر (Merchant)</h3>
+                <p>بنية مصممة لتنفيذ الطلبات عالية الكثافة وبلا توقف.</p>
+                <div class="elite-features">
+                    <ul>
+                        <li><strong style="color: var(--brand-electric-blue);">محرك سلة ذاكرة عشوائية:</strong> معالجة سلة تسوق محلية بسرعة 120 إطار بالثانية.</li>
+                        <li><strong style="color: var(--brand-electric-blue);">تسليم صامت:</strong> توجيه دفع فوري عبر الدردشة.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 6. Showroom -->
+            <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #111114 0%, #050506 100%);">
+                <div class="eyebrow-gold">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13"/><path d="M13 3l3 6-4 13"/></svg>
+                    حصري ومخاطر عالية
+                </div>
+                <h3>آليات صالة العرض (Showroom).</h3>
+                <p>
+                    مخصصة للسيارات الفاخرة، العقارات، والمجوهرات الراقية. ننشر آليات الندرة وكتالوجات عمودية بدقة 4K لفصل المتصفحين العاديين عن المشترين ذوي النوايا الحقيقية. ميزات مثل خوارزميات <strong>"السعر عند الطلب"</strong> و<strong>محافظ الجامعين</strong> تؤسس الموثوقية وتتحكم بصرامة في مسارات التفاوض للمبيعات عالية القيمة.
+                </p>
+            </div>
+        </div>
+    </section>
+
+	<!-- 3.5 MASTER TAXONOMY GRAPH (BUILT-IN BRANDS) -->
+    <section class="container" style="padding-top: 80px; padding-bottom: 40px;" id="brands-ecosystem">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">مخطط التصنيف الرئيسي.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">
+                أومني بيس تأتي مجهزة مسبقاً. استكشف عينة من آلاف العلامات التجارية المدمجة والمصممة بأمان على أطراف الشبكة (Edge)، مما يتيح للتجار عرض الأصول دون أي إدخال يدوي للبيانات.
+            </p>
+        </div>
+
+        <div class="bento-card col-span-12 reveal-up delay-100" style="padding: 0; display: flex; flex-direction: column;">
+            
+            <!-- Tab Navigation -->
+            <div class="brand-tabs-header">
+                <button class="brand-tab active" data-target="cars">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                    السيارات
+                </button>
+                <button class="brand-tab" data-target="motos">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="15.5" r="3.5"/><circle cx="18.5" cy="15.5" r="3.5"/><path d="M15 6a3.5 3.5 0 1 0 0 7h-6a3.5 3.5 0 1 1 0-7z"/></svg>
+                    الدراجات النارية
+                </button>
+                <button class="brand-tab" data-target="watches">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"/></svg>
+                    الساعات (Horology)
+                </button>
+            </div>
+
+            <!-- Grid Wrapper with Gradient Fade Illusion -->
+            <div class="brand-grid-wrapper">
+                <div class="grid-fade-top"></div>
+                
+                <div class="brand-scroll-container">
+                    <!-- Dynamic grids injected via JS -->
+                    <div class="brand-grid active" id="grid-cars"></div>
+                    <div class="brand-grid" id="grid-motos"></div>
+                    <div class="brand-grid" id="grid-watches"></div>
+                </div>
+                
+                <div class="grid-fade-bottom"></div>
+            </div>
+            
+            <div style="text-align: center; padding: 16px; border-top: 1px solid var(--glass-border); font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
+                عرض <span id="brand-count-display">0</span> سجلاً مفهرساً لهذا التصنيف
+            </div>
+        </div>
+    </section>
+	
+	<!-- 3.5 CORE PLATFORM MECHANICS (The Product Showcase) -->
+    <section class="container" style="padding-top: 40px; padding-bottom: 40px;" id="product-mechanics">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">آليات المنصة الأساسية.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">قمنا بترجمة خندقنا الهيكلي إلى ثلاثة محركات منتج متميزة. تم تصميم كل ميزة لتقليص المسافة بين الاكتشاف والمعاملة.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- The Map Engine -->
+            <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #0e121a 0%, #050506 100%);">
+                <div class="eyebrow" style="color: #0091FF;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    سيولة جغرافية مكانية (O2O)
+                </div>
+                <h3 style="font-size: 36px;">الرادار المكاني.</h3>
+                <p style="max-width: 800px;">
+                    على عكس منافسينا، تذهب تجربة الاكتشاف لدينا إلى ما هو أبعد من مجرد قائمة قطاعات بسيطة في الصفحة الرئيسية. يعرض محرك خرائط أومني بيس المخزون المحلي الدقيق وتوافر المحترفين بسرعة 120 إطار بالثانية. مدعوماً بـ <strong>Typesense Edge Cluster</strong>، يمكن للمستخدمين تصفية دائرة نصف قطرها 5 كم ديناميكياً لنماذج معينة—من سباكين الطوارئ إلى أطباء الأطفال المتاحين—مما يحول حركة المرور المحلية الفعلية إلى إجمالي قيمة بضائع (GMV) رقمية فورية.
+                </p>
+            </div>
+
+            <!-- The Scheduling Engine -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow" style="color: #A085FF;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    ركيزة خدمات الأعمال (B2B)
+                </div>
+                <h3>جدولة بمستوى المؤسسات.</h3>
+                <p>لقد قمنا ببناء منسق جدولة بمستوى وادي السيليكون بشكل أصيل في كل ملف تعريف شخصي. يدعم الإنشاء الديناميكي للفتحات الزمنية، أقفالاً مؤقتة بمدة 10 دقائق، أوقات التجهيز الفاصلة، وقوائم الانتظار الذكية. ولأنه يستخدم <strong>الربط الزمني الجغرافي المكاني</strong>، يتم القضاء رياضياً على انحرافات المناطق الزمنية الدولية والحجوزات المزدوجة.</p>
+            </div>
+
+            <!-- Conversational Commerce -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow" style="color: #00C853;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    تحويل بدون احتكاك
+                </div>
+                <h3>محرك المحادثة التبادلية (Transactional Chat).</h3>
+                <p>نحن لا نرسل رسائل نصية فقط؛ بل ننفذ حزم بيانات. يقوم نظام الدردشة الخاص بنا بعرض <strong>بطاقات SDUI تفاعلية</strong>. يمكن للممارسين ضخ عروض أسعار ملزمة، بطاقات وصول رقمية، وفواتير مباشرة في تيار المحادثة. عندما ينقر المستخدم على "موافقة"، ينفذ النظام دفعة ذرية (Atomic Batch) من Firestore لإتمام المعاملة على الفور.</p>
+            </div>
+        </div>
+    </section>
+	
+    <!-- 4. REVENUE MODEL & INFRASTRUCTURE MOAT -->
+    <section class="container" style="padding-top: 80px;">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">اقتصاديات الوحدة والخنادق الدفاعية.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 750px; margin: 0 auto;">أومني بيس ليست مجرد طبقة واجهة مستخدم (UI). إنها نظام بيئي مغلق رياضياً مصمم لاستخراج إيرادات الأعمال (B2B)، الاستفادة من توجيه نوايا الذكاء الاصطناعي، والقضاء تماماً على اختناقات النشر التقليدية.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Monetization (How you make money) -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow-gold">إيرادات تراكمية</div>
+                <h3>محرك تحقيق الدخل من الأعمال (B2B).</h3>
+                <p>نحن لا نعتمد حصرياً على رسوم معاملات المستهلكين (B2C). تعتمد أومني بيس على إيرادات شهرية متكررة (MRR) ذات هامش ربح مرتفع من خلال السماح للشركات بالترقية إلى <strong>الحالة الممتازة (Premium)</strong>. يمنحهم هذا تعزيزاً خوارزمياً، شارات ذهبية موثقة، ومواضع ذات أولوية في عنقود بحث Typesense الخاص بنا والذي يعمل بسرعة 0 مللي ثانية، مما يخلق حرب مزايدة محلية على الرؤية.</p>
+            </div>
+
+            <!-- The OTA Encryption & JIT Architecture -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow" style="color: #00C853;">مشروع إيجيس (Aegis)</div>
+                <h3>معمارية JIT رباعية المستويات وتشفير OTA.</h3>
+                <p>نحن نتخطى احتكار متاجر التطبيقات تماماً. تقوم لوحة تحكم Node.js الخاصة بنا بتشفير هياكل واجهة المستخدم الجديدة (SDUI) عبر <strong>AES-256-GCM</strong> ودفعها للأجهزة عالمياً. يستخدم العميل محرك <strong>4-Tier Deferred JIT</strong> خاص بنا و <strong>تنظيف DAG العودي</strong> لعرض تصنيفات ذات نطاق مفتوح بزمن وصول 0 مللي ثانية في الذاكرة العشوائية وبدون أي تسريب للذاكرة. يمكننا إطلاق قطاعات جديدة بالكامل في لحظات.</p>
+            </div>
+
+            <!-- LTV & Stickiness -->
+            <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #111114 0%, #08080a 100%);">
+                <div class="eyebrow">تعظيم القيمة الدائمة للعميل (LTV)</div>
+                <h3>الخزنة السيادية للسجلات.</h3>
+                <p>الاحتفاظ بالبيانات يُشكل تكلفة تحويل هائلة. تتميز أومني بيس بمحرك مزامنة ثلاثي القنوات يكتب مباشرة في قاعدة بيانات SQLite محلية وآمنة على الجهاز. 
+                    <br><br>
+                    اعتماداً على النمط، تقوم الخزنة بتحوير مخططها بسلاسة: لتحتفظ بـ <strong>سجلات طبية بمعايير HIPAA</strong> للأطباء، و <strong>إيصالات رقمية</strong> للتجار، و <strong>سندات ملكية</strong> لمعارض الفخامة. لا يجوز للمستخدمين التخلي عن منصة تحتفظ بالدليل التشفيري لأصولهم الثمينة وتاريخهم الطبي.
+                </p>
+                <div class="loop-container">
+                    <div class="loop-step">١. محرك الاكتشاف<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">اقتناص عالي النية</span></div>
+                    <div class="loop-arrow">←</div>
+                    <div class="loop-step">٢. محادثة عميقة<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">تواصل بدون احتكاك</span></div>
+                    <div class="loop-arrow">←</div>
+                    <div class="loop-step">٣. معاملة ذكية<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">إيرادات فورية</span></div>
+                    <div class="loop-arrow">←</div>
+                    <div class="loop-step">٤. خزنة السجلات<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">احتفاظ طويل الأمد</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. THE TECH MOAT (Scrollytelling) -->
+    <section id="architecture" class="scrollytelling-wrapper">
+        <div class="container" style="display: flex; width: 100%;">
+            <div class="scroll-text-col">
+                <div class="section-header" style="text-align: right; margin: 0 0 40px 0;">
+                    <h2 class="text-gradient">البنية الهيكلية.</h2>
+                    <p style="color: var(--text-secondary); font-size: 20px;">مُصممة بهوامش ربح فائقة، تبعية صفرية لواجهات برمجة التطبيقات (APIs)، ومعدلات استهلاك سحابي منخفضة بقسوة.</p>
+                </div>
+
+                <div class="scroll-step" id="step-1">
+                    <div class="eyebrow">تخفيض التكلفة بنسبة 90%</div>
+                    <h3>تكاليف قراءة تقترب من الصفر.</h3>
+                    <p>من خلال الاستخدام الصارم للتدفق أحادي الاتجاه للبيانات (UDF) والاستعلام عن فروق زمنية كرونولوجية (Deltas) تبلغ 1 مللي ثانية، نقوم بتحديث الواجهات فورياً دون الإرسال المستمر للطلبات لقاعدة البيانات. النتيجة: تفاعلات لحظية بمستوى المؤسسات مع ضغط جذري لمعدلات حرق خوادم AWS/GCP.</p>
+                </div>
+
+                <div class="scroll-step" id="step-2">
+                    <div class="eyebrow">مناعة التوسع العالمي</div>
+                    <h3>الربط الزمني الجغرافي المكاني.</h3>
+                    <p>قمنا بفصل محرك الجدولة عن ساعات الأجهزة المادية. يتم تعيين نقطة ارتكاز زمنية رياضية سيادية لكل نشاط تجاري. يتيح ذلك لمستخدم في نيويورك حجز عيادة في دبي مع عدم وجود تصادمات "منتصف الليل" في قاعدة البيانات، مما يمنح أومني بيس القدرة على إزالة الحدود العالمية بشكل فوري.</p>
+                </div>
+
+                <div class="scroll-step" id="step-3">
+                    <div class="eyebrow">O(1) اتحاد البيانات</div>
+                    <h3>تخزين طرفي بـ 170 ألف عقدة.</h3>
+                    <p>يتعامل محرك الـ Deferred JIT رباعي المستويات الخاص بنا مع تصنيف ضخم يضم أكثر من 172,000 عقدة عميقة (طرازات، أنواع، مواصفات) بشكل آمن دون اتصال بالإنترنت. من خلال ربطها بحزم أصول مشفرة بـ AES-GCM، نقضي على تأخيرات واجهات برمجة التطبيقات الخارجية ونحقق إظهاراً للقوائم المنسدلة في 0 مللي ثانية، ونقضي رياضياً على ارتفاعات الذاكرة العشوائية.</p>
+                </div>
+
+                <div class="scroll-step" id="step-4">
+                    <div class="eyebrow">انقطاع صفري</div>
+                    <h3>شبكة مرونة معزولة هوائياً.</h3>
+                    <p>يتم تحييد تكاليف خروج البيانات من Firebase عبر مصفوفة توجيه ثنائية المحرك. الاستعلامات عالية السرعة تضرب عنقود Typesense RAM الخاص بنا (زمن انتقال 0.002 مللي ثانية). عند تدهور الشبكة، تنفصل البنية بشكل مستقل إلى محرك SQLite FTS5 يعمل دون اتصال. تظل المنصة قيد التشغيل بالكامل بدون إنترنت.</p>
+                </div>
+
+                <div class="scroll-step" id="step-5">
+                    <div class="eyebrow">دقة متعددة الأوجه</div>
+                    <h3>مصفوفة بحث صارمة النوع.</h3>
+                    <p>تحقق بنيتنا التحتية للبحث تطابقاً منطقياً بنسبة 100% بين نظام SQLite الاحتياطي غير المتصل وعنقود Typesense السحابي. يقوم المحرك بشكل مستقل بتحليل مصفوفات SDUI متعددة القيم، وينفذ تقاطعات (AND/OR) ديناميكية لضمان دقة التطابق التام عبر ملايين المجموعات المحتملة لسمات المنتج.</p>
+                </div>
+
+            </div>
+
+            <div class="sticky-visual-col">
+                <div class="sticky-mockup" id="stickyMockup">
+                    <span style="color: var(--brand-electric-blue); font-weight: 800; font-size: 20px; z-index: 2;" id="stickyText">
+                        مزامنة لحظية<br>وقت انتقال شبه صفري
+                    </span>
+                    <div style="position: absolute; bottom: 30px; width: 100%; text-align: center; opacity: 0.4; font-size: 12px; color: #fff; z-index: 2;">
+                        [ تم التخلص من مخاطر البنية التشغيلية ]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- START: Omnibase Ops (Admin Infrastructure) Section -->
+    <section class="container" style="padding-top: 80px; padding-bottom: 40px;">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">عمليات أومني بيس: عقدة التحكم.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">تم القضاء على مخاطر التنفيذ. لقد قمنا بهندسة بنية تحتية إدارية خاصة لأتمتة امتثال اعرف عميلك (KYC)، وفرض نزاهة النظام البيئي، وإدارة أرباح (B2B) بفعالية على نطاق واسع.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- KYC & Trust/Safety (Zero-Trust IAM Firewall) -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow" style="color: #FF453A;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    جدار حماية سحابي (Zero-Trust)
+                </div>
+                <h3>أمان الهوية والوصول (IAM) عبر الخدمات.</h3>
+                <p>نحن لا نعتمد على أمان جهة العميل (Client-side). تنشر البنية التحتية نظام <strong>التحقق المتصالب من الهوية (IAM)</strong>، مما يسمح لـ Firebase Storage بالاستعلام ديناميكياً عن قواعد أذونات Firestore قبل قبول البيانات. هذا يمنع رياضياً هجمات فواتير الخروج السحابية، ويقضي على تخريب الواجهات، ويضمن عزل البيانات المتوافق مع HIPAA لخزائن السجلات السريرية الخاصة بنا.</p>
+            </div>
+            
+            <!-- Telemetry & GMV (Top Cards & Matrix) -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    رؤية كلية وشاملة (Macro-Level)
+                </div>
+                <h3>قياسات (GMV) والوحدات الحية.</h3>
+                <p>يجمع السيولة عبر القطاعات وسرعة المستخدمين في مصفوفة موحدة مدتها 30 يوماً. توفر لوحة القيادة للمشغلين التنفيذيين رؤية حية في إجمالي قيمة البضائع (GMV)، أفواج الاشتراكات، وحالات الأعمال النشطة، مما يلغي الحاجة لتحليلات الأطراف الخارجية المجزأة.</p>
+            </div>
+
+            <!-- Monetization (Gold Badge) -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow-gold">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    تحسين عوائد (B2B)
+                </div>
+                <h3>عمليات تحقيق الدخل الدقيقة.</h3>
+                <p>تحكم كامل في الإيرادات الشهرية المتكررة (MRR) للمنصة. تمكن وحدة التحكم في تحقيق الدخل المشغلين من تخصيص أو إلغاء آليات التعزيز الخوارزمي ديناميكياً—مثل شارة الرؤية المتميزة (Premium Visibility)—مما يؤثر بشكل مباشر على تصنيف البحث العضوي ويدفع ترقيات اشتراكات الأعمال (B2B).</p>
+            </div>
+
+            <!-- Heuristic Insights -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow" style="color: #A085FF;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                    ذكاء خوارزمي
+                </div>
+                <h3>الاستدلالات التنبؤية للسوق.</h3>
+                <p>تستوعب وحدة تتبع عصبية مدمجة حجم النظام البيئي وبيانات التفاعل بنشاط. مع توسع بيانات المنصة، تنتقل هذه الوحدة تلقائياً من مجرد الجمع الخام إلى تحليل الاتجاهات التنبؤية، مما يبرز باستمرار معلومات استخباراتية سوقية عالية القيمة لتوجيه التوسع الاستراتيجي.</p>
+            </div>
+
+			<!-- Enterprise RBAC -->
+            <div class="bento-card col-span-6 reveal-up">
+                <div class="eyebrow" style="color: #0091FF;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    قابلية توسع برمجيات الشركات (B2B SaaS)
+                </div>
+                <h3>التحكم في الوصول القائم على الأدوار (RBAC).</h3>
+                <p>نحن لا نخدم رواد الأعمال المنفردين فقط. تتميز أومني بيس بنظام أصيل للتحكم في الوصول بناءً على الأدوار (RBAC). يمكن لأصحاب المتاجر منح إمكانية الوصول على الفور لموظفي الاستقبال، الممرضات، أو مرسلي الأساطيل الميدانية. يُسقط نظام الهوية (IAM) المتصالب لدينا هذه الأذونات تلقائياً إلى طبقة التخزين، مما يُتيح عمليات فِرَق آمنة ومتعددة المستأجرين (Multi-tenant) من لحظة التشغيل.</p>
+            </div>
+
+            <!-- Reputation Engine (Anti-Cheat) -->
+            <div class="bento-card col-span-6 reveal-up delay-100">
+                <div class="eyebrow" style="color: #FFD700;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    نزاهة السوق
+                </div>
+                <h3>محرك السمعة التشفيري (Anti-Cheat).</h3>
+                <p>تنهار الأسواق بسبب التقييمات المزيفة والتلاعب الروبوتي. لقد قمنا ببناء محرك مكافحة الغش الرياضي مباشرة في قواعد الأمان الخلفية الخاصة بنا. يتحقق النظام تشفيرياً من أن الزيادات في التقييمات تتطابق تماماً مع فروق عدد المراجعات، مما يجعل التلاعب بالنقاط والقصف بالمراجعات مستحيلاً فيزيائياً.</p>
+            </div>
+
+            <!-- Financial Reaper -->
+            <div class="bento-card col-span-12 reveal-up">
+                <div class="eyebrow" style="color: #00C853;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    تسوية الدفاتر الذرية (Atomic Ledger)
+                </div>
+				
+                <h3>محرك الحصاد المالي (Financial Reaper).</h3>
+                <p>لا يتطلب أي محاسبة يدوية. في تمام الساعة 2:00 صباحاً يومياً، تقوم وظائفنا السحابية المستقلة بمسح النظام البيئي بحثاً عن المواعيد المكتملة، مما يثبت قيم المعاملات النهائية ويُحدّث دفتر الأستاذ الشامل (GMV). يُنفّذ النظام <strong>تحويلات دفعات ذرية (Atomic Batch)</strong>، محولاً مقترحات المحادثة بشكل دائم إلى إيصالات مغلفة تشفيرياً <code>DIGITAL_RECEIPTS</code>. دفتر الأستاذ محصن رياضياً ضد أي تلاعب من جهة العميل.</p>
+            </div>
+        </div>
+    </section>
+    <!-- END: Omnibase Ops (Admin Infrastructure) Section -->
+
+    <!-- 7. TEAM SECTION (10x Solo Founder Flex) -->
+    <section class="container" style="padding: 40px 0 80px;" id="team">
+        <div class="section-header reveal-up" style="margin-bottom: 40px;">
+            <h2 class="text-gradient" style="font-size: 40px;">القيادة.</h2>
+            <p style="color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto;">نظام أومني بيس البيئي بالكامل—تطبيق أندرويد، تطبيق iOS، عقدة التحكم بـ Next.js، والبنية التحتية لـ Firebase—تمت هندسته ونشره تحت إشراف مهندس رئيسي واحد (مؤسس فردي)، مما يضمن تشغيل النظام بأكمله بسلاسة تامة وعلى مستوى النخبة.</p>
+        </div>
+        
+        <div class="bento-grid" style="justify-content: center; display: flex;">
+            <div class="bento-card col-span-6 reveal-up team-profile" style="width: 100%; max-width: 500px; align-items: center; text-align: center;">
+                <div class="founder-avatar-wrapper" style="width: 120px; height: 120px;">
+                    <!-- Replace src with your headshot file path or URL -->
+                    <img src="assets/pf.png" alt="أحمد الخطيب" class="founder-avatar">
+                </div>
+                
+                <div class="team-role" style="color: var(--brand-electric-blue); font-weight: 800; letter-spacing: 1px; margin-bottom: 8px;">المؤسس والمهندس الرئيسي</div>
+                <h3 style="font-size: 32px; margin-bottom: 8px;">أحمد الخطيب</h3>
+                <p style="font-size: 16px;">
+                    <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
+                        عرض معرض أعمال المطور
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. THE ASK -->
+    <section class="container reveal-up" style="text-align: center; padding: 40px 0 100px;" id="invest">
+        <h2 style="font-size: 56px; margin-bottom: 24px;" class="text-gradient">افتتاح الجولة التأسيسية.</h2>
+        <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto 48px;">
+            تم القضاء على المخاطر الهندسية. البنية التحتية جاهزة تقريباً للإنتاج. نفتح جولة التمويل التأسيسية (Seed Round) لتمويل 18 شهراً من الاستحواذ القوي على المستخدمين وإدراج الشركات. نحن لا نبني مجرد برمجيات؛ نحن نؤسس لاحتكار قادم.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="mailto:ahmad@ahmad-khatib.com" class="btn-primary" style="font-size: 16px; padding: 18px 36px;">جدولة إحاطة للمستثمرين</a>
+            <!-- Optional: Link to your compiled APK so VCs can test the 120fps UI -->
+            <a href="assets/omnibase-investor-apk.apk" download class="btn-secondary" style="font-size: 16px; padding: 18px 36px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                تحميل النسخة التجريبية (Android)
+            </a>
+        </div>
+    </section>
+
+    <!-- Archetypes/Verticals Modal -->
+    <div class="modal-overlay" id="archetypesModal">
+        <div class="modal-content bento-card" style="max-width: 800px;">
+            <button class="modal-close" id="closeArchetypesBtn">&times;</button>
+            <div class="eyebrow">التصنيف</div>
+            <h3 style="font-size: 28px; margin-bottom: 8px; color: #fff;">137 قطاعاً مدعوماً</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 0;">يتم تهيئتها ديناميكياً عبر مخطط واجهة مستخدم موجه بالخادم (SDUI) واحد.</p>
+            
+            <div class="verticals-scroll-container">
+                <!-- Practitioner -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">الممارس (Practitioner)</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">عيادات طبية</span><span class="archetype-tag">عيادات أسنان</span><span class="archetype-tag">مختبرات طبية</span><span class="archetype-tag">علاج طبيعي</span><span class="archetype-tag">عيادات بيطرية</span><span class="archetype-tag">رعاية المسنين</span><span class="archetype-tag">شؤون قانونية وإدارية</span><span class="archetype-tag">محاسبة وتدقيق</span><span class="archetype-tag">الموارد البشرية والتوظيف</span><span class="archetype-tag">استشارات الأعمال</span><span class="archetype-tag">الترجمة</span><span class="archetype-tag">الهندسة</span><span class="archetype-tag">تطوير البرمجيات</span><span class="archetype-tag">الدروس الخصوصية</span><span class="archetype-tag">المدارس</span><span class="archetype-tag">دور الحضانة</span><span class="archetype-tag">التسويق والتصميم</span><span class="archetype-tag">رعاية الأطفال والمربيات</span><span class="archetype-tag">التصميم الداخلي</span>
+                    </div>
+                </div>
+
+                <!-- Merchant -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">التاجر (Merchant)</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">سوبر ماركت</span><span class="archetype-tag">ميني ماركت</span><span class="archetype-tag">متاجر الخضار</span><span class="archetype-tag">ملاحم</span><span class="archetype-tag">بائعي الأسماك</span><span class="archetype-tag">أفران ومناقيش</span><span class="archetype-tag">مخابز وحلويات</span><span class="archetype-tag">ألبان وأجبان</span><span class="archetype-tag">محامص</span><span class="archetype-tag">ملابس رجالية</span><span class="archetype-tag">ملابس نسائية</span><span class="archetype-tag">ملابس أطفال ورضع</span><span class="archetype-tag">لانجري وملابس نوم</span><span class="archetype-tag">صيدليات</span><span class="archetype-tag">نظارات</span><span class="archetype-tag">متاجر مستحضرات التجميل</span><span class="archetype-tag">معدات طبية</span><span class="archetype-tag">جراحة العظام والحركة</span><span class="archetype-tag">معدات طب الأسنان والمختبرات</span><span class="archetype-tag">ستائر وأقمشة</span><span class="archetype-tag">ديكور منزلي</span><span class="archetype-tag">متاجر التخفيضات (1 دولار)</span><span class="archetype-tag">الزراعة والمشاتل</span><span class="archetype-tag">خرسانة وطوب</span><span class="archetype-tag">مواد البناء</span><span class="archetype-tag">بلاط ورخام</span><span class="archetype-tag">أدوات صحية وسباكة</span><span class="archetype-tag">متاجر معدات البناء</span><span class="archetype-tag">دهانات وطلاء</span><span class="archetype-tag">هواتف محمولة</span><span class="archetype-tag">أجهزة كمبيوتر وإكسسوارات</span><span class="archetype-tag">إلكترونيات وأجهزة منزلية</span><span class="archetype-tag">قطع غيار سيارات</span><span class="archetype-tag">قطع غيار دراجات نارية</span><span class="archetype-tag">محلات إطارات</span><span class="archetype-tag">متاجر ألعاب</span><span class="archetype-tag">متاجر الرضع</span><span class="archetype-tag">أثاث الرضع</span><span class="archetype-tag">متاجر دراجات هوائية</span><span class="archetype-tag">معدات رياضية</span><span class="archetype-tag">متاجر مكملات غذائية</span><span class="archetype-tag">تخييم وخارجيات</span><span class="archetype-tag">رياضات مائية وغوص</span><span class="archetype-tag">رياضات شتوية</span><span class="archetype-tag">رياضات المضرب</span><span class="archetype-tag">بلياردو</span><span class="archetype-tag">هوايات ومجسمات</span><span class="archetype-tag">تحف ومقتنيات</span><span class="archetype-tag">قرطاسية وكتب</span><span class="archetype-tag">متاجر حيوانات أليفة</span><span class="archetype-tag">أراجيل وفحم</span><span class="archetype-tag">فيب وتبغ</span><span class="archetype-tag">مطابخ تجارية</span><span class="archetype-tag">معدات البيع بالتجزئة</span><span class="archetype-tag">تصفية الأصول</span><span class="archetype-tag">وقود وزيوت</span><span class="archetype-tag">ميكانيكا السيارات</span><span class="archetype-tag">آلات ثقيلة</span><span class="archetype-tag">تأجير سيارات</span><span class="archetype-tag">مطابع</span><span class="archetype-tag">وكالات سفر</span><span class="archetype-tag">تحويل أموال</span>
+                    </div>
+                </div>
+
+                <!-- Destination -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">الوجهة (Destination)</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">مطاعم</span><span class="archetype-tag">وجبات سريعة</span><span class="archetype-tag">مقاهي</span><span class="archetype-tag">عصائر وآيس كريم</span><span class="archetype-tag">تموين الحفلات</span><span class="archetype-tag">صالونات تجميل</span><span class="archetype-tag">صالونات حلاقة</span><span class="archetype-tag">صالات رياضية (Gyms)</span><span class="archetype-tag">ملاعب رياضية</span><span class="archetype-tag">صالات ألعاب إلكترونية</span><span class="archetype-tag">منتجعات ومسابح</span>
+                    </div>
+                </div>
+
+                <!-- Operator -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">المشغل (Operator)</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">مغاسل ملابس</span><span class="archetype-tag">خدمات تنظيف</span><span class="archetype-tag">تنظيف سجاد</span><span class="archetype-tag">رعاية واستضافة الحيوانات الأليفة</span><span class="archetype-tag">تعبئة وتوصيل المياه</span><span class="archetype-tag">موردو غاز</span><span class="archetype-tag">اشتراكات مولدات (Generator)</span><span class="archetype-tag">مزوّدو إنترنت (ISPs)</span><span class="archetype-tag">خدمات ستالايت</span><span class="archetype-tag">إصلاح أجهزة منزلية</span><span class="archetype-tag">خدمات تكييف وتبريد (HVAC)</span><span class="archetype-tag">خدمات سباكة</span><span class="archetype-tag">خدمات كهربائية</span><span class="archetype-tag">صانعو أقفال (Locksmiths)</span><span class="archetype-tag">تسجيل السيارات</span><span class="archetype-tag">غسيل سيارات</span><span class="archetype-tag">إصلاح دراجات نارية</span><span class="archetype-tag">سحب سيارات وإنقاذ على الطرق</span><span class="archetype-tag">سيارات أجرة ونقل</span><span class="archetype-tag">مدارس قيادة السيارات</span><span class="archetype-tag">خدمات توصيل ولوجستيات</span><span class="archetype-tag">نقل وتخزين أثاث</span>
+                    </div>
+                </div>
+
+                <!-- Artisan -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-blue">الحِرفي (Artisan)</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">عطارة وتوابل</span><span class="archetype-tag">بائعي زهور وهدايا</span><span class="archetype-tag">خياطين</span><span class="archetype-tag">إصلاح الجلود</span><span class="archetype-tag">تنسيق حدائق</span><span class="archetype-tag">ورش ألمنيوم</span><span class="archetype-tag">نجارة</span><span class="archetype-tag">حدادة</span><span class="archetype-tag">زجاج ومرايا</span><span class="archetype-tag">تنجيد أثاث</span><span class="archetype-tag">دهان وأرضيات</span><span class="archetype-tag">تصوير فوتوغرافي</span>
+                    </div>
+                </div>
+
+                <!-- Showroom -->
+                <div class="archetype-group">
+                    <h4 class="archetype-title text-gradient-gold">صالة العرض (Showroom)</h4>
+                    <div class="archetype-tags">
+                        <span class="archetype-tag">محلات مجوهرات</span><span class="archetype-tag">متاجر ساعات</span><span class="archetype-tag">عطور</span><span class="archetype-tag">أثاث</span><span class="archetype-tag">طاقة شمسية</span><span class="archetype-tag">تجار سيارات</span><span class="archetype-tag">مركبات تجارية</span><span class="archetype-tag">مبيعات دراجات نارية</span><span class="archetype-tag">تجار زوارق مائية</span><span class="archetype-tag">معدات صناعية</span><span class="archetype-tag">عقارات</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Data Sources Modal -->
+    <div class="modal-overlay" id="sourcesModal">
+        <div class="modal-content bento-card">
+            <button class="modal-close" id="closeSourcesBtn">&times;</button>
+            <div class="eyebrow">العناية الواجبة (Due Diligence)</div>
+            <h3 style="font-size: 28px; margin-bottom: 12px; color: #fff;">التحقق من البيانات</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 24px;">تستند التوقعات المالية إلى التقارير الاقتصادية الإقليمية لدول مجلس التعاون الخليجي ومنطقة الشرق الأوسط وأفريقيا للفترة الممتدة بين 2025 و 2034.</p>
+            
+            <ul class="sources-list">
+                <li>
+                    <strong>+185 مليار دولار السوق الإقليمية المستهدفة (TAM)</strong> 
+                    مستمدة من دمج توقعات سوق التجارة الإلكترونية في الشرق الأوسط وأفريقيا (~160 مليار دولار) مع سوق التحول الرقمي في دول مجلس التعاون الخليجي (25.12 مليار دولار).
+                    <br><em style="font-size: 12px; opacity: 0.7;">المصادر: Mordor Intelligence, IMARC Group</em>
+                </li>
+                <li>
+                    <strong>+12 مليار دولار السوق المبدئية القابلة للخدمة (SAM)</strong> 
+                    تم حسابها باستهداف حصة سوقية جزئية ومحددة للغاية من إنفاق البنية التحتية لبرمجيات الأعمال (B2B) الإقليمية وحجم التجارة الإلكترونية المتخصصة للمستهلكين (B2C) القائمة على الخدمات.
+                </li>
+                <li>
+                    <strong>22.5% النمو الرقمي للأعمال (CAGR)</strong> 
+                    معدل النمو السنوي المركب الموثق لسوق التحول الرقمي في دول مجلس التعاون الخليجي، مدفوعاً بقوة بمبادرات رؤية 2030 وتحديثات التقنية للمؤسسات.
+                    <br><em style="font-size: 12px; opacity: 0.7;">المصدر: IMARC Group</em>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="brand-logo" style="justify-content: center; opacity: 0.5; margin-bottom: 16px;">
+                <svg viewBox="0 0 88.738258 113.22255" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height: 24px; width: 19px; flex-shrink: 0; overflow: visible;">
+                    <defs>
+                        <linearGradient id="linearGradient15_foot"><stop style="stop-color:#4ed0f4;stop-opacity:1;" offset="0"/><stop style="stop-color:#722a97;stop-opacity:1;" offset="1"/></linearGradient>
+                        <linearGradient href="#linearGradient15_foot" id="linearGradient32_foot" gradientUnits="userSpaceOnUse" x1="61.910683" y1="117.5653" x2="149.01857" y2="134.49736"/>
+                    </defs>
+                    <g transform="translate(-60.630873,-91.888723)">
+                        <path style="fill:url(#linearGradient32_foot);" d="m 105.46488,69.420052 c -24.470275,-10e-7 -44.369385,19.898598 -44.369384,44.368868 1e-6,13.19448 10.856134,29.25915 21.351668,42.74416 10.495533,13.48501 20.972876,24.04918 20.972876,24.04918 l 2.04484,2.06034 2.04277,-2.06034 c 0,0 10.47735,-10.56417 20.97288,-24.04918 10.49553,-13.48501 21.35322,-29.54968 21.35322,-42.74416 0,-24.470268 -19.89858,-44.368867 -44.36887,-44.368868 z m 0,5.755721 c 21.35952,10e-7 38.61315,17.253652 38.61315,38.613147 0,6.22547 -4.05605,15.15761 -9.66546,24.23549 -0.39204,0.63445 -0.79167,1.26962 -1.19803,1.90462 -0.27575,0.4309 -0.5469,0.36641 -0.60265,-0.14212 l -0.1906,-1.73876 -3.33925,-30.46247 c -0.16014,-1.45777 -1.39065,-2.56209 -2.85719,-2.56418 l -7.71374,-0.0119 c -0.0912,-3.34872 0.007,-7.425511 -2.02106,-10.261388 -2.45795,-3.437756 -6.75212,-6.320098 -10.97814,-6.341732 -4.31827,-0.02211 -8.747736,2.869619 -11.283553,6.364986 -2.035825,2.806177 -1.97069,6.835524 -2.046387,10.197314 l -7.531323,-0.0119 c -1.475283,-0.002 -2.713583,1.11091 -2.867525,2.57814 l -3.182258,30.48328 -0.191773,1.83702 c -0.05704,0.54637 -0.34633,0.61613 -0.642729,0.15362 -0.432443,-0.67481 -0.857323,-1.34984 -1.273613,-2.02405 -5.596784,-9.0643 -9.641015,-17.97952 -9.641016,-24.19599 -3e-6,-21.359495 17.253646,-38.613148 38.613147,-38.613147 z m 0.0233,18.986438 c 2.2153,0.01317 4.54655,1.362867 5.84978,3.15433 1.53191,2.10581 1.29682,4.690809 1.41076,7.683769 l -14.802711,-0.0227 c 0.101656,-2.97044 -0.114853,-5.531756 1.417485,-7.606252 1.369406,-1.853914 3.819896,-3.222852 6.124686,-3.209147 z m -16.21761,16.512169 2.891813,0.004 c 0.02223,3.52688 0.02515,2.19977 0.02498,3.37037 -2.67e-4,1.88715 1.465137,2.96861 2.836955,2.98164 1.367988,0.013 2.867513,-1.01907 2.885005,-2.91904 0.01579,-1.71513 0.03138,0.0111 0.0093,-3.42419 l 14.910197,0.0217 c 0.0132,3.48226 -0.003,-0.0304 0.0404,3.45933 0.0232,1.86099 1.4069,2.85663 2.76354,2.87831 1.35664,0.0217 2.92654,-1.0881 2.94663,-2.83187 0.0407,-3.53169 0.0188,0.0396 0.005,-3.4975 l 3.07888,0.005 c 1.14306,10e-4 2.1022,0.81979 2.22674,1.90015 l 3.2551,28.23238 c 0.146,1.26148 -0.89199,2.36427 -2.22674,2.36575 l -38.758352,0.0481 c -1.332324,0.002 -2.372607,-1.09447 -2.233973,-2.35438 L 87.0366,112.58459 c 0.119937,-1.08686 1.084603,-1.91161 2.233972,-1.90996 z m 37.21119,38.98046 c -0.34044,0.4582 -0.68219,0.91375 -1.02488,1.36629 -0.50423,0.66585 -1.01048,1.32517 -1.51763,1.97677 -8.6165,11.07077 -15.9427,18.7407 -18.47432,21.3558 -2.53105,-2.6145 -9.857863,-10.28437 -18.474841,-21.3558 -0.508967,-0.65394 -1.017002,-1.31558 -1.52298,-1.98379 -0.227349,-0.30024 -0.55332,-0.73643 -0.846993,-1.13064 -0.384119,-0.51563 -0.173202,-0.93517 0.469776,-0.9361 l 0.91266,-0.001 39.038178,-0.051 1.05661,-0.001 c 0.52338,-6.1e-4 0.69657,0.34091 0.38442,0.76102 z"/>
+                    </g>
+                </svg>
+                أومني بيس (Omnibase)
+            </div>
+            <p>2026 بنية أومني بيس. سري لعلاقات المستثمرين.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 0. LENIS SMOOTH SCROLLING
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    direction: 'vertical',
+                    gestureDirection: 'vertical',
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: false,
+                    touchMultiplier: 2,
+                    infinite: false,
+                });
+
+                function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+                requestAnimationFrame(raf);
+            }
+
+            // 1. LERP PHYSICS FOR 3D HOVER
+            function lerp(start, end, factor) { return start + (end - start) * factor; }
+
+            const magneticButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
+            magneticButtons.forEach(btn => {
+                let currentX = 0, currentY = 0;
+                let targetX = 0, targetY = 0;
+
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    targetX = (e.clientX - rect.left - rect.width / 2) * 0.3;
+                    targetY = (e.clientY - rect.top - rect.height / 2) * 0.5;
+                });
+
+                btn.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
+
+                function animate() {
+                    currentX = lerp(currentX, targetX, 0.1);
+                    currentY = lerp(currentY, targetY, 0.1);
+                    btn.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            });
+
+            // 2. SPOTLIGHT HOVER FOR BENTO
+            document.querySelectorAll('.bento-card, .archetype-card, .metric-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                });
+            });
+            
+            // 3. STANDARD SCROLL REVEALS
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+
+            // 4. 3D SPATIAL PARALLAX (HERO LOGO) WITH LERP
+            const wrapper = document.getElementById('hero3DWrapper');
+            const mockup = document.getElementById('hero3DMockup');
+
+            if (wrapper && mockup) {
+                const isTouchDevice = window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(max-width: 768px)").matches;
+                let curRotX = 0, curRotY = 0;
+                let tarRotX = 0, tarRotY = 0;
+
+                if (!isTouchDevice) {
+                    document.querySelector('.hero').addEventListener('mousemove', (e) => {
+                        const rect = wrapper.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        
+                        tarRotX = ((e.clientY - centerY) / (rect.height / 2)) * -8; 
+                        tarRotY = ((e.clientX - centerX) / (rect.width / 2)) * 8;
+                    });
+                    document.querySelector('.hero').addEventListener('mouseleave', () => { tarRotX = 0; tarRotY = 0; });
+                } else {
+                    window.addEventListener('scroll', () => {
+                        const rect = wrapper.getBoundingClientRect();
+                        const vh = window.innerHeight;
+                        if (rect.top <= vh && rect.bottom >= 0) {
+                            const progress = 1 - (rect.bottom / (vh + rect.height));
+                            
+                            tarRotX = (progress - 0.5) * 20;
+                            tarRotY = (progress - 0.5) * -10;
+                        }
+                    }, { passive: true });
+                }
+
+                function animate3D() {
+                    curRotX = lerp(curRotX, tarRotX, 0.04);
+                    curRotY = lerp(curRotY, tarRotY, 0.04);
+                    mockup.style.transform = `rotateX(${curRotX}deg) rotateY(${curRotY}deg)`;
+                    requestAnimationFrame(animate3D);
+                }
+                animate3D();
+            }
+
+            // 5. SCROLLYTELLING OBSERVER
+            const steps = document.querySelectorAll('.scroll-step');
+            const stickyText = document.getElementById('stickyText');
+            const stepObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        steps.forEach(s => s.classList.remove('active'));
+                        entry.target.classList.add('active');
+                        const id = entry.target.id;
+                        if(id === 'step-1') stickyText.innerHTML = "مزامنة لحظية<br>وقت انتقال شبه صفري";
+                        if(id === 'step-2') stickyText.innerHTML = "تم تأمين<br>القفل الجغرافي";
+                        if(id === 'step-3') stickyText.innerHTML = "O(1) اتحاد<br>التصنيف الموحد";
+                        if(id === 'step-4') stickyText.innerHTML = "شبكة معزولة هوائياً<br>ونشطة";
+                        if(id === 'step-5') stickyText.innerHTML = "محاذاة صارمة<br>لمصفوفة البحث";
+                    }
+                });
+            }, { rootMargin: '-40% 0px -40% 0px' });
+            steps.forEach(step => stepObserver.observe(step));
+
+            // 6. ANIMATED SVG CHART & NUMBER COUNTERS TRIGGER
+            const metricsSection = document.getElementById('metricsSection');
+            let numbersAnimated = false;
+
+            function animateNumbers() {
+                if (numbersAnimated) return;
+                numbersAnimated = true;
+                document.querySelectorAll('.count-up').forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; const stepTime = 20; const steps = duration / stepTime;
+                    const increment = target / steps; let current = 0;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.innerText = target.toLocaleString('en-US'); // Keeping english format for numbers
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = Math.ceil(current).toLocaleString('en-US');
+                        }
+                    }, stepTime);
+                });
+            }
+
+            const metricsObserver = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    metricsSection.classList.add('drawn');
+                    animateNumbers();
+                    metricsObserver.unobserve(metricsSection);
+                }
+            }, { threshold: 0.3 });
+            if(metricsSection) metricsObserver.observe(metricsSection);
+
+            // 7. MODAL TOGGLE LOGIC
+            const modal = document.getElementById('sourcesModal');
+            const openBtn = document.getElementById('openSourcesBtn');
+            const closeBtn = document.getElementById('closeSourcesBtn');
+
+            if(openBtn && modal && closeBtn) {
+                // Open Modal
+                openBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modal.classList.add('active');
+                    if (typeof lenis !== 'undefined') lenis.stop(); // Stops smooth scrolling in background
+                });
+                
+                // Close Modal via Button
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    if (typeof lenis !== 'undefined') lenis.start();
+                });
+                
+                // Close Modal via Background Click
+                modal.addEventListener('click', (e) => {
+                    if(e.target === modal) {
+                        modal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+
+                // Close Modal via Escape Key
+                document.addEventListener('keydown', (e) => {
+                    if(e.key === 'Escape' && modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+            }
+
+            // 8. ARCHETYPES MODAL LOGIC
+            const archModal = document.getElementById('archetypesModal');
+            const openArchBtn = document.getElementById('openArchetypesBtn');
+            const closeArchBtn = document.getElementById('closeArchetypesBtn');
+
+            if(openArchBtn && archModal && closeArchBtn) {
+                // Open Modal
+                openArchBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    archModal.classList.add('active');
+                    if (typeof lenis !== 'undefined') lenis.stop(); // Stops background scroll
+                });
+                
+                // Close Modal via Button
+                closeArchBtn.addEventListener('click', () => {
+                    archModal.classList.remove('active');
+                    if (typeof lenis !== 'undefined') lenis.start();
+                });
+                
+                // Close Modal via Background Click
+                archModal.addEventListener('click', (e) => {
+                    if(e.target === archModal) {
+                        archModal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+
+                // Close Modal via Escape Key
+                document.addEventListener('keydown', (e) => {
+                    if(e.key === 'Escape' && archModal.classList.contains('active')) {
+                        archModal.classList.remove('active');
+                        if (typeof lenis !== 'undefined') lenis.start();
+                    }
+                });
+            }
+        });
+
+		// 9. DYNAMIC BRAND TAXONOMY GRID
+        // Note: Array values are kept in exact original English strings to maintain correct asset loading paths
+		const taxonomyData = {
+			cars: ["abarth", "ac", "acura", "alfa-romeo", "allard", "alpina", "alvis", "amc", "ariel", "armstrong-siddeley", "ascari", "aston-martin", "audi", "austin-healey", "austin", "autobianchi", "auverland", "avanti", "baic", "bentley", "berkeley", "bitter", "bizzarrini", "bmw", "brilliance", "bristol", "bugatti", "buick", "cadillac", "caterham", "checker", "chevrolet", "chrysler", "citroen", "dacia", "daewoo", "daf", "daihatsu", "de-tomaso", "dkw", "dodge", "donkervoort", "eagle", "fairthorpe", "ferrari", "fiat", "fisker", "ford", "gaz", "geely", "ginetta", "gmc", "holden", "honda", "hudson", "humber", "hummer", "hyundai", "infiniti", "innocenti", "isuzu", "italdesign", "jaguar", "jeep", "jensen", "kia", "koenigsegg", "lada", "lamborghini", "lancia", "land-rover", "lexus", "lincoln", "lotec", "lotus", "luxgen", "mahindra", "marcos", "marta-simca", "maserati", "maybach", "mazda", "mclaren", "mercedes-benz", "mercury", "mg", "mini", "mitsubishi", "monteverdi", "moretti", "morgan", "morris", "noble", "nsu", "oldsmobile", "opel", "packard", "pagani", "panoz", "peugeot", "pininfarina", "plymouth", "pontiac", "porsche", "proton", "reliant", "renault", "riley", "rolls-royce", "rover", "saab", "saleen", "samsung", "saturn", "scion", "seat", "simca", "singer", "skoda", "smart", "spyker", "ssangyong", "ssc", "steyr", "studebaker", "subaru", "sunbeam", "suzuki", "talbot", "tata", "tatra", "tesla", "toyota", "trabant", "triumph", "tvr", "vauxhall", "vector", "venturi", "volkswagen", "volvo", "wartburg", "westfield", "willys-overland", "xedos", "zagato", "zastava", "zaz", "zenvo", "zil"],
+			
+			motos: ["adiva", "aeon", "ajp", "aprilia", "aspess-pwer", "axy", "azel", "bajaj", "benelli", "beta", "bimota", "bmw", "borile", "boss-hoss", "buell", "bultaco", "cagiva", "ccm", "cf-moto", "ch-racing", "cmc", "cpi", "cr&s", "dado", "daelim", "derbi", "ducati", "e-max", "ecomission", "etropolis", "fantic", "garelli", "gas-gas", "generic", "ghezzi-brian", "gilera", "gimotori", "gipuma", "green-mobility-italia", "harley-davidson", "hdm", "headbanger", "hm", "honda-dall'ara", "honda", "hp-power", "hupper", "husaberg", "husqvarna", "hyosung", "indian", "italjet", "jawa", "kawasaki-kl", "kawasaki", "keeway", "krc", "kreidler", "ktm", "kymco", "lambretta", "laverda", "leonart", "lingben", "linhai", "lml", "magni", "maico", "malaguti", "mash", "mbk", "millepercento", "mondial", "montesa", "moto-bellini", "moto-guzzi", "moto-morini", "moto-rumi", "motobi", "motom", "motor-union", "mv-agusta", "mz", "nipponia", "norton", "nox", "ossa", "over", "paton", "peda-motor", "peugeot", "pgo", "piaggio", "polini", "quadro", "quantya", "redmoto-honda", "renault", "rieju", "royal-enfield", "sachs", "scorpa", "sherco", "siamoto", "steed", "suzuki-calenti", "suzuki", "swm", "sym", "terra-modena", "tgb", "tm-racing", "triumph", "ural", "vectrix", "vertemati", "victory", "vor", "wt-motors", "yamaha"],
+			
+			watches: ["a.-lange-&-söhne", "audemars-piguet", "breitling", "cartier", "ebel", "edox", "hamilton", "hublot", "iwc", "jaeger-lecoultre", "longines", "meistersinger", "montblanc", "nomos", "omega", "oris", "panerai", "patek-philippe", "rado", "richard-mille", "rolex", "seiko", "sinn", "tag-heuer", "tissot", "tudor", "vacheron-constantin", "zenith"]
+		};
+
+		// Function to populate grid
+		function renderBrands(category) {
+			const grid = document.getElementById(`grid-${category}`);
+			if (!grid) return;
+			
+			// Only render if empty to save memory
+			if (grid.innerHTML === '') {
+				const brands = taxonomyData[category];
+				const html = brands.map(brand => `
+					<div class="brand-tile" title="${brand.replace(/-/g, ' ').toUpperCase()}">
+						<!-- IMPORTANT: Ensure paths align with your actual directory structure -->
+						<img src="assets/${category}/${brand}.png" alt="${brand} logo" loading="lazy">
+					</div>
+				`).join('');
+				grid.innerHTML = html;
+			}
+			
+			// Update count display
+			const counter = document.getElementById('brand-count-display');
+			if(counter) counter.innerText = taxonomyData[category].length;
+		}
+
+		// Initialize Tabs
+		const brandTabs = document.querySelectorAll('.brand-tab');
+		const brandGrids = document.querySelectorAll('.brand-grid');
+
+		if (brandTabs.length > 0) {
+			// Initial Render
+			renderBrands('cars');
+
+			brandTabs.forEach(tab => {
+				tab.addEventListener('click', () => {
+					// Remove active classes
+					brandTabs.forEach(t => t.classList.remove('active'));
+					brandGrids.forEach(g => g.classList.remove('active'));
+					
+					// Add active to clicked tab
+					tab.classList.add('active');
+					
+					// Show corresponding grid
+					const target = tab.getAttribute('data-target');
+					renderBrands(target);
+					document.getElementById(`grid-${target}`).classList.add('active');
+				});
+			});
+		}
+    </script>
+</body>
+</html>
