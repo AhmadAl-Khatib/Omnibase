@@ -631,7 +631,7 @@
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
                 <!-- Language Switcher -->
-                <a href="index.html" class="lang-switch">
+                <a href="../index.html" class="lang-switch">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                     English
                 </a>
@@ -681,7 +681,7 @@
         </div>
 
         <div class="logo-wrapper reveal-up delay-300" id="hero3DWrapper">
-            <img src="assets/omnibaselogo.png" alt="شعار أومني بيس المخصص" id="hero3DMockup" class="logo-3d-image">
+            <img src="../assets/omnibaselogo.png" alt="شعار أومني بيس المخصص" id="hero3DMockup" class="logo-3d-image">
         </div>
     </header>
 
@@ -1202,7 +1202,7 @@
             <div class="bento-card col-span-6 reveal-up team-profile" style="width: 100%; max-width: 500px; align-items: center; text-align: center;">
                 <div class="founder-avatar-wrapper" style="width: 120px; height: 120px;">
                     <!-- Replace src with your headshot file path or URL -->
-                    <img src="assets/pf.png" alt="أحمد الخطيب" class="founder-avatar">
+                    <img src="../assets/pf.png" alt="أحمد الخطيب" class="founder-avatar">
                 </div>
                 
                 <div class="team-role" style="color: var(--brand-electric-blue); font-weight: 800; letter-spacing: 1px; margin-bottom: 8px;">المؤسس والمهندس الرئيسي</div>
@@ -1592,7 +1592,7 @@
 				const html = brands.map(brand => `
 					<div class="brand-tile" title="${brand.replace(/-/g, ' ').toUpperCase()}">
 						<!-- IMPORTANT: Ensure paths align with your actual directory structure -->
-						<img src="assets/${category}/${brand}.png" alt="${brand} logo" loading="lazy">
+						<img src="../assets/${category}/${brand}.png" alt="${brand} logo" loading="lazy">
 					</div>
 				`).join('');
 				grid.innerHTML = html;
