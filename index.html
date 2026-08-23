@@ -501,6 +501,92 @@
             .hero-badge-icons { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; width: 100%; justify-content: center; }
             .hero-badge-text { font-size: 11px; text-align: center; justify-content: center; }
         }
+		
+		/* --- Brand Ecosystem Showcase --- */
+        .brand-tabs-header {
+            display: flex; gap: 12px; padding: 24px; justify-content: center;
+            border-bottom: 1px solid var(--glass-border); background: rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .brand-tab {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
+            color: var(--text-secondary); padding: 12px 24px; border-radius: 999px;
+            font-weight: 600; font-size: 14px; cursor: pointer; display: flex;
+            align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .brand-tab:hover {
+            color: #fff; background: rgba(255, 255, 255, 0.08); transform: translateY(-2px);
+        }
+
+        .brand-tab.active {
+            background: rgba(0, 145, 255, 0.1); border-color: rgba(0, 145, 255, 0.4);
+            color: #fff; box-shadow: 0 4px 16px rgba(0, 145, 255, 0.15);
+        }
+
+        .brand-grid-wrapper {
+            position: relative; width: 100%; height: 450px; overflow: hidden;
+            background: var(--bg-bento);
+        }
+
+        .brand-scroll-container {
+            height: 100%; overflow-y: auto; padding: 32px 24px 64px 24px;
+            scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
+        }
+
+        .brand-scroll-container::-webkit-scrollbar { width: 6px; }
+        .brand-scroll-container::-webkit-scrollbar-track { background: transparent; }
+        .brand-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+        .brand-grid {
+            display: none; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 16px;
+            animation: gridFadeIn 0.5s ease forwards;
+        }
+
+        .brand-grid.active { display: grid; }
+
+        @keyframes gridFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-tile {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+            padding: 16px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+        }
+
+        .brand-tile:hover {
+            border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+
+        .brand-tile img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            filter: grayscale(100%) opacity(0.35) brightness(1.5);
+            transition: all 0.4s ease;
+        }
+
+        .brand-tile:hover img {
+            filter: grayscale(0%) opacity(1) brightness(1);
+        }
+
+        /* Gradient Fades for depth illusion */
+        .grid-fade-top {
+            position: absolute; top: 0; left: 0; width: 100%; height: 40px;
+            background: linear-gradient(to bottom, var(--bg-bento) 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+
+        .grid-fade-bottom {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 60px;
+            background: linear-gradient(to top, var(--bg-bento) 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+		
     </style>
 </head>
 <body>
@@ -557,7 +643,7 @@
         <h3 class="text-gradient reveal-up delay-200 title-sm">Six Industries. One Mathematical Core.</h3>
         
         <p class="reveal-up delay-300">
-            Fragmented markets bleed capital. Omnibase solves the friction in the consumer economy by fusing a unified discovery engine with an enterprise-grade operational suite. <br><br>We have completely eradicated the engineering risk. The architecture natively scales across 137 professional classifications, 483 specialties, and 779 core product and service types—dynamically expanding into ~10K++ of granular sub-types, without a single line of codebase duplication. This is a production-ready monopoly built to capture aggressive market share.
+            Fragmented markets bleed capital. Omnibase solves the friction in the consumer economy by fusing a unified discovery engine with an enterprise-grade operational suite. <br><br>We have completely eradicated the engineering risk. The architecture natively scales across 137 professional classifications, 483 specialties, and 779 core product and service types—dynamically expanding into ~100K++ of granular sub-types, without a single line of codebase duplication. This is a production-ready monopoly built to capture aggressive market share.
         </p>
         
         <div class="hero-cta reveal-up delay-300">
@@ -692,8 +778,8 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                     Phase 3: Monopoly
                 </div>
-                <h3>Total Data Capture.</h3>
-                <p>Traditional aggregators (like Yelp) only handle reviews. Omnibase handle the <strong>Transaction Ledger</strong>. Because we host digital receipts, medical histories, and asset ownership titles natively on-device, the switching cost for both consumers and merchants becomes insurmountable.</p>
+                <h3>The Master Taxonomy Graph.</h3>
+                <p>We do not rely on fragile third-party APIs for inventory structuring. Omnibase natively federates <strong>5,716 Brands and 166,788 distinct Models & Specs</strong> into encrypted edge clusters (paired with a dynamic, user-expandable backend built to scale effortlessly with users data.) This proprietary data mesh allows merchants to list assets with extreme precision in ~0ms, locking the market into our standardized ecosystem.</p>
             </div>
         </div>
     </section>
@@ -808,6 +894,53 @@
         </div>
     </section>
 
+	<!-- 3.5 MASTER TAXONOMY GRAPH (BUILT-IN BRANDS) -->
+    <section class="container" style="padding-top: 80px; padding-bottom: 40px;" id="brands-ecosystem">
+        <div class="section-header reveal-up">
+            <h2 class="text-gradient">The Master Taxonomy Graph.</h2>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">
+                Omnibase ships pre-federated. Explore a sample of the thousands of built-in brands mapped securely at the edge, allowing merchants to list assets with zero manual data entry.
+            </p>
+        </div>
+
+        <div class="bento-card col-span-12 reveal-up delay-100" style="padding: 0; display: flex; flex-direction: column;">
+            
+            <!-- Tab Navigation -->
+            <div class="brand-tabs-header">
+                <button class="brand-tab active" data-target="cars">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                    Automotive
+                </button>
+                <button class="brand-tab" data-target="motos">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="15.5" r="3.5"/><circle cx="18.5" cy="15.5" r="3.5"/><path d="M15 6a3.5 3.5 0 1 0 0 7h-6a3.5 3.5 0 1 1 0-7z"/></svg>
+                    Motorcycles
+                </button>
+                <button class="brand-tab" data-target="watches">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"/></svg>
+                    Horology
+                </button>
+            </div>
+
+            <!-- Grid Wrapper with Gradient Fade Illusion -->
+            <div class="brand-grid-wrapper">
+                <div class="grid-fade-top"></div>
+                
+                <div class="brand-scroll-container">
+                    <!-- Dynamic grids injected via JS -->
+                    <div class="brand-grid active" id="grid-cars"></div>
+                    <div class="brand-grid" id="grid-motos"></div>
+                    <div class="brand-grid" id="grid-watches"></div>
+                </div>
+                
+                <div class="grid-fade-bottom"></div>
+            </div>
+            
+            <div style="text-align: center; padding: 16px; border-top: 1px solid var(--glass-border); font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
+                Showing <span id="brand-count-display">0</span> indexed records for this category
+            </div>
+        </div>
+    </section>
+	
     <!-- 4. REVENUE MODEL & INFRASTRUCTURE MOAT -->
     <section class="container" style="padding-top: 80px;">
         <div class="section-header reveal-up">
@@ -823,11 +956,11 @@
                 <p>We do not rely solely on B2C transaction fees. Omnibase relies on high-margin Monthly Recurring Revenue (MRR) by allowing businesses to upgrade to <strong>Premium Status</strong>. This grants them algorithmic boosting, verified gold badges, and priority placement in our 0ms Typesense search cluster, creating a localized bidding war for visibility.</p>
             </div>
 
-            <!-- The OTA Encryption (How you protect IP) -->
+            <!-- The OTA Encryption & JIT Architecture -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow" style="color: #00C853;">Project Aegis</div>
-                <h3>Encrypted Over-The-Air (OTA) Updates.</h3>
-                <p>We bypass App Store monopolies entirely. Our Node.js Admin Panel encrypts new UI architectures (SDUI manifests) via <strong>AES-256-GCM</strong> and pushes them directly to Android devices globally in real-time. We can launch an entirely new industry vertical while competitors are still waiting for Google Play approval. The raw code never touches the physical device disk.</p>
+                <h3>4-Tier JIT Hydration & OTA Encryption.</h3>
+                <p>We bypass App Store monopolies entirely. Our Node.js Admin Panel encrypts new UI architectures (SDUI manifests) via <strong>AES-256-GCM</strong> and pushes them to devices globally. The client utilizes a proprietary <strong>4-Tier Deferred JIT Engine</strong> and <strong>Recursive DAG Cleansing</strong> to render open scale taxonomies with 0ms RAM latency and zero memory leaks. We can launch entirely new industries instantly.</p>
             </div>
 
             <!-- LTV & Stickiness -->
@@ -858,7 +991,7 @@
             <div class="scroll-text-col">
                 <div class="section-header" style="text-align: left; margin: 0 0 40px 0;">
                     <h2 class="text-gradient">The Structural Architecture.</h2>
-                    <p style="color: var(--text-secondary); font-size: 20px;">Engineered for hyper-margins and ruthlessly low cloud burn rates.</p>
+                    <p style="color: var(--text-secondary); font-size: 20px;">Engineered for hyper-margins, zero API dependency, and ruthlessly low cloud burn rates.</p>
                 </div>
 
                 <div class="scroll-step" id="step-1">
@@ -868,22 +1001,27 @@
                 </div>
 
                 <div class="scroll-step" id="step-2">
-                    <div class="eyebrow">Scale & Reliability</div>
-                    <h3>Bulletproof Concurrency.</h3>
-                    <p>Eliminating edge cases eliminates customer support bloat. Our proprietary O(1) temporal locking system guarantees mathematically zero double-bookings via absolute Geographic and Temporal String Indexing.</p>
+                    <div class="eyebrow">Global Scaling Immunity</div>
+                    <h3>Geospatial Temporal Anchoring.</h3>
+                    <p>We decoupled the scheduling engine from device hardware clocks. Every business is assigned a sovereign mathematical timezone anchor. This enables a user in New York to book a clinic in Dubai with zero "midnight-rollover" database lock collisions, granting Omnibase immediate global borderlessness.</p>
                 </div>
 
                 <div class="scroll-step" id="step-3">
-                    <div class="eyebrow">Performance Engine</div>
-                    <h3>Polyglot Persistence.</h3>
-                    <p>Firebase egress costs are neutralized. We route heavy queries away from expensive NoSQL architectures into our proprietary Typesense RAM cluster (0.002ms latency). Coupled with aggressive on-device LRU caching, the architecture uncouples user growth from linear server costs.</p>
+                    <div class="eyebrow">O(1) Data Federation</div>
+                    <h3>The 170k Node Edge Cache.</h3>
+                    <p>Our 4-Tier Deferred JIT Engine handles a massive taxonomy of over 172,000 deep-tree nodes (Makes, Models, Specs) securely offline. By mapping these to AES-GCM encrypted asset bundles, we eradicate external API latency and achieve 0ms dropdown hydration, mathematically eliminating RAM spikes.</p>
                 </div>
 
-                <!-- NEW: STRESS TEST DATA INJECTION -->
                 <div class="scroll-step" id="step-4">
-                    <div class="eyebrow">Empirical Validation</div>
-                    <h3>Stress-Tested Semantic Routing.</h3>
-                    <p>In simulated stress tests across 10,000 complex, cross-category queries (e.g., 'Emergency pipe fix' vs 'Buy new pipes'), our Search Engine achieved a <strong>92.8% Top-1 Accuracy</strong> with a <strong>4.3% False Positive Rate</strong>. The system effectively isolates B2B operational intent from B2C retail queries without requiring explicit user filtering.</p>
+                    <div class="eyebrow">Zero Downtime</div>
+                    <h3>Air-Gapped Resiliency Mesh.</h3>
+                    <p>Firebase egress costs are neutralized via a dual-engine routing matrix. High-velocity queries hit our proprietary Typesense RAM cluster (0.002ms latency). Upon network degradation, the architecture autonomously splices into an offline SQLite FTS5 engine. The platform remains fully operational without internet access.</p>
+                </div>
+
+                <div class="scroll-step" id="step-5">
+                    <div class="eyebrow">Faceted Precision</div>
+                    <h3>Strict-Type Search Matrix.</h3>
+                    <p>Our search infrastructure achieves 100% logic parity between the offline SQLite fallback and the cloud Typesense cluster. The engine autonomously parses multi-value SDUI arrays, executing dynamic AND/OR intersections to guarantee exact-match precision across millions of potential product attribute combinations.</p>
                 </div>
 
             </div>
@@ -905,18 +1043,18 @@
     <section class="container" style="padding-top: 80px; padding-bottom: 40px;">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Omnibase Ops: The Command Node.</h2>
-            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Execution is fully de-risked. We have engineered a proprietary administrative infrastructure to automate KYC compliance, enforce ecosystem integrity, and actively manage B2B yield at scale.</p>
+            <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Execution is de-risked. We have engineered a proprietary administrative infrastructure to automate KYC compliance, enforce ecosystem integrity, and actively manage B2B yield at scale.</p>
         </div>
 
         <div class="bento-grid">
-            <!-- KYC & Trust/Safety (Queue + Kill Switch) -->
+            <!-- KYC & Trust/Safety (Zero-Trust IAM Firewall) -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow" style="color: #FF453A;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    Risk Mitigation & Compliance
+                    Zero-Trust Cloud Firewall
                 </div>
-                <h3>KYC & Ecosystem Sanitization.</h3>
-                <p>Engineered for De-Risked growth. The Ops node features a centralized business registration pipeline for rapid merchant vetting. Coupled with a <strong>Global Kill Switch</strong>, compliance teams can instantly quarantine malicious actors and purge their data footprint from the edge search cluster in milliseconds, ensuring strict brand safety.</p>
+                <h3>Cross-Service IAM Security.</h3>
+                <p>We do not rely on client-side security. The infrastructure deploys <strong>Cross-Service IAM Validation</strong>, allowing Firebase Storage to dynamically query Firestore RBAC rules before accepting payloads. This mathematically prevents Cloud Egress billing attacks, eradicates UI vandalism, and guarantees HIPAA-grade data isolation for our Clinical Case Vaults.</p>
             </div>
             
             <!-- Telemetry & GMV (Top Cards & Matrix) -->
@@ -936,7 +1074,7 @@
                     B2B Yield Optimization
                 </div>
                 <h3>Granular Monetization Operations.</h3>
-                <p>Absolute control over platform Monthly Recurring Revenue (MRR). The monetization console empowers operators to dynamically allocate or revoke algorithmic boosting mechanisms—such as the Premium Visibility Badge—directly influencing organic search ranking and driving B2B subscription upgrades.</p>
+                <p>Full control over platform Monthly Recurring Revenue (MRR). The monetization console empowers operators to dynamically allocate or revoke algorithmic boosting mechanisms—such as the Premium Visibility Badge—directly influencing organic search ranking and driving B2B subscription upgrades.</p>
             </div>
 
             <!-- Heuristic Insights -->
@@ -950,13 +1088,13 @@
             </div>
 
             <!-- Financial Reaper -->
-            <div class="bento-card col-span-6 reveal-up">
+            <div class="bento-card col-span-12 reveal-up">
                 <div class="eyebrow" style="color: #00C853;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                    Autonomous Ledger Reconciliation
+                    Atomic Ledger Reconciliation
                 </div>
                 <h3>The Financial Reaper Engine.</h3>
-                <p>Zero manual accounting required. At 2:00 AM daily, our autonomous Node.js cloud functions sweep the ecosystem for completed appointments, instantly lock the final transaction values, and update the global Gross Merchandise Value (GMV) ledger. Platform accounting is mathematically infallible and executes while the team sleeps.</p>
+                <p>Zero manual accounting required. At 2:00 AM daily, our autonomous cloud functions sweep the ecosystem for completed appointments, locking final transaction values and updating the global GMV ledger. The system executes <strong>atomic batch transformations</strong>, permanently converting chat proposals into cryptographically sealed <code>DIGITAL_RECEIPTS</code>. The ledger is mathematically immune to client-side tampering.</p>
             </div>
         </div>
     </section>
@@ -1228,9 +1366,10 @@
                         entry.target.classList.add('active');
                         const id = entry.target.id;
                         if(id === 'step-1') stickyText.innerHTML = "REAL-TIME SYNC<br>~ZERO LATENCY";
-                        if(id === 'step-2') stickyText.innerHTML = "O(1) TEMPORAL<br>LOCK SECURED";
-                        if(id === 'step-3') stickyText.innerHTML = "TYPESENSE RAM<br>CLUSTER ACTIVE";
-                        if(id === 'step-4') stickyText.innerHTML = "92.8% ROUTING<br>ACCURACY";
+                        if(id === 'step-2') stickyText.innerHTML = "GEOSPATIAL<br>LOCK SECURED";
+                        if(id === 'step-3') stickyText.innerHTML = "O(1) TAXONOMY<br>FEDERATED";
+                        if(id === 'step-4') stickyText.innerHTML = "AIR-GAPPED<br>MESH ACTIVE";
+                        if(id === 'step-5') stickyText.innerHTML = "STRICT-TYPE<br>MATRIX ALIGNED";
                     }
                 });
             }, { rootMargin: '-40% 0px -40% 0px' });
@@ -1340,6 +1479,62 @@
                 });
             }
         });
+
+		// 9. DYNAMIC BRAND TAXONOMY GRID
+		const taxonomyData = {
+			cars: ["abarth", "ac", "acura", "alfa-romeo", "allard", "alpina", "alvis", "amc", "ariel", "armstrong-siddeley", "ascari", "aston-martin", "audi", "austin-healey", "austin", "autobianchi", "auverland", "avanti", "baic", "bentley", "berkeley", "bitter", "bizzarrini", "bmw", "brilliance", "bristol", "bugatti", "buick", "cadillac", "caterham", "checker", "chevrolet", "chrysler", "citroen", "dacia", "daewoo", "daf", "daihatsu", "de-tomaso", "dkw", "dodge", "donkervoort", "eagle", "fairthorpe", "ferrari", "fiat", "fisker", "ford", "gaz", "geely", "ginetta", "gmc", "holden", "honda", "hudson", "humber", "hummer", "hyundai", "infiniti", "innocenti", "isuzu", "italdesign", "jaguar", "jeep", "jensen", "kia", "koenigsegg", "lada", "lamborghini", "lancia", "land-rover", "lexus", "lincoln", "lotec", "lotus", "luxgen", "mahindra", "marcos", "marta-simca", "maserati", "maybach", "mazda", "mclaren", "mercedes-benz", "mercury", "mg", "mini", "mitsubishi", "monteverdi", "moretti", "morgan", "morris", "noble", "nsu", "oldsmobile", "opel", "packard", "pagani", "panoz", "peugeot", "pininfarina", "plymouth", "pontiac", "porsche", "proton", "reliant", "renault", "riley", "rolls-royce", "rover", "saab", "saleen", "samsung", "saturn", "scion", "seat", "simca", "singer", "skoda", "smart", "spyker", "ssangyong", "ssc", "steyr", "studebaker", "subaru", "sunbeam", "suzuki", "talbot", "tata", "tatra", "tesla", "toyota", "trabant", "triumph", "tvr", "vauxhall", "vector", "venturi", "volkswagen", "volvo", "wartburg", "westfield", "willys-overland", "xedos", "zagato", "zastava", "zaz", "zenvo", "zil"],
+			
+			motos: ["adiva", "aeon", "ajp", "aprilia", "aspess-pwer", "axy", "azel", "bajaj", "benelli", "beta", "bimota", "bmw", "borile", "boss-hoss", "buell", "bultaco", "cagiva", "ccm", "cf-moto", "ch-racing", "cmc", "cpi", "cr&s", "dado", "daelim", "derbi", "ducati", "e-max", "ecomission", "etropolis", "fantic", "garelli", "gas-gas", "generic", "ghezzi-brian", "gilera", "gimotori", "gipuma", "green-mobility-italia", "harley-davidson", "hdm", "headbanger", "hm", "honda-dall'ara", "honda", "hp-power", "hupper", "husaberg", "husqvarna", "hyosung", "indian", "italjet", "jawa", "kawasaki-kl", "kawasaki", "keeway", "krc", "kreidler", "ktm", "kymco", "lambretta", "laverda", "leonart", "lingben", "linhai", "lml", "magni", "maico", "malaguti", "mash", "mbk", "millepercento", "mondial", "montesa", "moto-bellini", "moto-guzzi", "moto-morini", "moto-rumi", "motobi", "motom", "motor-union", "mv-agusta", "mz", "nipponia", "norton", "nox", "ossa", "over", "paton", "peda-motor", "peugeot", "pgo", "piaggio", "polini", "quadro", "quantya", "redmoto-honda", "renault", "rieju", "royal-enfield", "sachs", "scorpa", "sherco", "siamoto", "steed", "suzuki-calenti", "suzuki", "swm", "sym", "terra-modena", "tgb", "tm-racing", "triumph", "ural", "vectrix", "vertemati", "victory", "vor", "wt-motors", "yamaha"],
+			
+			watches: ["a.-lange-&-söhne", "audemars-piguet", "breitling", "cartier", "ebel", "edox", "hamilton", "hublot", "iwc", "jaeger-lecoultre", "longines", "meistersinger", "montblanc", "nomos", "omega", "oris", "panerai", "patek-philippe", "rado", "richard-mille", "rolex", "seiko", "sinn", "tag-heuer", "tissot", "tudor", "vacheron-constantin", "zenith"]
+		};
+
+		// Function to populate grid
+		function renderBrands(category) {
+			const grid = document.getElementById(`grid-${category}`);
+			if (!grid) return;
+			
+			// Only render if empty to save memory
+			if (grid.innerHTML === '') {
+				const brands = taxonomyData[category];
+				const html = brands.map(brand => `
+					<div class="brand-tile" title="${brand.replace(/-/g, ' ').toUpperCase()}">
+						<!-- IMPORTANT: Ensure paths align with your actual directory structure -->
+						<img src="${category}/${brand}.png" alt="${brand} logo" loading="lazy">
+					</div>
+				`).join('');
+				grid.innerHTML = html;
+			}
+			
+			// Update count display
+			const counter = document.getElementById('brand-count-display');
+			if(counter) counter.innerText = taxonomyData[category].length;
+		}
+
+		// Initialize Tabs
+		const brandTabs = document.querySelectorAll('.brand-tab');
+		const brandGrids = document.querySelectorAll('.brand-grid');
+
+		if (brandTabs.length > 0) {
+			// Initial Render
+			renderBrands('cars');
+
+			brandTabs.forEach(tab => {
+				tab.addEventListener('click', () => {
+					// Remove active classes
+					brandTabs.forEach(t => t.classList.remove('active'));
+					brandGrids.forEach(g => g.classList.remove('active'));
+					
+					// Add active to clicked tab
+					tab.classList.add('active');
+					
+					// Show corresponding grid
+					const target = tab.getAttribute('data-target');
+					renderBrands(target);
+					document.getElementById(`grid-${target}`).classList.add('active');
+				});
+			});
+		}
     </script>
 </body>
 </html>
