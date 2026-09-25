@@ -702,6 +702,102 @@
     .video-frame { border-radius: 18px; }
     .video-control-pill { font-size: 12px; padding: 10px 18px; bottom: 16px; }
 }
+		/* --- Titanium Phone Mockup & Showcase --- */
+.phone-showcase-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.phone-mockup-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ambient Back-Glow Behind Device */
+.phone-ambient-glow {
+    position: absolute;
+    width: 320px;
+    height: 580px;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 145, 255, 0.35) 0%, rgba(160, 133, 255, 0.2) 40%, transparent 70%);
+    filter: blur(60px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Precision Titanium Device Frame */
+.phone-frame {
+    position: relative;
+    z-index: 2;
+    width: 310px;
+    height: 640px;
+    background: #000;
+    border-radius: 50px;
+    border: 4px solid #232328;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.12),
+        0 30px 90px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(0, 145, 255, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dynamic Island / Speaker Notch */
+.phone-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 24px;
+    background: #000000;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+}
+
+/* Glass Glare Overlay */
+.phone-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.phone-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Technical Feature Stack (Right of Phone) */
+.persona-features-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 992px) {
+    .phone-showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .phone-mockup-wrapper {
+        order: -1;
+    }
+    .phone-frame {
+        width: 280px;
+        height: 580px;
+    }
+}
     </style>
 </head>
 <body>
@@ -846,6 +942,28 @@
                         <li><strong style="color: var(--brand-electric-blue);">Asymmetric Viewport Culling:</strong> Hardware decoders pause at 50% occlusion, preserving 60/120fps fluid scrolling.</li>
                         <li><strong style="color: var(--brand-electric-blue);">Domain Spotlight FSM:</strong> Synchronized character slicing illuminates active keywords in real time.</li>
                     </ul>
+                </div>
+            </div>
+			        <div class="phone-showcase-grid">
+            <!-- Left Column: The Titanium Device Mockup -->
+            <div class="phone-mockup-wrapper reveal-up">
+                <div class="phone-ambient-glow"></div>
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-glare"></div>
+                    <!-- Save your screen recording as: assets/persona_demo.mp4 -->
+                    <video 
+                        id="personaDemoVideo" 
+                        class="phone-video" 
+                        playsinline 
+                        webkit-playsinline
+                        muted 
+                        loop 
+                        autoplay 
+                        preload="metadata">
+                        <source src="assets/persona_demo.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
                 </div>
             </div>
 
@@ -1895,6 +2013,24 @@
                         setTimeout(() => toggleAudio(true), 400);
                     });
                 }
+            }
+			            // --- LIVING PERSONA PHONE VIDEO VIEWPORT CULLING ---
+            const personaDemoVideo = document.getElementById('personaDemoVideo');
+            if (personaDemoVideo) {
+                personaDemoVideo.defaultMuted = true;
+                personaDemoVideo.muted = true;
+
+                const personaObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            personaDemoVideo.play().catch(() => {});
+                        } else {
+                            personaDemoVideo.pause();
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                personaObserver.observe(personaDemoVideo);
             }
         });
 
