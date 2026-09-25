@@ -766,12 +766,12 @@
             Fragmented markets bleed capital. Omnibase solves the friction in the consumer economy by fusing a unified discovery engine with an enterprise-grade operational suite. <br><br>We have completely eradicated the engineering risk. The architecture natively scales across 137 professional classifications, 483 specialties, and 779 core product and service types—dynamically expanding into ~100K++ of granular sub-types, without a single line of codebase duplication. This is a production-ready monopoly built to capture aggressive market share.
         </p>
         
-        <div class="hero-cta reveal-up delay-300">
+<div class="hero-cta reveal-up delay-300">
             <a href="#invest" class="btn-primary">Review the Business Case</a>
-            <a href="#film-showcase" class="btn-secondary" style="margin-left: 12px;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-        Watch 30s Film
-    </a>
+            <a href="#film-showcase" class="btn-secondary" id="heroWatchFilmBtn" style="margin-left: 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Watch 30s Film
+            </a>
             <a href="#architecture" class="btn-secondary" style="margin-left: 12px;">View Structural Moat</a>
         </div>
 
@@ -1740,13 +1740,17 @@
                 // Attempt initial load
                 attemptAutoplay();
 
-                // 4. Kinematic Viewport Culling
+// 4. Kinematic Viewport Culling
                 let isUserUnmuted = false;
                 const videoObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            if (commercialVideo.paused && !isUserUnmuted) {
-                                attemptAutoplay();
+                            if (commercialVideo.paused) {
+                                if (isUserUnmuted) {
+                                    commercialVideo.play().catch(() => {});
+                                } else {
+                                    attemptAutoplay();
+                                }
                             }
                         } else {
                             commercialVideo.pause();
@@ -1789,7 +1793,11 @@
                 if (heroWatchFilmBtn) {
                     heroWatchFilmBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        commercialFrame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        if (typeof lenis !== 'undefined') {
+                            lenis.scrollTo(commercialFrame, { offset: -60, duration: 1.2 });
+                        } else {
+                            commercialFrame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
                         setTimeout(() => toggleAudio(true), 400);
                     });
                 }
