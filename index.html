@@ -604,7 +604,104 @@
 		@media (max-width: 480px) {
 		    .lang-switch { font-size: 13px; }
 		}
-		
+		/* --- Dedicated Cinematic Film Section --- */
+.film-section {
+    padding: 60px 0 100px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.video-showcase-wrapper {
+    position: relative;
+    max-width: 1040px;
+    margin: 40px auto 0;
+    width: 100%;
+}
+
+/* Ambient Radial Back-Glow */
+.video-ambient-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 145, 255, 0.28) 0%, rgba(160, 133, 255, 0.16) 45%, transparent 70%);
+    filter: blur(65px);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
+}
+
+/* Obsidian Bezel Chassis */
+.video-frame {
+    position: relative;
+    z-index: 2;
+    border-radius: 28px;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.video-frame:hover {
+    transform: translateY(-4px) scale(1.008);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Floating Audio Control Pill */
+.video-control-pill {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(14, 14, 18, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 12px 24px;
+    border-radius: 999px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.video-control-pill:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0, 145, 255, 0.3);
+}
+
+.video-control-pill svg {
+    width: 15px;
+    height: 15px;
+    color: var(--brand-electric-blue);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .film-section { padding: 40px 0 60px; }
+    .video-showcase-wrapper { margin-top: 28px; }
+    .video-frame { border-radius: 18px; }
+    .video-control-pill { font-size: 12px; padding: 10px 18px; bottom: 16px; }
+}
     </style>
 </head>
 <body>
@@ -671,6 +768,10 @@
         
         <div class="hero-cta reveal-up delay-300">
             <a href="#invest" class="btn-primary">Review the Business Case</a>
+            <a href="#film-showcase" class="btn-secondary" style="margin-left: 12px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        Watch 30s Film
+    </a>
             <a href="#architecture" class="btn-secondary" style="margin-left: 12px;">View Structural Moat</a>
         </div>
 
@@ -678,7 +779,43 @@
             <img src="assets/omnibaselogo.png" alt="Omnibase Custom Logo" id="hero3DMockup" class="logo-3d-image">
         </div>
     </header>
+<!-- DEDICATED CINEMATIC FILM SECTION -->
+<section class="container film-section reveal-up" id="film-showcase">
+    <div class="eyebrow" style="justify-content: center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+        Cinematic Vision • 0:30
+    </div>
+    <h2 class="text-gradient" style="font-size: clamp(32px, 5vw, 56px); margin-bottom: 16px;">One Connected Region. In a Single App.</h2>
+    <p style="color: var(--text-secondary); font-size: 19px; max-width: 760px; margin: 0 auto;">
+        From emergency triage and master artisans to luxury showrooms and cryptographic vaults—watch how Omnibase eliminates fragmented apps and consolidates the consumer economy.
+    </p>
 
+    <div class="video-showcase-wrapper">
+        <div class="video-ambient-glow"></div>
+        <div class="video-frame" id="commercialFrame">
+            <video 
+                id="omnibaseCommercial" 
+                class="video-player" 
+                playsinline 
+                muted 
+                loop 
+                autoplay 
+                preload="metadata">
+                <source src="assets/omnibase_commercial.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+
+            <button class="video-control-pill" id="soundToggleBtn">
+                <svg id="soundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <span id="soundLabel">Play with Sound (0:30)</span>
+            </button>
+        </div>
+    </div>
+</section>
     <!-- 2. MARKET VALIDATION & SCOPE -->
     <section class="metrics-section container reveal-up" id="metricsSection">
         <svg class="chart-bg" viewBox="0 0 1000 300" preserveAspectRatio="none">
@@ -1564,6 +1701,58 @@
                     }
                 });
             }
+            // --- COMMERCIAL FILM CONTROLLER & VIEWPORT CULLING ---
+const commercialVideo = document.getElementById('omnibaseCommercial');
+const commercialFrame = document.getElementById('commercialFrame');
+const soundToggleBtn = document.getElementById('soundToggleBtn');
+const soundIcon = document.getElementById('soundIcon');
+const soundLabel = document.getElementById('soundLabel');
+
+if (commercialVideo && soundToggleBtn) {
+    let isUserUnmuted = false;
+
+    // Kinematic Viewport Culling: Pause playback when scrolled out of view to save GPU cycles
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (commercialVideo.paused && !isUserUnmuted) {
+                    commercialVideo.play().catch(() => {});
+                }
+            } else {
+                commercialVideo.pause();
+            }
+        });
+    }, { threshold: 0.20 });
+
+    videoObserver.observe(commercialVideo);
+
+    // Audio & Replay Toggle
+    function toggleAudio(resetToStart = false) {
+        if (commercialVideo.muted) {
+            commercialVideo.muted = false;
+            if (resetToStart) commercialVideo.currentTime = 0;
+            commercialVideo.play();
+            isUserUnmuted = true;
+            soundLabel.textContent = "Mute Film";
+            soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
+        } else {
+            commercialVideo.muted = true;
+            isUserUnmuted = false;
+            soundLabel.textContent = "Play with Sound (0:30)";
+            soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
+        }
+    }
+
+    soundToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleAudio(true);
+    });
+
+    // Clicking anywhere on the video frame also un-mutes/restarts
+    commercialFrame.addEventListener('click', () => {
+        toggleAudio(true);
+    });
+}
         });
 
 		// 9. DYNAMIC BRAND TAXONOMY GRID
