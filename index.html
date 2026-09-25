@@ -793,27 +793,29 @@
     <div class="video-showcase-wrapper">
         <div class="video-ambient-glow"></div>
         <div class="video-frame" id="commercialFrame">
-            <video 
-                id="omnibaseCommercial" 
-                class="video-player" 
-                playsinline 
-                muted 
-                loop 
-                autoplay 
-                preload="metadata">
-                <source src="assets/omnibase_commercial.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
-            </video>
+                <video 
+                    id="omnibaseCommercial" 
+                    class="video-player" 
+                    src="assets/omnibase_commercial.mp4"
+                    playsinline 
+                    webkit-playsinline
+                    muted 
+                    loop 
+                    autoplay 
+                    preload="auto">
+                    <source src="assets/omnibase_commercial.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
 
-            <button class="video-control-pill" id="soundToggleBtn">
-                <svg id="soundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                </svg>
-                <span id="soundLabel">Play with Sound (0:30)</span>
-            </button>
-        </div>
+                <button class="video-control-pill" id="soundToggleBtn">
+                    <svg id="soundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                    <span id="soundLabel">Play with Sound (0:30)</span>
+                </button>
+            </div>
     </div>
 </section>
     <!-- 2. MARKET VALIDATION & SCOPE -->
@@ -1701,58 +1703,97 @@
                     }
                 });
             }
-            // --- COMMERCIAL FILM CONTROLLER & VIEWPORT CULLING ---
-const commercialVideo = document.getElementById('omnibaseCommercial');
-const commercialFrame = document.getElementById('commercialFrame');
-const soundToggleBtn = document.getElementById('soundToggleBtn');
-const soundIcon = document.getElementById('soundIcon');
-const soundLabel = document.getElementById('soundLabel');
+// --- COMMERCIAL FILM CONTROLLER & ROBUST AUTOPLAY ENGINE ---
+            const commercialVideo = document.getElementById('omnibaseCommercial');
+            const commercialFrame = document.getElementById('commercialFrame');
+            const soundToggleBtn = document.getElementById('soundToggleBtn');
+            const soundIcon = document.getElementById('soundIcon');
+            const soundLabel = document.getElementById('soundLabel');
+            const heroWatchFilmBtn = document.getElementById('heroWatchFilmBtn');
 
-if (commercialVideo && soundToggleBtn) {
-    let isUserUnmuted = false;
+            if (commercialVideo) {
+                // 1. Force muted properties in JS to satisfy Chrome/Safari Autoplay Policy
+                commercialVideo.defaultMuted = true;
+                commercialVideo.muted = true;
 
-    // Kinematic Viewport Culling: Pause playback when scrolled out of view to save GPU cycles
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (commercialVideo.paused && !isUserUnmuted) {
-                    commercialVideo.play().catch(() => {});
+                // 2. Diagnostic Logger (Press F12 in your browser to see if the file exists)
+                commercialVideo.addEventListener('error', (e) => {
+                    console.error('[Omnibase Video Error] Failed to load video from:', commercialVideo.currentSrc || commercialVideo.src);
+                    console.error('Error details:', commercialVideo.error);
+                });
+
+                commercialVideo.addEventListener('loadeddata', () => {
+                    console.log('[Omnibase Video] Video asset successfully loaded and buffered.');
+                });
+
+                // 3. Robust Play Function with Fallback
+                function attemptAutoplay() {
+                    commercialVideo.muted = true;
+                    const playPromise = commercialVideo.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(err => {
+                            console.warn('[Omnibase Video] Autoplay prevented by browser policy. Awaiting user interaction.', err);
+                        });
+                    }
                 }
-            } else {
-                commercialVideo.pause();
+
+                // Attempt initial load
+                attemptAutoplay();
+
+                // 4. Kinematic Viewport Culling
+                let isUserUnmuted = false;
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (commercialVideo.paused && !isUserUnmuted) {
+                                attemptAutoplay();
+                            }
+                        } else {
+                            commercialVideo.pause();
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                videoObserver.observe(commercialVideo);
+
+                // 5. Sound & Replay Toggle
+                function toggleAudio(resetToStart = false) {
+                    if (commercialVideo.muted) {
+                        commercialVideo.muted = false;
+                        if (resetToStart) commercialVideo.currentTime = 0;
+                        commercialVideo.play().catch(e => console.error("Play failed:", e));
+                        isUserUnmuted = true;
+                        if (soundLabel) soundLabel.textContent = "Mute Film";
+                        if (soundIcon) soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
+                    } else {
+                        commercialVideo.muted = true;
+                        isUserUnmuted = false;
+                        if (soundLabel) soundLabel.textContent = "Play with Sound (0:30)";
+                        if (soundIcon) soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
+                    }
+                }
+
+                if (soundToggleBtn) {
+                    soundToggleBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        toggleAudio(true);
+                    });
+                }
+
+                if (commercialFrame) {
+                    commercialFrame.addEventListener('click', () => {
+                        toggleAudio(true);
+                    });
+                }
+
+                if (heroWatchFilmBtn) {
+                    heroWatchFilmBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        commercialFrame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        setTimeout(() => toggleAudio(true), 400);
+                    });
+                }
             }
-        });
-    }, { threshold: 0.20 });
-
-    videoObserver.observe(commercialVideo);
-
-    // Audio & Replay Toggle
-    function toggleAudio(resetToStart = false) {
-        if (commercialVideo.muted) {
-            commercialVideo.muted = false;
-            if (resetToStart) commercialVideo.currentTime = 0;
-            commercialVideo.play();
-            isUserUnmuted = true;
-            soundLabel.textContent = "Mute Film";
-            soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
-        } else {
-            commercialVideo.muted = true;
-            isUserUnmuted = false;
-            soundLabel.textContent = "Play with Sound (0:30)";
-            soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
-        }
-    }
-
-    soundToggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleAudio(true);
-    });
-
-    // Clicking anywhere on the video frame also un-mutes/restarts
-    commercialFrame.addEventListener('click', () => {
-        toggleAudio(true);
-    });
-}
         });
 
 		// 9. DYNAMIC BRAND TAXONOMY GRID
