@@ -428,8 +428,8 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 145, 255, 0.15);
         }
-		/* =========================================================================
-           137 VERTICALS CHARACTER MATRIX (Apple App Grid Architecture)
+/* =========================================================================
+           137 VERTICALS CHARACTER MATRIX & LIGHTBOX (Full Production Spec)
            ========================================================================= */
         .verticals-grid {
             display: grid;
@@ -450,6 +450,7 @@
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             user-select: none;
+            cursor: pointer !important;
         }
 
         .vertical-card:hover {
@@ -459,7 +460,6 @@
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 145, 255, 0.12);
         }
 
-        /* Gold highlight for Showroom group */
         .archetype-group-gold .vertical-card:hover {
             border-color: rgba(255, 215, 0, 0.35);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(255, 215, 0, 0.12);
@@ -493,7 +493,6 @@
             border-radius: 13px;
         }
 
-        /* Fallback icon styling if an image is missing */
         .vertical-avatar-fallback {
             font-size: 18px;
             font-weight: 800;
@@ -515,6 +514,113 @@
             color: #ffffff;
         }
 
+        /* Lightbox Container */
+        .character-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 6, 0.88);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 24px;
+        }
+
+        .character-lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .character-lightbox-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .character-lightbox-overlay.active .character-lightbox-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .character-lightbox-ambient {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(0, 145, 255, 0.28) 0%, rgba(160, 133, 255, 0.15) 50%, transparent 75%);
+            filter: blur(65px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .character-lightbox-img {
+            max-width: 82vw;
+            max-height: 68vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 28px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(18, 18, 22, 0.7);
+            display: block;
+        }
+
+        .character-lightbox-title {
+            margin-top: 18px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 8px 22px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .character-lightbox-close {
+            position: absolute;
+            top: -46px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(12px);
+            line-height: 1;
+        }
+
+        .character-lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: scale(1.1);
+        }
+
         @media (max-width: 600px) {
             .verticals-grid {
                 grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
@@ -526,6 +632,15 @@
             }
             .vertical-title {
                 font-size: 10.5px;
+            }
+            .character-lightbox-img {
+                max-width: 90vw;
+                max-height: 60vh;
+                border-radius: 20px;
+            }
+            .character-lightbox-title {
+                font-size: 14px;
+                padding: 6px 18px;
             }
         }
         footer { padding: 80px 0 40px; text-align: center; color: var(--text-secondary); font-size: 14px; border-top: 1px solid var(--glass-border); width: 100%; }
@@ -2287,11 +2402,46 @@
                 });
             }
 			            // --- AUTOMATED TAXONOMY CHARACTER GRID HYDRATION ---
+// --- CHARACTER FULL-SIZE LIGHTBOX CONTROLLER ---
+            const charLightbox = document.getElementById('characterLightboxModal');
+            const charLightboxImg = document.getElementById('characterLightboxImg');
+            const charLightboxTitle = document.getElementById('characterLightboxTitle');
+            const closeCharLightbox = document.getElementById('closeCharacterLightbox');
+
+            function openCharacterModal(src, title) {
+                if (!charLightbox || !charLightboxImg) return;
+                charLightboxImg.src = src;
+                if (charLightboxTitle) charLightboxTitle.textContent = title;
+                charLightbox.classList.add('active');
+            }
+
+            function closeCharacterModal() {
+                if (!charLightbox) return;
+                charLightbox.classList.remove('active');
+                setTimeout(() => { 
+                    if (charLightboxImg) charLightboxImg.src = ''; 
+                }, 350);
+            }
+
+            if (closeCharLightbox) closeCharLightbox.addEventListener('click', closeCharacterModal);
+            if (charLightbox) {
+                charLightbox.addEventListener('click', (e) => {
+                    if (e.target === charLightbox) closeCharacterModal();
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && charLightbox && charLightbox.classList.contains('active')) {
+                    closeCharacterModal();
+                    e.stopImmediatePropagation();
+                }
+            });
+
+            // --- AUTOMATED TAXONOMY CHARACTER GRID HYDRATION ---
             document.querySelectorAll('.archetype-tags').forEach(tagsContainer => {
                 const group = tagsContainer.closest('.archetype-group');
                 const isGold = group && group.querySelector('.text-gradient-gold');
                 
-                // Create the new responsive character grid
                 const grid = document.createElement('div');
                 grid.className = 'verticals-grid' + (isGold ? ' archetype-group-gold' : '');
                 
@@ -2300,8 +2450,8 @@
                     const card = document.createElement('div');
                     card.className = 'vertical-card';
                     
-                    // Paths resolve directly to /character/{Title}.webp
-                    const imgSrc = `assets/character/${title}.webp`;
+                    // URL-safe encoding for symbols like $, &, ', and spaces
+                    const imgSrc = `character/${encodeURIComponent(title)}.webp`;
                     
                     card.innerHTML = `
                         <div class="vertical-avatar-box">
@@ -2314,10 +2464,15 @@
                         </div>
                         <span class="vertical-title">${title}</span>
                     `;
+
+                    // Click card to open full-size character preview
+                    card.addEventListener('click', () => {
+                        openCharacterModal(imgSrc, title);
+                    });
+
                     grid.appendChild(card);
                 });
                 
-                // Smoothly replace the text tag cloud with the character grid
                 tagsContainer.replaceWith(grid);
             });
 // --- COMMERCIAL FILM CONTROLLER & ROBUST AUTOPLAY ENGINE ---
