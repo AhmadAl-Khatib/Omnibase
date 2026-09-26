@@ -442,6 +442,175 @@
         .btn-pop:hover svg {
             transform: scale(1.1);
         }
+		/* =========================================================================
+           INSTITUTIONAL EXECUTIVE CAPSULES (High-Conversion Triggers)
+           ========================================================================= */
+        .capsule-trigger-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 36px;
+            position: relative;
+        }
+
+        .capsule-glow-aura {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 80px;
+            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.22) 0%, rgba(160, 133, 255, 0.12) 50%, transparent 75%);
+            filter: blur(28px);
+            pointer-events: none;
+            z-index: 1;
+            transition: opacity 0.4s ease, width 0.4s ease;
+        }
+
+        .capsule-glow-gold {
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.20) 0%, rgba(255, 152, 17, 0.10) 50%, transparent 75%);
+        }
+
+        .institutional-capsule {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(14, 14, 18, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 16px 12px 20px;
+            border-radius: 999px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: #ffffff;
+            cursor: pointer;
+            text-align: left;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            user-select: none;
+        }
+
+        .institutional-capsule:hover {
+            transform: translateY(-3px) scale(1.015);
+            border-color: rgba(0, 145, 255, 0.55);
+            background: rgba(20, 20, 28, 0.85);
+            box-shadow: 0 20px 50px rgba(0, 145, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .institutional-capsule-gold:hover {
+            border-color: rgba(255, 215, 0, 0.55);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .capsule-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.2) 0%, rgba(160, 133, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 145, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-electric-blue);
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
+        }
+
+        .capsule-icon-gold {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 152, 17, 0.1) 100%);
+            border-color: rgba(255, 215, 0, 0.4);
+            color: var(--brand-gold);
+        }
+
+        .institutional-capsule:hover .capsule-icon-box {
+            transform: scale(1.1) rotate(6deg);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .capsule-text-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .capsule-eyebrow {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brand-electric-blue);
+        }
+
+        .capsule-eyebrow-gold {
+            color: var(--brand-gold);
+        }
+
+        .capsule-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+
+        .capsule-action-badge {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #E2E2E5;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 8px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .institutional-capsule:hover .capsule-action-badge {
+            background: var(--brand-electric-blue);
+            color: #ffffff;
+            border-color: var(--brand-electric-blue);
+            box-shadow: 0 4px 14px rgba(0, 145, 255, 0.4);
+            transform: translateX(3px);
+        }
+
+        .institutional-capsule-gold:hover .capsule-action-badge {
+            background: var(--brand-gold);
+            color: #050506;
+            border-color: var(--brand-gold);
+            box-shadow: 0 4px 14px rgba(255, 215, 0, 0.4);
+            transform: translateX(3px);
+        }
+
+        .capsule-action-badge svg {
+            transition: transform 0.3s ease;
+        }
+
+        .institutional-capsule:hover .capsule-action-badge svg {
+            transform: translateX(2px);
+        }
+
+        @media (max-width: 600px) {
+            .institutional-capsule {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-radius: 24px;
+                padding: 20px;
+                width: 100%;
+                gap: 12px;
+            }
+            .capsule-action-badge {
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+        }
         @keyframes breathingGlow {
             0% { box-shadow: 0 0 12px rgba(0, 145, 255, 0.05); }
             100% { box-shadow: 0 0 24px rgba(0, 145, 255, 0.25); border-color: rgba(0, 145, 255, 0.6) !important; }
@@ -997,10 +1166,24 @@
         </div>
 
         <!-- Data Sources Trigger -->
-        <div style="text-align: center; margin-top: 32px;">
-            <button class="btn-secondary btn-pop" id="openSourcesBtn" style="font-size: 13px; padding: 10px 24px; cursor: pointer;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-                View Validation Sources
+<!-- Institutional Due Diligence Trigger -->
+        <div class="capsule-trigger-wrapper reveal-up delay-200">
+            <div class="capsule-glow-aura capsule-glow-gold"></div>
+            <button class="institutional-capsule institutional-capsule-gold" id="openSourcesBtn">
+                <div class="capsule-icon-box capsule-icon-gold">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                </div>
+                <div class="capsule-text-col">
+                    <span class="capsule-eyebrow capsule-eyebrow-gold">Audited Due Diligence</span>
+                    <span class="capsule-title">Review Financial Methodology & Data Sources</span>
+                </div>
+                <span class="capsule-action-badge">
+                    <span>Inspect Sources</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
             </button>
         </div>
     </section>
@@ -1117,12 +1300,27 @@
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Polymorphic Architecture.</h2>
             <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Form follows psychology. One unified codebase dynamically re-renders into six distinct, industry-optimized Super-Apps. Powered by our proprietary Server-Driven UI (SDUI), each archetype is mathematically engineered to trigger specific behavioral conversions.</p>
-        <div style="margin-top: 32px;">
-                <button class="btn-secondary btn-pop" id="openArchetypesBtn" style="font-size: 14px; padding: 12px 28px; cursor: pointer;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                    View 137 Supported Verticals
-                </button>
-            </div>
+        <!-- Proprietary Taxonomy Matrix Trigger -->
+        <div class="capsule-trigger-wrapper reveal-up delay-100">
+            <div class="capsule-glow-aura"></div>
+            <button class="institutional-capsule" id="openArchetypesBtn">
+                <div class="capsule-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div class="capsule-text-col">
+                    <span class="capsule-eyebrow">Universal Schema Graph</span>
+                    <span class="capsule-title">Explore Complete 137-Vertical Taxonomy Matrix</span>
+                </div>
+                <span class="capsule-action-badge">
+                    <span>Inspect Matrix</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+            </button>
+        </div>
         </div>
 
        <div class="bento-grid">
