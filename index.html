@@ -442,33 +442,36 @@
         .btn-pop:hover svg {
             transform: scale(1.1);
         }
-		/* =========================================================================
-           INSTITUTIONAL EXECUTIVE CAPSULES (High-Conversion Triggers)
+/* =========================================================================
+           INSTITUTIONAL EXECUTIVE CAPSULES (Seamless Obsidian Luxury Edition)
            ========================================================================= */
         .capsule-trigger-wrapper {
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-top: 36px;
+            margin-top: 48px;
+            padding-top: 8px;
             position: relative;
         }
 
+        /* Ultra-subtle ambient breath - Zero neon harshness */
         .capsule-glow-aura {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 320px;
-            height: 80px;
-            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.22) 0%, rgba(160, 133, 255, 0.12) 50%, transparent 75%);
-            filter: blur(28px);
+            width: 360px;
+            height: 70px;
+            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.09) 0%, transparent 70%);
+            filter: blur(32px);
             pointer-events: none;
             z-index: 1;
-            transition: opacity 0.4s ease, width 0.4s ease;
+            opacity: 0.7;
+            transition: opacity 0.5s ease;
         }
 
         .capsule-glow-gold {
-            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.20) 0%, rgba(255, 152, 17, 0.10) 50%, transparent 75%);
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
         }
 
         .institutional-capsule {
@@ -476,57 +479,55 @@
             z-index: 2;
             display: inline-flex;
             align-items: center;
-            gap: 18px;
-            background: rgba(14, 14, 18, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 12px 16px 12px 20px;
+            gap: 16px;
+            background: rgba(20, 20, 24, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            padding: 14px 18px 14px 20px;
             border-radius: 999px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            color: #ffffff;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            color: var(--text-primary);
             cursor: pointer;
             text-align: left;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
             user-select: none;
         }
 
         .institutional-capsule:hover {
-            transform: translateY(-3px) scale(1.015);
-            border-color: rgba(0, 145, 255, 0.55);
-            background: rgba(20, 20, 28, 0.85);
-            box-shadow: 0 20px 50px rgba(0, 145, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(26, 26, 32, 0.85);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
-        .institutional-capsule-gold:hover {
-            border-color: rgba(255, 215, 0, 0.55);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        .institutional-capsule:hover .capsule-glow-aura {
+            opacity: 1;
         }
 
         .capsule-icon-box {
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(0, 145, 255, 0.2) 0%, rgba(160, 133, 255, 0.1) 100%);
-            border: 1px solid rgba(0, 145, 255, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--brand-electric-blue);
             flex-shrink: 0;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .capsule-icon-gold {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 152, 17, 0.1) 100%);
-            border-color: rgba(255, 215, 0, 0.4);
             color: var(--brand-gold);
         }
 
         .institutional-capsule:hover .capsule-icon-box {
-            transform: scale(1.1) rotate(6deg);
-            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.18);
         }
 
         .capsule-text-col {
@@ -536,9 +537,9 @@
         }
 
         .capsule-eyebrow {
-            font-size: 10.5px;
-            font-weight: 800;
-            letter-spacing: 0.1em;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--brand-electric-blue);
         }
@@ -551,51 +552,46 @@
             font-family: 'Manrope', sans-serif;
             font-size: 15px;
             font-weight: 700;
-            color: #ffffff;
+            color: #f5f5f7;
             letter-spacing: -0.01em;
         }
 
         .capsule-action-badge {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 16px;
             border-radius: 999px;
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 600;
-            color: #E2E2E5;
+            color: var(--text-secondary);
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-left: 8px;
+            margin-left: 10px;
             transition: all 0.3s ease;
             flex-shrink: 0;
         }
 
         .institutional-capsule:hover .capsule-action-badge {
-            background: var(--brand-electric-blue);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
             color: #ffffff;
-            border-color: var(--brand-electric-blue);
-            box-shadow: 0 4px 14px rgba(0, 145, 255, 0.4);
-            transform: translateX(3px);
-        }
-
-        .institutional-capsule-gold:hover .capsule-action-badge {
-            background: var(--brand-gold);
-            color: #050506;
-            border-color: var(--brand-gold);
-            box-shadow: 0 4px 14px rgba(255, 215, 0, 0.4);
-            transform: translateX(3px);
-        }
-
-        .capsule-action-badge svg {
-            transition: transform 0.3s ease;
-        }
-
-        .institutional-capsule:hover .capsule-action-badge svg {
             transform: translateX(2px);
         }
 
-        @media (max-width: 600px) {
+        .capsule-action-badge svg {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .institutional-capsule:hover .capsule-action-badge svg {
+            transform: translateX(3px);
+        }
+
+        @media (max-width: 640px) {
+            .capsule-trigger-wrapper {
+                margin-top: 36px;
+                padding-top: 4px;
+            }
             .institutional-capsule {
                 flex-direction: column;
                 align-items: center;
@@ -603,6 +599,7 @@
                 border-radius: 24px;
                 padding: 20px;
                 width: 100%;
+                max-width: 360px;
                 gap: 12px;
             }
             .capsule-action-badge {
@@ -1166,10 +1163,10 @@
         </div>
 
         <!-- Data Sources Trigger -->
-<!-- Institutional Due Diligence Trigger -->
+<!-- Retouched Due Diligence Trigger -->
         <div class="capsule-trigger-wrapper reveal-up delay-200">
             <div class="capsule-glow-aura capsule-glow-gold"></div>
-            <button class="institutional-capsule institutional-capsule-gold" id="openSourcesBtn">
+            <button class="institutional-capsule" id="openSourcesBtn">
                 <div class="capsule-icon-box capsule-icon-gold">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -1300,7 +1297,7 @@
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Polymorphic Architecture.</h2>
             <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Form follows psychology. One unified codebase dynamically re-renders into six distinct, industry-optimized Super-Apps. Powered by our proprietary Server-Driven UI (SDUI), each archetype is mathematically engineered to trigger specific behavioral conversions.</p>
-        <!-- Proprietary Taxonomy Matrix Trigger -->
+<!-- Retouched Taxonomy Matrix Trigger -->
         <div class="capsule-trigger-wrapper reveal-up delay-100">
             <div class="capsule-glow-aura"></div>
             <button class="institutional-capsule" id="openArchetypesBtn">
@@ -1320,6 +1317,7 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </span>
             </button>
+        </div>
         </div>
         </div>
 
