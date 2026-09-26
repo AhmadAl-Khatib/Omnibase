@@ -443,7 +443,7 @@
             transform: scale(1.1);
         }
 /* =========================================================================
-           INSTITUTIONAL EXECUTIVE CAPSULES (Seamless Obsidian Luxury Edition)
+           INSTITUTIONAL EXECUTIVE CAPSULES (Silicon Valley Luxury Spec)
            ========================================================================= */
         .capsule-trigger-wrapper {
             display: flex;
@@ -454,7 +454,7 @@
             position: relative;
         }
 
-        /* Ultra-subtle ambient breath - Zero neon harshness */
+        /* Subtle Ambient Back-Aura */
         .capsule-glow-aura {
             position: absolute;
             top: 50%;
@@ -462,26 +462,29 @@
             transform: translate(-50%, -50%);
             width: 360px;
             height: 70px;
-            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.09) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.08) 0%, transparent 70%);
             filter: blur(32px);
             pointer-events: none;
             z-index: 1;
-            opacity: 0.7;
+            opacity: 0.6;
             transition: opacity 0.5s ease;
         }
 
         .capsule-glow-gold {
-            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.07) 0%, transparent 70%);
         }
 
+        /* 
+           PHYSICAL BUTTON SURFACE
+           Layered 4-stop shadow stack creates authentic tactile elevation 
+        */
         .institutional-capsule {
             position: relative;
             z-index: 2;
             display: inline-flex;
             align-items: center;
             gap: 16px;
-            background: rgba(20, 20, 24, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.09);
+            background: rgba(18, 18, 22, 0.75);
             padding: 14px 18px 14px 20px;
             border-radius: 999px;
             backdrop-filter: var(--glass-blur);
@@ -489,35 +492,121 @@
             color: var(--text-primary);
             cursor: pointer;
             text-align: left;
-            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
             user-select: none;
+            overflow: hidden;
+            
+            /* Silicon Valley Layered Shadow Engine */
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.4),                           /* 1. Contact shadow */
+                0 10px 24px -4px rgba(0, 0, 0, 0.6),                    /* 2. Ambient occlusion */
+                0 24px 48px -12px rgba(0, 0, 0, 0.8),                   /* 3. Deep floor bloom */
+                inset 0 1px 1px rgba(255, 255, 255, 0.16),              /* 4. Top-edge glass reflection */
+                inset 0 -1px 1px rgba(0, 0, 0, 0.6);                    /* 5. Bottom bevel recess */
+            
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                        background 0.35s ease, 
+                        border-color 0.35s ease;
         }
 
+        /* 
+           SEAMLESS SPECULAR BORDER GLINT (Animated Hairline)
+           Masked 1px perimeter highlight that glides across the pill 
+        */
+        .institutional-capsule::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            padding: 1px;
+            background: linear-gradient(
+                105deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.03) 25%,
+                rgba(0, 145, 255, 0.45) 50%,
+                rgba(255, 255, 255, 0.12) 65%,
+                transparent 100%
+            );
+            background-size: 250% 100%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            animation: borderSpecularSweep 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            opacity: 0.75;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Gold Variant for Due Diligence */
+        .institutional-capsule-gold::before {
+            background: linear-gradient(
+                105deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.03) 25%,
+                rgba(255, 215, 0, 0.45) 50%,
+                rgba(255, 255, 255, 0.15) 65%,
+                transparent 100%
+            );
+            background-size: 250% 100%;
+        }
+
+        @keyframes borderSpecularSweep {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Hover States: Lift & Luminous Deepening */
         .institutional-capsule:hover {
             transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(26, 26, 32, 0.85);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            background: rgba(24, 24, 30, 0.9);
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.5),
+                0 16px 36px -4px rgba(0, 0, 0, 0.7),
+                0 36px 64px -12px rgba(0, 0, 0, 0.9),
+                inset 0 1px 1px rgba(255, 255, 255, 0.25),
+                0 0 20px rgba(0, 145, 255, 0.12);
         }
 
-        .institutional-capsule:hover .capsule-glow-aura {
+        .institutional-capsule-gold:hover {
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.5),
+                0 16px 36px -4px rgba(0, 0, 0, 0.7),
+                0 36px 64px -12px rgba(0, 0, 0, 0.9),
+                inset 0 1px 1px rgba(255, 255, 255, 0.25),
+                0 0 20px rgba(255, 215, 0, 0.12);
+        }
+
+        .institutional-capsule:hover::before {
             opacity: 1;
+            animation-duration: 3.5s; /* Accelerates slightly on hover */
         }
 
+        /* Tactile Press Physics (Click Affordance) */
+        .institutional-capsule:active {
+            transform: translateY(1px) scale(0.992);
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.5),
+                0 8px 16px -2px rgba(0, 0, 0, 0.7),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            transition: transform 0.08s ease, box-shadow 0.08s ease;
+        }
+
+        /* Icon Container */
         .capsule-icon-box {
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.035);
             border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--brand-electric-blue);
             flex-shrink: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
         }
 
         .capsule-icon-gold {
@@ -526,8 +615,7 @@
 
         .institutional-capsule:hover .capsule-icon-box {
             transform: scale(1.08);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.07);
         }
 
         .capsule-text-col {
@@ -537,7 +625,7 @@
         }
 
         .capsule-eyebrow {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -556,6 +644,7 @@
             letter-spacing: -0.01em;
         }
 
+        /* Trailing Action Badge */
         .capsule-action-badge {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
