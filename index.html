@@ -428,6 +428,106 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 145, 255, 0.15);
         }
+		/* =========================================================================
+           137 VERTICALS CHARACTER MATRIX (Apple App Grid Architecture)
+           ========================================================================= */
+        .verticals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .vertical-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 12px 6px 10px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            user-select: none;
+        }
+
+        .vertical-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 145, 255, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 145, 255, 0.12);
+        }
+
+        /* Gold highlight for Showroom group */
+        .archetype-group-gold .vertical-card:hover {
+            border-color: rgba(255, 215, 0, 0.35);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(255, 215, 0, 0.12);
+        }
+
+        .vertical-avatar-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(18, 18, 22, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.35);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.35s ease;
+        }
+
+        .vertical-card:hover .vertical-avatar-box {
+            transform: scale(1.08);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .vertical-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 13px;
+        }
+
+        /* Fallback icon styling if an image is missing */
+        .vertical-avatar-fallback {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--brand-electric-blue);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .vertical-title {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+            text-wrap: balance;
+            transition: color 0.25s ease;
+        }
+
+        .vertical-card:hover .vertical-title {
+            color: #ffffff;
+        }
+
+        @media (max-width: 600px) {
+            .verticals-grid {
+                grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+                gap: 10px;
+            }
+            .vertical-avatar-box {
+                width: 46px;
+                height: 46px;
+            }
+            .vertical-title {
+                font-size: 10.5px;
+            }
+        }
         footer { padding: 80px 0 40px; text-align: center; color: var(--text-secondary); font-size: 14px; border-top: 1px solid var(--glass-border); width: 100%; }
         
         /* --- Elite Button Pulse (Attention Seeker) --- */
@@ -2186,6 +2286,40 @@
                     }
                 });
             }
+			            // --- AUTOMATED TAXONOMY CHARACTER GRID HYDRATION ---
+            document.querySelectorAll('.archetype-tags').forEach(tagsContainer => {
+                const group = tagsContainer.closest('.archetype-group');
+                const isGold = group && group.querySelector('.text-gradient-gold');
+                
+                // Create the new responsive character grid
+                const grid = document.createElement('div');
+                grid.className = 'verticals-grid' + (isGold ? ' archetype-group-gold' : '');
+                
+                tagsContainer.querySelectorAll('.archetype-tag').forEach(tag => {
+                    const title = tag.textContent.trim();
+                    const card = document.createElement('div');
+                    card.className = 'vertical-card';
+                    
+                    // Paths resolve directly to /character/{Title}.webp
+                    const imgSrc = `character/${title}.webp`;
+                    
+                    card.innerHTML = `
+                        <div class="vertical-avatar-box">
+                            <img src="${imgSrc}" 
+                                 alt="${title}" 
+                                 loading="lazy" 
+                                 class="vertical-avatar"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <span class="vertical-avatar-fallback" style="display: none;">${title.charAt(0)}</span>
+                        </div>
+                        <span class="vertical-title">${title}</span>
+                    `;
+                    grid.appendChild(card);
+                });
+                
+                // Smoothly replace the text tag cloud with the character grid
+                tagsContainer.replaceWith(grid);
+            });
 // --- COMMERCIAL FILM CONTROLLER & ROBUST AUTOPLAY ENGINE ---
             const commercialVideo = document.getElementById('omnibaseCommercial');
             const commercialFrame = document.getElementById('commercialFrame');
