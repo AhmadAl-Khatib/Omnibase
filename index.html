@@ -1534,140 +1534,176 @@
     }
 }
 /* =========================================================================
-           WEDGE STRATEGY: FLUSH TOP-ALIGNED CHASSIS (Apple Keynote Layout)
+           WEDGE STRATEGY: BALANCED DUAL-BENTO ARCHITECTURE (Apple / Stripe Spec)
            ========================================================================= */
         .wedge-showcase-grid {
-            display: grid !important;
-            grid-template-columns: 0.85fr 1.15fr !important;
-            gap: 40px !important;
-            align-items: start !important;           /* Aligns grid tracks to top */
-            width: 100% !important;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 28px;
+            align-items: stretch;                 /* Stretches both sides to identical height */
+            width: 100%;
         }
 
-        /* 
-           CRITICAL ALIGNMENT ANCHOR
-           align-self: start prevents this column from stretching to the height of the 3 cards 
-        */
-        .wedge-video-col {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: flex-start !important;
-            align-self: start !important;           /* <--- FORCES TOP FLUSH WITH CARD 1 */
-            position: relative !important;
-            width: 100% !important;
-            margin-top: 0 !important;
-            padding-top: 0 !important;
+        /* The Left Flagship Flywheel Card */
+        .wedge-flywheel-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 36px 32px 28px !important;
+            background: linear-gradient(160deg, rgba(20, 20, 26, 0.7) 0%, rgba(10, 10, 14, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
-        /* 
-           REFINED 330px PRECISION CHASSIS
-           Scaled down from 440px so it sits proportionally beside the text cards 
-        */
+        .wedge-video-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 8px 0 20px;
+        }
+
         .wedge-video-frame {
-            position: relative !important;
-            z-index: 2 !important;
-            width: 100% !important;
-            max-width: 330px !important;            /* Clean, elegant luxury size */
-            aspect-ratio: 1 / 1 !important;
-            background: #000000 !important;
-            border-radius: 28px !important;
-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 310px;
+            aspect-ratio: 1 / 1;
+            background: #000000;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 
                 0 0 0 1px rgba(255, 255, 255, 0.05),
-                0 25px 60px rgba(0, 0, 0, 0.85),
-                0 0 30px rgba(0, 145, 255, 0.14) !important;
-            overflow: hidden !important;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease !important;
+                0 20px 50px rgba(0, 0, 0, 0.85),
+                0 0 25px rgba(0, 145, 255, 0.15);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
         }
 
-        .wedge-video-frame:hover {
-            transform: translateY(-2px) scale(1.01) !important;
-            border-color: rgba(255, 255, 255, 0.25) !important;
+        .wedge-flywheel-card:hover .wedge-video-frame {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
-        /* Proportional Ambient Glow */
         .wedge-ambient-glow {
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            width: 310px !important;
-            height: 310px !important;
-            background: radial-gradient(circle at 35% 35%, rgba(255, 69, 58, 0.22) 0%, rgba(0, 145, 255, 0.18) 45%, rgba(255, 215, 0, 0.12) 75%, transparent 85%) !important;
-            filter: blur(50px) !important;
-            z-index: 1 !important;
-            pointer-events: none !important;
+            position: absolute;
+            width: 290px;
+            height: 290px;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 69, 58, 0.25) 0%, rgba(0, 145, 255, 0.20) 45%, rgba(255, 215, 0, 0.14) 75%, transparent 85%);
+            filter: blur(50px);
+            z-index: 1;
+            pointer-events: none;
         }
 
         .wedge-video {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            display: block !important;
-            background: #000000 !important;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000000;
         }
 
-        /* The 3 Phased Cards Stack */
+        /* Strategic Progression Footer */
+        .wedge-flow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: auto;
+        }
+
+        .flow-node {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .flow-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--node-color);
+            box-shadow: 0 0 8px var(--node-color);
+        }
+
+        .flow-arrow {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* The 3 Phased Cards Column */
         .wedge-steps-col {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 16px !important;
-            width: 100% !important;
-            margin-top: 0 !important;
-            padding-top: 0 !important;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            justify-content: space-between;
         }
 
         .wedge-phase-card {
-            background: var(--bg-bento) !important;
-            border-radius: 24px !important;
-            padding: 24px 28px !important;
-            border: 1px solid rgba(255, 255, 255, 0.06) !important;
-            position: relative !important;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            background: var(--bg-bento);
+            border-radius: 24px;
+            padding: 22px 26px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .wedge-phase-card:hover {
-            transform: translateX(4px) !important;
-            background: rgba(255, 255, 255, 0.035) !important;
-            border-color: rgba(255, 255, 255, 0.15) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.035);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .wedge-phase-card h3 {
-            font-size: 20px !important;
-            margin-bottom: 8px !important;
-            color: #ffffff !important;
+            font-size: 19px;
+            margin-bottom: 6px;
+            color: #ffffff;
         }
 
         .wedge-phase-card p {
-            font-size: 14.5px !important;
-            line-height: 1.6 !important;
-            color: var(--text-secondary) !important;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
         }
 
         .phase-badge-pill {
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 8px !important;
-            font-size: 11px !important;
-            font-weight: 800 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.08em !important;
-            margin-bottom: 8px !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
         }
 
-        /* Mobile / Tablet Viewports */
+        /* Mobile & Tablet Fallback */
         @media (max-width: 992px) {
             .wedge-showcase-grid {
-                grid-template-columns: 1fr !important;
-                gap: 32px !important;
+                grid-template-columns: 1fr;
+                gap: 24px;
             }
-            .wedge-video-col {
-                order: -1 !important;
-                align-self: center !important;
-            }
-            .wedge-video-frame {
-                max-width: 280px !important;
+            .wedge-flow-connector {
+                display: none;
             }
         }
     </style>
@@ -2054,7 +2090,6 @@
         </div>
     </section>
 
-    <!-- NEW: GO-TO-MARKET / WEDGE STRATEGY -->
 <!-- GO-TO-MARKET / WEDGE STRATEGY -->
     <section class="container" style="padding-bottom: 80px;" id="strategy">
         <div class="section-header reveal-up">
@@ -2063,28 +2098,56 @@
         </div>
 
         <div class="wedge-showcase-grid">
-            <!-- Left: 480x480 Video Loop in Obsidian Chassis -->
-            <div class="wedge-video-col reveal-up">
-                <div class="wedge-ambient-glow"></div>
-                <div class="wedge-video-frame">
-                    <div class="phone-glare"></div>
-                    <video 
-                        id="wedgeStrategyVideo" 
-                        class="wedge-video" 
-                        playsinline 
-                        webkit-playsinline
-                        muted 
-                        loop 
-                        autoplay 
-                        preload="metadata">
-                        <!-- Update src if your file has a different name -->
-                        <source src="assets/strategy.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
-                    </video>
+            <!-- Left: Flagship Strategic Flywheel Bento Card -->
+            <div class="bento-card wedge-flywheel-card reveal-up">
+                <div style="width: 100%;">
+                    <div class="eyebrow" style="color: var(--brand-electric-blue); justify-content: center; margin-bottom: 8px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        Autonomous Flywheel
+                    </div>
+                    <h3 style="font-size: 24px; color: #fff; margin-bottom: 4px;">The Infiltration Engine.</h3>
+                    <p style="font-size: 13.5px; color: var(--text-secondary);">Self-compounding B2B to B2C spillover</p>
+                </div>
+
+                <div class="wedge-video-wrapper">
+                    <div class="wedge-ambient-glow"></div>
+                    <div class="wedge-video-frame">
+                        <div class="phone-glare"></div>
+                        <video 
+                            id="wedgeStrategyVideo" 
+                            class="wedge-video" 
+                            playsinline 
+                            webkit-playsinline
+                            muted 
+                            loop 
+                            autoplay 
+                            preload="metadata">
+                            <source src="assets/strategy.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Tricolor Strategic Flow Milestone Connector -->
+                <div class="wedge-flow-connector">
+                    <div class="flow-node" style="--node-color: #FF453A;">
+                        <span class="flow-dot"></span>
+                        <span>Infiltrate</span>
+                    </div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-node" style="--node-color: #0091FF;">
+                        <span class="flow-dot"></span>
+                        <span>Cross-Pollinate</span>
+                    </div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-node" style="--node-color: #FFD700;">
+                        <span class="flow-dot"></span>
+                        <span>Monopolize</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right: The 3 Phased Sequential Milestones -->
+            <!-- Right: The 3 Phased Sequential Milestones (100% Verbatim) -->
             <div class="wedge-steps-col">
                 <!-- Phase 1: Infiltration -->
                 <div class="wedge-phase-card reveal-up delay-100">
