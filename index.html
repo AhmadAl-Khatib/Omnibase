@@ -341,11 +341,204 @@
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
 
-        /* Competition Table */
-        .competition-matrix { width: 100%; border-collapse: collapse; margin-top: 24px; }
-        .competition-matrix th, .competition-matrix td { padding: 20px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 15px; }
-        .competition-matrix th { color: var(--text-secondary); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
-        .competition-matrix td.highlight { color: var(--brand-electric-blue); font-weight: 600; }
+/* =========================================================================
+           DYNAMIC COMPETITIVE MOAT MATRIX (Linear / Stripe Tier Spec)
+           ========================================================================= */
+        .competition-table-container {
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 24px;
+            background: rgba(14, 14, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .competition-matrix { 
+            width: 100%; 
+            border-collapse: separate; 
+            border-spacing: 0; 
+            text-align: left;
+        }
+
+        .competition-matrix th, 
+        .competition-matrix td { 
+            padding: 22px 24px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06); 
+            font-size: 14.5px; 
+            line-height: 1.5;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .competition-matrix tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Table Headers */
+        .competition-matrix th { 
+            color: var(--text-secondary); 
+            font-weight: 700; 
+            font-size: 12.5px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.08em;
+            background: rgba(18, 18, 22, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        /* 
+           THE OMNIBASE FEATURED PILLAR
+           Illuminated vertical column that visually dominates the table 
+        */
+        .omni-pillar-th {
+            background: linear-gradient(180deg, rgba(0, 145, 255, 0.12) 0%, rgba(20, 20, 28, 0.95) 100%) !important;
+            border-left: 1px solid rgba(0, 145, 255, 0.3);
+            border-right: 1px solid rgba(0, 145, 255, 0.3);
+            position: relative;
+        }
+
+        /* Specular Top Beam on Omnibase Header */
+        .omni-pillar-th::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--brand-electric-blue), transparent);
+            box-shadow: 0 0 14px var(--brand-electric-blue);
+        }
+
+        .omni-header-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.02em;
+        }
+
+        .omni-header-badge {
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: var(--brand-electric-blue);
+            color: #ffffff;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-weight: 800;
+        }
+
+        /* Omnibase Table Data Cells */
+        .omni-pillar-td {
+            background: rgba(0, 145, 255, 0.025);
+            border-left: 1px solid rgba(0, 145, 255, 0.15);
+            border-right: 1px solid rgba(0, 145, 255, 0.15);
+            color: #ffffff !important;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .omni-cell-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .omni-check-icon {
+            width: 17px;
+            height: 17px;
+            color: var(--brand-electric-blue);
+            flex-shrink: 0;
+            margin-top: 2px;
+            filter: drop-shadow(0 0 8px rgba(0, 145, 255, 0.5));
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Competitor Columns (Subdued & Clean) */
+        .competitor-td {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Interactive Row Hover Physics */
+        .competition-matrix tbody tr {
+            transition: background 0.25s ease;
+        }
+
+        .competition-matrix tbody tr:hover {
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .competition-matrix tbody tr:hover .omni-pillar-td {
+            background: rgba(0, 145, 255, 0.06);
+            border-left-color: rgba(0, 145, 255, 0.35);
+            border-right-color: rgba(0, 145, 255, 0.35);
+        }
+
+        .competition-matrix tbody tr:hover .omni-check-icon {
+            transform: scale(1.2) rotate(6deg);
+        }
+
+        /* Capability Column */
+        .capability-td {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            color: #E2E2E5;
+            font-size: 14px;
+        }
+
+        /* Responsive Mobile Cards */
+        @media (max-width: 768px) {
+            .competition-table-container {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+            }
+            .competition-matrix thead { display: none; }
+            .competition-matrix, 
+            .competition-matrix tbody, 
+            .competition-matrix tr, 
+            .competition-matrix td { 
+                display: block; 
+                width: 100%; 
+            }
+            .competition-matrix tr { 
+                margin-bottom: 20px; 
+                border: 1px solid rgba(255, 255, 255, 0.1); 
+                border-radius: 20px; 
+                padding: 20px; 
+                background: var(--bg-bento); 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+            .competition-matrix td { 
+                display: flex; 
+                flex-direction: column; 
+                padding: 12px 0; 
+                border-bottom: 1px solid rgba(255,255,255,0.06); 
+                text-align: left; 
+                font-size: 14px; 
+            }
+            .omni-pillar-td {
+                background: rgba(0, 145, 255, 0.04) !important;
+                border: 1px solid rgba(0, 145, 255, 0.25) !important;
+                border-radius: 12px;
+                padding: 14px 16px !important;
+                margin: 10px 0;
+            }
+            .omni-pillar-td::before { display: none; }
+            .competition-matrix td::before { 
+                content: attr(data-label); 
+                font-size: 10.5px; 
+                text-transform: uppercase; 
+                color: var(--text-secondary); 
+                margin-bottom: 6px; 
+                font-weight: 800; 
+                letter-spacing: 0.08em; 
+            }
+        }
 
         /* --- Modal & Data Sources Styles --- */
         .modal-overlay {
@@ -1600,66 +1793,123 @@
         </div>
     </section>
 
-    <!-- 6. COMPETITIVE LANDSCAPE (MOVED UP FOR NARRATIVE FLOW) -->
+<!-- 6. COMPETITIVE LANDSCAPE -->
     <section class="container" style="padding-top: 40px; margin-bottom: 80px;" id="competition">
         <div class="section-header reveal-up">
+            <div class="eyebrow" style="justify-content: center;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Market Domination
+            </div>
             <h2 class="text-gradient">The Competitive Moat.</h2>
             <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto;">Displacing single-purpose incumbents through superior utility, consolidated infrastructure, and zero context-switching.</p>
         </div>
         
-        <div class="bento-card col-span-12 reveal-up" style="padding: 24px;">
-            <div style="overflow-x: auto;">
+        <div class="bento-card col-span-12 reveal-up" style="padding: 16px; background: rgba(14, 14, 18, 0.3);">
+            <div class="competition-table-container">
                 <table class="competition-matrix">
                     <thead>
                         <tr>
-                            <th>Capability</th>
-                            <th style="color: #fff; font-size: 15px;">Omnibase</th>
-                            <th>Niche Aggregators (Yelp, Zocdoc)</th>
-                            <th>Retail SaaS (Shopify, Square)</th>
+                            <th style="width: 22%;">Capability</th>
+                            <th class="omni-pillar-th" style="width: 32%;">
+                                <div class="omni-header-pill">
+                                    <span>Omnibase</span>
+                                    <span class="omni-header-badge">Unified Moat</span>
+                                </div>
+                            </th>
+                            <th style="width: 23%;">Niche Aggregators (Yelp, Zocdoc)</th>
+                            <th style="width: 23%;">Retail SaaS (Shopify, Square)</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Row 1 -->
                         <tr>
-                            <td data-label="Capability">Market Architecture</td>
-                            <td class="highlight" data-label="Omnibase">137 Verticals Unified (Super-App)</td>
-                            <td data-label="Directory Aggregators (Yelp, Zocdoc)">Fragmented Single-Purpose Apps</td>
-                            <td data-label="Commerce Platforms (Shopify, Square)">Siloed Merchant-Specific Webstores</td>
+                            <td class="capability-td" data-label="Capability">Market Architecture</td>
+                            <td class="omni-pillar-td" data-label="Omnibase">
+                                <div class="omni-cell-content">
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>137 Verticals Unified (Super-App)</span>
+                                </div>
+                            </td>
+                            <td class="competitor-td" data-label="Niche Aggregators">Fragmented Single-Purpose Apps</td>
+                            <td class="competitor-td" data-label="Retail SaaS">Siloed Merchant-Specific Webstores</td>
                         </tr>
+
+                        <!-- Row 2 -->
                         <tr>
-                            <td data-label="Capability">Search Handoff</td>
-                            <td class="highlight" data-label="Omnibase">Cross-Industry Procedure-to-Provider Rollup</td>
-                            <td data-label="Directory Aggregators (Yelp, Zocdoc)">Directory Listings & Lead Referral Forms</td>
-                            <td data-label="Commerce Platforms (Shopify, Square)">Isolated Product Catalog Search</td>
+                            <td class="capability-td" data-label="Capability">Search Handoff</td>
+                            <td class="omni-pillar-td" data-label="Omnibase">
+                                <div class="omni-cell-content">
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Cross-Industry Procedure-to-Provider Rollup</span>
+                                </div>
+                            </td>
+                            <td class="competitor-td" data-label="Niche Aggregators">Directory Listings & Lead Referral Forms</td>
+                            <td class="competitor-td" data-label="Retail SaaS">Isolated Product Catalog Search</td>
                         </tr>
+
+                        <!-- Row 3 -->
                         <tr>
-                            <td data-label="Capability">Discovery Feed Architecture</td>
-                            <td class="highlight" data-label="Omnibase">Edge-Denormalized (0-Read Feed Scrolling)</td>
-                            <td data-label="Directory Aggregators (Yelp, Zocdoc)">Session-Based API Cloud Polling</td>
-                            <td data-label="Commerce Platforms (Shopify, Square)">No Unified Consumer Discovery Network</td>
+                            <td class="capability-td" data-label="Capability">Discovery Feed Architecture</td>
+                            <td class="omni-pillar-td" data-label="Omnibase">
+                                <div class="omni-cell-content">
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Edge-Denormalized (0-Read Feed Scrolling)</span>
+                                </div>
+                            </td>
+                            <td class="competitor-td" data-label="Niche Aggregators">Session-Based API Cloud Polling</td>
+                            <td class="competitor-td" data-label="Retail SaaS">No Unified Consumer Discovery Network</td>
                         </tr>
+
+                        <!-- Row 4 -->
                         <tr>
-                            <td data-label="Capability">UI & Infrastructure Engine</td>
-                            <td class="highlight" data-label="Omnibase">Single Server-Driven UI (SDUI) Core</td>
-                            <td data-label="Directory Aggregators (Yelp, Zocdoc)">Independent Domain Codebases</td>
-                            <td data-label="Commerce Platforms (Shopify, Square)">Extensive 3rd-Party App Ecosystems</td>
+                            <td class="capability-td" data-label="Capability">UI & Infrastructure Engine</td>
+                            <td class="omni-pillar-td" data-label="Omnibase">
+                                <div class="omni-cell-content">
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Single Server-Driven UI (SDUI) Core</span>
+                                </div>
+                            </td>
+                            <td class="competitor-td" data-label="Niche Aggregators">Independent Domain Codebases</td>
+                            <td class="competitor-td" data-label="Retail SaaS">Extensive 3rd-Party App Ecosystems</td>
                         </tr>
+
+                        <!-- Row 5 -->
                         <tr>
-                            <td data-label="Capability">Customer Acquisition Model</td>
-                            <td class="highlight" data-label="Omnibase">Multi-Vertical Cross-Pollination Advantage</td>
-                            <td data-label="Directory Aggregators (Yelp, Zocdoc)">High Paid Search (SEM) per Vertical</td>
-                            <td data-label="Commerce Platforms (Shopify, Square)">100% Merchant-Funded Acquisition</td>
+                            <td class="capability-td" data-label="Capability">Customer Acquisition Model</td>
+                            <td class="omni-pillar-td" data-label="Omnibase">
+                                <div class="omni-cell-content">
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Multi-Vertical Cross-Pollination Advantage</span>
+                                </div>
+                            </td>
+                            <td class="competitor-td" data-label="Niche Aggregators">High Paid Search (SEM) per Vertical</td>
+                            <td class="competitor-td" data-label="Retail SaaS">100% Merchant-Funded Acquisition</td>
                         </tr>
+
+                        <!-- Row 6 -->
                         <tr>
-                            <td data-label="Capability">In-App Transaction Execution</td>
-                            <td class="highlight" data-label="Omnibase">Contractual SDUI Chat Cards (Quotes, Passes, Invoices)</td>
-                            <td data-label="Directory Aggregators (Yelp, Zocdoc)">Basic Messaging / External Links</td>
-                            <td data-label="Commerce Platforms (Shopify, Square)">Standard Web Checkout / Basic Chat Widgets</td>
+                            <td class="capability-td" data-label="Capability">In-App Transaction Execution</td>
+                            <td class="omni-pillar-td" data-label="Omnibase">
+                                <div class="omni-cell-content">
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Contractual SDUI Chat Cards (Quotes, Passes, Invoices)</span>
+                                </div>
+                            </td>
+                            <td class="competitor-td" data-label="Niche Aggregators">Basic Messaging / External Links</td>
+                            <td class="competitor-td" data-label="Retail SaaS">Standard Web Checkout / Basic Chat Widgets</td>
                         </tr>
+
+                        <!-- Row 7 -->
                         <tr>
-                            <td data-label="Capability">Client Records & History</td>
-                            <td class="highlight" data-label="Omnibase">Sovereign Local-First Vault (Partitioned Offline Storage)</td>
-                            <td data-label="Directory Aggregators (Yelp, Zocdoc)">Proprietary Cloud CRM Portals</td>
-                            <td data-label="Commerce Platforms (Shopify, Square)">Cloud POS & Order Ledgers</td>
+                            <td class="capability-td" data-label="Capability">Client Records & History</td>
+                            <td class="omni-pillar-td" data-label="Omnibase">
+                                <div class="omni-cell-content">
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Sovereign Local-First Vault (Partitioned Offline Storage)</span>
+                                </div>
+                            </td>
+                            <td class="competitor-td" data-label="Niche Aggregators">Proprietary Cloud CRM Portals</td>
+                            <td class="competitor-td" data-label="Retail SaaS">Cloud POS & Order Ledgers</td>
                         </tr>
                     </tbody>
                 </table>
