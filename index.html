@@ -1533,6 +1533,136 @@
         max-width: 280px;
     }
 }
+		/* =========================================================================
+           WEDGE STRATEGY ASYMMETRICAL FLYWHEEL LAYOUT
+           ========================================================================= */
+        .wedge-showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Video Showcase Column */
+        .wedge-video-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+
+        /* 1:1 Square Obsidian Chassis */
+        .wedge-video-frame {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 440px;
+            aspect-ratio: 1 / 1;
+            background: #000000;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 30px 80px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(0, 145, 255, 0.15);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
+
+        .wedge-video-frame:hover {
+            transform: translateY(-2px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* 
+           Tricolor Ambient Glow:
+           Blends Phase 1 (Red #FF453A), Phase 2 (Blue #0091FF), and Phase 3 (Gold #FFD700) 
+        */
+        .wedge-ambient-glow {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 69, 58, 0.22) 0%, rgba(0, 145, 255, 0.20) 45%, rgba(255, 215, 0, 0.12) 75%, transparent 85%);
+            filter: blur(65px);
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .wedge-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000000;
+        }
+
+        /* Phased Chronological Timeline Stack */
+        .wedge-steps-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .wedge-phase-card {
+            background: var(--bg-bento);
+            border-radius: 24px;
+            padding: 24px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wedge-phase-card:hover {
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.035);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .wedge-phase-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .wedge-phase-card p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .phase-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        /* Mobile & Tablet Responsiveness */
+        @media (max-width: 992px) {
+            .wedge-showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .wedge-video-col {
+                order: -1; /* Centers video above steps on mobile */
+            }
+            .wedge-video-frame {
+                max-width: 340px;
+            }
+            .wedge-ambient-glow {
+                width: 320px;
+                height: 320px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1918,41 +2048,66 @@
     </section>
 
     <!-- NEW: GO-TO-MARKET / WEDGE STRATEGY -->
-    <section class="container" style="padding-bottom: 40px;" id="strategy">
+<!-- GO-TO-MARKET / WEDGE STRATEGY -->
+    <section class="container" style="padding-bottom: 80px;" id="strategy">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">The Wedge Strategy.</h2>
             <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Most Super-Apps fail by attempting to boil water inside the ocean. We don't attempt to acquire users across 137 verticals on Day 1. We infiltrate through high-friction, low-trust sectors, then cross-pollinate users with zero marginal acquisition cost.</p>
         </div>
 
-        <div class="bento-grid">
-            <!-- Phase 1: Infiltration -->
-            <div class="bento-card col-span-4 reveal-up">
-                <div class="eyebrow" style="color: #FF453A;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    Phase 1: Infiltration
+        <div class="wedge-showcase-grid">
+            <!-- Left: 480x480 Video Loop in Obsidian Chassis -->
+            <div class="wedge-video-col reveal-up">
+                <div class="wedge-ambient-glow"></div>
+                <div class="wedge-video-frame">
+                    <div class="phone-glare"></div>
+                    <video 
+                        id="wedgeStrategyVideo" 
+                        class="wedge-video" 
+                        playsinline 
+                        webkit-playsinline
+                        muted 
+                        loop 
+                        autoplay 
+                        preload="metadata">
+                        <!-- Update src if your file has a different name -->
+                        <source src="assets/strategy.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
                 </div>
-                <h3>The High-Friction Anchor.</h3>
-                <p>We target verticals where existing SaaS fails completely—such as <strong>Clinical Practitioners</strong> and <strong>Emergency Operators</strong>. We confidently expect that Businesses won't be able to turn down this offer and adopt Omnibase for our <strong>free</strong>, HIPAA-grade Case Vaults and SOS Dispatch engine. In doing so, they actively onboard their existing client bases onto our platform for us.</p>
             </div>
 
-            <!-- Phase 2: Cross-Pollination -->
-            <div class="bento-card col-span-4 reveal-up delay-100">
-                <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                   Phase 2: Zero Marginal CAC
+            <!-- Right: The 3 Phased Sequential Milestones -->
+            <div class="wedge-steps-col">
+                <!-- Phase 1: Infiltration -->
+                <div class="wedge-phase-card reveal-up delay-100">
+                    <div class="phase-badge-pill" style="color: #FF453A;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        Phase 1: Infiltration
+                    </div>
+                    <h3>The High-Friction Anchor.</h3>
+                    <p>We target verticals where existing SaaS fails completely—such as <strong>Clinical Practitioners</strong> and <strong>Emergency Operators</strong>. We confidently expect that Businesses won't be able to turn down this offer and adopt Omnibase for our <strong>free</strong>, HIPAA-grade Case Vaults and SOS Dispatch engine. In doing so, they actively onboard their existing client bases onto our platform for us.</p>
                 </div>
-                <h3>The Cross-Pollination Engine.</h3>
-                <p>Once a user downloads Omnibase e.g. for a medical emergency, they are natively exposed to the other 136 verticals. We pay to acquire a user <em>once</em>, but monetize them across groceries, luxury showrooms, and retail permanently. <strong>Our blended Customer Acquisition Cost (CAC) trends toward zero.</strong></p>
-            </div>
 
-            <!-- Phase 3: Monopoly -->
-            <div class="bento-card col-span-4 reveal-up delay-200">
-                <div class="eyebrow-gold">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-                    Phase 3: Monopoly
+                <!-- Phase 2: Zero Marginal CAC -->
+                <div class="wedge-phase-card reveal-up delay-200">
+                    <div class="phase-badge-pill" style="color: var(--brand-electric-blue);">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        Phase 2: Zero Marginal CAC
+                    </div>
+                    <h3>The Cross-Pollination Engine.</h3>
+                    <p>Once a user downloads Omnibase e.g. for a medical emergency, they are natively exposed to the other 136 verticals. We pay to acquire a user <em>once</em>, but monetize them across groceries, luxury showrooms, and retail permanently. <strong>Our blended Customer Acquisition Cost (CAC) trends toward zero.</strong></p>
                 </div>
-                <h3>The Master Taxonomy Graph.</h3>
-                <p>We do not rely on fragile third-party APIs for inventory structuring. Omnibase natively federates <strong>5,716 Brands and 166,788 distinct Models & Specs</strong> into encrypted edge clusters (paired with a dynamic, user-expandable backend built to scale effortlessly with users data.) This proprietary data mesh allows merchants to list assets with extreme precision in ~0ms, locking the market into our standardized ecosystem.</p>
+
+                <!-- Phase 3: Monopoly -->
+                <div class="wedge-phase-card reveal-up delay-300">
+                    <div class="phase-badge-pill" style="color: var(--brand-gold);">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                        Phase 3: Monopoly
+                    </div>
+                    <h3>The Master Taxonomy Graph.</h3>
+                    <p>We do not rely on fragile third-party APIs for inventory structuring. Omnibase natively federates <strong>5,716 Brands and 166,788 distinct Models & Specs</strong> into encrypted edge clusters (paired with a dynamic, user-expandable backend built to scale effortlessly with users data.) This proprietary data mesh allows merchants to list assets with extreme precision in ~0ms, locking the market into our standardized ecosystem.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -2970,6 +3125,24 @@
                 }, { threshold: 0.15 });
 
                 searchObserver.observe(searchEngineVideo);
+            }
+			// --- WEDGE STRATEGY VIDEO VIEWPORT CULLING ---
+            const wedgeVideo = document.getElementById('wedgeStrategyVideo');
+            if (wedgeVideo) {
+                wedgeVideo.defaultMuted = true;
+                wedgeVideo.muted = true;
+
+                const wedgeObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            wedgeVideo.play().catch(() => {});
+                        } else {
+                            wedgeVideo.pause();
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                wedgeObserver.observe(wedgeVideo);
             }
         });
 
