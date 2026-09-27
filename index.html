@@ -1560,14 +1560,18 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
+/* Centered Middle Section */
         .wedge-video-wrapper {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin: 8px 0 20px;
+            flex: 1;                              /* Absorbs all vertical space evenly */
+            margin: 20px 0;                       /* Balanced breathing room */
         }
+
+
 
         .wedge-video-frame {
             position: relative;
@@ -1609,15 +1613,15 @@
             background: #000000;
         }
 
-        /* Strategic Progression Footer */
+        /* Fixed Bottom Milestone Connector */
         .wedge-flow-connector {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding-top: 18px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            margin-top: auto;
+            /* margin-top: auto removed so flex: 1 centers the video */
         }
 
         .flow-node {
