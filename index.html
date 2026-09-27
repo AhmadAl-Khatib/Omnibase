@@ -369,6 +369,37 @@
             transform: scale(1);
             pointer-events: auto;
         }
+        .mobile-step-visual {
+    display: none;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px;
+    width: 100%;
+}
+
+.mobile-phone-chassis {
+    position: relative;
+    z-index: 2;
+    width: 230px;
+    max-width: 82vw;
+    aspect-ratio: 808 / 1790;
+    background: #000000;
+    border-radius: 36px;
+    border: 4px solid #232328;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.12),
+        0 20px 60px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(0, 145, 255, 0.18);
+    overflow: hidden;
+}
+
+.mobile-phone-chassis img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
         /* Utils */
         .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-active { opacity: 1; transform: translateY(0); }
@@ -1147,13 +1178,25 @@
 
         /* Media Queries (Responsive Tuning) */
         @media (max-width: 992px) {
-            .scrollytelling-wrapper { flex-direction: column; }
-            .sticky-visual-col { display: none; }
-            .scroll-text-col { padding-right: 0; }
-            .scroll-step { min-height: 40vh; transform: none; opacity: 1; padding: 40px 0; }
-            .col-span-8, .col-span-4, .col-span-6, .col-span-12 { grid-column: span 12; }
-            .metrics-grid { grid-template-columns: 1fr; }
-        }
+    .scrollytelling-wrapper { flex-direction: column; padding: 48px 0; }
+    .sticky-visual-col { display: none; }
+    .scroll-text-col { padding-right: 0; width: 100%; }
+    .scroll-step { 
+        min-height: auto; 
+        transform: none; 
+        opacity: 1; 
+        padding: 36px 24px; 
+        margin-bottom: 24px;
+        background: var(--bg-bento);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 28px;
+    }
+    .mobile-step-visual {
+        display: flex;
+    }
+    .col-span-8, .col-span-4, .col-span-6, .col-span-12 { grid-column: span 12; }
+    .metrics-grid { grid-template-columns: 1fr; }
+}
         
         @media (max-width: 768px) {
             .hero { padding-top: 220px; }
@@ -2493,6 +2536,7 @@
     </section>
 
     <!-- 5. THE TECH MOAT (Scrollytelling) -->
+<!-- 5. THE TECH MOAT (Scrollytelling) -->
     <section id="architecture" class="scrollytelling-wrapper">
         <div class="container" style="display: flex; width: 100%;">
             <div class="scroll-text-col">
@@ -2501,70 +2545,98 @@
                     <p style="color: var(--text-secondary); font-size: 20px;">Engineered for hyper-margins, zero API dependency, and ruthlessly low cloud burn rates.</p>
                 </div>
 
+                <!-- Step 1 -->
                 <div class="scroll-step" id="step-1">
                     <div class="eyebrow">90% Cost Reduction</div>
                     <h3>Near~Zero Read Costs.</h3>
                     <p>By utilizing strict Unidirectional Data Flow (UDF) and querying 1-millisecond chronological deltas, we update interfaces instantly without continuously pinging the database. Result: Enterprise-grade real-time interactions with radically compressed AWS/GCP burn rates.</p>
+                    
+                    <!-- Mobile Chassis (Displays exclusively on mobile / tablet < 992px) -->
+                    <div class="mobile-step-visual">
+                        <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
+                        <div class="mobile-phone-chassis">
+                            <div class="phone-glare"></div>
+                            <img src="assets/cost_reduction.webp" alt="Near~Zero Read Costs" loading="lazy">
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Step 2 -->
                 <div class="scroll-step" id="step-2">
                     <div class="eyebrow">Global Scaling Immunity</div>
                     <h3>Geospatial Temporal Anchoring.</h3>
                     <p>We decoupled the scheduling engine from device hardware clocks. Every business is assigned a sovereign mathematical timezone anchor. This enables a user in New York to book a clinic in Dubai with zero "midnight-rollover" database lock collisions, granting Omnibase immediate global borderlessness.</p>
+                    
+                    <!-- Mobile Chassis -->
+                    <div class="mobile-step-visual">
+                        <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
+                        <div class="mobile-phone-chassis">
+                            <div class="phone-glare"></div>
+                            <img src="assets/global_scaling.webp" alt="Geospatial Temporal Anchoring" loading="lazy">
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Step 3 -->
                 <div class="scroll-step" id="step-3">
                     <div class="eyebrow">O(1) Data Federation</div>
                     <h3>The 170k Node Edge Cache.</h3>
                     <p>Our 4-Tier Deferred JIT Engine handles a massive taxonomy of over 172,000 deep-tree nodes (Makes, Models, Specs) securely offline. By mapping these to AES-GCM encrypted asset bundles, we eradicate external API latency and achieve 0ms dropdown hydration, mathematically eliminating RAM spikes.</p>
+                    
+                    <!-- Mobile Chassis -->
+                    <div class="mobile-step-visual">
+                        <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
+                        <div class="mobile-phone-chassis">
+                            <div class="phone-glare"></div>
+                            <img src="assets/0(1).webp" alt="The 170k Node Edge Cache" loading="lazy">
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Step 4 -->
                 <div class="scroll-step" id="step-4">
                     <div class="eyebrow">Zero Downtime</div>
                     <h3>Air-Gapped Resiliency Mesh.</h3>
                     <p>Firebase egress costs are neutralized via a dual-engine routing matrix. High-velocity queries hit our proprietary Typesense RAM cluster (0.002ms latency). Upon network degradation, the architecture autonomously splices into an offline SQLite FTS5 engine. The platform remains fully operational without internet access.</p>
+                    
+                    <!-- Mobile Chassis -->
+                    <div class="mobile-step-visual">
+                        <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
+                        <div class="mobile-phone-chassis">
+                            <div class="phone-glare"></div>
+                            <img src="assets/zero_downtime.webp" alt="Air-Gapped Resiliency Mesh" loading="lazy">
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Step 5 -->
                 <div class="scroll-step" id="step-5">
                     <div class="eyebrow">Faceted Precision</div>
                     <h3>Strict-Type Search Matrix.</h3>
                     <p>Our search infrastructure achieves 100% logic parity between the offline SQLite fallback and the cloud Typesense cluster. The engine autonomously parses multi-value SDUI arrays, executing dynamic AND/OR intersections to guarantee exact-match precision across millions of potential product attribute combinations.</p>
+                    
+                    <!-- Mobile Chassis -->
+                    <div class="mobile-step-visual">
+                        <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
+                        <div class="mobile-phone-chassis">
+                            <div class="phone-glare"></div>
+                            <img src="assets/faceted_precision.webp" alt="Strict-Type Search Matrix" loading="lazy">
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
-           <div class="sticky-visual-col">
-                <!-- Ambient Back Glow -->
+            <!-- Desktop Sticky Column (Displays on screens >= 992px) -->
+            <div class="sticky-visual-col">
                 <div class="phone-ambient-glow" style="width: 320px; height: 580px;"></div>
-
                 <div class="sticky-mockup" id="stickyMockup">
                     <div class="phone-glare"></div>
-                    
-                    <!-- Preloaded Stacked Screen Shots -->
-                    <img src="assets/cost_reduction.webp" 
-                         alt="Near-Zero Read Costs" 
-                         class="mockup-img active" 
-                         id="mockup-img-step-1">
-
-                    <img src="assets/global_scaling.webp" 
-                         alt="Geospatial Temporal Anchoring" 
-                         class="mockup-img" 
-                         id="mockup-img-step-2">
-
-                    <img src="assets/0(1).webp" 
-                         alt="The 170k Node Edge Cache" 
-                         class="mockup-img" 
-                         id="mockup-img-step-3">
-
-                    <img src="assets/zero_downtime.webp" 
-                         alt="Air-Gapped Resiliency Mesh" 
-                         class="mockup-img" 
-                         id="mockup-img-step-4">
-
-                    <img src="assets/faceted_precision.webp" 
-                         alt="Strict-Type Search Matrix" 
-                         class="mockup-img" 
-                         id="mockup-img-step-5">
+                    <img src="assets/cost_reduction.webp" alt="Near-Zero Read Costs" class="mockup-img active" id="mockup-img-step-1">
+                    <img src="assets/global_scaling.webp" alt="Geospatial Temporal Anchoring" class="mockup-img" id="mockup-img-step-2">
+                    <img src="assets/0(1).webp" alt="The 170k Node Edge Cache" class="mockup-img" id="mockup-img-step-3">
+                    <img src="assets/zero_downtime.webp" alt="Air-Gapped Resiliency Mesh" class="mockup-img" id="mockup-img-step-4">
+                    <img src="assets/faceted_precision.webp" alt="Strict-Type Search Matrix" class="mockup-img" id="mockup-img-step-5">
                 </div>
             </div>
         </div>
@@ -2928,33 +3000,33 @@
                 animate3D();
             }
 
-// 5. SCROLLYTELLING OBSERVER WITH CROSSFADING PHONE MOCKUPS
-            const steps = document.querySelectorAll('.scroll-step');
-            const mockupImages = document.querySelectorAll('.mockup-img');
+ */
+    // 5. SCROLLYTELLING OBSERVER WITH CROSSFADING PHONE MOCKUPS
+    const steps = document.querySelectorAll('.scroll-step');
+    const mockupImages = document.querySelectorAll('.mockup-img');
 
-            const stepObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // 1. Highlight active text step
-                        steps.forEach(s => s.classList.remove('active'));
-                        entry.target.classList.add('active');
+    const stepObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 1. Highlight active text step
+                steps.forEach(s => s.classList.remove('active'));
+                entry.target.classList.add('active');
 
-                        // 2. Crossfade to corresponding phone screen
-                        const stepId = entry.target.id; // e.g. "step-1", "step-2"
-                        const targetImg = document.getElementById(`mockup-img-${stepId}`);
+                // 2. Crossfade to corresponding phone screen on desktop
+                const stepId = entry.target.id;
+                const targetImg = document.getElementById(`mockup-img-${stepId}`);
 
-                        if (targetImg) {
-                            mockupImages.forEach(img => img.classList.remove('active'));
-                            targetImg.classList.add('active');
-                        }
-                    }
-                });
-            }, { 
-                rootMargin: '-35% 0px -35% 0px' // Triggers smoothly when step enters center screen
-            });
+                if (targetImg) {
+                    mockupImages.forEach(img => img.classList.remove('active'));
+                    targetImg.classList.add('active');
+                }
+            }
+        });
+    }, { 
+        rootMargin: '-35% 0px -35% 0px' 
+    });
 
-            steps.forEach(step => stepObserver.observe(step));
-
+    steps.forEach(step => stepObserver.observe(step));
             // 6. ANIMATED SVG CHART & NUMBER COUNTERS TRIGGER
             const metricsSection = document.getElementById('metricsSection');
             let numbersAnimated = false;
