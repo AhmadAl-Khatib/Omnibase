@@ -1534,130 +1534,140 @@
     }
 }
 /* =========================================================================
-           WEDGE STRATEGY (Top-Aligned Flush Baseline & Refined 360px Chassis)
+           WEDGE STRATEGY: FLUSH TOP-ALIGNED CHASSIS (Apple Keynote Layout)
            ========================================================================= */
         .wedge-showcase-grid {
-            display: grid;
-            grid-template-columns: 0.85fr 1.15fr; /* Gives the text column comfortable width */
-            gap: 40px;
-            align-items: start;                   /* Flushes the video with the top of Phase 1 */
-            width: 100%;
+            display: grid !important;
+            grid-template-columns: 0.85fr 1.15fr !important;
+            gap: 40px !important;
+            align-items: start !important;           /* Aligns grid tracks to top */
+            width: 100% !important;
         }
 
-        /* Video Showcase Column */
+        /* 
+           CRITICAL ALIGNMENT ANCHOR
+           align-self: start prevents this column from stretching to the height of the 3 cards 
+        */
         .wedge-video-col {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-            width: 100%;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: flex-start !important;
+            align-self: start !important;           /* <--- FORCES TOP FLUSH WITH CARD 1 */
+            position: relative !important;
+            width: 100% !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
 
-        /* Refined 360px Square Obsidian Chassis */
+        /* 
+           REFINED 330px PRECISION CHASSIS
+           Scaled down from 440px so it sits proportionally beside the text cards 
+        */
         .wedge-video-frame {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 360px;                     /* Scaled down to precision ratio */
-            aspect-ratio: 1 / 1;
-            background: #000000;
-            border-radius: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            position: relative !important;
+            z-index: 2 !important;
+            width: 100% !important;
+            max-width: 330px !important;            /* Clean, elegant luxury size */
+            aspect-ratio: 1 / 1 !important;
+            background: #000000 !important;
+            border-radius: 28px !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
             box-shadow: 
                 0 0 0 1px rgba(255, 255, 255, 0.05),
                 0 25px 60px rgba(0, 0, 0, 0.85),
-                0 0 30px rgba(0, 145, 255, 0.14);
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+                0 0 30px rgba(0, 145, 255, 0.14) !important;
+            overflow: hidden !important;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease !important;
         }
 
         .wedge-video-frame:hover {
-            transform: translateY(-2px) scale(1.01);
-            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px) scale(1.01) !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
         }
 
-        /* Scaled Tricolor Ambient Glow */
+        /* Proportional Ambient Glow */
         .wedge-ambient-glow {
-            position: absolute;
-            width: 340px;
-            height: 340px;
-            background: radial-gradient(circle at 35% 35%, rgba(255, 69, 58, 0.22) 0%, rgba(0, 145, 255, 0.18) 45%, rgba(255, 215, 0, 0.12) 75%, transparent 85%);
-            filter: blur(55px);
-            z-index: 1;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 310px !important;
+            height: 310px !important;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 69, 58, 0.22) 0%, rgba(0, 145, 255, 0.18) 45%, rgba(255, 215, 0, 0.12) 75%, transparent 85%) !important;
+            filter: blur(50px) !important;
+            z-index: 1 !important;
+            pointer-events: none !important;
         }
 
         .wedge-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            background: #000000;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            background: #000000 !important;
         }
 
-        /* Phased Chronological Timeline Stack */
+        /* The 3 Phased Cards Stack */
         .wedge-steps-col {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            width: 100%;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+            width: 100% !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
 
         .wedge-phase-card {
-            background: var(--bg-bento);
-            border-radius: 24px;
-            padding: 24px 28px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            position: relative;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--bg-bento) !important;
+            border-radius: 24px !important;
+            padding: 24px 28px !important;
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            position: relative !important;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         .wedge-phase-card:hover {
-            transform: translateX(4px);
-            background: rgba(255, 255, 255, 0.035);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateX(4px) !important;
+            background: rgba(255, 255, 255, 0.035) !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
         }
 
         .wedge-phase-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-            color: #ffffff;
+            font-size: 20px !important;
+            margin-bottom: 8px !important;
+            color: #ffffff !important;
         }
 
         .wedge-phase-card p {
-            font-size: 14.5px;
-            line-height: 1.6;
-            color: var(--text-secondary);
+            font-size: 14.5px !important;
+            line-height: 1.6 !important;
+            color: var(--text-secondary) !important;
         }
 
         .phase-badge-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 8px;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            font-size: 11px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.08em !important;
+            margin-bottom: 8px !important;
         }
 
-        /* Mobile & Tablet Responsiveness */
+        /* Mobile / Tablet Viewports */
         @media (max-width: 992px) {
             .wedge-showcase-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
+                grid-template-columns: 1fr !important;
+                gap: 32px !important;
             }
             .wedge-video-col {
-                order: -1;
+                order: -1 !important;
+                align-self: center !important;
             }
             .wedge-video-frame {
-                max-width: 280px;
-            }
-            .wedge-ambient-glow {
-                width: 280px;
-                height: 280px;
+                max-width: 280px !important;
             }
         }
     </style>
