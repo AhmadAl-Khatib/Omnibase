@@ -1533,14 +1533,14 @@
         max-width: 280px;
     }
 }
-		/* =========================================================================
-           WEDGE STRATEGY ASYMMETRICAL FLYWHEEL LAYOUT
+/* =========================================================================
+           WEDGE STRATEGY (Top-Aligned Flush Baseline & Refined 360px Chassis)
            ========================================================================= */
         .wedge-showcase-grid {
             display: grid;
-            grid-template-columns: 1fr 1.05fr;
+            grid-template-columns: 0.85fr 1.15fr; /* Gives the text column comfortable width */
             gap: 40px;
-            align-items: center;
+            align-items: start;                   /* Flushes the video with the top of Phase 1 */
             width: 100%;
         }
 
@@ -1548,25 +1548,25 @@
         .wedge-video-col {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             position: relative;
             width: 100%;
         }
 
-        /* 1:1 Square Obsidian Chassis */
+        /* Refined 360px Square Obsidian Chassis */
         .wedge-video-frame {
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 440px;
+            max-width: 360px;                     /* Scaled down to precision ratio */
             aspect-ratio: 1 / 1;
             background: #000000;
             border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 
                 0 0 0 1px rgba(255, 255, 255, 0.05),
-                0 30px 80px rgba(0, 0, 0, 0.9),
-                0 0 35px rgba(0, 145, 255, 0.15);
+                0 25px 60px rgba(0, 0, 0, 0.85),
+                0 0 30px rgba(0, 145, 255, 0.14);
             overflow: hidden;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
         }
@@ -1576,16 +1576,13 @@
             border-color: rgba(255, 255, 255, 0.25);
         }
 
-        /* 
-           Tricolor Ambient Glow:
-           Blends Phase 1 (Red #FF453A), Phase 2 (Blue #0091FF), and Phase 3 (Gold #FFD700) 
-        */
+        /* Scaled Tricolor Ambient Glow */
         .wedge-ambient-glow {
             position: absolute;
-            width: 420px;
-            height: 420px;
-            background: radial-gradient(circle at 35% 35%, rgba(255, 69, 58, 0.22) 0%, rgba(0, 145, 255, 0.20) 45%, rgba(255, 215, 0, 0.12) 75%, transparent 85%);
-            filter: blur(65px);
+            width: 340px;
+            height: 340px;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 69, 58, 0.22) 0%, rgba(0, 145, 255, 0.18) 45%, rgba(255, 215, 0, 0.12) 75%, transparent 85%);
+            filter: blur(55px);
             z-index: 1;
             pointer-events: none;
             transition: opacity 0.5s ease;
@@ -1653,14 +1650,14 @@
                 gap: 32px;
             }
             .wedge-video-col {
-                order: -1; /* Centers video above steps on mobile */
+                order: -1;
             }
             .wedge-video-frame {
-                max-width: 340px;
+                max-width: 280px;
             }
             .wedge-ambient-glow {
-                width: 320px;
-                height: 320px;
+                width: 280px;
+                height: 280px;
             }
         }
     </style>
