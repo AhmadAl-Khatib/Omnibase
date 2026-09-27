@@ -1252,6 +1252,94 @@
         width: 240px;
     }
 }
+		/* --- Flagship Faceted Search Bento Layout (Video Left, Text Right) --- */
+.search-bento-card {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px !important;
+}
+
+.search-video-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+/* Precision 1:1 Square Obsidian Chassis (480x480 Native Aspect Ratio) */
+.search-video-frame {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+    background: #000000;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 35px rgba(160, 133, 255, 0.18);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.search-bento-card:hover .search-video-frame {
+    transform: translateY(-2px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Soft Violet Ambient Back-Glow matching the section theme */
+.search-ambient-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle at 50% 50%, rgba(160, 133, 255, 0.32) 0%, rgba(0, 145, 255, 0.16) 45%, transparent 70%);
+    filter: blur(55px);
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.search-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000000;
+}
+
+.search-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.search-text-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 992px) {
+    .search-bento-card {
+        grid-template-columns: 1fr;
+        padding: 32px !important;
+        gap: 32px;
+    }
+    .search-video-col {
+        order: -1; /* Puts visual demo above text on mobile */
+    }
+    .search-video-frame {
+        max-width: 280px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1423,21 +1511,44 @@
                 </div>
             </div>
 
-            <!-- Card B: Procedure-to-Provider Multi-Search -->
-            <div class="bento-card col-span-12 reveal-up delay-100">
-                <div class="eyebrow" style="color: var(--brand-soft-violet);">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    Faceted Search Engine
+<!-- Card B: Procedure-to-Provider Multi-Search (Video Left, Text Right) -->
+            <div class="bento-card col-span-12 reveal-up delay-100 search-bento-card">
+                <!-- Left: 480x480 Video Showcase -->
+                <div class="search-video-col">
+                    <div class="search-ambient-glow"></div>
+                    <div class="search-video-frame">
+                        <div class="search-glare"></div>
+                        <video 
+                            id="searchEngineVideo" 
+                            class="search-video" 
+                            playsinline 
+                            webkit-playsinline
+                            muted 
+                            loop 
+                            autoplay 
+                            preload="metadata">
+                            <source src="assets/search_engine.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                    </div>
                 </div>
-                <h3>Single-Tap Checkout Handoff.</h3>
-                <p>
-                    Traditional search forces users through a 5-step conversion drop-off: search &rarr; business &rarr; category &rarr; service &rarr; checkout. Omnibase deploys real-time federated multi-search across millions of SKUs and clinical procedures simultaneously. Searching for <em>"Emergency Root Canal"</em> or <em>"Brembo Brakes"</em> immediately returns the qualified provider with an embedded <strong>Matched Ribbon</strong>, price, duration, and a live time slot directly on the discovery feed, enabling 1-tap checkout.
-                </p>
-                <div class="elite-features">
-                    <ul>
-                        <li><strong style="color: var(--brand-electric-blue);">Typesense Multi-Search Cluster:</strong> Evaluates stores and items in a single query with zero N+1 latency.</li>
-                        <li><strong style="color: var(--brand-electric-blue);">Deep-Link Interceptor:</strong> Feed slot clicks autonomously populate intake forms, durations, and rates.</li>
-                    </ul>
+
+                <!-- Right: Copy & Architecture Bullets -->
+                <div class="search-text-col">
+                    <div class="eyebrow" style="color: var(--brand-soft-violet);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        Faceted Search Engine
+                    </div>
+                    <h3 style="font-size: clamp(26px, 4vw, 36px); margin-bottom: 16px;">Single-Tap Checkout Handoff.</h3>
+                    <p style="font-size: 16px; line-height: 1.7; margin-bottom: 20px;">
+                        Traditional search forces users through a 5-step conversion drop-off: search &rarr; business &rarr; category &rarr; service &rarr; checkout. Omnibase deploys real-time federated multi-search across millions of SKUs and clinical procedures simultaneously. Searching for <em>"Emergency Root Canal"</em> or <em>"Brembo Brakes"</em> immediately returns the qualified provider with an embedded <strong>Matched Ribbon</strong>, price, duration, and a live time slot directly on the discovery feed, enabling 1-tap checkout.
+                    </p>
+                    <div class="elite-features">
+                        <ul>
+                            <li><strong style="color: var(--brand-electric-blue);">Typesense Multi-Search Cluster:</strong> Evaluates stores and items in a single query with zero N+1 latency.</li>
+                            <li><strong style="color: var(--brand-electric-blue);">Deep-Link Interceptor:</strong> Feed slot clicks autonomously populate intake forms, durations, and rates.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2591,6 +2702,24 @@
                 }, { threshold: 0.15 });
 
                 personaObserver.observe(personaDemoVideo);
+            }
+			// --- SEARCH ENGINE DEMO VIDEO VIEWPORT CULLING ---
+            const searchEngineVideo = document.getElementById('searchEngineVideo');
+            if (searchEngineVideo) {
+                searchEngineVideo.defaultMuted = true;
+                searchEngineVideo.muted = true;
+
+                const searchObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            searchEngineVideo.play().catch(() => {});
+                        } else {
+                            searchEngineVideo.pause();
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                searchObserver.observe(searchEngineVideo);
             }
         });
 
