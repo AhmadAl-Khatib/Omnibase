@@ -5,14 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#050506">
     <meta name="color-scheme" content="dark">
-    <title>Omnibase | Investor Relations & Strategy</title>
     
+    <!-- Primary Metadata -->
+    <title>Omnibase | The Unified Super App Architecture</title>
+    <meta name="title" content="Omnibase | The Unified Super App Architecture">
+    <meta name="description" content="One mathematical core unifying six consumer industries. High-velocity discovery, edge-denormalized scheduling, and sovereign client vaults across 137 verticals.">
+    <meta name="author" content="Ahmad Al Khatib">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://omnibase.app/">
+    <meta property="og:title" content="Omnibase | The Unified Super App Architecture">
+    <meta property="og:description" content="Eliminating market fragmentation across 137 professional classifications with zero codebase duplication.">
+    <meta property="og:image" content="assets/omnibaselogo.png">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Omnibase | The Unified Super App Architecture">
+    <meta name="twitter:description" content="Eliminating market fragmentation across 137 professional classifications with zero codebase duplication.">
+    <meta name="twitter:image" content="assets/omnibaselogo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
     
-    <!-- Lenis Smooth Scrolling -->
-    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <!-- Modern Official Lenis Smooth Scrolling -->
+    <script defer src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 
     <style>
         :root {
@@ -22,6 +40,8 @@
             --brand-electric-blue: #0091FF;
             --brand-soft-violet: #A085FF;
             --brand-gold: #FFD700;
+            --brand-gold-glow: rgba(255, 215, 0, 0.25);
+            --brand-gold-subtle: #FFE580;
             --text-primary: #f5f5f7;
             --text-secondary: #989AA2;
             --glass-border: rgba(255, 255, 255, 0.08);
@@ -29,7 +49,13 @@
             --glass-blur: blur(24px);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+        }
 
         html.lenis, html.lenis body { height: auto; width: 100%; }
         .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -37,61 +63,176 @@
         .lenis.lenis-stopped { overflow: hidden; }
         .lenis.lenis-scrolling iframe { pointer-events: none; }
 
-        /* Ensure global bounds are respected without breaking internal sticky elements */
         html, body {
             overflow-x: clip; 
             width: 100%;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
             background-color: var(--bg-obsidian);
             color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
+        }
+
+        /* Focus Outline for Accessibility (WCAG 2.1) */
+        :focus-visible {
+            outline: 2px solid var(--brand-electric-blue);
+            outline-offset: 3px;
         }
 
         /* Cinematic Grain & Grid */
         body::after {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999; opacity: 0.035; transform: translateZ(0); will-change: transform;
+            content: ""; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            pointer-events: none; 
+            z-index: 9999; 
+            opacity: 0.035; 
+            transform: translateZ(0);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
+
         .bg-grid {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100vh;
             background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 40px 40px; z-index: -2;
+            background-size: 40px 40px; 
+            z-index: -2;
             mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
         }
 
-        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.03em; text-wrap: balance; }
+        h1, h2, h3, h4 { 
+            font-family: 'Manrope', sans-serif; 
+            letter-spacing: -0.03em; 
+            text-wrap: balance; 
+        }
+
         p { text-wrap: pretty; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 24px; 
+            width: 100%; 
+        }
 
         /* Typography */
-        .text-gradient { background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .text-gradient-blue { background: linear-gradient(135deg, var(--brand-electric-blue) 0%, var(--brand-soft-violet) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .text-gradient-gold { background: linear-gradient(135deg, #FFF7D6 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .eyebrow { color: var(--brand-electric-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-        .eyebrow-gold { color: var(--brand-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .text-gradient { 
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .text-gradient-blue { 
+            background: linear-gradient(135deg, var(--brand-electric-blue) 0%, var(--brand-soft-violet) 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .text-gradient-gold { 
+            background: linear-gradient(135deg, #FFF7D6 0%, #FFD700 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        .eyebrow { 
+            color: var(--brand-electric-blue); 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            font-size: 12px; 
+            margin-bottom: 16px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        .eyebrow-gold { 
+            color: var(--brand-gold); 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            font-size: 12px; 
+            margin-bottom: 16px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
 
         /* Buttons */
         .btn-primary, .btn-secondary {
-            padding: 14px 28px; border-radius: 980px; text-decoration: none; font-weight: 600; font-size: 15px;
-            display: inline-flex; align-items: center; justify-content: center;
+            padding: 14px 28px; 
+            border-radius: 980px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 15px;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, border-color 0.3s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            user-select: none;
+            touch-action: manipulation;
         }
-        .btn-primary { background: var(--text-primary); color: var(--bg-obsidian); }
-        .btn-primary:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
-        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--glass-border); backdrop-filter: var(--glass-blur); }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--glass-highlight); transform: translateY(-2px); }
+        .btn-primary { 
+            background: var(--text-primary); 
+            color: var(--bg-obsidian); 
+            border: 1px solid transparent;
+        }
+        .btn-primary:hover { 
+            background: #ffffff; 
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); 
+            transform: translateY(-2px); 
+        }
+        .btn-primary:active { transform: translateY(0) scale(0.98); }
+
+        .btn-secondary { 
+            background: rgba(255, 255, 255, 0.05); 
+            color: var(--text-primary); 
+            border: 1px solid var(--glass-border); 
+            backdrop-filter: var(--glass-blur); 
+            -webkit-backdrop-filter: var(--glass-blur);
+        }
+        .btn-secondary:hover { 
+            background: rgba(255, 255, 255, 0.1); 
+            border-color: var(--glass-highlight); 
+            transform: translateY(-2px); 
+        }
+        .btn-secondary:active { transform: translateY(0) scale(0.98); }
 
         /* Navigation */
-        nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 16px 0; background: rgba(5, 5, 6, 0.7); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--glass-border); }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: nowrap; }
-        .brand-logo { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+        nav { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            padding: 16px 0; 
+            background: rgba(5, 5, 6, 0.75); 
+            backdrop-filter: saturate(180%) blur(20px); 
+            -webkit-backdrop-filter: saturate(180%) blur(20px); 
+            border-bottom: 1px solid var(--glass-border); 
+        }
+        .nav-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+            flex-wrap: nowrap; 
+        }
+        .brand-logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 20px; 
+            font-weight: 800; 
+            letter-spacing: -0.5px; 
+            color: #fff;
+            text-decoration: none;
+        }
 
         /* Hero App Store Badge */
         .hero-badge-wrapper {
@@ -105,20 +246,20 @@
             display: inline-flex;
             align-items: center;
             gap: 16px;
-            background: rgba(20, 20, 24, 0.4); 
+            background: rgba(20, 20, 24, 0.45); 
             border: 1px solid rgba(255, 255, 255, 0.12);
             padding: 8px 22px;
             border-radius: 999px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         .hero-badge:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
             border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 12px 40px rgba(0, 145, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 40px rgba(0, 145, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .hero-badge-text {
@@ -140,12 +281,12 @@
             background: var(--brand-electric-blue);
             border-radius: 50%;
             box-shadow: 0 0 12px var(--brand-electric-blue);
-            animation: pulseDot 2s infinite;
+            animation: pulseDot 2s infinite ease-in-out;
         }
 
         @keyframes pulseDot {
-            0% { box-shadow: 0 0 0 0 rgba(0, 145, 255, 0.4); }
-            70% { box-shadow: 0 0 0 6px rgba(0, 145, 255, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(0, 145, 255, 0.5); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 145, 255, 0); }
             100% { box-shadow: 0 0 0 0 rgba(0, 145, 255, 0); }
         }
 
@@ -158,7 +299,7 @@
         }
 
         .hero-badge-icons svg {
-            height: 22px; 
+            height: 20px; 
             width: auto;
             transition: transform 0.3s ease, filter 0.3s ease;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
@@ -171,7 +312,7 @@
 
         /* Hero Container */
         .hero { 
-            padding-top: 240px; 
+            padding-top: 220px; 
             padding-bottom: 80px; 
             text-align: center; 
             position: relative; 
@@ -183,73 +324,161 @@
         .title-md { font-size: clamp(24px, 5vw, 48px); line-height: 1.1; margin-bottom: 16px; font-weight: 700; color: var(--text-secondary); }
         .title-sm { font-size: clamp(18px, 4vw, 32px); line-height: 1.1; margin-bottom: 24px; }
         .hero p { font-size: 20px; color: var(--text-secondary); max-width: 820px; margin: 0 auto 48px; font-weight: 400; }
-        .hero-glow { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 800px; height: 800px; background: radial-gradient(circle, rgba(0, 145, 255, 0.15) 0%, rgba(5, 5, 6, 0) 60%); z-index: -1; pointer-events: none; }
         
-        .logo-wrapper { perspective: 2000px; display: inline-block; margin-top: 40px; }
+        .hero-glow { 
+            position: absolute; 
+            top: 25%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 100%; 
+            max-width: 800px; 
+            height: 800px; 
+            background: radial-gradient(circle, rgba(0, 145, 255, 0.16) 0%, rgba(5, 5, 6, 0) 65%); 
+            z-index: -1; 
+            pointer-events: none; 
+        }
+        
+        .logo-wrapper { 
+            perspective: 2000px; 
+            display: inline-block; 
+            margin-top: 40px; 
+        }
+        
         .logo-3d-image { 
             width: 280px; 
             height: 280px; 
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
             border-radius: 22.5%; 
             background: transparent; 
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8); 
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 145, 255, 0.15); 
             display: block; 
-            max-width: 100%; 
-            height: auto; 
+            will-change: transform;
+            contain: layout;
         }
+
         /* Sections */
         .section-header { text-align: center; margin: 120px 0 64px; width: 100%; }
         .section-header h2 { font-size: clamp(32px, 6vw, 56px); margin-bottom: 16px; }
         .section-header p { font-size: 20px; color: var(--text-secondary); max-width: 750px; margin: 0 auto; }
 
         /* Bento Grid */
-        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-bottom: 80px; width: 100%; }
-        .col-span-12 { grid-column: span 12; } .col-span-8 { grid-column: span 8; } .col-span-6 { grid-column: span 6; } .col-span-4 { grid-column: span 4; }
+        .bento-grid { 
+            display: grid; 
+            grid-template-columns: repeat(12, 1fr); 
+            gap: 24px; 
+            margin-bottom: 80px; 
+            width: 100%; 
+        }
+        .col-span-12 { grid-column: span 12; } 
+        .col-span-8 { grid-column: span 8; } 
+        .col-span-6 { grid-column: span 6; } 
+        .col-span-4 { grid-column: span 4; }
         
         .bento-card {
-            background: var(--bg-bento); border-radius: 32px; padding: 40px;
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
-            border: 1px solid transparent; 
+            background: var(--bg-bento); 
+            border-radius: 32px; 
+            padding: 40px;
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         .bento-card::after {
-            content: ""; position: absolute; inset: 0; border-radius: 32px;
-            padding: 1px; background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            content: ""; 
+            position: absolute; 
+            inset: 0; 
+            border-radius: 32px;
+            padding: 1px; 
+            background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+            -webkit-mask-composite: xor; 
+            mask-composite: exclude; 
+            pointer-events: none;
         }
         .bento-card::before {
-            content: ""; position: absolute; inset: 0; border-radius: inherit;
+            content: ""; 
+            position: absolute; 
+            inset: 0; 
+            border-radius: inherit;
             background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0, 145, 255, 0.08), transparent 40%);
-            opacity: 0; transition: opacity 0.5s ease; pointer-events: none; z-index: 1;
+            opacity: 0; 
+            transition: opacity 0.5s ease; 
+            pointer-events: none; 
+            z-index: 1;
         }
         .bento-card:hover::before { opacity: 1; }
         .bento-card > * { position: relative; z-index: 2; }
         
         .bento-card h3 { font-size: 32px; margin-bottom: 16px; color: #fff; }
-        .bento-card p { font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
+        .bento-card p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; }
 
         /* Bullet Points */
         .elite-features { margin-top: auto; border-top: 1px solid var(--glass-border); padding-top: 16px; }
         .elite-features ul { list-style: none; color: var(--text-secondary); font-size: 15px; line-height: 1.8; }
         .elite-features ul li { padding-bottom: 10px; position: relative; padding-left: 20px; }
-        .elite-features ul li::before { content: "→"; position: absolute; left: 0; color: var(--brand-electric-blue); font-weight: bold; }
+        .elite-features ul li::before { content: "?"; position: absolute; left: 0; color: var(--brand-electric-blue); font-weight: bold; }
 
         /* Metrics */
-        .metrics-section { padding: 80px 0; text-align: center; position: relative; width: 100%; overflow: hidden; }
-        .chart-bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.03; pointer-events: none; }
-        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-        .metric-card { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 24px; backdrop-filter: var(--glass-blur); }
-        .metric-value { font-size: clamp(40px, 6vw, 64px); font-family: 'Manrope', sans-serif; font-weight: 800; color: #fff; margin-bottom: 8px; }
-        .metric-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); font-weight: 600; }
+        .metrics-section { 
+            padding: 80px 0; 
+            text-align: center; 
+            position: relative; 
+            width: 100%; 
+            overflow: hidden; 
+        }
+        .chart-bg { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -1; 
+            opacity: 0.15; 
+            pointer-events: none; 
+        }
+        .chart-path {
+            stroke-dasharray: 1200;
+            stroke-dashoffset: 1200;
+            transition: stroke-dashoffset 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 0 8px rgba(0, 145, 255, 0.6));
+        }
+        .metrics-section.drawn .chart-path {
+            stroke-dashoffset: 0;
+        }
+        .metrics-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 24px; 
+            margin-top: 40px; 
+        }
+        .metric-card { 
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 24px; 
+            padding: 40px 24px; 
+            backdrop-filter: var(--glass-blur); 
+            -webkit-backdrop-filter: var(--glass-blur);
+        }
+        .metric-value { 
+            font-size: clamp(40px, 6vw, 64px); 
+            font-family: 'Manrope', sans-serif; 
+            font-weight: 800; 
+            color: #fff; 
+            margin-bottom: 8px; 
+        }
+        .metric-label { 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--text-secondary); 
+            font-weight: 600; 
+        }
 
-        /* UI Showcase (Staggered) */
-        .ui-gallery { display: flex; gap: 24px; justify-content: center; margin-top: 56px; overflow: hidden; padding: 20px 0; width: 100%; }
-        .ui-frame { background: var(--bg-bento); border: 1px solid var(--glass-border); border-radius: 32px; padding: 12px; width: 260px; flex-shrink: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transition: transform 0.4s ease; }
-        .ui-frame:nth-child(even) { transform: translateY(30px); }
-        .ui-frame:hover { transform: translateY(-10px) !important; border-color: var(--glass-highlight); z-index: 10; }
-        .ui-img { width: 100%; height: auto; border-radius: 20px; display: block; aspect-ratio: 9/19; object-fit: cover; border: 1px solid rgba(255,255,255,0.03); }
-
-        /* --- Seamless Founder Avatar & Orange Accent --- */
+        /* Founder Avatar */
         .founder-avatar-wrapper {
             position: relative;
             width: 72px;
@@ -262,7 +491,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 1.5px solid rgba(0, 145, 255, 0.35); /* Updated to Brand Blue for Solo Founder */
+            border: 1.5px solid rgba(0, 145, 255, 0.35);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 145, 255, 0.1);
             background: var(--bg-surface);
             display: block;
@@ -325,16 +554,40 @@
             font-size: 20px; 
         }
 
-        /* Scrollytelling - Sticky Functional Architecture */
-        .scrollytelling-wrapper { display: flex; position: relative; padding: 80px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); background: var(--bg-surface); width: 100%; }
+        /* Scrollytelling Architecture */
+        .scrollytelling-wrapper { 
+            display: flex; 
+            position: relative; 
+            padding: 80px 0; 
+            border-top: 1px solid var(--glass-border); 
+            border-bottom: 1px solid var(--glass-border); 
+            background: var(--bg-surface); 
+            width: 100%; 
+        }
         .scroll-text-col { flex: 1; padding-right: 60px; max-width: 100%; }
-        .scroll-step { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; opacity: 0.3; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(-20px); }
+        .scroll-step { 
+            min-height: 80vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            opacity: 0.3; 
+            transition: opacity 0.5s ease, transform 0.5s ease; 
+            transform: translateX(-20px); 
+        }
         .scroll-step.active { opacity: 1; transform: translateX(0); }
         .scroll-step h3 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 20px; }
         
-        .sticky-visual-col { flex: 1; position: sticky; top: 120px; height: 600px; display: flex; align-items: center; justify-content: center; align-self: flex-start; }
+        .sticky-visual-col { 
+            flex: 1; 
+            position: sticky; 
+            top: 120px; 
+            height: 600px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            align-self: flex-start; 
+        }
         
-/* Precision Titanium Chassis for Scrollytelling Phone */
         .sticky-mockup {
             width: 290px;
             height: 600px;
@@ -350,7 +603,6 @@
             max-width: 100%;
         }
 
-        /* 5-Layer Smooth Hardware-Accelerated Image Crossfade */
         .mockup-img {
             position: absolute;
             inset: 0;
@@ -371,47 +623,55 @@
             transform: scale(1);
             pointer-events: auto;
         }
+
         .mobile-step-visual {
-    display: none;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    margin-top: 28px;
-    width: 100%;
-}
+            display: none;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            margin-top: 28px;
+            width: 100%;
+        }
 
-.mobile-phone-chassis {
-    position: relative;
-    z-index: 2;
-    width: 230px;
-    max-width: 82vw;
-    aspect-ratio: 808 / 1790;
-    background: #000000;
-    border-radius: 36px;
-    border: 4px solid #232328;
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.12),
-        0 20px 60px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(0, 145, 255, 0.18);
-    overflow: hidden;
-}
+        .mobile-phone-chassis {
+            position: relative;
+            z-index: 2;
+            width: 230px;
+            max-width: 82vw;
+            aspect-ratio: 808 / 1790;
+            background: #000000;
+            border-radius: 36px;
+            border: 4px solid #232328;
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 20px 60px rgba(0, 0, 0, 0.9),
+                0 0 30px rgba(0, 145, 255, 0.18);
+            overflow: hidden;
+        }
 
-.mobile-phone-chassis img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-        /* Utils */
-        .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal-active { opacity: 1; transform: translateY(0); }
+        .mobile-phone-chassis img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Reveal Utils */
+        .reveal-up { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
+            will-change: opacity, transform;
+        }
+        .reveal-active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
 
-/* =========================================================================
-           DYNAMIC COMPETITIVE MOAT MATRIX (Linear / Stripe Tier Spec)
-           ========================================================================= */
+        /* Competitive Moat Matrix */
         .competition-table-container {
             position: relative;
             width: 100%;
@@ -435,14 +695,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.06); 
             font-size: 14.5px; 
             line-height: 1.5;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: background 0.25s ease;
         }
 
-        .competition-matrix tr:last-child td {
-            border-bottom: none;
-        }
+        .competition-matrix tr:last-child td { border-bottom: none; }
 
-        /* Table Headers */
         .competition-matrix th { 
             color: var(--text-secondary); 
             font-weight: 700; 
@@ -455,10 +712,6 @@
             z-index: 10;
         }
 
-        /* 
-           THE OMNIBASE FEATURED PILLAR
-           Illuminated vertical column that visually dominates the table 
-        */
         .omni-pillar-th {
             background: linear-gradient(180deg, rgba(0, 145, 255, 0.12) 0%, rgba(20, 20, 28, 0.95) 100%) !important;
             border-left: 1px solid rgba(0, 145, 255, 0.3);
@@ -466,7 +719,6 @@
             position: relative;
         }
 
-        /* Specular Top Beam on Omnibase Header */
         .omni-pillar-th::before {
             content: "";
             position: absolute;
@@ -499,7 +751,6 @@
             font-weight: 800;
         }
 
-        /* Omnibase Table Data Cells */
         .omni-pillar-td {
             background: rgba(0, 145, 255, 0.025);
             border-left: 1px solid rgba(0, 145, 255, 0.15);
@@ -525,15 +776,9 @@
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Competitor Columns (Subdued & Clean) */
         .competitor-td {
             color: var(--text-secondary);
             font-weight: 400;
-        }
-
-        /* Interactive Row Hover Physics */
-        .competition-matrix tbody tr {
-            transition: background 0.25s ease;
         }
 
         .competition-matrix tbody tr:hover {
@@ -550,7 +795,6 @@
             transform: scale(1.2) rotate(6deg);
         }
 
-        /* Capability Column */
         .capability-td {
             font-family: 'Manrope', sans-serif;
             font-weight: 700;
@@ -558,91 +802,94 @@
             font-size: 14px;
         }
 
-        /* Responsive Mobile Cards */
-        @media (max-width: 768px) {
-            .competition-table-container {
-                background: transparent;
-                border: none;
-                box-shadow: none;
-            }
-            .competition-matrix thead { display: none; }
-            .competition-matrix, 
-            .competition-matrix tbody, 
-            .competition-matrix tr, 
-            .competition-matrix td { 
-                display: block; 
-                width: 100%; 
-            }
-            .competition-matrix tr { 
-                margin-bottom: 20px; 
-                border: 1px solid rgba(255, 255, 255, 0.1); 
-                border-radius: 20px; 
-                padding: 20px; 
-                background: var(--bg-bento); 
-                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            }
-            .competition-matrix td { 
-                display: flex; 
-                flex-direction: column; 
-                padding: 12px 0; 
-                border-bottom: 1px solid rgba(255,255,255,0.06); 
-                text-align: left; 
-                font-size: 14px; 
-            }
-            .omni-pillar-td {
-                background: rgba(0, 145, 255, 0.04) !important;
-                border: 1px solid rgba(0, 145, 255, 0.25) !important;
-                border-radius: 12px;
-                padding: 14px 16px !important;
-                margin: 10px 0;
-            }
-            .omni-pillar-td::before { display: none; }
-            .competition-matrix td::before { 
-                content: attr(data-label); 
-                font-size: 10.5px; 
-                text-transform: uppercase; 
-                color: var(--text-secondary); 
-                margin-bottom: 6px; 
-                font-weight: 800; 
-                letter-spacing: 0.08em; 
-            }
-        }
-
-        /* --- Modal & Data Sources Styles --- */
+        /* Modal Overlay & Architecture */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 6, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 24px;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(5, 5, 6, 0.88); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 10000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.35s ease; 
+            padding: 24px;
         }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
         .modal-content {
-            width: 100%; max-width: 650px; transform: translateY(20px); 
+            width: 100%; 
+            max-width: 680px; 
+            transform: translateY(24px) scale(0.98); 
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            background: var(--bg-surface); z-index: 10000;
+            background: var(--bg-surface); 
+            position: relative;
+            max-height: 88vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-overlay.active .modal-content { 
+            transform: translateY(0) scale(1); 
+        }
+        
         .modal-close {
-            position: absolute; top: 24px; right: 24px; background: none; border: none;
-            color: var(--text-secondary); font-size: 28px; cursor: pointer; line-height: 1; transition: color 0.2s; z-index: 10;
+            position: absolute; 
+            top: 24px; 
+            right: 24px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary); 
+            font-size: 24px; 
+            cursor: pointer; 
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1; 
+            transition: all 0.2s ease; 
+            z-index: 20;
+            touch-action: manipulation;
         }
-        .modal-close:hover { color: #fff; }
+        .modal-close:hover { 
+            color: #fff; 
+            background: rgba(255, 255, 255, 0.15); 
+            transform: scale(1.08);
+        }
+        
         .sources-list { list-style: none; padding: 0; margin: 0; }
         .sources-list li {
-            padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,0.02);
-            border-radius: 16px; border: 1px solid var(--glass-border); font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+            padding: 16px; 
+            margin-bottom: 12px; 
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px; 
+            border: 1px solid var(--glass-border); 
+            font-size: 14px; 
+            line-height: 1.6; 
+            color: var(--text-secondary);
         }
-        .sources-list li strong { color: var(--brand-electric-blue); display: block; margin-bottom: 4px; font-size: 15px; }
+        .sources-list li strong { 
+            color: var(--brand-electric-blue); 
+            display: block; 
+            margin-bottom: 4px; 
+            font-size: 15px; 
+        }
 
-        /* --- Archetype Custom Styles --- */
+        /* Archetype Modal Styles */
         .verticals-scroll-container {
             max-height: 55vh; 
             overflow-y: auto;
-            padding-right: 16px;
+            padding-right: 12px;
             margin-top: 24px;
             -webkit-overflow-scrolling: touch;
         }
-
         .verticals-scroll-container::-webkit-scrollbar { width: 6px; }
         .verticals-scroll-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
         .verticals-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
@@ -670,28 +917,6 @@
 
         .archetype-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
-        .archetype-tag {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-secondary);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .archetype-tag:hover {
-            color: #fff;
-            border-color: var(--brand-electric-blue);
-            background: rgba(0, 145, 255, 0.1);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.15);
-        }
-/* =========================================================================
-           137 VERTICALS CHARACTER MATRIX & LIGHTBOX (Full Production Spec)
-           ========================================================================= */
         .verticals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
@@ -711,7 +936,8 @@
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             user-select: none;
-            cursor: pointer !important;
+            cursor: pointer;
+            touch-action: manipulation;
         }
 
         .vertical-card:hover {
@@ -760,6 +986,9 @@
             color: var(--brand-electric-blue);
             font-family: 'Manrope', sans-serif;
         }
+        .archetype-group-gold .vertical-avatar-fallback {
+            color: var(--brand-gold);
+        }
 
         .vertical-title {
             font-size: 11.5px;
@@ -771,18 +1000,16 @@
             transition: color 0.25s ease;
         }
 
-        .vertical-card:hover .vertical-title {
-            color: #ffffff;
-        }
+        .vertical-card:hover .vertical-title { color: #ffffff; }
 
-        /* Lightbox Container */
+        /* Character Lightbox Overlay */
         .character-lightbox-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(5, 5, 6, 0.88);
+            background: rgba(5, 5, 6, 0.90);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
             z-index: 20000;
@@ -875,6 +1102,7 @@
             transition: all 0.25s ease;
             backdrop-filter: blur(12px);
             line-height: 1;
+            touch-action: manipulation;
         }
 
         .character-lightbox-close:hover {
@@ -882,45 +1110,7 @@
             transform: scale(1.1);
         }
 
-        @media (max-width: 600px) {
-            .verticals-grid {
-                grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
-                gap: 10px;
-            }
-            .vertical-avatar-box {
-                width: 46px;
-                height: 46px;
-            }
-            .vertical-title {
-                font-size: 10.5px;
-            }
-            .character-lightbox-img {
-                max-width: 90vw;
-                max-height: 60vh;
-                border-radius: 20px;
-            }
-            .character-lightbox-title {
-                font-size: 14px;
-                padding: 6px 18px;
-            }
-        }
-        footer { padding: 80px 0 40px; text-align: center; color: var(--text-secondary); font-size: 14px; border-top: 1px solid var(--glass-border); width: 100%; }
-        
-        /* --- Elite Button Pulse (Attention Seeker) --- */
-        .btn-pop {
-            border-color: rgba(0, 145, 255, 0.3) !important;
-            animation: breathingGlow 3s ease-in-out infinite alternate;
-        }
-        .btn-pop svg {
-            color: var(--brand-electric-blue); 
-            transition: transform 0.3s ease;
-        }
-        .btn-pop:hover svg {
-            transform: scale(1.1);
-        }
-/* =========================================================================
-           INSTITUTIONAL EXECUTIVE CAPSULES (Silicon Valley Luxury Spec)
-           ========================================================================= */
+        /* Institutional Executive Capsules */
         .capsule-trigger-wrapper {
             display: flex;
             justify-content: center;
@@ -930,7 +1120,6 @@
             position: relative;
         }
 
-        /* Subtle Ambient Back-Aura */
         .capsule-glow-aura {
             position: absolute;
             top: 50%;
@@ -938,29 +1127,25 @@
             transform: translate(-50%, -50%);
             width: 360px;
             height: 70px;
-            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.12) 0%, transparent 70%);
             filter: blur(32px);
             pointer-events: none;
             z-index: 1;
-            opacity: 0.6;
+            opacity: 0.7;
             transition: opacity 0.5s ease;
         }
 
         .capsule-glow-gold {
-            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.07) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, var(--brand-gold-glow) 0%, transparent 70%);
         }
 
-        /* 
-           PHYSICAL BUTTON SURFACE
-           Layered 4-stop shadow stack creates authentic tactile elevation 
-        */
         .institutional-capsule {
             position: relative;
             z-index: 2;
             display: inline-flex;
             align-items: center;
             gap: 16px;
-            background: rgba(18, 18, 22, 0.75);
+            background: rgba(18, 18, 22, 0.85);
             padding: 14px 18px 14px 20px;
             border-radius: 999px;
             backdrop-filter: var(--glass-blur);
@@ -971,26 +1156,20 @@
             text-decoration: none;
             user-select: none;
             overflow: hidden;
-            
-            /* Silicon Valley Layered Shadow Engine */
-            box-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.4),                           /* 1. Contact shadow */
-                0 10px 24px -4px rgba(0, 0, 0, 0.6),                    /* 2. Ambient occlusion */
-                0 24px 48px -12px rgba(0, 0, 0, 0.8),                   /* 3. Deep floor bloom */
-                inset 0 1px 1px rgba(255, 255, 255, 0.16),              /* 4. Top-edge glass reflection */
-                inset 0 -1px 1px rgba(0, 0, 0, 0.6);                    /* 5. Bottom bevel recess */
-            
             border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.4),
+                0 10px 24px -4px rgba(0, 0, 0, 0.6),
+                0 24px 48px -12px rgba(0, 0, 0, 0.8),
+                inset 0 1px 1px rgba(255, 255, 255, 0.16),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.6);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
                         box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
                         background 0.35s ease, 
                         border-color 0.35s ease;
+            touch-action: manipulation;
         }
 
-        /* 
-           SEAMLESS SPECULAR BORDER GLINT (Animated Hairline)
-           Masked 1px perimeter highlight that glides across the pill 
-        */
         .institutional-capsule::before {
             content: "";
             position: absolute;
@@ -1012,16 +1191,14 @@
             pointer-events: none;
             animation: borderSpecularSweep 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
             opacity: 0.75;
-            transition: opacity 0.3s ease;
         }
 
-        /* Gold Variant for Due Diligence */
         .institutional-capsule-gold::before {
             background: linear-gradient(
                 105deg,
                 transparent 0%,
                 rgba(255, 255, 255, 0.03) 25%,
-                rgba(255, 215, 0, 0.45) 50%,
+                rgba(255, 215, 0, 0.5) 50%,
                 rgba(255, 255, 255, 0.15) 65%,
                 transparent 100%
             );
@@ -1033,17 +1210,16 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Hover States: Lift & Luminous Deepening */
         .institutional-capsule:hover {
             transform: translateY(-2px);
-            background: rgba(24, 24, 30, 0.9);
-            border-color: rgba(255, 255, 255, 0.18);
+            background: rgba(24, 24, 30, 0.95);
+            border-color: rgba(255, 255, 255, 0.2);
             box-shadow: 
                 0 4px 8px rgba(0, 0, 0, 0.5),
                 0 16px 36px -4px rgba(0, 0, 0, 0.7),
                 0 36px 64px -12px rgba(0, 0, 0, 0.9),
                 inset 0 1px 1px rgba(255, 255, 255, 0.25),
-                0 0 20px rgba(0, 145, 255, 0.12);
+                0 0 20px rgba(0, 145, 255, 0.15);
         }
 
         .institutional-capsule-gold:hover {
@@ -1052,25 +1228,13 @@
                 0 16px 36px -4px rgba(0, 0, 0, 0.7),
                 0 36px 64px -12px rgba(0, 0, 0, 0.9),
                 inset 0 1px 1px rgba(255, 255, 255, 0.25),
-                0 0 20px rgba(255, 215, 0, 0.12);
+                0 0 20px var(--brand-gold-glow);
         }
 
-        .institutional-capsule:hover::before {
-            opacity: 1;
-            animation-duration: 3.5s; /* Accelerates slightly on hover */
-        }
-
-        /* Tactile Press Physics (Click Affordance) */
         .institutional-capsule:active {
             transform: translateY(1px) scale(0.992);
-            box-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.5),
-                0 8px 16px -2px rgba(0, 0, 0, 0.7),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
-            transition: transform 0.08s ease, box-shadow 0.08s ease;
         }
 
-        /* Icon Container */
         .capsule-icon-box {
             width: 42px;
             height: 42px;
@@ -1082,16 +1246,14 @@
             justify-content: center;
             color: var(--brand-electric-blue);
             flex-shrink: 0;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .capsule-icon-gold {
-            color: var(--brand-gold);
-        }
+        .capsule-icon-gold { color: var(--brand-gold); }
 
         .institutional-capsule:hover .capsule-icon-box {
             transform: scale(1.08);
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .capsule-text-col {
@@ -1109,7 +1271,7 @@
         }
 
         .capsule-eyebrow-gold {
-            color: #B8860B;
+            color: var(--brand-gold-subtle);
         }
 
         .capsule-title {
@@ -1120,7 +1282,6 @@
             letter-spacing: -0.01em;
         }
 
-        /* Trailing Action Badge */
         .capsule-action-badge {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1144,138 +1305,64 @@
             transform: translateX(2px);
         }
 
-        .capsule-action-badge svg {
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
         .institutional-capsule:hover .capsule-action-badge svg {
             transform: translateX(3px);
         }
 
-        @media (max-width: 640px) {
-            .capsule-trigger-wrapper {
-                margin-top: 36px;
-                padding-top: 4px;
-            }
-            .institutional-capsule {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                border-radius: 24px;
-                padding: 20px;
-                width: 100%;
-                max-width: 360px;
-                gap: 12px;
-            }
-            .capsule-action-badge {
-                margin-left: 0;
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        @keyframes breathingGlow {
-            0% { box-shadow: 0 0 12px rgba(0, 145, 255, 0.05); }
-            100% { box-shadow: 0 0 24px rgba(0, 145, 255, 0.25); border-color: rgba(0, 145, 255, 0.6) !important; }
-        }
-
-        /* Media Queries (Responsive Tuning) */
-        @media (max-width: 992px) {
-    .scrollytelling-wrapper { flex-direction: column; padding: 48px 0; }
-    .sticky-visual-col { display: none; }
-    .scroll-text-col { padding-right: 0; width: 100%; }
-    .scroll-step { 
-        min-height: auto; 
-        transform: none; 
-        opacity: 1; 
-        padding: 36px 24px; 
-        margin-bottom: 24px;
-        background: var(--bg-bento);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 28px;
-    }
-    .mobile-step-visual {
-        display: flex;
-    }
-    .col-span-8, .col-span-4, .col-span-6, .col-span-12 { grid-column: span 12; }
-    .metrics-grid { grid-template-columns: 1fr; }
-}
-        
-        @media (max-width: 768px) {
-            .hero { padding-top: 220px; }
-            .logo-3d-image { width: 240px; height: 240px; }
-            .hero p, .section-header p { padding: 0 16px; }
-            .scroll-text-col .section-header { text-align: center !important; }
-
-            .competition-matrix thead { display: none; }
-            .competition-matrix, .competition-matrix tbody, .competition-matrix tr, .competition-matrix td { display: block; width: 100%; }
-            .competition-matrix tr { margin-bottom: 24px; border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px; background: var(--bg-bento); }
-            .competition-matrix td { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: left; font-size: 15px; }
-            .competition-matrix td:last-child { border-bottom: none; padding-bottom: 0; }
-            .competition-matrix td::before { content: attr(data-label); font-size: 11px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; font-weight: 800; letter-spacing: 0.05em; }
-            
-            .loop-container { flex-direction: column; padding: 24px 16px; gap: 8px; }
-            .loop-arrow { transform: rotate(90deg); margin: 4px 0; }
-            
-            .ui-gallery { flex-direction: column; align-items: center; }
-            .ui-frame { width: 100%; max-width: 320px; margin-bottom: 16px; }
-            .ui-frame:nth-child(even) { transform: none; }
-            .modal-content { max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-            
-            .modal-close {
-                position: sticky; top: -10px; align-self: flex-end; margin-top: -10px; margin-bottom: 16px; 
-                background: var(--bg-surface); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-                border-radius: 50%; z-index: 20; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); 
-            }
-            .verticals-scroll-container { max-height: none; overflow-y: visible; margin-top: 16px; }
-        }
-
-        @media (max-width: 480px) {
-            .container { padding: 0 16px; }
-            .hero { padding-top: 240px; }
-            .brand-logo { font-size: 16px; gap: 8px; }
-            .brand-logo svg { height: 22px !important; width: 17px !important; }
-            .btn-primary { padding: 10px 18px; font-size: 13px; }
-
-            .hero-cta { display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 0 16px; }
-            .hero-cta a { width: 100%; margin-left: 0 !important; }
-            .bento-card, .metric-card { padding: 32px 20px; }
-
-            .hero-badge { display: flex; flex-direction: column; padding: 16px 24px; gap: 12px; border-radius: 24px; height: auto; text-align: center; }
-            .hero-badge-icons { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; width: 100%; justify-content: center; }
-            .hero-badge-text { font-size: 11px; text-align: center; justify-content: center; }
-        }
-		
-		/* --- Brand Ecosystem Showcase --- */
+        /* Brand Ecosystem Showcase */
         .brand-tabs-header {
-            display: flex; gap: 12px; padding: 24px; justify-content: center;
-            border-bottom: 1px solid var(--glass-border); background: rgba(0, 0, 0, 0.2);
+            display: flex; 
+            gap: 12px; 
+            padding: 24px; 
+            justify-content: center;
+            border-bottom: 1px solid var(--glass-border); 
+            background: rgba(0, 0, 0, 0.2);
             flex-wrap: wrap;
         }
 
         .brand-tab {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
-            color: var(--text-secondary); padding: 12px 24px; border-radius: 999px;
-            font-weight: 600; font-size: 14px; cursor: pointer; display: flex;
-            align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary); 
+            padding: 12px 24px; 
+            border-radius: 999px;
+            font-weight: 600; 
+            font-size: 14px; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center; 
+            gap: 8px; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            touch-action: manipulation;
         }
 
         .brand-tab:hover {
-            color: #fff; background: rgba(255, 255, 255, 0.08); transform: translateY(-2px);
+            color: #fff; 
+            background: rgba(255, 255, 255, 0.08); 
+            transform: translateY(-2px);
         }
 
         .brand-tab.active {
-            background: rgba(0, 145, 255, 0.1); border-color: rgba(0, 145, 255, 0.4);
-            color: #fff; box-shadow: 0 4px 16px rgba(0, 145, 255, 0.15);
+            background: rgba(0, 145, 255, 0.12); 
+            border-color: rgba(0, 145, 255, 0.4);
+            color: #fff; 
+            box-shadow: 0 4px 16px rgba(0, 145, 255, 0.15);
         }
 
         .brand-grid-wrapper {
-            position: relative; width: 100%; height: 450px; overflow: hidden;
+            position: relative; 
+            width: 100%; 
+            height: 450px; 
+            overflow: hidden;
             background: var(--bg-bento);
         }
 
         .brand-scroll-container {
-            height: 100%; overflow-y: auto; padding: 32px 24px 64px 24px;
-            scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
+            height: 100%; 
+            overflow-y: auto; 
+            padding: 32px 24px 64px 24px;
+            scrollbar-width: thin; 
+            scrollbar-color: rgba(255,255,255,0.1) transparent;
         }
 
         .brand-scroll-container::-webkit-scrollbar { width: 6px; }
@@ -1283,7 +1370,9 @@
         .brand-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
 
         .brand-grid {
-            display: none; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 16px;
+            display: none; 
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
+            gap: 16px;
             animation: gridFadeIn 0.5s ease forwards;
         }
 
@@ -1295,20 +1384,31 @@
         }
 
         .brand-tile {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 16px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
-            padding: 16px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px; 
+            aspect-ratio: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            padding: 16px; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; 
+            overflow: hidden;
         }
 
         .brand-tile:hover {
-            border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+            border-color: rgba(255, 255, 255, 0.2); 
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-4px) scale(1.05); 
+            box-shadow: 0 12px 24px rgba(0,0,0,0.5);
             z-index: 2;
         }
 
         .brand-tile img {
-            max-width: 100%; max-height: 100%; object-fit: contain;
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain;
             filter: grayscale(100%) opacity(0.35) brightness(1.5);
             transition: all 0.4s ease;
         }
@@ -1317,314 +1417,265 @@
             filter: grayscale(0%) opacity(1) brightness(1);
         }
 
-        /* Gradient Fades for depth illusion */
         .grid-fade-top {
-            position: absolute; top: 0; left: 0; width: 100%; height: 40px;
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 40px;
             background: linear-gradient(to bottom, var(--bg-bento) 0%, transparent 100%);
-            z-index: 5; pointer-events: none;
+            z-index: 5; 
+            pointer-events: none;
         }
 
         .grid-fade-bottom {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 60px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 60px;
             background: linear-gradient(to top, var(--bg-bento) 0%, transparent 100%);
-            z-index: 5; pointer-events: none;
+            z-index: 5; 
+            pointer-events: none;
         }
 
-		/* Language Switcher */
-		.lang-switch {
-		    color: var(--text-secondary);
-		    text-decoration: none;
-		    font-size: 14px;
-		    font-weight: 700;
-		    transition: color 0.3s ease;
-		    display: inline-flex;
-		    align-items: center;
-		    gap: 6px;
-		}
-		.lang-switch:hover {
-		    color: #ffffff;
-		}
-		@media (max-width: 480px) {
-		    .lang-switch { font-size: 13px; }
-		}
-		/* --- Dedicated Cinematic Film Section --- */
-.film-section {
-    padding: 60px 0 100px;
-    text-align: center;
-    position: relative;
-    width: 100%;
-}
+        /* Language Switcher */
+        .lang-switch {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .lang-switch:hover { color: #ffffff; }
 
-.video-showcase-wrapper {
-    position: relative;
-    max-width: 1040px;
-    margin: 40px auto 0;
-    width: 100%;
-}
+        /* Cinematic Film Section */
+        .film-section {
+            padding: 60px 0 100px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
 
-/* Ambient Radial Back-Glow */
-.video-ambient-glow {
-    position: absolute;
-    inset: -30px;
-    background: radial-gradient(circle at 50% 50%, rgba(0, 145, 255, 0.28) 0%, rgba(160, 133, 255, 0.16) 45%, transparent 70%);
-    filter: blur(65px);
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.85;
-    transition: opacity 0.5s ease;
-}
+        .video-showcase-wrapper {
+            position: relative;
+            max-width: 1040px;
+            margin: 40px auto 0;
+            width: 100%;
+        }
 
-/* Obsidian Bezel Chassis */
-.video-frame {
-    position: relative;
-    z-index: 2;
-    border-radius: 28px;
-    background: #000000;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    cursor: pointer;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-}
+        .video-ambient-glow {
+            position: absolute;
+            inset: -30px;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 145, 255, 0.28) 0%, rgba(160, 133, 255, 0.16) 45%, transparent 70%);
+            filter: blur(65px);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.85;
+        }
 
-.video-frame:hover {
-    transform: translateY(-4px) scale(1.008);
-    border-color: rgba(255, 255, 255, 0.3);
-}
+        .video-frame {
+            position: relative;
+            z-index: 2;
+            border-radius: 28px;
+            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
 
-.video-player {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+        .video-frame:hover {
+            transform: translateY(-4px) scale(1.008);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
 
-/* Floating Audio Control Pill */
-.video-control-pill {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(14, 14, 18, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 12px 24px;
-    border-radius: 999px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    color: #fff;
-    font-size: 13.5px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-}
+        .video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-.video-control-pill:hover {
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 16px 40px rgba(0, 145, 255, 0.3);
-}
+        .video-control-pill {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(14, 14, 18, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 12px 24px;
+            border-radius: 999px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: #fff;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            touch-action: manipulation;
+        }
 
-.video-control-pill svg {
-    width: 15px;
-    height: 15px;
-    color: var(--brand-electric-blue);
-    flex-shrink: 0;
-}
+        .video-control-pill:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 16px 40px rgba(0, 145, 255, 0.3);
+        }
 
-@media (max-width: 768px) {
-    .film-section { padding: 40px 0 60px; }
-    .video-showcase-wrapper { margin-top: 28px; }
-    .video-frame { border-radius: 18px; }
-    .video-control-pill { font-size: 12px; padding: 10px 18px; bottom: 16px; }
-}
-/* --- Flagship Living Gateway Bento Layout --- */
-.living-gateway-card {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 40px;
-    align-items: center;
-    padding: 48px !important;
-}
+        .video-control-pill svg {
+            width: 15px;
+            height: 15px;
+            color: var(--brand-electric-blue);
+            flex-shrink: 0;
+        }
 
-.gateway-text-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        /* Living Gateway Bento Layout */
+        .living-gateway-card {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 40px;
+            align-items: center;
+            padding: 48px !important;
+        }
 
-.gateway-phone-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
+        .gateway-text-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-/* Precision Titanium Device Frame (Mathematically Locked to 808x1790) */
-.phone-frame {
-    position: relative;
-    z-index: 2;
-    width: 270px;
-    aspect-ratio: 808 / 1790; /* Exact pixel ratio of your video */
-    background: #000;
-    border-radius: 40px;
-    border: 4px solid #232328;
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.12),
-        0 25px 70px rgba(0, 0, 0, 0.9),
-        0 0 35px rgba(0, 145, 255, 0.18);
-    overflow: hidden;
-}
+        .gateway-phone-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-/* Ambient Back-Glow Behind Device */
-.phone-ambient-glow {
-    position: absolute;
-    width: 260px;
-    height: 560px;
-    background: radial-gradient(circle at 50% 50%, rgba(0, 145, 255, 0.35) 0%, rgba(160, 133, 255, 0.2) 40%, transparent 70%);
-    filter: blur(60px);
-    z-index: 1;
-    pointer-events: none;
-}
+        .phone-frame {
+            position: relative;
+            z-index: 2;
+            width: 270px;
+            aspect-ratio: 808 / 1790;
+            background: #000;
+            border-radius: 40px;
+            border: 4px solid #232328;
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 25px 70px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(0, 145, 255, 0.18);
+            overflow: hidden;
+        }
 
-.phone-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Since frame is 808/1790, this is 1:1 pixel flush with zero cropping */
-    display: block;
-    background: #000;
-}
+        .phone-ambient-glow {
+            position: absolute;
+            width: 260px;
+            height: 560px;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 145, 255, 0.35) 0%, rgba(160, 133, 255, 0.2) 40%, transparent 70%);
+            filter: blur(60px);
+            z-index: 1;
+            pointer-events: none;
+        }
 
-/* Subtle Glass Reflection Glare */
-.phone-glare {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%);
-    pointer-events: none;
-    z-index: 5;
-}
+        .phone-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
 
-/* Mobile & Tablet Responsiveness */
-@media (max-width: 992px) {
-    .living-gateway-card {
-        grid-template-columns: 1fr;
-        padding: 32px !important;
-        gap: 32px;
-    }
-    .gateway-phone-col {
-        order: -1; /* Puts phone above text on mobile */
-    }
-    .phone-frame {
-        width: 240px;
-    }
-}
-		/* --- Flagship Faceted Search Bento Layout (Video Left, Text Right) --- */
-.search-bento-card {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 48px;
-    align-items: center;
-    padding: 48px !important;
-}
+        .phone-glare {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%);
+            pointer-events: none;
+            z-index: 5;
+        }
 
-.search-video-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-}
+        /* Faceted Search Bento Layout */
+        .search-bento-card {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 48px;
+            align-items: center;
+            padding: 48px !important;
+        }
 
-/* Precision 1:1 Square Obsidian Chassis (480x480 Native Aspect Ratio) */
-.search-video-frame {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 340px;
-    aspect-ratio: 1 / 1;
-    background: #000000;
-    border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.06),
-        0 30px 80px rgba(0, 0, 0, 0.9),
-        0 0 35px rgba(160, 133, 255, 0.18);
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-}
+        .search-video-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
 
-.search-bento-card:hover .search-video-frame {
-    transform: translateY(-2px) scale(1.01);
-    border-color: rgba(255, 255, 255, 0.22);
-}
+        .search-video-frame {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 340px;
+            aspect-ratio: 1 / 1;
+            background: #000000;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.06),
+                0 30px 80px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(160, 133, 255, 0.18);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
 
-/* Soft Violet Ambient Back-Glow matching the section theme */
-.search-ambient-glow {
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle at 50% 50%, rgba(160, 133, 255, 0.32) 0%, rgba(0, 145, 255, 0.16) 45%, transparent 70%);
-    filter: blur(55px);
-    z-index: 1;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-}
+        .search-bento-card:hover .search-video-frame {
+            transform: translateY(-2px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.22);
+        }
 
-.search-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    background: #000000;
-}
+        .search-ambient-glow {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle at 50% 50%, rgba(160, 133, 255, 0.32) 0%, rgba(0, 145, 255, 0.16) 45%, transparent 70%);
+            filter: blur(55px);
+            z-index: 1;
+            pointer-events: none;
+        }
 
-.search-glare {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 45%);
-    pointer-events: none;
-    z-index: 5;
-}
+        .search-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000000;
+        }
 
-.search-text-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        .search-text-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-/* Mobile & Tablet Responsiveness */
-@media (max-width: 992px) {
-    .search-bento-card {
-        grid-template-columns: 1fr;
-        padding: 32px !important;
-        gap: 32px;
-    }
-    .search-video-col {
-        order: -1; /* Puts visual demo above text on mobile */
-    }
-    .search-video-frame {
-        max-width: 280px;
-    }
-}
-/* =========================================================================
-           WEDGE STRATEGY: BALANCED DUAL-BENTO ARCHITECTURE (Apple / Stripe Spec)
-           ========================================================================= */
+        /* Wedge Strategy Grid */
         .wedge-showcase-grid {
             display: grid;
             grid-template-columns: 0.95fr 1.05fr;
             gap: 28px;
-            align-items: stretch;                 /* Stretches both sides to identical height */
+            align-items: stretch;
             width: 100%;
         }
 
-        /* The Left Flagship Flywheel Card */
         .wedge-flywheel-card {
             display: flex;
             flex-direction: column;
@@ -1640,18 +1691,15 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
-/* Centered Middle Section */
         .wedge-video-wrapper {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            flex: 1;                              /* Absorbs all vertical space evenly */
-            margin: 20px 0;                       /* Balanced breathing room */
+            flex: 1;
+            margin: 20px 0;
         }
-
-
 
         .wedge-video-frame {
             position: relative;
@@ -1693,7 +1741,6 @@
             background: #000000;
         }
 
-        /* Fixed Bottom Milestone Connector */
         .wedge-flow-connector {
             display: flex;
             align-items: center;
@@ -1701,7 +1748,6 @@
             width: 100%;
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            /* margin-top: auto removed so flex: 1 centers the video */
         }
 
         .flow-node {
@@ -1729,7 +1775,6 @@
             font-weight: bold;
         }
 
-        /* The 3 Phased Cards Column */
         .wedge-steps-col {
             display: flex;
             flex-direction: column;
@@ -1780,9 +1825,53 @@
             margin-bottom: 6px;
         }
 
-        /* Mobile & Tablet Fallback */
-/* Mobile & Tablet Fallback */
+        footer { 
+            padding: 80px 0 40px; 
+            text-align: center; 
+            color: var(--text-secondary); 
+            font-size: 14px; 
+            border-top: 1px solid var(--glass-border); 
+            width: 100%; 
+        }
+
+        /* =========================================================================
+           UNIFIED RESPONSIVE BREAKPOINTS (Silicon Valley Clean Engine)
+           ========================================================================= */
         @media (max-width: 992px) {
+            .scrollytelling-wrapper { flex-direction: column; padding: 48px 0; }
+            .sticky-visual-col { display: none; }
+            .scroll-text-col { padding-right: 0; width: 100%; }
+            .scroll-step { 
+                min-height: auto; 
+                transform: none; 
+                opacity: 1; 
+                padding: 36px 24px; 
+                margin-bottom: 24px;
+                background: var(--bg-bento);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                border-radius: 28px;
+            }
+            .mobile-step-visual { display: flex; }
+            
+            .col-span-8, .col-span-4, .col-span-6, .col-span-12 { grid-column: span 12; }
+            .metrics-grid { grid-template-columns: 1fr; }
+
+            .living-gateway-card {
+                grid-template-columns: 1fr;
+                padding: 32px !important;
+                gap: 32px;
+            }
+            .gateway-phone-col { order: -1; }
+            .phone-frame { width: 240px; }
+
+            .search-bento-card {
+                grid-template-columns: 1fr;
+                padding: 32px !important;
+                gap: 32px;
+            }
+            .search-video-col { order: -1; }
+            .search-video-frame { max-width: 280px; }
+
             .wedge-showcase-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
@@ -1795,35 +1884,176 @@
                 padding-top: 16px;
             }
         }
+
+        @media (max-width: 768px) {
+            .hero { padding-top: 200px; }
+            .logo-3d-image { width: 240px; height: 240px; }
+            .hero p, .section-header p { padding: 0 16px; }
+            .scroll-text-col .section-header { text-align: center !important; }
+
+            .film-section { padding: 40px 0 60px; }
+            .video-showcase-wrapper { margin-top: 28px; }
+            .video-frame { border-radius: 18px; }
+            .video-control-pill { font-size: 12px; padding: 10px 18px; bottom: 16px; }
+
+            /* Consolidated Mobile Matrix */
+            .competition-table-container {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+            }
+            .competition-matrix thead { display: none; }
+            .competition-matrix, 
+            .competition-matrix tbody, 
+            .competition-matrix tr, 
+            .competition-matrix td { 
+                display: block; 
+                width: 100%; 
+            }
+            .competition-matrix tr { 
+                margin-bottom: 20px; 
+                border: 1px solid rgba(255, 255, 255, 0.1); 
+                border-radius: 20px; 
+                padding: 20px; 
+                background: var(--bg-bento); 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+            .competition-matrix td { 
+                display: flex; 
+                flex-direction: column; 
+                padding: 12px 0; 
+                border-bottom: 1px solid rgba(255,255,255,0.06); 
+                text-align: left; 
+                font-size: 14px; 
+            }
+            .competition-matrix td:last-child { border-bottom: none; }
+            .omni-pillar-td {
+                background: rgba(0, 145, 255, 0.04) !important;
+                border: 1px solid rgba(0, 145, 255, 0.25) !important;
+                border-radius: 12px;
+                padding: 14px 16px !important;
+                margin: 10px 0;
+            }
+            .omni-pillar-td::before { display: none; }
+            .competition-matrix td::before { 
+                content: attr(data-label); 
+                font-size: 10.5px; 
+                text-transform: uppercase; 
+                color: var(--text-secondary); 
+                margin-bottom: 6px; 
+                font-weight: 800; 
+                letter-spacing: 0.08em; 
+            }
+
+            .loop-container { flex-direction: column; padding: 24px 16px; gap: 8px; }
+            .loop-arrow { transform: rotate(90deg); margin: 4px 0; }
+            
+            .modal-content { max-height: 85vh; }
+            .verticals-scroll-container { max-height: none; overflow-y: visible; margin-top: 16px; }
+        }
+
+        @media (max-width: 640px) {
+            .capsule-trigger-wrapper {
+                margin-top: 36px;
+                padding-top: 4px;
+            }
+            .institutional-capsule {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-radius: 24px;
+                padding: 20px;
+                width: 100%;
+                max-width: 360px;
+                gap: 12px;
+            }
+            .capsule-action-badge {
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero { padding-top: 220px; }
+            .brand-logo { font-size: 16px; gap: 8px; }
+            .brand-logo svg { height: 22px !important; width: 17px !important; }
+            .btn-primary { padding: 12px 20px; font-size: 14px; }
+
+            .hero-cta { display: flex; flex-direction: column; gap: 12px; width: 100%; padding: 0 16px; }
+            .hero-cta a { width: 100%; margin-left: 0 !important; }
+            .bento-card, .metric-card { padding: 28px 18px; }
+
+            .hero-badge { 
+                flex-direction: column; 
+                padding: 14px 20px; 
+                gap: 12px; 
+                border-radius: 24px; 
+                text-align: center; 
+            }
+            .hero-badge-icons { 
+                border-left: none; 
+                padding-left: 0; 
+                border-top: 1px solid rgba(255,255,255,0.15); 
+                padding-top: 10px; 
+                width: 100%; 
+                justify-content: center; 
+            }
+            .hero-badge-text { font-size: 11px; justify-content: center; }
+
+            .verticals-grid {
+                grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+                gap: 10px;
+            }
+            .vertical-avatar-box {
+                width: 46px;
+                height: 46px;
+            }
+            .vertical-title { font-size: 10.5px; }
+            .character-lightbox-img {
+                max-width: 90vw;
+                max-height: 60vh;
+                border-radius: 20px;
+            }
+            .character-lightbox-title {
+                font-size: 14px;
+                padding: 6px 18px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="bg-grid"></div>
 
-	<nav>
+    <!-- Navigation Bar -->
+    <nav>
         <div class="container nav-content">
-            <div class="brand-logo">
-                <svg viewBox="0 0 88.738258 113.22255" style="height: 28px; width: 22px; overflow: visible;">
+            <a href="#" class="brand-logo" aria-label="Omnibase Home">
+                <svg viewBox="0 0 88.738258 113.22255" style="height: 28px; width: 22px; overflow: visible;" aria-hidden="true">
                     <defs>
-                        <linearGradient id="navGrad"><stop stop-color="#0091FF" offset="0"/><stop stop-color="#A085FF" offset="1"/></linearGradient>
+                        <linearGradient id="navGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop stop-color="#0091FF" offset="0%"/>
+                            <stop stop-color="#A085FF" offset="100%"/>
+                        </linearGradient>
                     </defs>
                     <path fill="url(#navGrad)" transform="translate(-60.6,-91.8)" d="m 105.46488,69.420052 c -24.470275,-10e-7 -44.369385,19.898598 -44.369384,44.368868 1e-6,13.19448 10.856134,29.25915 21.351668,42.74416 10.495533,13.48501 20.972876,24.04918 20.972876,24.04918 l 2.04484,2.06034 2.04277,-2.06034 c 0,0 10.47735,-10.56417 20.97288,-24.04918 10.49553,-13.48501 21.35322,-29.54968 21.35322,-42.74416 0,-24.470268 -19.89858,-44.368867 -44.36887,-44.368868 z m 0,5.755721 c 21.35952,10e-7 38.61315,17.253652 38.61315,38.613147 0,6.22547 -4.05605,15.15761 -9.66546,24.23549 -0.39204,0.63445 -0.79167,1.26962 -1.19803,1.90462 -0.27575,0.4309 -0.5469,0.36641 -0.60265,-0.14212 l -0.1906,-1.73876 -3.33925,-30.46247 c -0.16014,-1.45777 -1.39065,-2.56209 -2.85719,-2.56418 l -7.71374,-0.0119 c -0.0912,-3.34872 0.007,-7.425511 -2.02106,-10.261388 -2.45795,-3.437756 -6.75212,-6.320098 -10.97814,-6.341732 -4.31827,-0.02211 -8.747736,2.869619 -11.283553,6.364986 -2.035825,2.806177 -1.97069,6.835524 -2.046387,10.197314 l -7.531323,-0.0119 c -1.475283,-0.002 -2.713583,1.11091 -2.867525,2.57814 l -3.182258,30.48328 -0.191773,1.83702 c -0.05704,0.54637 -0.34633,0.61613 -0.642729,0.15362 -0.432443,-0.67481 -0.857323,-1.34984 -1.273613,-2.02405 -5.596784,-9.0643 -9.641015,-17.97952 -9.641016,-24.19599 -3e-6,-21.359495 17.253646,-38.613148 38.613147,-38.613147 z m 0.0233,18.986438 c 2.2153,0.01317 4.54655,1.362867 5.84978,3.15433 1.53191,2.10581 1.29682,4.690809 1.41076,7.683769 l -14.802711,-0.0227 c 0.101656,-2.97044 -0.114853,-5.531756 1.417485,-7.606252 1.369406,-1.853914 3.819896,-3.222852 6.124686,-3.209147 z m -16.21761,16.512169 2.891813,0.004 c 0.02223,3.52688 0.02515,2.19977 0.02498,3.37037 -2.67e-4,1.88715 1.465137,2.96861 2.836955,2.98164 1.367988,0.013 2.867513,-1.01907 2.885005,-2.91904 0.01579,-1.71513 0.03138,0.0111 0.0093,-3.42419 l 14.910197,0.0217 c 0.0132,3.48226 -0.003,-0.0304 0.0404,3.45933 0.0232,1.86099 1.4069,2.85663 2.76354,2.87831 1.35664,0.0217 2.92654,-1.0881 2.94663,-2.83187 0.0407,-3.53169 0.0188,0.0396 0.005,-3.4975 l 3.07888,0.005 c 1.14306,10e-4 2.1022,0.81979 2.22674,1.90015 l 3.2551,28.23238 c 0.146,1.26148 -0.89199,2.36427 -2.22674,2.36575 l -38.758352,0.0481 c -1.332324,0.002 -2.372607,-1.09447 -2.233973,-2.35438 L 87.0366,112.58459 c 0.119937,-1.08686 1.084603,-1.91161 2.233972,-1.90996 z m 37.21119,38.98046 c -0.34044,0.4582 -0.68219,0.91375 -1.02488,1.36629 -0.50423,0.66585 -1.01048,1.32517 -1.51763,1.97677 -8.6165,11.07077 -15.9427,18.7407 -18.47432,21.3558 -2.53105,-2.6145 -9.857863,-10.28437 -18.474841,-21.3558 -0.508967,-0.65394 -1.017002,-1.31558 -1.52298,-1.98379 -0.227349,-0.30024 -0.55332,-0.73643 -0.846993,-1.13064 -0.384119,-0.51563 -0.173202,-0.93517 0.469776,-0.9361 l 0.91266,-0.001 39.038178,-0.051 1.05661,-0.001 c 0.52338,-6.1e-4 0.69657,0.34091 0.38442,0.76102 z"/>
                 </svg>
                 Omnibase
-            </div>
+            </a>
             <div style="display: flex; align-items: center; gap: 16px;">
                 <!-- Language Switcher -->
-                <a href="ar/index.html" class="lang-switch">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    العربية
+                <a href="ar/index.html" class="lang-switch" aria-label="Switch Language to Arabic">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    ???????
                 </a>
                 <a href="#invest" class="btn-primary">Access Data Room</a>
             </div>
         </div>
     </nav>
 
-    <!-- 1. THE HOOK -->
+    <!-- 1. THE HERO SECTION -->
     <header class="hero container">
         <div class="hero-glow"></div>
         <div class="hero-badge-wrapper reveal-up">
@@ -1831,7 +2061,7 @@
                 <span class="hero-badge-text">Core Architecture Deployed • Closed Beta Active</span>
                 <div class="hero-badge-icons">
                     <!-- Apple App Store Logo -->
-                    <svg viewBox="0 0 384 512">
+                    <svg viewBox="0 0 384 512" aria-label="Apple App Store Compatible">
                         <defs>
                             <linearGradient id="appleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                                 <stop offset="0%" stop-color="#ffffff" />
@@ -1841,7 +2071,7 @@
                         <path fill="url(#appleGrad)" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
                     </svg>
                     <!-- Google Play Logo -->
-                    <svg viewBox="0 0 1024 1024">
+                    <svg viewBox="0 0 1024 1024" aria-label="Google Play Compatible">
                         <path fill="#4285F4" d="M129 135.5v753c0 23.3 13.5 43.8 33.5 53.5l369.3-388.7L129 135.5z"/>
                         <path fill="#EA4335" d="M531.8 553.3l126.2-132.8-495.5-285c-11.5-6.6-24.5-9.2-37-8l406.3 425.8z"/>
                         <path fill="#FBBC05" d="M658 420.5L861.3 538c35.3 20.3 35.3 53.7 0 74l-203.3 117.5L531.8 553.3 658 420.5z"/>
@@ -1858,33 +2088,34 @@
             Fragmented markets bleed capital. Omnibase solves the friction in the consumer economy by fusing a unified discovery engine with an enterprise-grade operational suite. <br><br>We have completely eradicated the engineering risk. The architecture natively scales across 137 professional classifications, 483 specialties, and 779 core product and service types—dynamically expanding into ~100K++ of granular sub-types, without a single line of codebase duplication. This is a production-ready monopoly built to capture aggressive market share.
         </p>
         
-<div class="hero-cta reveal-up delay-300">
+        <div class="hero-cta reveal-up delay-300">
             <a href="#invest" class="btn-primary">Review the Business Case</a>
             <a href="#film-showcase" class="btn-secondary" id="heroWatchFilmBtn" style="margin-left: 12px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 Watch 30s Film
             </a>
             <a href="#architecture" class="btn-secondary" style="margin-left: 12px;">View Structural Moat</a>
         </div>
 
         <div class="logo-wrapper reveal-up delay-300" id="hero3DWrapper">
-            <img src="assets/omnibaselogo.png" alt="Omnibase Custom Logo" id="hero3DMockup" class="logo-3d-image">
+            <img src="assets/omnibaselogo.png" alt="Omnibase Unified Icon" id="hero3DMockup" class="logo-3d-image" width="280" height="280">
         </div>
     </header>
-<!-- DEDICATED CINEMATIC FILM SECTION -->
-<section class="container film-section reveal-up" id="film-showcase">
-    <div class="eyebrow" style="justify-content: center;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
-        Cinematic Vision • 0:30
-    </div>
-    <h2 class="text-gradient" style="font-size: clamp(32px, 5vw, 56px); margin-bottom: 16px;">One Connected Region. In a Single App.</h2>
-    <p style="color: var(--text-secondary); font-size: 19px; max-width: 760px; margin: 0 auto;">
-        From emergency triage and master artisans to luxury showrooms and cryptographic vaults—watch how Omnibase eliminates fragmented apps and consolidates the consumer economy.
-    </p>
 
-    <div class="video-showcase-wrapper">
-        <div class="video-ambient-glow"></div>
-        <div class="video-frame" id="commercialFrame">
+    <!-- CINEMATIC FILM SECTION -->
+    <section class="container film-section reveal-up" id="film-showcase">
+        <div class="eyebrow" style="justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+            Cinematic Vision • 0:30
+        </div>
+        <h2 class="text-gradient" style="font-size: clamp(32px, 5vw, 56px); margin-bottom: 16px;">One Connected Region. In a Single App.</h2>
+        <p style="color: var(--text-secondary); font-size: 19px; max-width: 760px; margin: 0 auto;">
+            From emergency triage and master artisans to luxury showrooms and cryptographic vaults—watch how Omnibase eliminates fragmented apps and consolidates the consumer economy.
+        </p>
+
+        <div class="video-showcase-wrapper">
+            <div class="video-ambient-glow"></div>
+            <div class="video-frame" id="commercialFrame">
                 <video 
                     id="omnibaseCommercial" 
                     class="video-player" 
@@ -1899,8 +2130,8 @@
                     Your browser does not support HTML5 video.
                 </video>
 
-                <button class="video-control-pill" id="soundToggleBtn">
-                    <svg id="soundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <button class="video-control-pill" id="soundToggleBtn" aria-label="Toggle Film Audio">
+                    <svg id="soundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                         <line x1="23" y1="9" x2="17" y2="15"></line>
                         <line x1="17" y1="9" x2="23" y2="15"></line>
@@ -1908,13 +2139,14 @@
                     <span id="soundLabel">Play with Sound (0:30)</span>
                 </button>
             </div>
-    </div>
-</section>
-<!-- 1.5 THE CONSUMER DISCOVERY REVOLUTION -->
+        </div>
+    </section>
+
+    <!-- 1.5 CONSUMER DISCOVERY REVOLUTION -->
     <section class="container" style="padding-top: 20px; padding-bottom: 20px;" id="discovery-revolution">
         <div class="section-header reveal-up">
             <div class="eyebrow" style="justify-content: center;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 Proprietary Discovery Engine
             </div>
             <h2 class="text-gradient">The Discovery Revolution.</h2>
@@ -1924,12 +2156,11 @@
         </div>
 
         <div class="bento-grid">
-            <!-- FLAGSHIP CARD: Living Gateway Narrative + Titanium Phone Mockup -->
+            <!-- Living Gateway Bento -->
             <div class="bento-card col-span-12 reveal-up living-gateway-card">
-                <!-- Left: Full Text & Features -->
                 <div class="gateway-text-col">
                     <div class="eyebrow" style="color: var(--brand-electric-blue);">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
                         Sensory Immersion
                     </div>
                     <h3 style="font-size: clamp(26px, 4vw, 36px); margin-bottom: 16px;">Hardware-Managed Video Personas.</h3>
@@ -1938,14 +2169,13 @@
                     </p>
                     <div class="elite-features">
                         <ul>
-							<li><strong style="color: var(--brand-electric-blue);">Exclusive Characters:</strong> 450+ video assets and 3D animated characters in both light and dark modes, made exclusively for Omnibase.</li>
+                            <li><strong style="color: var(--brand-electric-blue);">Exclusive Characters:</strong> 450+ video assets and 3D animated characters in both light and dark modes, made exclusively for Omnibase.</li>
                             <li><strong style="color: var(--brand-electric-blue);">Asymmetric Viewport Culling:</strong> Hardware decoders pause at 50% occlusion, preserving 60/120fps fluid scrolling.</li>
                             <li><strong style="color: var(--brand-electric-blue);">Domain Spotlight FSM:</strong> Synchronized character slicing illuminates active keywords in real time.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Right: Clean Phone Mockup (NO fake notch, NO video cropping) -->
                 <div class="gateway-phone-col">
                     <div class="phone-ambient-glow"></div>
                     <div class="phone-frame">
@@ -1966,9 +2196,8 @@
                 </div>
             </div>
 
-<!-- Card B: Procedure-to-Provider Multi-Search (Video Left, Text Right) -->
+            <!-- Faceted Multi-Search Bento -->
             <div class="bento-card col-span-12 reveal-up delay-100 search-bento-card">
-                <!-- Left: 480x480 Video Showcase -->
                 <div class="search-video-col">
                     <div class="search-ambient-glow"></div>
                     <div class="search-video-frame">
@@ -1988,10 +2217,9 @@
                     </div>
                 </div>
 
-                <!-- Right: Copy & Architecture Bullets -->
                 <div class="search-text-col">
                     <div class="eyebrow" style="color: var(--brand-soft-violet);">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                         Faceted Search Engine
                     </div>
                     <h3 style="font-size: clamp(26px, 4vw, 36px); margin-bottom: 16px;">Single-Tap Checkout Handoff.</h3>
@@ -2008,10 +2236,11 @@
             </div>
         </div>
     </section>
-    <!-- 2. MARKET VALIDATION & SCOPE -->
+
+    <!-- 2. MARKET OPPORTUNITY & AUDITED PROJECTIONS -->
     <section class="metrics-section container reveal-up" id="metricsSection">
-        <svg class="chart-bg" viewBox="0 0 1000 300" preserveAspectRatio="none">
-            <path class="chart-path" d="M 0,250 C 300,250 500,200 700,100 S 900,20 1000,10" fill="none" stroke="var(--brand-electric-blue)" stroke-width="2"></path>
+        <svg class="chart-bg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+            <path class="chart-path" d="M 0,250 C 300,250 500,200 700,100 S 900,20 1000,10" fill="none" stroke="var(--brand-electric-blue)" stroke-width="2.5"></path>
         </svg>
 
         <h2 class="text-gradient" style="font-size: clamp(32px, 6vw, 48px); margin-bottom: 16px;">Market Opportunity.</h2>
@@ -2032,13 +2261,12 @@
             </div>
         </div>
 
-        <!-- Data Sources Trigger -->
-<!-- Retouched Due Diligence Trigger -->
+        <!-- Institutional Audited Due Diligence Trigger -->
         <div class="capsule-trigger-wrapper reveal-up delay-200">
             <div class="capsule-glow-aura capsule-glow-gold"></div>
-            <button class="institutional-capsule" id="openSourcesBtn">
+            <button class="institutional-capsule institutional-capsule-gold" id="openSourcesBtn" aria-label="Open Financial Methodology and Data Sources">
                 <div class="capsule-icon-box capsule-icon-gold">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         <polyline points="9 12 11 14 15 10"></polyline>
                     </svg>
@@ -2049,17 +2277,17 @@
                 </div>
                 <span class="capsule-action-badge">
                     <span>Inspect Sources</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </span>
             </button>
         </div>
     </section>
 
-<!-- 6. COMPETITIVE LANDSCAPE -->
+    <!-- 6. THE COMPETITIVE MOAT -->
     <section class="container" style="padding-top: 40px; margin-bottom: 80px;" id="competition">
         <div class="section-header reveal-up">
             <div class="eyebrow" style="justify-content: center;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 Market Domination
             </div>
             <h2 class="text-gradient">The Competitive Moat.</h2>
@@ -2083,90 +2311,77 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Row 1 -->
                         <tr>
                             <td class="capability-td" data-label="Capability">Market Architecture</td>
                             <td class="omni-pillar-td" data-label="Omnibase">
                                 <div class="omni-cell-content">
-                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     <span>137 Verticals Unified (Super-App)</span>
                                 </div>
                             </td>
                             <td class="competitor-td" data-label="Niche Aggregators">Fragmented Single-Purpose Apps</td>
                             <td class="competitor-td" data-label="Retail SaaS">Siloed Merchant-Specific Webstores</td>
                         </tr>
-
-                        <!-- Row 2 -->
                         <tr>
                             <td class="capability-td" data-label="Capability">Search Handoff</td>
                             <td class="omni-pillar-td" data-label="Omnibase">
                                 <div class="omni-cell-content">
-                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     <span>Cross-Industry Procedure-to-Provider Rollup</span>
                                 </div>
                             </td>
                             <td class="competitor-td" data-label="Niche Aggregators">Directory Listings & Lead Referral Forms</td>
                             <td class="competitor-td" data-label="Retail SaaS">Isolated Product Catalog Search</td>
                         </tr>
-
-                        <!-- Row 3 -->
                         <tr>
                             <td class="capability-td" data-label="Capability">Discovery Feed Architecture</td>
                             <td class="omni-pillar-td" data-label="Omnibase">
                                 <div class="omni-cell-content">
-                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     <span>Edge-Denormalized (0-Read Feed Scrolling)</span>
                                 </div>
                             </td>
                             <td class="competitor-td" data-label="Niche Aggregators">Session-Based API Cloud Polling</td>
                             <td class="competitor-td" data-label="Retail SaaS">No Unified Consumer Discovery Network</td>
                         </tr>
-
-                        <!-- Row 4 -->
                         <tr>
                             <td class="capability-td" data-label="Capability">UI & Infrastructure Engine</td>
                             <td class="omni-pillar-td" data-label="Omnibase">
                                 <div class="omni-cell-content">
-                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     <span>Single Server-Driven UI (SDUI) Core</span>
                                 </div>
                             </td>
                             <td class="competitor-td" data-label="Niche Aggregators">Independent Domain Codebases</td>
                             <td class="competitor-td" data-label="Retail SaaS">Extensive 3rd-Party App Ecosystems</td>
                         </tr>
-
-                        <!-- Row 5 -->
                         <tr>
                             <td class="capability-td" data-label="Capability">Customer Acquisition Model</td>
                             <td class="omni-pillar-td" data-label="Omnibase">
                                 <div class="omni-cell-content">
-                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     <span>Multi-Vertical Cross-Pollination Advantage</span>
                                 </div>
                             </td>
                             <td class="competitor-td" data-label="Niche Aggregators">High Paid Search (SEM) per Vertical</td>
                             <td class="competitor-td" data-label="Retail SaaS">100% Merchant-Funded Acquisition</td>
                         </tr>
-
-                        <!-- Row 6 -->
                         <tr>
                             <td class="capability-td" data-label="Capability">In-App Transaction Execution</td>
                             <td class="omni-pillar-td" data-label="Omnibase">
                                 <div class="omni-cell-content">
-                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     <span>Contractual SDUI Chat Cards (Quotes, Passes, Invoices)</span>
                                 </div>
                             </td>
                             <td class="competitor-td" data-label="Niche Aggregators">Basic Messaging / External Links</td>
                             <td class="competitor-td" data-label="Retail SaaS">Standard Web Checkout / Basic Chat Widgets</td>
                         </tr>
-
-                        <!-- Row 7 -->
                         <tr>
                             <td class="capability-td" data-label="Capability">Client Records & History</td>
                             <td class="omni-pillar-td" data-label="Omnibase">
                                 <div class="omni-cell-content">
-                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg class="omni-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     <span>Sovereign Local-First Vault (Partitioned Offline Storage)</span>
                                 </div>
                             </td>
@@ -2179,7 +2394,7 @@
         </div>
     </section>
 
-<!-- GO-TO-MARKET / WEDGE STRATEGY -->
+    <!-- WEDGE STRATEGY -->
     <section class="container" style="padding-bottom: 80px;" id="strategy">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">The Wedge Strategy.</h2>
@@ -2187,11 +2402,10 @@
         </div>
 
         <div class="wedge-showcase-grid">
-            <!-- Left: Flagship Strategic Flywheel Bento Card -->
             <div class="bento-card wedge-flywheel-card reveal-up">
                 <div style="width: 100%;">
                     <div class="eyebrow" style="color: var(--brand-electric-blue); justify-content: center; margin-bottom: 8px;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
                         Autonomous Flywheel
                     </div>
                     <h3 style="font-size: 24px; color: #fff; margin-bottom: 4px;">The Infiltration Engine.</h3>
@@ -2217,7 +2431,6 @@
                     </div>
                 </div>
 
-                <!-- Tricolor Strategic Flow Milestone Connector -->
                 <div class="wedge-flow-connector">
                     <div class="flow-node" style="--node-color: #FF453A;">
                         <span class="flow-dot"></span>
@@ -2236,32 +2449,28 @@
                 </div>
             </div>
 
-            <!-- Right: The 3 Phased Sequential Milestones (100% Verbatim) -->
             <div class="wedge-steps-col">
-                <!-- Phase 1: Infiltration -->
                 <div class="wedge-phase-card reveal-up delay-100">
                     <div class="phase-badge-pill" style="color: #FF453A;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         Phase 1: Infiltration
                     </div>
                     <h3>The High-Friction Anchor.</h3>
-                    <p>We target verticals where existing SaaS fails completely—such as <strong>Clinical Practitioners</strong> and <strong>Emergency Operators</strong>. We confidently expect that Businesses won't be able to turn down this offer and adopt Omnibase for our <strong>free</strong>, HIPAA-grade Case Vaults and SOS Dispatch engine. In doing so, they actively onboard their existing client bases onto our platform for us.</p>
+                    <p>We target verticals where existing SaaS fails completely—such as <strong>Clinical Practitioners</strong> and <strong>Emergency Operators</strong>. We confidently expect that businesses won't be able to turn down this offer and adopt Omnibase for our <strong>free</strong>, HIPAA-grade Case Vaults and SOS Dispatch engine. In doing so, they actively onboard their existing client bases onto our platform for us.</p>
                 </div>
 
-                <!-- Phase 2: Zero Marginal CAC -->
                 <div class="wedge-phase-card reveal-up delay-200">
                     <div class="phase-badge-pill" style="color: var(--brand-electric-blue);">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
                         Phase 2: Zero Marginal CAC
                     </div>
                     <h3>The Cross-Pollination Engine.</h3>
                     <p>Once a user downloads Omnibase e.g. for a medical emergency, they are natively exposed to the other 136 verticals. We pay to acquire a user <em>once</em>, but monetize them across groceries, luxury showrooms, and retail permanently. <strong>Our blended Customer Acquisition Cost (CAC) trends toward zero.</strong></p>
                 </div>
 
-                <!-- Phase 3: Monopoly -->
                 <div class="wedge-phase-card reveal-up delay-300">
                     <div class="phase-badge-pill" style="color: var(--brand-gold);">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                         Phase 3: Monopoly
                     </div>
                     <h3>The Master Taxonomy Graph.</h3>
@@ -2271,40 +2480,39 @@
         </div>
     </section>
 
-    <!-- 3. THE SOLUTION (Archetypes & Psychology) -->
+    <!-- 3. POLYMORPHIC ARCHITECTURE -->
     <section class="container" style="padding-top: 60px;">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Polymorphic Architecture.</h2>
             <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">Form follows psychology. One unified codebase dynamically re-renders into six distinct, industry-optimized Super-Apps. Powered by our proprietary Server-Driven UI (SDUI), each archetype is mathematically engineered to trigger specific behavioral conversions.</p>
-<!-- Retouched Taxonomy Matrix Trigger -->
-        <div class="capsule-trigger-wrapper reveal-up delay-100">
-            <div class="capsule-glow-aura"></div>
-            <button class="institutional-capsule" id="openArchetypesBtn">
-                <div class="capsule-icon-box">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
-                </div>
-                <div class="capsule-text-col">
-                    <span class="capsule-eyebrow">Universal Schema Graph</span>
-                    <span class="capsule-title">Explore Complete 137-Vertical Taxonomy Matrix</span>
-                </div>
-                <span class="capsule-action-badge">
-                    <span>Inspect Matrix</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </span>
-            </button>
-        </div>
-        </div>
- 
 
-       <div class="bento-grid">
+            <div class="capsule-trigger-wrapper reveal-up delay-100">
+                <div class="capsule-glow-aura"></div>
+                <button class="institutional-capsule" id="openArchetypesBtn" aria-label="Open 137-Vertical Taxonomy Matrix Dialog">
+                    <div class="capsule-icon-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="capsule-text-col">
+                        <span class="capsule-eyebrow">Universal Schema Graph</span>
+                        <span class="capsule-title">Explore Complete 137-Vertical Taxonomy Matrix</span>
+                    </div>
+                    <span class="capsule-action-badge">
+                        <span>Inspect Matrix</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="bento-grid">
             <!-- 1. Practitioner -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     Healthcare & Advisory Platform
                 </div>
                 <h3>The Practitioner</h3>
@@ -2321,7 +2529,7 @@
             <!-- 2. Operator -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                     Emergency & Fleet Infrastructure
                 </div>
                 <h3>The Field Operator</h3>
@@ -2338,7 +2546,7 @@
             <!-- 3. Artisan -->
             <div class="bento-card col-span-4 reveal-up">
                 <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                     Bespoke Craft Studio
                 </div>
                 <h3>The Artisan</h3>
@@ -2355,7 +2563,7 @@
             <!-- 4. Destination -->
             <div class="bento-card col-span-4 reveal-up delay-100">
                 <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
                     Hospitality & Venue OS
                 </div>
                 <h3>The Destination</h3>
@@ -2372,7 +2580,7 @@
             <!-- 5. Merchant -->
             <div class="bento-card col-span-4 reveal-up delay-200">
                 <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     High-Velocity Retail Engine
                 </div>
                 <h3>The Merchant</h3>
@@ -2389,7 +2597,7 @@
             <!-- 6. Showroom -->
             <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #111114 0%, #050506 100%);">
                 <div class="eyebrow-gold">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13"/><path d="M13 3l3 6-4 13"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13"/><path d="M13 3l3 6-4 13"/></svg>
                     High-Ticket Dealership Suite
                 </div>
                 <h3>The Showroom Mechanics.</h3>
@@ -2400,7 +2608,7 @@
         </div>
     </section>
 
-	<!-- 3.5 MASTER TAXONOMY GRAPH (BUILT-IN BRANDS) -->
+    <!-- 3.5 MASTER TAXONOMY GRAPH -->
     <section class="container" style="padding-top: 80px; padding-bottom: 40px;" id="brands-ecosystem">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">The Master Taxonomy Graph.</h2>
@@ -2410,34 +2618,28 @@
         </div>
 
         <div class="bento-card col-span-12 reveal-up delay-100" style="padding: 0; display: flex; flex-direction: column;">
-            
-            <!-- Tab Navigation -->
             <div class="brand-tabs-header">
-                <button class="brand-tab active" data-target="cars">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                <button class="brand-tab active" data-target="cars" aria-label="View Automotive Taxonomy">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
                     Automotive
                 </button>
-                <button class="brand-tab" data-target="motos">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="15.5" r="3.5"/><circle cx="18.5" cy="15.5" r="3.5"/><path d="M15 6a3.5 3.5 0 1 0 0 7h-6a3.5 3.5 0 1 1 0-7z"/></svg>
+                <button class="brand-tab" data-target="motos" aria-label="View Motorcycles Taxonomy">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5.5" cy="15.5" r="3.5"/><circle cx="18.5" cy="15.5" r="3.5"/><path d="M15 6a3.5 3.5 0 1 0 0 7h-6a3.5 3.5 0 1 1 0-7z"/></svg>
                     Motorcycles
                 </button>
-                <button class="brand-tab" data-target="watches">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"/></svg>
+                <button class="brand-tab" data-target="watches" aria-label="View Horology Taxonomy">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"/></svg>
                     Horology
                 </button>
             </div>
 
-            <!-- Grid Wrapper with Gradient Fade Illusion -->
             <div class="brand-grid-wrapper">
                 <div class="grid-fade-top"></div>
-                
                 <div class="brand-scroll-container">
-                    <!-- Dynamic grids injected via JS -->
                     <div class="brand-grid active" id="grid-cars"></div>
                     <div class="brand-grid" id="grid-motos"></div>
                     <div class="brand-grid" id="grid-watches"></div>
                 </div>
-                
                 <div class="grid-fade-bottom"></div>
             </div>
             
@@ -2446,19 +2648,18 @@
             </div>
         </div>
     </section>
-	
-	<!-- 3.5 CORE PLATFORM MECHANICS (The Product Showcase) -->
+    
+    <!-- CORE PLATFORM MECHANICS -->
     <section class="container" style="padding-top: 40px; padding-bottom: 40px;" id="product-mechanics">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Core Platform Mechanics.</h2>
             <p style="color: var(--text-secondary); font-size: 20px; max-width: 800px; margin: 0 auto;">We translated our architectural moat into three distinct product engines. Every feature is designed to collapse the distance between discovery and transaction.</p>
         </div>
 
-       <div class="bento-grid">
-            <!-- The Map Engine -->
+        <div class="bento-grid">
             <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #0e121a 0%, #050506 100%);">
                 <div class="eyebrow" style="color: #0091FF;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                     O2O Geospatial Liquidity
                 </div>
                 <h3 style="font-size: 36px;">The Spatial Radar.</h3>
@@ -2467,20 +2668,18 @@
                 </p>
             </div>
 
-            <!-- The Scheduling Engine -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow" style="color: #A085FF;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     0-Read Scalability
                 </div>
                 <h3>Edge-Denormalized Scheduling.</h3>
                 <p>We built an enterprise-tier scheduling orchestrator natively into every profile. Live availability slots are pre-computed at the edge and denormalized directly onto provider profiles. Users scroll through thousands of live doctor and clinic schedules with <strong>zero active database reads</strong>, eliminating the cloud composite-index ceiling while providing 10-minute TTL soft-locks, turnaround padding, and collision-free booking.</p>
             </div>
 
-            <!-- Conversational Commerce & Ghost Button Defense -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow" style="color: #00C853;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                     Cryptographic State Integrity
                 </div>
                 <h3>Transactional Chat & Temporal Button Defense.</h3>
@@ -2488,30 +2687,27 @@
             </div>
         </div>
     </section>
-	
-    <!-- 4. REVENUE MODEL & INFRASTRUCTURE MOAT -->
+
+    <!-- 4. REVENUE & INFRASTRUCTURE MOAT -->
     <section class="container" style="padding-top: 80px;">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Unit Economics & Defensive Moats.</h2>
             <p style="color: var(--text-secondary); font-size: 20px; max-width: 750px; margin: 0 auto;">Omnibase is not just a UI layer. It is a mathematically sealed ecosystem designed to extract B2B revenue, leverage AI intent routing, and obliterate traditional deployment bottlenecks.</p>
         </div>
 
-       <div class="bento-grid">
-            <!-- Monetization (How you make money) -->
+        <div class="bento-grid">
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow-gold">Compounding Revenue</div>
                 <h3>The B2B Monetization Engine.</h3>
                 <p>We do not rely solely on B2C transaction fees. Omnibase is planned to generate high-margin Monthly Recurring Revenue (MRR) by allowing businesses to upgrade to <strong>Premium Status</strong>. This grants them algorithmic boosting, verified gold badges, and priority placement in our ~0ms Typesense search cluster, creating a localized bidding war for visibility.</p>
             </div>
 
-            <!-- The OTA Encryption & JIT Architecture -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow" style="color: #00C853;">Project Aegis</div>
                 <h3>4-Tier JIT Hydration & OTA Encryption.</h3>
                 <p>We bypass App Store monopolies entirely. Our Node.js Admin Panel encrypts new UI architectures (SDUI manifests) via <strong>AES-256-GCM</strong> and pushes them to devices globally. The client utilizes a proprietary <strong>4-Tier Deferred JIT Engine</strong> and <strong>Recursive DAG Cleansing</strong> to render open-scale taxonomies with ~0ms RAM latency and zero memory leaks. We can launch entirely new industries instantly.</p>
             </div>
 
-            <!-- NEW: Automated Revenue Recovery & Capacity Management -->
             <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #0e121a 0%, #050506 100%);">
                 <div class="eyebrow" style="color: var(--brand-electric-blue);">Zero-Waste Capacity</div>
                 <h3>Automated Revenue Recovery & Space-Time Waitlists.</h3>
@@ -2520,7 +2716,6 @@
                 </p>
             </div>
 
-            <!-- LTV & Stickiness -->
             <div class="bento-card col-span-12 reveal-up" style="background: linear-gradient(145deg, #111114 0%, #08080a 100%);">
                 <div class="eyebrow">Maximizing Lifetime Value (LTV)</div>
                 <h3>The Sovereign Case Vault.</h3>
@@ -2531,19 +2726,18 @@
                 </p>
                 <div class="loop-container">
                     <div class="loop-step">1. Discovery Engine<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">High-Intent Capture</span></div>
-                    <div class="loop-arrow">→</div>
+                    <div class="loop-arrow">?</div>
                     <div class="loop-step">2. Deep Chat<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">Frictionless Contact</span></div>
-                    <div class="loop-arrow">→</div>
+                    <div class="loop-arrow">?</div>
                     <div class="loop-step">3. Smart Transaction<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">Instant Revenue</span></div>
-                    <div class="loop-arrow">→</div>
+                    <div class="loop-arrow">?</div>
                     <div class="loop-step">4. Case Vault<br><span style="font-size: 12px; color: var(--text-secondary); font-weight: normal;">Long-term Lock-in</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. THE TECH MOAT (Scrollytelling) -->
-<!-- 5. THE TECH MOAT (Scrollytelling) -->
+    <!-- 5. THE STRUCTURAL ARCHITECTURE (SCROLLYTELLING) -->
     <section id="architecture" class="scrollytelling-wrapper">
         <div class="container" style="display: flex; width: 100%;">
             <div class="scroll-text-col">
@@ -2558,12 +2752,11 @@
                     <h3>Near~Zero Read Costs.</h3>
                     <p>By utilizing strict Unidirectional Data Flow (UDF) and querying 1-millisecond chronological deltas, we update interfaces instantly without continuously pinging the database. Result: Enterprise-grade real-time interactions with radically compressed AWS/GCP burn rates.</p>
                     
-                    <!-- Mobile Chassis (Displays exclusively on mobile / tablet < 992px) -->
                     <div class="mobile-step-visual">
                         <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
                         <div class="mobile-phone-chassis">
                             <div class="phone-glare"></div>
-                            <img src="assets/cost_reduction.webp" alt="Near~Zero Read Costs" loading="lazy">
+                            <img src="assets/cost_reduction.webp" alt="Near~Zero Read Costs Interface Demonstration" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -2574,12 +2767,11 @@
                     <h3>Geospatial Temporal Anchoring.</h3>
                     <p>We decoupled the scheduling engine from device hardware clocks. Every business is assigned a sovereign mathematical timezone anchor. This enables a user in New York to book a clinic in Dubai with zero "midnight-rollover" database lock collisions, granting Omnibase immediate global borderlessness.</p>
                     
-                    <!-- Mobile Chassis -->
                     <div class="mobile-step-visual">
                         <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
                         <div class="mobile-phone-chassis">
                             <div class="phone-glare"></div>
-                            <img src="assets/global_scaling.webp" alt="Geospatial Temporal Anchoring" loading="lazy">
+                            <img src="assets/global_scaling.webp" alt="Geospatial Temporal Anchoring Demonstration" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -2590,12 +2782,11 @@
                     <h3>The 170k Node Edge Cache.</h3>
                     <p>Our 4-Tier Deferred JIT Engine handles a massive taxonomy of over 172,000 deep-tree nodes (Makes, Models, Specs) securely offline. By mapping these to AES-GCM encrypted asset bundles, we eradicate external API latency and achieve 0ms dropdown hydration, mathematically eliminating RAM spikes.</p>
                     
-                    <!-- Mobile Chassis -->
                     <div class="mobile-step-visual">
                         <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
                         <div class="mobile-phone-chassis">
                             <div class="phone-glare"></div>
-                            <img src="assets/0(1).webp" alt="The 170k Node Edge Cache" loading="lazy">
+                            <img src="assets/0(1).webp" alt="170k Node Edge Cache Demonstration" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -2606,12 +2797,11 @@
                     <h3>Air-Gapped Resiliency Mesh.</h3>
                     <p>Firebase egress costs are neutralized via a dual-engine routing matrix. High-velocity queries hit our proprietary Typesense RAM cluster (0.002ms latency). Upon network degradation, the architecture autonomously splices into an offline SQLite FTS5 engine. The platform remains fully operational without internet access.</p>
                     
-                    <!-- Mobile Chassis -->
                     <div class="mobile-step-visual">
                         <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
                         <div class="mobile-phone-chassis">
                             <div class="phone-glare"></div>
-                            <img src="assets/zero_downtime.webp" alt="Air-Gapped Resiliency Mesh" loading="lazy">
+                            <img src="assets/zero_downtime.webp" alt="Air-Gapped Resiliency Mesh Demonstration" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -2622,19 +2812,17 @@
                     <h3>Strict-Type Search Matrix.</h3>
                     <p>Our search infrastructure achieves 100% logic parity between the offline SQLite fallback and the cloud Typesense cluster. The engine autonomously parses multi-value SDUI arrays, executing dynamic AND/OR intersections to guarantee exact-match precision across millions of potential product attribute combinations.</p>
                     
-                    <!-- Mobile Chassis -->
                     <div class="mobile-step-visual">
                         <div class="phone-ambient-glow" style="width: 220px; height: 380px;"></div>
                         <div class="mobile-phone-chassis">
                             <div class="phone-glare"></div>
-                            <img src="assets/faceted_precision.webp" alt="Strict-Type Search Matrix" loading="lazy">
+                            <img src="assets/faceted_precision.webp" alt="Strict-Type Search Matrix Demonstration" loading="lazy">
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Desktop Sticky Column (Displays on screens >= 992px) -->
+            <!-- Desktop Sticky Chassis -->
             <div class="sticky-visual-col">
                 <div class="phone-ambient-glow" style="width: 320px; height: 580px;"></div>
                 <div class="sticky-mockup" id="stickyMockup">
@@ -2649,7 +2837,7 @@
         </div>
     </section>
 
-    <!-- START: Omnibase Ops (Admin Infrastructure) Section -->
+    <!-- OMNIBASE OPS: THE COMMAND NODE -->
     <section class="container" style="padding-top: 80px; padding-bottom: 40px;">
         <div class="section-header reveal-up">
             <h2 class="text-gradient">Omnibase Ops: The Command Node.</h2>
@@ -2657,101 +2845,90 @@
         </div>
 
         <div class="bento-grid">
-            <!-- KYC & Trust/Safety (Zero-Trust IAM Firewall) -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow" style="color: #FF453A;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     Zero-Trust Cloud Firewall
                 </div>
                 <h3>Cross-Service IAM Security.</h3>
                 <p>We do not rely on client-side security. The infrastructure deploys <strong>Cross-Service IAM Validation</strong>, allowing Firebase Storage to dynamically query Firestore RBAC rules before accepting payloads. This mathematically prevents Cloud Egress billing attacks, eradicates UI vandalism, and guarantees HIPAA-grade data isolation for our Clinical Case Vaults.</p>
             </div>
             
-            <!-- Telemetry & GMV (Top Cards & Matrix) -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                     Macro-Level Observability
                 </div>
                 <h3>Real-Time GMV & Shard Telemetry.</h3>
                 <p>Aggregates cross-vertical liquidity and user velocity into a unified 30-day matrix. The dashboard provides executive operators with real-time visibility into Gross Merchandise Value (GMV), subscription cohorts, and active business states, eliminating the need for fragmented third-party analytics.</p>
             </div>
 
-            <!-- Monetization (Gold Badge) -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow-gold">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                     B2B Yield Optimization
                 </div>
                 <h3>Granular Monetization Operations.</h3>
                 <p>Full control over platform Monthly Recurring Revenue (MRR). The monetization console empowers operators to dynamically allocate or revoke algorithmic boosting mechanisms—such as the Premium Visibility Badge—directly influencing organic search ranking and driving B2B subscription upgrades.</p>
             </div>
 
-            <!-- Heuristic Insights -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow" style="color: #A085FF;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                     Algorithmic Intelligence
                 </div>
                 <h3>Predictive Market Heuristics.</h3>
                 <p>A built-in neural tracking module actively ingests ecosystem volume and interaction data. As platform data scales, this module automatically transitions from raw collection to predictive trend analysis, continuously surfacing high-value market intelligence to guide strategic expansion.</p>
             </div>
 
-			<!-- Enterprise RBAC -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow" style="color: #0091FF;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     B2B SaaS Scalability
                 </div>
                 <h3>Enterprise RBAC & Delegation.</h3>
                 <p>We don't just serve solo-preneurs. Omnibase features native Role-Based Access Control (RBAC). Store owners can instantly provision access to receptionists, nurses, or fleet dispatchers. Our Cross-Service IAM automatically cascades these permissions to the Storage layer, enabling secure, multi-tenant team operations out of the box.</p>
             </div>
 
-            <!-- Reputation Engine (Anti-Cheat) -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow" style="color: #FFD700;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     Marketplace Integrity
                 </div>
                 <h3>Cryptographic Reputation Engine.</h3>
                 <p>Marketplaces deplete from fake reviews and bot manipulation. We built a mathematical Anti-Cheat Shard Engine directly into our backend security rules. The system cryptographically validates that rating increments perfectly match the review count deltas, making score manipulation and review-bombing physically eradicated.</p>
             </div>
 
-            <!-- NEW: Marketplace Integrity & Anti-Spam Shield -->
             <div class="bento-card col-span-6 reveal-up">
                 <div class="eyebrow" style="color: #00C853;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
                     Anti-Abuse Guardrails
                 </div>
                 <h3>Symmetrical Queue & Spam Firewalls.</h3>
                 <p>Consumer marketplaces often collapse under bot reservation flooding and notification spam. Omnibase enforces mathematical <strong>1-to-1 pending booking ratios</strong> (buyers cannot spam-book multiple slots) paired with an automated 10-message sliding window spam shield, guaranteeing platform stability at global scale.</p>
             </div>
 
-            <!-- NEW: 30-Day Purgatory & Nuclear Cloud Reaper -->
             <div class="bento-card col-span-6 reveal-up delay-100">
                 <div class="eyebrow" style="color: #FF453A;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                     Data Sovereignty & Hygiene
                 </div>
                 <h3>30-Day Purgatory & Cloud Reaper.</h3>
                 <p>Deactivated stores enter a 30-day soft-delete purgatory secured by Danger Zone name verification, preserving business records and enabling instant restoration. Upon expiration, autonomous cloud daemons execute cascading wipes across databases and storage buckets, leaving zero orphaned assets.</p>
             </div>
 
-            <!-- Financial Reaper -->
             <div class="bento-card col-span-12 reveal-up">
                 <div class="eyebrow" style="color: #00C853;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                     Atomic Ledger Reconciliation
                 </div>
-				
                 <h3>The Financial Reaper Engine.</h3>
                 <p>Zero manual accounting required. At 2:00 AM daily, our autonomous cloud functions sweep the ecosystem for completed appointments, locking final transaction values and updating the global GMV ledger. The system executes <strong>atomic batch transformations</strong>, permanently converting chat proposals into cryptographically sealed <code>DIGITAL_RECEIPTS</code>. The ledger is mathematically immune to client-side tampering.</p>
             </div>
         </div>
     </section>
-    <!-- END: Omnibase Ops (Admin Infrastructure) Section -->
 
-    <!-- 7. TEAM SECTION (10x Solo Founder Flex) -->
+    <!-- 7. THE LEADERSHIP -->
     <section class="container" style="padding: 40px 0 80px;" id="team">
         <div class="section-header reveal-up" style="margin-bottom: 40px;">
             <h2 class="text-gradient" style="font-size: 40px;">The Leadership.</h2>
@@ -2761,8 +2938,7 @@
         <div class="bento-grid" style="justify-content: center; display: flex;">
             <div class="bento-card col-span-6 reveal-up team-profile" style="width: 100%; max-width: 500px; align-items: center; text-align: center;">
                 <div class="founder-avatar-wrapper" style="width: 120px; height: 120px;">
-                    <!-- Replace src with your headshot file path or URL -->
-                    <img src="assets/pf.png" alt="Ahmad Al Khatib" class="founder-avatar">
+                    <img src="assets/pf.png" alt="Ahmad Al Khatib Portrait" class="founder-avatar" width="120" height="120">
                 </div>
                 
                 <div class="team-role" style="color: var(--brand-electric-blue); font-weight: 800; letter-spacing: 1px; margin-bottom: 8px;">FOUNDER & LEAD ARCHITECT</div>
@@ -2770,30 +2946,31 @@
                 <p style="font-size: 16px;">
                     <a href="https://www.ahmad-khatib.com" target="_blank" rel="noopener noreferrer" class="founder-link">
                         View Developer Portfolio
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                     </a>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- 8. THE ASK -->
+    <!-- 8. THE SEED ROUND CALL -->
     <section class="container reveal-up" style="text-align: center; padding: 40px 0 100px;" id="invest">
-        <h2 style="font-size: 56px; margin-bottom: 24px;" class="text-gradient">Opening Seed Round.</h2>
+        <h2 style="font-size: clamp(36px, 6vw, 56px); margin-bottom: 24px;" class="text-gradient">Opening Seed Round.</h2>
         <p style="color: var(--text-secondary); font-size: 20px; max-width: 700px; margin: 0 auto 48px;">
             The engineering risk is eliminated. The architecture is almost production-ready. We are opening our Seed Round to fund 18 months of aggressive user acquisition and B2B onboarding. We are not building software; we are scaling a monopoly.
         </p>
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
             <a href="mailto:ahmad@ahmad-khatib.com" class="btn-primary" style="font-size: 16px; padding: 18px 36px;">Schedule Investor Briefing</a>
-            <!-- Optional: Link to your compiled APK so VCs can test the 120fps UI -->
             <a href="assets/omnibase-investor-apk.apk" download class="btn-secondary" style="font-size: 16px; padding: 18px 36px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Download Android Demo
             </a>
         </div>
     </section>
 
-    <!-- Archetypes/Verticals Modal -->
+    <!-- SEMANTIC MODALS (Placed before scripts for robust DOM hydration) -->
+    
+    <!-- Archetypes / Verticals Modal -->
     <div class="modal-overlay" id="archetypesModal" role="dialog" aria-modal="true" aria-labelledby="archetypesModalTitle">
         <div class="modal-content bento-card" style="max-width: 800px;">
             <button class="modal-close" id="closeArchetypesBtn" aria-label="Close Archetypes Dialog">&times;</button>
@@ -2802,7 +2979,6 @@
             <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 0;">Dynamically configured via a single Server-Driven UI schema.</p>
             
             <div class="verticals-scroll-container">
-                <!-- Practitioner -->
                 <div class="archetype-group">
                     <h4 class="archetype-title text-gradient-blue">Practitioner</h4>
                     <div class="archetype-tags">
@@ -2810,7 +2986,6 @@
                     </div>
                 </div>
 
-                <!-- Merchant -->
                 <div class="archetype-group">
                     <h4 class="archetype-title text-gradient-blue">Merchant</h4>
                     <div class="archetype-tags">
@@ -2818,7 +2993,6 @@
                     </div>
                 </div>
 
-                <!-- Destination -->
                 <div class="archetype-group">
                     <h4 class="archetype-title text-gradient-blue">Destination</h4>
                     <div class="archetype-tags">
@@ -2826,7 +3000,6 @@
                     </div>
                 </div>
 
-                <!-- Operator -->
                 <div class="archetype-group">
                     <h4 class="archetype-title text-gradient-blue">Operator</h4>
                     <div class="archetype-tags">
@@ -2834,7 +3007,6 @@
                     </div>
                 </div>
 
-                <!-- Artisan -->
                 <div class="archetype-group">
                     <h4 class="archetype-title text-gradient-blue">Artisan</h4>
                     <div class="archetype-tags">
@@ -2842,8 +3014,7 @@
                     </div>
                 </div>
 
-                <!-- Showroom -->
-                <div class="archetype-group">
+                <div class="archetype-group archetype-group-gold">
                     <h4 class="archetype-title text-gradient-gold">Showroom</h4>
                     <div class="archetype-tags">
                         <span class="archetype-tag">Jewelry Shops</span><span class="archetype-tag">Watch Stores</span><span class="archetype-tag">Perfumes</span><span class="archetype-tag">Furniture</span><span class="archetype-tag">Solar Energy</span><span class="archetype-tag">Car Dealers</span><span class="archetype-tag">Commercial Vehicles</span><span class="archetype-tag">Motorcycle Sales</span><span class="archetype-tag">Watercraft Dealers</span><span class="archetype-tag">Industrial Equipment</span><span class="archetype-tag">Real Estate</span>
@@ -2880,10 +3051,20 @@
         </div>
     </div>
 
+    <!-- Character Full-Size Lightbox Modal -->
+    <div class="character-lightbox-overlay" id="characterLightboxModal" role="dialog" aria-modal="true" aria-labelledby="characterLightboxTitle">
+        <div class="character-lightbox-container">
+            <button class="character-lightbox-close" id="closeCharacterLightbox" aria-label="Close Character Preview">&times;</button>
+            <div class="character-lightbox-ambient"></div>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" alt="Character View" class="character-lightbox-img" id="characterLightboxImg">
+            <span class="character-lightbox-title" id="characterLightboxTitle"></span>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="brand-logo" style="justify-content: center; opacity: 0.5; margin-bottom: 16px;">
-                <svg viewBox="0 0 88.738258 113.22255" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height: 24px; width: 19px; flex-shrink: 0; overflow: visible;">
+                <svg viewBox="0 0 88.738258 113.22255" style="height: 24px; width: 19px; flex-shrink: 0; overflow: visible;" aria-hidden="true">
                     <defs>
                         <linearGradient id="linearGradient15_foot"><stop style="stop-color:#4ed0f4;stop-opacity:1;" offset="0"/><stop style="stop-color:#722a97;stop-opacity:1;" offset="1"/></linearGradient>
                         <linearGradient href="#linearGradient15_foot" id="linearGradient32_foot" gradientUnits="userSpaceOnUse" x1="61.910683" y1="117.5653" x2="149.01857" y2="134.49736"/>
@@ -2898,12 +3079,12 @@
         </div>
     </footer>
 
-        <!-- INTERACTIVITY SCRIPTS: SILICON VALLEY PRODUCTION SPEC -->
+    <!-- INTERACTIVITY RUNTIME: SILICON VALLEY PRODUCTION SPEC -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
             // =========================================================================
-            // 0. LENIS SMOOTH SCROLLING (Sovereign Global Scope)
+            // 0. LENIS SMOOTH SCROLLING ENGINE & ANCHOR DELEGATION
             // =========================================================================
             let lenisInstance = null;
 
@@ -2926,6 +3107,19 @@
                         requestAnimationFrame(raf);
                     }
                     requestAnimationFrame(raf);
+
+                    // Global Anchor Interceptor: Eliminates abrupt scroll jumping
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function(e) {
+                            const targetId = this.getAttribute('href');
+                            if (targetId === '#' || targetId === '') return;
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                e.preventDefault();
+                                lenisInstance.scrollTo(targetElement, { offset: -60, duration: 1.2 });
+                            }
+                        });
+                    });
                 } catch (err) {
                     console.warn('[Omnibase] Lenis smooth scroll initialization skipped:', err);
                 }
@@ -2961,7 +3155,6 @@
                         currentY = lerp(currentY, targetY, 0.12);
                         btn.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
 
-                        // Mathematical Epsilon Settle Check (Terminates loop when idle)
                         if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
                             rafId = requestAnimationFrame(animate);
                         } else {
@@ -2997,7 +3190,7 @@
             // =========================================================================
             // 2. BENTO CARDS SPOTLIGHT (Throttled via rAF)
             // =========================================================================
-            document.querySelectorAll('.bento-card, .archetype-card, .metric-card').forEach(card => {
+            document.querySelectorAll('.bento-card, .metric-card').forEach(card => {
                 let ticking = false;
 
                 card.addEventListener('mousemove', (e) => {
@@ -3107,7 +3300,7 @@
             steps.forEach(step => stepObserver.observe(step));
 
             // =========================================================================
-            // 6. METRIC NUMBER COUNTERS (Quintic Easing via rAF)
+            // 6. METRIC NUMBER COUNTERS & SVG CHART DRAWING (Quintic Easing)
             // =========================================================================
             const metricsSection = document.getElementById('metricsSection');
             let numbersAnimated = false;
@@ -3123,7 +3316,6 @@
                 function step(currentTime) {
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
-                    // Quintic Ease-Out: 1 - (1 - t)^5
                     const easeOut = 1 - Math.pow(1 - progress, 5);
 
                     counters.forEach(counter => {
@@ -3150,7 +3342,7 @@
             if (metricsSection) metricsObserver.observe(metricsSection);
 
             // =========================================================================
-            // 7. MODALS & FOCUS TRAP ENGINE (Due Diligence & Archetypes)
+            // 7. MODALS & BIDIRECTIONAL FOCUS TRAP ENGINE (WCAG 2.1 Compliant)
             // =========================================================================
             function setupModal(modalId, openBtnId, closeBtnId) {
                 const modal = document.getElementById(modalId);
@@ -3159,16 +3351,39 @@
 
                 if (!modal || !openBtn || !closeBtn) return;
 
+                function trapFocus(e) {
+                    if (e.key !== 'Tab') return;
+                    const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    if (focusables.length === 0) return;
+
+                    const first = focusables[0];
+                    const last = focusables[focusables.length - 1];
+
+                    if (e.shiftKey) {
+                        if (document.activeElement === first) {
+                            last.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === last) {
+                            first.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+
                 function open() {
                     modal.classList.add('active');
                     safeLenisStop();
                     closeBtn.focus();
+                    document.addEventListener('keydown', trapFocus);
                 }
 
                 function close() {
                     modal.classList.remove('active');
                     safeLenisStart();
                     openBtn.focus();
+                    document.removeEventListener('keydown', trapFocus);
                 }
 
                 openBtn.addEventListener('click', (e) => { e.preventDefault(); open(); });
@@ -3190,9 +3405,11 @@
             const charLightboxImg = document.getElementById('characterLightboxImg');
             const charLightboxTitle = document.getElementById('characterLightboxTitle');
             const closeCharLightbox = document.getElementById('closeCharacterLightbox');
+            let lastActiveCharCard = null;
 
-            function openCharacterModal(src, title) {
+            function openCharacterModal(src, title, originCard) {
                 if (!charLightbox || !charLightboxImg) return;
+                lastActiveCharCard = originCard;
                 charLightboxImg.src = src;
                 if (charLightboxTitle) charLightboxTitle.textContent = title;
                 charLightbox.classList.add('active');
@@ -3204,7 +3421,13 @@
                 if (!charLightbox) return;
                 charLightbox.classList.remove('active');
                 safeLenisStart();
-                setTimeout(() => { if (charLightboxImg) charLightboxImg.src = ''; }, 350);
+                if (lastActiveCharCard) {
+                    lastActiveCharCard.focus();
+                    lastActiveCharCard = null;
+                }
+                setTimeout(() => { 
+                    if (charLightboxImg) charLightboxImg.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E"; 
+                }, 350);
             }
 
             if (closeCharLightbox) closeCharLightbox.addEventListener('click', closeCharacterModal);
@@ -3221,10 +3444,10 @@
                 }
             });
 
-            // Safe DOM Construction (Eliminates innerHTML Injection Vulnerability)
+            // Safe DOM Construction (Replaces text tags with fully interactive character cards)
             document.querySelectorAll('.archetype-tags').forEach(tagsContainer => {
                 const group = tagsContainer.closest('.archetype-group');
-                const isGold = group && group.querySelector('.text-gradient-gold');
+                const isGold = group && group.classList.contains('archetype-group-gold');
 
                 const grid = document.createElement('div');
                 grid.className = 'verticals-grid' + (isGold ? ' archetype-group-gold' : '');
@@ -3235,7 +3458,7 @@
                     card.className = 'vertical-card';
                     card.setAttribute('tabindex', '0');
                     card.setAttribute('role', 'button');
-                    card.setAttribute('aria-label', `View ${title} Character`);
+                    card.setAttribute('aria-label', `View ${title} Character Asset`);
 
                     const imgSrc = `assets/character/${encodeURIComponent(title)}.webp`;
 
@@ -3268,11 +3491,11 @@
                     card.appendChild(avatarBox);
                     card.appendChild(titleSpan);
 
-                    card.addEventListener('click', () => openCharacterModal(imgSrc, title));
+                    card.addEventListener('click', () => openCharacterModal(imgSrc, title, card));
                     card.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
-                            openCharacterModal(imgSrc, title);
+                            openCharacterModal(imgSrc, title, card);
                         }
                     });
 
@@ -3283,7 +3506,7 @@
             });
 
             // =========================================================================
-            // 9. UNIFIED VIDEO PLAYBACK & VIEWPORT CULLING (Promise-Safe)
+            // 9. PROMISE-SAFE VIDEO ENGINE WITH AUTO-MUTED FALLBACK
             // =========================================================================
             const commercialVideo = document.getElementById('omnibaseCommercial');
             const commercialFrame = document.getElementById('commercialFrame');
@@ -3292,7 +3515,16 @@
             const soundLabel = document.getElementById('soundLabel');
             const heroWatchFilmBtn = document.getElementById('heroWatchFilmBtn');
 
-            let isUserUnmuted = false;
+            function syncAudioUI(isMuted) {
+                if (!soundLabel || !soundIcon) return;
+                if (!isMuted) {
+                    soundLabel.textContent = "Mute Film";
+                    soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
+                } else {
+                    soundLabel.textContent = "Play with Sound (0:30)";
+                    soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
+                }
+            }
 
             if (commercialVideo) {
                 commercialVideo.defaultMuted = true;
@@ -3302,15 +3534,20 @@
                     if (commercialVideo.muted) {
                         commercialVideo.muted = false;
                         if (resetToStart) commercialVideo.currentTime = 0;
-                        commercialVideo.play().catch(() => {});
-                        isUserUnmuted = true;
-                        if (soundLabel) soundLabel.textContent = "Mute Film";
-                        if (soundIcon) soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
+                        const promise = commercialVideo.play();
+                        if (promise !== undefined) {
+                            promise.then(() => {
+                                syncAudioUI(false);
+                            }).catch(() => {
+                                // If blocked by WebKit/Chrome autoplay policies, revert to muted
+                                commercialVideo.muted = true;
+                                syncAudioUI(true);
+                                commercialVideo.play().catch(() => {});
+                            });
+                        }
                     } else {
                         commercialVideo.muted = true;
-                        isUserUnmuted = false;
-                        if (soundLabel) soundLabel.textContent = "Play with Sound (0:30)";
-                        if (soundIcon) soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
+                        syncAudioUI(true);
                     }
                 }
 
@@ -3338,7 +3575,7 @@
                 }
             }
 
-            // Unified, Promise-Safe Video Observer (Prevents Decoders from Freezing)
+            // High-Performance Unified Video Viewport Culler
             const allVideos = [
                 document.getElementById('omnibaseCommercial'),
                 document.getElementById('personaDemoVideo'),
@@ -3352,7 +3589,14 @@
                     if (entry.isIntersecting) {
                         const playPromise = vid.play();
                         if (playPromise !== undefined) {
-                            playPromise.catch(() => { /* Autoplay prevented */ });
+                            playPromise.catch(() => {
+                                // Auto-recover from play permission restrictions
+                                if (!vid.muted) {
+                                    vid.muted = true;
+                                    syncAudioUI(true);
+                                    vid.play().catch(() => {});
+                                }
+                            });
                         }
                     } else {
                         vid.pause();
@@ -3363,7 +3607,7 @@
             allVideos.forEach(v => videoObserver.observe(v));
 
             // =========================================================================
-            // 10. FAULT-TOLERANT BRAND TAXONOMY GRID
+            // 10. FAULT-TOLERANT BRAND TAXONOMY GRID ENGINE
             // =========================================================================
             const taxonomyData = {
                 cars: ["abarth", "ac", "acura", "alfa-romeo", "allard", "alpina", "alvis", "amc", "ariel", "armstrong-siddeley", "ascari", "aston-martin", "audi", "austin-healey", "austin", "autobianchi", "auverland", "avanti", "baic", "bentley", "berkeley", "bitter", "bizzarrini", "bmw", "brilliance", "bristol", "bugatti", "buick", "cadillac", "caterham", "checker", "chevrolet", "chrysler", "citroen", "dacia", "daewoo", "daf", "daihatsu", "de-tomaso", "dkw", "dodge", "donkervoort", "eagle", "fairthorpe", "ferrari", "fiat", "fisker", "ford", "gaz", "geely", "ginetta", "gmc", "holden", "honda", "hudson", "humber", "hummer", "hyundai", "infiniti", "innocenti", "isuzu", "italdesign", "jaguar", "jeep", "jensen", "kia", "koenigsegg", "lada", "lamborghini", "lancia", "land-rover", "lexus", "lincoln", "lotec", "lotus", "luxgen", "mahindra", "marcos", "marta-simca", "maserati", "maybach", "mazda", "mclaren", "mercedes-benz", "mercury", "mg", "mini", "mitsubishi", "monteverdi", "moretti", "morgan", "morris", "noble", "nsu", "oldsmobile", "opel", "packard", "pagani", "panoz", "peugeot", "pininfarina", "plymouth", "pontiac", "porsche", "proton", "reliant", "renault", "riley", "rolls-royce", "rover", "saab", "saleen", "samsung", "saturn", "scion", "seat", "simca", "singer", "skoda", "smart", "spyker", "ssangyong", "ssc", "steyr", "studebaker", "subaru", "sunbeam", "suzuki", "talbot", "tata", "tatra", "tesla", "toyota", "trabant", "triumph", "tvr", "vauxhall", "vector", "venturi", "volkswagen", "volvo", "wartburg", "westfield", "willys-overland", "xedos", "zagato", "zastava", "zaz", "zenvo", "zil"],
@@ -3389,7 +3633,6 @@
                         img.alt = `${brand} logo`;
                         img.loading = 'lazy';
 
-                        // Resilient Fallback (Never render a default broken image symbol)
                         img.onerror = () => {
                             tile.innerHTML = `<span style="font-size: 11px; font-weight: 700; color: var(--text-secondary); text-align: center; text-transform: uppercase;">${brand.replace(/-/g, ' ')}</span>`;
                         };
@@ -3426,14 +3669,5 @@
             }
         });
     </script>
-	<!-- Character Full-Size Lightbox Modal -->
-    <div class="character-lightbox-overlay" id="characterLightboxModal" role="dialog" aria-modal="true" aria-labelledby="characterLightboxTitle">
-        <div class="character-lightbox-container">
-            <button class="character-lightbox-close" id="closeCharacterLightbox" aria-label="Close Character Preview">&times;</button>
-            <div class="character-lightbox-ambient"></div>
-            <img src="" alt="Character View" class="character-lightbox-img" id="characterLightboxImg">
-            <span class="character-lightbox-title" id="characterLightboxTitle"></span>
-        </div>
-    </div>
 </body>
 </html>
