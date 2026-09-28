@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050506">
+    <meta name="color-scheme" content="dark">
     <title>Omnibase | Investor Relations & Strategy</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
     
     <!-- Lenis Smooth Scrolling -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 
     <style>
         :root {
@@ -51,7 +53,7 @@
         /* Cinematic Grain & Grid */
         body::after {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999; opacity: 0.035;
+            pointer-events: none; z-index: 9999; opacity: 0.035; transform: translateZ(0); will-change: transform;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
         .bg-grid {
@@ -79,7 +81,7 @@
         .btn-primary, .btn-secondary {
             padding: 14px 28px; border-radius: 980px; text-decoration: none; font-weight: 600; font-size: 15px;
             display: inline-flex; align-items: center; justify-content: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); will-change: transform;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, border-color 0.3s ease, box-shadow 0.4s ease;
         }
         .btn-primary { background: var(--text-primary); color: var(--bg-obsidian); }
         .btn-primary:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
@@ -1027,8 +1029,8 @@
         }
 
         @keyframes borderSpecularSweep {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Hover States: Lift & Luminous Deepening */
@@ -2792,11 +2794,11 @@
     </section>
 
     <!-- Archetypes/Verticals Modal -->
-    <div class="modal-overlay" id="archetypesModal">
+    <div class="modal-overlay" id="archetypesModal" role="dialog" aria-modal="true" aria-labelledby="archetypesModalTitle">
         <div class="modal-content bento-card" style="max-width: 800px;">
-            <button class="modal-close" id="closeArchetypesBtn">&times;</button>
+            <button class="modal-close" id="closeArchetypesBtn" aria-label="Close Archetypes Dialog">&times;</button>
             <div class="eyebrow">Taxonomy</div>
-            <h3 style="font-size: 28px; margin-bottom: 8px; color: #fff;">137 Supported Verticals</h3>
+            <h3 id="archetypesModalTitle" style="font-size: 28px; margin-bottom: 8px; color: #fff;">137 Supported Verticals</h3>
             <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 0;">Dynamically configured via a single Server-Driven UI schema.</p>
             
             <div class="verticals-scroll-container">
@@ -2852,11 +2854,11 @@
     </div>
     
     <!-- Data Sources Modal -->
-    <div class="modal-overlay" id="sourcesModal">
+    <div class="modal-overlay" id="sourcesModal" role="dialog" aria-modal="true" aria-labelledby="sourcesModalTitle">
         <div class="modal-content bento-card">
-            <button class="modal-close" id="closeSourcesBtn">&times;</button>
+            <button class="modal-close" id="closeSourcesBtn" aria-label="Close Data Sources Dialog">&times;</button>
             <div class="eyebrow">Due Diligence</div>
-            <h3 style="font-size: 28px; margin-bottom: 12px; color: #fff;">Data Verification</h3>
+            <h3 id="sourcesModalTitle" style="font-size: 28px; margin-bottom: 12px; color: #fff;">Data Verification</h3>
             <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 24px;">Financial projections are grounded in regional economic reports for the GCC and MEA zones spanning 2025–2034.</p>
             
             <ul class="sources-list">
@@ -2896,67 +2898,124 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVITY SCRIPTS -->
+        <!-- INTERACTIVITY SCRIPTS: SILICON VALLEY PRODUCTION SPEC -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // 0. LENIS SMOOTH SCROLLING
-            if (typeof Lenis !== 'undefined') {
-                const lenis = new Lenis({
-                    duration: 1.2,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    direction: 'vertical',
-                    gestureDirection: 'vertical',
-                    smooth: true,
-                    mouseMultiplier: 1,
-                    smoothTouch: false,
-                    touchMultiplier: 2,
-                    infinite: false,
-                });
+            // =========================================================================
+            // 0. LENIS SMOOTH SCROLLING (Sovereign Global Scope)
+            // =========================================================================
+            let lenisInstance = null;
 
-                function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-                requestAnimationFrame(raf);
+            if (typeof Lenis !== 'undefined') {
+                try {
+                    lenisInstance = new Lenis({
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        direction: 'vertical',
+                        gestureDirection: 'vertical',
+                        smooth: true,
+                        mouseMultiplier: 1,
+                        smoothTouch: false,
+                        touchMultiplier: 2,
+                        infinite: false,
+                    });
+
+                    function raf(time) {
+                        lenisInstance.raf(time);
+                        requestAnimationFrame(raf);
+                    }
+                    requestAnimationFrame(raf);
+                } catch (err) {
+                    console.warn('[Omnibase] Lenis smooth scroll initialization skipped:', err);
+                }
             }
 
- // 1. LERP PHYSICS FOR 3D HOVER (Desktop Pointer Devices Only)
+            function safeLenisStop() {
+                if (lenisInstance) lenisInstance.stop();
+                document.body.style.overflow = 'hidden';
+            }
+
+            function safeLenisStart() {
+                if (lenisInstance) lenisInstance.start();
+                document.body.style.overflow = '';
+            }
+
+            // =========================================================================
+            // 1. MAGNETIC BUTTONS (Self-Terminating rAF Physics)
+            // =========================================================================
             function lerp(start, end, factor) { return start + (end - start) * factor; }
 
             const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
             const magneticButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
-            
+
             if (hasFinePointer) {
                 magneticButtons.forEach(btn => {
                     let currentX = 0, currentY = 0;
                     let targetX = 0, targetY = 0;
+                    let isAnimating = false;
+                    let rafId = null;
+
+                    function animate() {
+                        currentX = lerp(currentX, targetX, 0.12);
+                        currentY = lerp(currentY, targetY, 0.12);
+                        btn.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+
+                        // Mathematical Epsilon Settle Check (Terminates loop when idle)
+                        if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+                            rafId = requestAnimationFrame(animate);
+                        } else {
+                            currentX = targetX;
+                            currentY = targetY;
+                            btn.style.transform = targetX === 0 && targetY === 0 ? '' : `translate3d(${targetX}px, ${targetY}px, 0)`;
+                            isAnimating = false;
+                            cancelAnimationFrame(rafId);
+                        }
+                    }
 
                     btn.addEventListener('mousemove', (e) => {
                         const rect = btn.getBoundingClientRect();
-                        targetX = (e.clientX - rect.left - rect.width / 2) * 0.25;
-                        targetY = (e.clientY - rect.top - rect.height / 2) * 0.35;
-                    });
+                        targetX = (e.clientX - rect.left - rect.width / 2) * 0.22;
+                        targetY = (e.clientY - rect.top - rect.height / 2) * 0.30;
+                        if (!isAnimating) {
+                            isAnimating = true;
+                            rafId = requestAnimationFrame(animate);
+                        }
+                    }, { passive: true });
 
-                    btn.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
-
-                    function animate() {
-                        currentX = lerp(currentX, targetX, 0.1);
-                        currentY = lerp(currentY, targetY, 0.1);
-                        btn.style.transform = `translate(${currentX}px, ${currentY}px)`;
-                        requestAnimationFrame(animate);
-                    }
-                    animate();
+                    btn.addEventListener('mouseleave', () => {
+                        targetX = 0;
+                        targetY = 0;
+                        if (!isAnimating) {
+                            isAnimating = true;
+                            rafId = requestAnimationFrame(animate);
+                        }
+                    }, { passive: true });
                 });
             }
 
-            // 2. SPOTLIGHT HOVER FOR BENTO
+            // =========================================================================
+            // 2. BENTO CARDS SPOTLIGHT (Throttled via rAF)
+            // =========================================================================
             document.querySelectorAll('.bento-card, .archetype-card, .metric-card').forEach(card => {
-                card.addEventListener('mousemove', e => {
-                    const rect = card.getBoundingClientRect();
-                    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-                });
+                let ticking = false;
+
+                card.addEventListener('mousemove', (e) => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            const rect = card.getBoundingClientRect();
+                            card.style.setProperty('--mouse-x', `${(e.clientX - rect.left).toFixed(1)}px`);
+                            card.style.setProperty('--mouse-y', `${(e.clientY - rect.top).toFixed(1)}px`);
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
             });
-            
-            // 3. STANDARD SCROLL REVEALS
+
+            // =========================================================================
+            // 3. SCROLL REVEALS
+            // =========================================================================
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2964,11 +3023,13 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.12 });
 
             document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
 
-            // 4. 3D SPATIAL PARALLAX (HERO LOGO) WITH LERP
+            // =========================================================================
+            // 4. 3D SPATIAL PARALLAX LOGO (Capped, Bound & Terminating rAF)
+            // =========================================================================
             const wrapper = document.getElementById('hero3DWrapper');
             const mockup = document.getElementById('hero3DMockup');
 
@@ -2976,190 +3037,174 @@
                 const isTouchDevice = window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(max-width: 768px)").matches;
                 let curRotX = 0, curRotY = 0;
                 let tarRotX = 0, tarRotY = 0;
-
-                if (!isTouchDevice) {
-                    document.querySelector('.hero').addEventListener('mousemove', (e) => {
-                        const rect = wrapper.getBoundingClientRect();
-                        const centerX = rect.left + rect.width / 2;
-                        const centerY = rect.top + rect.height / 2;
-                        
-                        tarRotX = ((e.clientY - centerY) / (rect.height / 2)) * -8; 
-                        tarRotY = ((e.clientX - centerX) / (rect.width / 2)) * 8;
-                    });
-                    document.querySelector('.hero').addEventListener('mouseleave', () => { tarRotX = 0; tarRotY = 0; });
-                } else {
-                    window.addEventListener('scroll', () => {
-                        const rect = wrapper.getBoundingClientRect();
-                        const vh = window.innerHeight;
-                        if (rect.top <= vh && rect.bottom >= 0) {
-                            const progress = 1 - (rect.bottom / (vh + rect.height));
-                            
-                            tarRotX = (progress - 0.5) * 20;
-                            tarRotY = (progress - 0.5) * -10;
-                        }
-                    }, { passive: true });
-                }
+                let isLogoAnimating = false;
+                let logoRafId = null;
 
                 function animate3D() {
-                    curRotX = lerp(curRotX, tarRotX, 0.04);
-                    curRotY = lerp(curRotY, tarRotY, 0.04);
-                    mockup.style.transform = `rotateX(${curRotX}deg) rotateY(${curRotY}deg)`;
-                    requestAnimationFrame(animate3D);
+                    curRotX = lerp(curRotX, tarRotX, 0.05);
+                    curRotY = lerp(curRotY, tarRotY, 0.05);
+                    mockup.style.transform = `rotateX(${curRotX.toFixed(2)}deg) rotateY(${curRotY.toFixed(2)}deg)`;
+
+                    if (Math.abs(tarRotX - curRotX) > 0.01 || Math.abs(tarRotY - curRotY) > 0.01) {
+                        logoRafId = requestAnimationFrame(animate3D);
+                    } else {
+                        isLogoAnimating = false;
+                        cancelAnimationFrame(logoRafId);
+                    }
                 }
-                animate3D();
+
+                if (!isTouchDevice) {
+                    const hero = document.querySelector('.hero');
+                    if (hero) {
+                        hero.addEventListener('mousemove', (e) => {
+                            const rect = wrapper.getBoundingClientRect();
+                            const centerX = rect.left + rect.width / 2;
+                            const centerY = rect.top + rect.height / 2;
+
+                            tarRotX = ((e.clientY - centerY) / (rect.height / 2)) * -8;
+                            tarRotY = ((e.clientX - centerX) / (rect.width / 2)) * 8;
+
+                            if (!isLogoAnimating) {
+                                isLogoAnimating = true;
+                                logoRafId = requestAnimationFrame(animate3D);
+                            }
+                        }, { passive: true });
+
+                        hero.addEventListener('mouseleave', () => {
+                            tarRotX = 0;
+                            tarRotY = 0;
+                            if (!isLogoAnimating) {
+                                isLogoAnimating = true;
+                                logoRafId = requestAnimationFrame(animate3D);
+                            }
+                        }, { passive: true });
+                    }
+                }
             }
 
-    // 5. SCROLLYTELLING OBSERVER WITH CROSSFADING PHONE MOCKUPS
-    const steps = document.querySelectorAll('.scroll-step');
-    const mockupImages = document.querySelectorAll('.mockup-img');
+            // =========================================================================
+            // 5. SCROLLYTELLING OBSERVER (Crossfade Phone Mockups)
+            // =========================================================================
+            const steps = document.querySelectorAll('.scroll-step');
+            const mockupImages = document.querySelectorAll('.mockup-img');
 
-    const stepObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // 1. Highlight active text step
-                steps.forEach(s => s.classList.remove('active'));
-                entry.target.classList.add('active');
+            const stepObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        steps.forEach(s => s.classList.remove('active'));
+                        entry.target.classList.add('active');
 
-                // 2. Crossfade to corresponding phone screen on desktop
-                const stepId = entry.target.id;
-                const targetImg = document.getElementById(`mockup-img-${stepId}`);
+                        const stepId = entry.target.id;
+                        const targetImg = document.getElementById(`mockup-img-${stepId}`);
+                        if (targetImg) {
+                            mockupImages.forEach(img => img.classList.remove('active'));
+                            targetImg.classList.add('active');
+                        }
+                    }
+                });
+            }, { rootMargin: '-20% 0px -20% 0px' });
 
-                if (targetImg) {
-                    mockupImages.forEach(img => img.classList.remove('active'));
-                    targetImg.classList.add('active');
-                }
-            }
-        });
-    }, { 
-        rootMargin: '-35% 0px -35% 0px' 
-    });
+            steps.forEach(step => stepObserver.observe(step));
 
-    steps.forEach(step => stepObserver.observe(step));
-            // 6. ANIMATED SVG CHART & NUMBER COUNTERS TRIGGER
+            // =========================================================================
+            // 6. METRIC NUMBER COUNTERS (Quintic Easing via rAF)
+            // =========================================================================
             const metricsSection = document.getElementById('metricsSection');
             let numbersAnimated = false;
 
             function animateNumbers() {
                 if (numbersAnimated) return;
                 numbersAnimated = true;
-                document.querySelectorAll('.count-up').forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const duration = 2000; const stepTime = 20; const steps = duration / stepTime;
-                    const increment = target / steps; let current = 0;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            counter.innerText = target.toLocaleString();
-                            clearInterval(timer);
-                        } else {
-                            counter.innerText = Math.ceil(current).toLocaleString();
-                        }
-                    }, stepTime);
-                });
+
+                const counters = document.querySelectorAll('.count-up');
+                const duration = 2000;
+                const startTime = performance.now();
+
+                function step(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Quintic Ease-Out: 1 - (1 - t)^5
+                    const easeOut = 1 - Math.pow(1 - progress, 5);
+
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const current = Math.round(target * easeOut);
+                        counter.innerText = current.toLocaleString();
+                    });
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    }
+                }
+                requestAnimationFrame(step);
             }
 
             const metricsObserver = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
+                if (entries[0].isIntersecting) {
                     metricsSection.classList.add('drawn');
                     animateNumbers();
                     metricsObserver.unobserve(metricsSection);
                 }
-            }, { threshold: 0.3 });
-            if(metricsSection) metricsObserver.observe(metricsSection);
+            }, { threshold: 0.25 });
 
-            // 7. MODAL TOGGLE LOGIC
-            const modal = document.getElementById('sourcesModal');
-            const openBtn = document.getElementById('openSourcesBtn');
-            const closeBtn = document.getElementById('closeSourcesBtn');
+            if (metricsSection) metricsObserver.observe(metricsSection);
 
-            if(openBtn && modal && closeBtn) {
-                // Open Modal
-                openBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
+            // =========================================================================
+            // 7. MODALS & FOCUS TRAP ENGINE (Due Diligence & Archetypes)
+            // =========================================================================
+            function setupModal(modalId, openBtnId, closeBtnId) {
+                const modal = document.getElementById(modalId);
+                const openBtn = document.getElementById(openBtnId);
+                const closeBtn = document.getElementById(closeBtnId);
+
+                if (!modal || !openBtn || !closeBtn) return;
+
+                function open() {
                     modal.classList.add('active');
-                    if (typeof lenis !== 'undefined') lenis.stop(); // Stops smooth scrolling in background
-                });
-                
-                // Close Modal via Button
-                closeBtn.addEventListener('click', () => {
+                    safeLenisStop();
+                    closeBtn.focus();
+                }
+
+                function close() {
                     modal.classList.remove('active');
-                    if (typeof lenis !== 'undefined') lenis.start();
-                });
-                
-                // Close Modal via Background Click
-                modal.addEventListener('click', (e) => {
-                    if(e.target === modal) {
-                        modal.classList.remove('active');
-                        if (typeof lenis !== 'undefined') lenis.start();
-                    }
-                });
+                    safeLenisStart();
+                    openBtn.focus();
+                }
 
-                // Close Modal via Escape Key
+                openBtn.addEventListener('click', (e) => { e.preventDefault(); open(); });
+                closeBtn.addEventListener('click', close);
+                modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+
                 document.addEventListener('keydown', (e) => {
-                    if(e.key === 'Escape' && modal.classList.contains('active')) {
-                        modal.classList.remove('active');
-                        if (typeof lenis !== 'undefined') lenis.start();
-                    }
+                    if (e.key === 'Escape' && modal.classList.contains('active')) close();
                 });
             }
 
-            // 8. ARCHETYPES MODAL LOGIC
-            const archModal = document.getElementById('archetypesModal');
-            const openArchBtn = document.getElementById('openArchetypesBtn');
-            const closeArchBtn = document.getElementById('closeArchetypesBtn');
+            setupModal('sourcesModal', 'openSourcesBtn', 'closeSourcesBtn');
+            setupModal('archetypesModal', 'openArchetypesBtn', 'closeArchetypesBtn');
 
-            if(openArchBtn && archModal && closeArchBtn) {
-                // Open Modal
-                openArchBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    archModal.classList.add('active');
-                    if (typeof lenis !== 'undefined') lenis.stop(); // Stops background scroll
-                });
-                
-                // Close Modal via Button
-                closeArchBtn.addEventListener('click', () => {
-                    archModal.classList.remove('active');
-                    if (typeof lenis !== 'undefined') lenis.start();
-                });
-                
-                // Close Modal via Background Click
-                archModal.addEventListener('click', (e) => {
-                    if(e.target === archModal) {
-                        archModal.classList.remove('active');
-                        if (typeof lenis !== 'undefined') lenis.start();
-                    }
-                });
-
-                // Close Modal via Escape Key
-                document.addEventListener('keydown', (e) => {
-                    if(e.key === 'Escape' && archModal.classList.contains('active')) {
-                        archModal.classList.remove('active');
-                        if (typeof lenis !== 'undefined') lenis.start();
-                    }
-                });
-            }
-			            // --- AUTOMATED TAXONOMY CHARACTER GRID HYDRATION ---
-// --- CHARACTER FULL-SIZE LIGHTBOX CONTROLLER ---
+            // =========================================================================
+            // 8. TAXONOMY CHARACTER LIGHTBOX & SAFE DOM GENERATION
+            // =========================================================================
             const charLightbox = document.getElementById('characterLightboxModal');
             const charLightboxImg = document.getElementById('characterLightboxImg');
             const charLightboxTitle = document.getElementById('characterLightboxTitle');
             const closeCharLightbox = document.getElementById('closeCharacterLightbox');
 
-function openCharacterModal(src, title) {
+            function openCharacterModal(src, title) {
                 if (!charLightbox || !charLightboxImg) return;
                 charLightboxImg.src = src;
                 if (charLightboxTitle) charLightboxTitle.textContent = title;
                 charLightbox.classList.add('active');
-                if (typeof lenis !== 'undefined') lenis.stop(); // Prevents background scroll bleed
+                safeLenisStop();
+                if (closeCharLightbox) closeCharLightbox.focus();
             }
 
             function closeCharacterModal() {
                 if (!charLightbox) return;
                 charLightbox.classList.remove('active');
-                if (typeof lenis !== 'undefined') lenis.start(); // Restores smooth scroll
-                setTimeout(() => { 
-                    if (charLightboxImg) charLightboxImg.src = ''; 
-                }, 350);
+                safeLenisStart();
+                setTimeout(() => { if (charLightboxImg) charLightboxImg.src = ''; }, 350);
             }
 
             if (closeCharLightbox) closeCharLightbox.addEventListener('click', closeCharacterModal);
@@ -3176,45 +3221,70 @@ function openCharacterModal(src, title) {
                 }
             });
 
-            // --- AUTOMATED TAXONOMY CHARACTER GRID HYDRATION ---
+            // Safe DOM Construction (Eliminates innerHTML Injection Vulnerability)
             document.querySelectorAll('.archetype-tags').forEach(tagsContainer => {
                 const group = tagsContainer.closest('.archetype-group');
                 const isGold = group && group.querySelector('.text-gradient-gold');
-                
+
                 const grid = document.createElement('div');
                 grid.className = 'verticals-grid' + (isGold ? ' archetype-group-gold' : '');
-                
+
                 tagsContainer.querySelectorAll('.archetype-tag').forEach(tag => {
                     const title = tag.textContent.trim();
                     const card = document.createElement('div');
                     card.className = 'vertical-card';
-                    
-                    // URL-safe encoding for symbols like $, &, ', and spaces
-                    const imgSrc = `assets/character/${encodeURIComponent(title)}.webp`;
-                    
-                    card.innerHTML = `
-                        <div class="vertical-avatar-box">
-                            <img src="${imgSrc}" 
-                                 alt="${title}" 
-                                 loading="lazy" 
-                                 class="vertical-avatar"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <span class="vertical-avatar-fallback" style="display: none;">${title.charAt(0)}</span>
-                        </div>
-                        <span class="vertical-title">${title}</span>
-                    `;
+                    card.setAttribute('tabindex', '0');
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('aria-label', `View ${title} Character`);
 
-                    // Click card to open full-size character preview
-                    card.addEventListener('click', () => {
-                        openCharacterModal(imgSrc, title);
+                    const imgSrc = `assets/character/${encodeURIComponent(title)}.webp`;
+
+                    const avatarBox = document.createElement('div');
+                    avatarBox.className = 'vertical-avatar-box';
+
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = title;
+                    img.loading = 'lazy';
+                    img.className = 'vertical-avatar';
+
+                    const fallback = document.createElement('span');
+                    fallback.className = 'vertical-avatar-fallback';
+                    fallback.style.display = 'none';
+                    fallback.textContent = title.charAt(0);
+
+                    img.onerror = () => {
+                        img.style.display = 'none';
+                        fallback.style.display = 'block';
+                    };
+
+                    avatarBox.appendChild(img);
+                    avatarBox.appendChild(fallback);
+
+                    const titleSpan = document.createElement('span');
+                    titleSpan.className = 'vertical-title';
+                    titleSpan.textContent = title;
+
+                    card.appendChild(avatarBox);
+                    card.appendChild(titleSpan);
+
+                    card.addEventListener('click', () => openCharacterModal(imgSrc, title));
+                    card.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openCharacterModal(imgSrc, title);
+                        }
                     });
 
                     grid.appendChild(card);
                 });
-                
+
                 tagsContainer.replaceWith(grid);
             });
-// --- COMMERCIAL FILM CONTROLLER & ROBUST AUTOPLAY ENGINE ---
+
+            // =========================================================================
+            // 9. UNIFIED VIDEO PLAYBACK & VIEWPORT CULLING (Promise-Safe)
+            // =========================================================================
             const commercialVideo = document.getElementById('omnibaseCommercial');
             const commercialFrame = document.getElementById('commercialFrame');
             const soundToggleBtn = document.getElementById('soundToggleBtn');
@@ -3222,61 +3292,17 @@ function openCharacterModal(src, title) {
             const soundLabel = document.getElementById('soundLabel');
             const heroWatchFilmBtn = document.getElementById('heroWatchFilmBtn');
 
+            let isUserUnmuted = false;
+
             if (commercialVideo) {
-                // 1. Force muted properties in JS to satisfy Chrome/Safari Autoplay Policy
                 commercialVideo.defaultMuted = true;
                 commercialVideo.muted = true;
 
-                // 2. Diagnostic Logger (Press F12 in your browser to see if the file exists)
-                commercialVideo.addEventListener('error', (e) => {
-                    console.error('[Omnibase Video Error] Failed to load video from:', commercialVideo.currentSrc || commercialVideo.src);
-                    console.error('Error details:', commercialVideo.error);
-                });
-
-                commercialVideo.addEventListener('loadeddata', () => {
-                    console.log('[Omnibase Video] Video asset successfully loaded and buffered.');
-                });
-
-                // 3. Robust Play Function with Fallback
-                function attemptAutoplay() {
-                    commercialVideo.muted = true;
-                    const playPromise = commercialVideo.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(err => {
-                            console.warn('[Omnibase Video] Autoplay prevented by browser policy. Awaiting user interaction.', err);
-                        });
-                    }
-                }
-
-                // Attempt initial load
-                attemptAutoplay();
-
-// 4. Kinematic Viewport Culling
-                let isUserUnmuted = false;
-                const videoObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            if (commercialVideo.paused) {
-                                if (isUserUnmuted) {
-                                    commercialVideo.play().catch(() => {});
-                                } else {
-                                    attemptAutoplay();
-                                }
-                            }
-                        } else {
-                            commercialVideo.pause();
-                        }
-                    });
-                }, { threshold: 0.15 });
-
-                videoObserver.observe(commercialVideo);
-
-                // 5. Sound & Replay Toggle
                 function toggleAudio(resetToStart = false) {
                     if (commercialVideo.muted) {
                         commercialVideo.muted = false;
                         if (resetToStart) commercialVideo.currentTime = 0;
-                        commercialVideo.play().catch(e => console.error("Play failed:", e));
+                        commercialVideo.play().catch(() => {});
                         isUserUnmuted = true;
                         if (soundLabel) soundLabel.textContent = "Mute Film";
                         if (soundIcon) soundIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
@@ -3291,21 +3317,19 @@ function openCharacterModal(src, title) {
                 if (soundToggleBtn) {
                     soundToggleBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        toggleAudio(true);
+                        toggleAudio(false);
                     });
                 }
 
                 if (commercialFrame) {
-                    commercialFrame.addEventListener('click', () => {
-                        toggleAudio(true);
-                    });
+                    commercialFrame.addEventListener('click', () => toggleAudio(false));
                 }
 
                 if (heroWatchFilmBtn) {
                     heroWatchFilmBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (typeof lenis !== 'undefined') {
-                            lenis.scrollTo(commercialFrame, { offset: -60, duration: 1.2 });
+                        if (lenisInstance) {
+                            lenisInstance.scrollTo(commercialFrame, { offset: -60, duration: 1.2 });
                         } else {
                             commercialFrame.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }
@@ -3313,122 +3337,99 @@ function openCharacterModal(src, title) {
                     });
                 }
             }
-			            // --- LIVING PERSONA PHONE VIDEO VIEWPORT CULLING ---
-            const personaDemoVideo = document.getElementById('personaDemoVideo');
-            if (personaDemoVideo) {
-                personaDemoVideo.defaultMuted = true;
-                personaDemoVideo.muted = true;
 
-                const personaObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            personaDemoVideo.play().catch(() => {});
-                        } else {
-                            personaDemoVideo.pause();
+            // Unified, Promise-Safe Video Observer (Prevents Decoders from Freezing)
+            const allVideos = [
+                document.getElementById('omnibaseCommercial'),
+                document.getElementById('personaDemoVideo'),
+                document.getElementById('searchEngineVideo'),
+                document.getElementById('wedgeStrategyVideo')
+            ].filter(Boolean);
+
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const vid = entry.target;
+                    if (entry.isIntersecting) {
+                        const playPromise = vid.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(() => { /* Autoplay prevented */ });
                         }
-                    });
-                }, { threshold: 0.15 });
+                    } else {
+                        vid.pause();
+                    }
+                });
+            }, { threshold: 0.15 });
 
-                personaObserver.observe(personaDemoVideo);
+            allVideos.forEach(v => videoObserver.observe(v));
+
+            // =========================================================================
+            // 10. FAULT-TOLERANT BRAND TAXONOMY GRID
+            // =========================================================================
+            const taxonomyData = {
+                cars: ["abarth", "ac", "acura", "alfa-romeo", "allard", "alpina", "alvis", "amc", "ariel", "armstrong-siddeley", "ascari", "aston-martin", "audi", "austin-healey", "austin", "autobianchi", "auverland", "avanti", "baic", "bentley", "berkeley", "bitter", "bizzarrini", "bmw", "brilliance", "bristol", "bugatti", "buick", "cadillac", "caterham", "checker", "chevrolet", "chrysler", "citroen", "dacia", "daewoo", "daf", "daihatsu", "de-tomaso", "dkw", "dodge", "donkervoort", "eagle", "fairthorpe", "ferrari", "fiat", "fisker", "ford", "gaz", "geely", "ginetta", "gmc", "holden", "honda", "hudson", "humber", "hummer", "hyundai", "infiniti", "innocenti", "isuzu", "italdesign", "jaguar", "jeep", "jensen", "kia", "koenigsegg", "lada", "lamborghini", "lancia", "land-rover", "lexus", "lincoln", "lotec", "lotus", "luxgen", "mahindra", "marcos", "marta-simca", "maserati", "maybach", "mazda", "mclaren", "mercedes-benz", "mercury", "mg", "mini", "mitsubishi", "monteverdi", "moretti", "morgan", "morris", "noble", "nsu", "oldsmobile", "opel", "packard", "pagani", "panoz", "peugeot", "pininfarina", "plymouth", "pontiac", "porsche", "proton", "reliant", "renault", "riley", "rolls-royce", "rover", "saab", "saleen", "samsung", "saturn", "scion", "seat", "simca", "singer", "skoda", "smart", "spyker", "ssangyong", "ssc", "steyr", "studebaker", "subaru", "sunbeam", "suzuki", "talbot", "tata", "tatra", "tesla", "toyota", "trabant", "triumph", "tvr", "vauxhall", "vector", "venturi", "volkswagen", "volvo", "wartburg", "westfield", "willys-overland", "xedos", "zagato", "zastava", "zaz", "zenvo", "zil"],
+                motos: ["adiva", "aeon", "ajp", "aprilia", "aspess-pwer", "axy", "azel", "bajaj", "benelli", "beta", "bimota", "bmw", "borile", "boss-hoss", "buell", "bultaco", "cagiva", "ccm", "cf-moto", "ch-racing", "cmc", "cpi", "cr&s", "dado", "daelim", "derbi", "ducati", "e-max", "ecomission", "etropolis", "fantic", "garelli", "gas-gas", "generic", "ghezzi-brian", "gilera", "gimotori", "gipuma", "green-mobility-italia", "harley-davidson", "hdm", "headbanger", "hm", "honda-dall'ara", "honda", "hp-power", "hupper", "husaberg", "husqvarna", "hyosung", "indian", "italjet", "jawa", "kawasaki-kl", "kawasaki", "keeway", "krc", "kreidler", "ktm", "kymco", "lambretta", "laverda", "leonart", "lingben", "linhai", "lml", "magni", "maico", "malaguti", "mash", "mbk", "millepercento", "mondial", "montesa", "moto-bellini", "moto-guzzi", "moto-morini", "moto-rumi", "motobi", "motom", "motor-union", "mv-agusta", "mz", "nipponia", "norton", "nox", "ossa", "over", "paton", "peda-motor", "peugeot", "pgo", "piaggio", "polini", "quadro", "quantya", "redmoto-honda", "renault", "rieju", "royal-enfield", "sachs", "scorpa", "sherco", "siamoto", "steed", "suzuki-calenti", "suzuki", "swm", "sym", "terra-modena", "tgb", "tm-racing", "triumph", "ural", "vectrix", "vertemati", "victory", "vor", "wt-motors", "yamaha"],
+                watches: ["a.-lange-&-söhne", "audemars-piguet", "breitling", "cartier", "ebel", "edox", "hamilton", "hublot", "iwc", "jaeger-lecoultre", "longines", "meistersinger", "montblanc", "nomos", "omega", "oris", "panerai", "patek-philippe", "rado", "richard-mille", "rolex", "seiko", "sinn", "tag-heuer", "tissot", "tudor", "vacheron-constantin", "zenith"]
+            };
+
+            function renderBrands(category) {
+                const grid = document.getElementById(`grid-${category}`);
+                if (!grid) return;
+
+                if (grid.innerHTML === '') {
+                    const brands = taxonomyData[category] || [];
+                    const fragment = document.createDocumentFragment();
+
+                    brands.forEach(brand => {
+                        const tile = document.createElement('div');
+                        tile.className = 'brand-tile';
+                        tile.title = brand.replace(/-/g, ' ').toUpperCase();
+
+                        const img = document.createElement('img');
+                        img.src = `assets/${category}/${encodeURIComponent(brand)}.png`;
+                        img.alt = `${brand} logo`;
+                        img.loading = 'lazy';
+
+                        // Resilient Fallback (Never render a default broken image symbol)
+                        img.onerror = () => {
+                            tile.innerHTML = `<span style="font-size: 11px; font-weight: 700; color: var(--text-secondary); text-align: center; text-transform: uppercase;">${brand.replace(/-/g, ' ')}</span>`;
+                        };
+
+                        tile.appendChild(img);
+                        fragment.appendChild(tile);
+                    });
+
+                    grid.appendChild(fragment);
+                }
+
+                const counter = document.getElementById('brand-count-display');
+                if (counter) counter.innerText = (taxonomyData[category] || []).length;
             }
-			// --- SEARCH ENGINE DEMO VIDEO VIEWPORT CULLING ---
-            const searchEngineVideo = document.getElementById('searchEngineVideo');
-            if (searchEngineVideo) {
-                searchEngineVideo.defaultMuted = true;
-                searchEngineVideo.muted = true;
 
-                const searchObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            searchEngineVideo.play().catch(() => {});
-                        } else {
-                            searchEngineVideo.pause();
-                        }
+            const brandTabs = document.querySelectorAll('.brand-tab');
+            const brandGrids = document.querySelectorAll('.brand-grid');
+
+            if (brandTabs.length > 0) {
+                renderBrands('cars');
+
+                brandTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        brandTabs.forEach(t => t.classList.remove('active'));
+                        brandGrids.forEach(g => g.classList.remove('active'));
+
+                        tab.classList.add('active');
+                        const target = tab.getAttribute('data-target');
+                        renderBrands(target);
+                        const targetGrid = document.getElementById(`grid-${target}`);
+                        if (targetGrid) targetGrid.classList.add('active');
                     });
-                }, { threshold: 0.15 });
-
-                searchObserver.observe(searchEngineVideo);
-            }
-			// --- WEDGE STRATEGY VIDEO VIEWPORT CULLING ---
-            const wedgeVideo = document.getElementById('wedgeStrategyVideo');
-            if (wedgeVideo) {
-                wedgeVideo.defaultMuted = true;
-                wedgeVideo.muted = true;
-
-                const wedgeObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            wedgeVideo.play().catch(() => {});
-                        } else {
-                            wedgeVideo.pause();
-                        }
-                    });
-                }, { threshold: 0.15 });
-
-                wedgeObserver.observe(wedgeVideo);
+                });
             }
         });
-
-		// 9. DYNAMIC BRAND TAXONOMY GRID
-		const taxonomyData = {
-			cars: ["abarth", "ac", "acura", "alfa-romeo", "allard", "alpina", "alvis", "amc", "ariel", "armstrong-siddeley", "ascari", "aston-martin", "audi", "austin-healey", "austin", "autobianchi", "auverland", "avanti", "baic", "bentley", "berkeley", "bitter", "bizzarrini", "bmw", "brilliance", "bristol", "bugatti", "buick", "cadillac", "caterham", "checker", "chevrolet", "chrysler", "citroen", "dacia", "daewoo", "daf", "daihatsu", "de-tomaso", "dkw", "dodge", "donkervoort", "eagle", "fairthorpe", "ferrari", "fiat", "fisker", "ford", "gaz", "geely", "ginetta", "gmc", "holden", "honda", "hudson", "humber", "hummer", "hyundai", "infiniti", "innocenti", "isuzu", "italdesign", "jaguar", "jeep", "jensen", "kia", "koenigsegg", "lada", "lamborghini", "lancia", "land-rover", "lexus", "lincoln", "lotec", "lotus", "luxgen", "mahindra", "marcos", "marta-simca", "maserati", "maybach", "mazda", "mclaren", "mercedes-benz", "mercury", "mg", "mini", "mitsubishi", "monteverdi", "moretti", "morgan", "morris", "noble", "nsu", "oldsmobile", "opel", "packard", "pagani", "panoz", "peugeot", "pininfarina", "plymouth", "pontiac", "porsche", "proton", "reliant", "renault", "riley", "rolls-royce", "rover", "saab", "saleen", "samsung", "saturn", "scion", "seat", "simca", "singer", "skoda", "smart", "spyker", "ssangyong", "ssc", "steyr", "studebaker", "subaru", "sunbeam", "suzuki", "talbot", "tata", "tatra", "tesla", "toyota", "trabant", "triumph", "tvr", "vauxhall", "vector", "venturi", "volkswagen", "volvo", "wartburg", "westfield", "willys-overland", "xedos", "zagato", "zastava", "zaz", "zenvo", "zil"],
-			
-			motos: ["adiva", "aeon", "ajp", "aprilia", "aspess-pwer", "axy", "azel", "bajaj", "benelli", "beta", "bimota", "bmw", "borile", "boss-hoss", "buell", "bultaco", "cagiva", "ccm", "cf-moto", "ch-racing", "cmc", "cpi", "cr&s", "dado", "daelim", "derbi", "ducati", "e-max", "ecomission", "etropolis", "fantic", "garelli", "gas-gas", "generic", "ghezzi-brian", "gilera", "gimotori", "gipuma", "green-mobility-italia", "harley-davidson", "hdm", "headbanger", "hm", "honda-dall'ara", "honda", "hp-power", "hupper", "husaberg", "husqvarna", "hyosung", "indian", "italjet", "jawa", "kawasaki-kl", "kawasaki", "keeway", "krc", "kreidler", "ktm", "kymco", "lambretta", "laverda", "leonart", "lingben", "linhai", "lml", "magni", "maico", "malaguti", "mash", "mbk", "millepercento", "mondial", "montesa", "moto-bellini", "moto-guzzi", "moto-morini", "moto-rumi", "motobi", "motom", "motor-union", "mv-agusta", "mz", "nipponia", "norton", "nox", "ossa", "over", "paton", "peda-motor", "peugeot", "pgo", "piaggio", "polini", "quadro", "quantya", "redmoto-honda", "renault", "rieju", "royal-enfield", "sachs", "scorpa", "sherco", "siamoto", "steed", "suzuki-calenti", "suzuki", "swm", "sym", "terra-modena", "tgb", "tm-racing", "triumph", "ural", "vectrix", "vertemati", "victory", "vor", "wt-motors", "yamaha"],
-			
-			watches: ["a.-lange-&-söhne", "audemars-piguet", "breitling", "cartier", "ebel", "edox", "hamilton", "hublot", "iwc", "jaeger-lecoultre", "longines", "meistersinger", "montblanc", "nomos", "omega", "oris", "panerai", "patek-philippe", "rado", "richard-mille", "rolex", "seiko", "sinn", "tag-heuer", "tissot", "tudor", "vacheron-constantin", "zenith"]
-		};
-
-		// Function to populate grid
-		function renderBrands(category) {
-			const grid = document.getElementById(`grid-${category}`);
-			if (!grid) return;
-			
-			// Only render if empty to save memory
-			if (grid.innerHTML === '') {
-				const brands = taxonomyData[category];
-				const html = brands.map(brand => `
-					<div class="brand-tile" title="${brand.replace(/-/g, ' ').toUpperCase()}">
-						<!-- IMPORTANT: Ensure paths align with your actual directory structure -->
-						<img src="assets/${category}/${brand}.png" alt="${brand} logo" loading="lazy">
-					</div>
-				`).join('');
-				grid.innerHTML = html;
-			}
-			
-			// Update count display
-			const counter = document.getElementById('brand-count-display');
-			if(counter) counter.innerText = taxonomyData[category].length;
-		}
-
-		// Initialize Tabs
-		const brandTabs = document.querySelectorAll('.brand-tab');
-		const brandGrids = document.querySelectorAll('.brand-grid');
-
-		if (brandTabs.length > 0) {
-			// Initial Render
-			renderBrands('cars');
-
-			brandTabs.forEach(tab => {
-				tab.addEventListener('click', () => {
-					// Remove active classes
-					brandTabs.forEach(t => t.classList.remove('active'));
-					brandGrids.forEach(g => g.classList.remove('active'));
-					
-					// Add active to clicked tab
-					tab.classList.add('active');
-					
-					// Show corresponding grid
-					const target = tab.getAttribute('data-target');
-					renderBrands(target);
-					document.getElementById(`grid-${target}`).classList.add('active');
-				});
-			});
-		}
     </script>
 	<!-- Character Full-Size Lightbox Modal -->
-    <div class="character-lightbox-overlay" id="characterLightboxModal">
+    <div class="character-lightbox-overlay" id="characterLightboxModal" role="dialog" aria-modal="true" aria-labelledby="characterLightboxTitle">
         <div class="character-lightbox-container">
-            <button class="character-lightbox-close" id="closeCharacterLightbox">&times;</button>
+            <button class="character-lightbox-close" id="closeCharacterLightbox" aria-label="Close Character Preview">&times;</button>
             <div class="character-lightbox-ambient"></div>
             <img src="" alt="Character View" class="character-lightbox-img" id="characterLightboxImg">
             <span class="character-lightbox-title" id="characterLightboxTitle"></span>
