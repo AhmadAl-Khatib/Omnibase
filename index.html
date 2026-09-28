@@ -1779,13 +1779,18 @@
         }
 
         /* Mobile & Tablet Fallback */
+/* Mobile & Tablet Fallback */
         @media (max-width: 992px) {
             .wedge-showcase-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
             .wedge-flow-connector {
-                display: none;
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 14px;
+                padding-top: 16px;
             }
         }
     </style>
@@ -2291,7 +2296,7 @@
             </button>
         </div>
         </div>
-        </div>
+ 
 
        <div class="bento-grid">
             <!-- 1. Practitioner -->
@@ -2546,7 +2551,7 @@
                 </div>
 
                 <!-- Step 1 -->
-                <div class="scroll-step" id="step-1">
+                <div class="scroll-step active" id="step-1">
                     <div class="eyebrow">90% Cost Reduction</div>
                     <h3>Near~Zero Read Costs.</h3>
                     <p>By utilizing strict Unidirectional Data Flow (UDF) and querying 1-millisecond chronological deltas, we update interfaces instantly without continuously pinging the database. Result: Enterprise-grade real-time interactions with radically compressed AWS/GCP burn rates.</p>
@@ -2913,30 +2918,34 @@
                 requestAnimationFrame(raf);
             }
 
-            // 1. LERP PHYSICS FOR 3D HOVER
+ // 1. LERP PHYSICS FOR 3D HOVER (Desktop Pointer Devices Only)
             function lerp(start, end, factor) { return start + (end - start) * factor; }
 
+            const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
             const magneticButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
-            magneticButtons.forEach(btn => {
-                let currentX = 0, currentY = 0;
-                let targetX = 0, targetY = 0;
+            
+            if (hasFinePointer) {
+                magneticButtons.forEach(btn => {
+                    let currentX = 0, currentY = 0;
+                    let targetX = 0, targetY = 0;
 
-                btn.addEventListener('mousemove', (e) => {
-                    const rect = btn.getBoundingClientRect();
-                    targetX = (e.clientX - rect.left - rect.width / 2) * 0.3;
-                    targetY = (e.clientY - rect.top - rect.height / 2) * 0.5;
+                    btn.addEventListener('mousemove', (e) => {
+                        const rect = btn.getBoundingClientRect();
+                        targetX = (e.clientX - rect.left - rect.width / 2) * 0.25;
+                        targetY = (e.clientY - rect.top - rect.height / 2) * 0.35;
+                    });
+
+                    btn.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
+
+                    function animate() {
+                        currentX = lerp(currentX, targetX, 0.1);
+                        currentY = lerp(currentY, targetY, 0.1);
+                        btn.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                        requestAnimationFrame(animate);
+                    }
+                    animate();
                 });
-
-                btn.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
-
-                function animate() {
-                    currentX = lerp(currentX, targetX, 0.1);
-                    currentY = lerp(currentY, targetY, 0.1);
-                    btn.style.transform = `translate(${currentX}px, ${currentY}px)`;
-                    requestAnimationFrame(animate);
-                }
-                animate();
-            });
+            }
 
             // 2. SPOTLIGHT HOVER FOR BENTO
             document.querySelectorAll('.bento-card, .archetype-card, .metric-card').forEach(card => {
@@ -3136,16 +3145,18 @@
             const charLightboxTitle = document.getElementById('characterLightboxTitle');
             const closeCharLightbox = document.getElementById('closeCharacterLightbox');
 
-            function openCharacterModal(src, title) {
+function openCharacterModal(src, title) {
                 if (!charLightbox || !charLightboxImg) return;
                 charLightboxImg.src = src;
                 if (charLightboxTitle) charLightboxTitle.textContent = title;
                 charLightbox.classList.add('active');
+                if (typeof lenis !== 'undefined') lenis.stop(); // Prevents background scroll bleed
             }
 
             function closeCharacterModal() {
                 if (!charLightbox) return;
                 charLightbox.classList.remove('active');
+                if (typeof lenis !== 'undefined') lenis.start(); // Restores smooth scroll
                 setTimeout(() => { 
                     if (charLightboxImg) charLightboxImg.src = ''; 
                 }, 350);
