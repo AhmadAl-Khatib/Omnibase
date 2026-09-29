@@ -669,7 +669,91 @@
             z-index: 1;
             pointer-events: none;
         }
-
+        /* =========================================================================
+           PRACTITIONER FLAGSHIP VIDEO CHASSIS (500x720 Native Aspect Ratio)
+           ========================================================================= */
+        .practitioner-showcase-card {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+            padding: 48px !important;
+            background: linear-gradient(145deg, rgba(20, 20, 26, 0.7) 0%, rgba(10, 10, 14, 0.95) 100%);
+        }
+        
+        .practitioner-text-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .practitioner-phone-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+        
+        .practitioner-ambient-glow {
+            position: absolute;
+            width: 280px;
+            height: 400px;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 145, 255, 0.32) 0%, rgba(160, 133, 255, 0.15) 50%, transparent 75%);
+            filter: blur(55px);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .practitioner-phone-chassis {
+            position: relative;
+            z-index: 2;
+            width: 260px;
+            max-width: 100%;
+            /* Exact 500 by 720 aspect ratio */
+            aspect-ratio: 500 / 720;
+            background: #000000;
+            border-radius: 36px;
+            border: 4px solid #232328;
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 25px 70px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(0, 145, 255, 0.18);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .practitioner-showcase-card:hover .practitioner-phone-chassis {
+            transform: translateY(-3px) scale(1.015);
+            border-color: rgba(255, 255, 255, 0.22);
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.18),
+                0 35px 85px rgba(0, 0, 0, 0.95),
+                0 0 45px rgba(0, 145, 255, 0.28);
+        }
+        
+        .practitioner-video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000000;
+        }
+        
+        /* Responsive Collapse for Tablets and Mobile */
+        @media (max-width: 992px) {
+            .practitioner-showcase-card {
+                grid-template-columns: 1fr;
+                padding: 32px !important;
+                gap: 32px;
+            }
+            .practitioner-phone-col {
+                order: -1; /* Displays the phone prominently above the text on mobile */
+            }
+            .practitioner-phone-chassis {
+                width: 230px;
+            }
+        }
         /* =========================================================================
            10. MARKET OPPORTUNITY & AUDITED PROJECTIONS
            ========================================================================= */
@@ -2528,19 +2612,45 @@
 
         <div class="bento-grid">
             <!-- 1. Practitioner -->
-            <div class="bento-card col-span-6 reveal-up">
-                <div class="eyebrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    Healthcare & Advisory Platform
+            <div class="bento-card col-span-12 reveal-up practitioner-showcase-card">
+                <div class="practitioner-text-col">
+                    <div class="eyebrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                        Healthcare & Advisory Platform
+                    </div>
+                    <h3 style="font-size: clamp(26px, 3.5vw, 36px); margin-bottom: 16px;">The Practitioner</h3>
+                    <p style="font-size: 16px; line-height: 1.7; margin-bottom: 24px;">
+                        <strong>Clinical Authority & Sovereign Case Vaults.</strong> Replaces fragmented appointment and telehealth portals with an immutable, top-tier clinical suite.
+                    </p>
+                    <div class="elite-features">
+                        <ul>
+                            <li><strong style="color: var(--brand-electric-blue);">Top-Tier Trust Feed:</strong> 80dp verified avatars, legal title honorifics (Dr., MD), and 1-tap live slot booking.</li>
+                            <li><strong style="color: var(--brand-electric-blue);">Clinical Case Vault:</strong> Immutable, on-device encrypted history for medical records, diagnoses, and lab results.</li>
+                            <li><strong style="color: var(--brand-electric-blue);">Pre-Qualifying Intake Triage:</strong> Server-Driven UI dynamic forms that screen patients before consultation.</li>
+                        </ul>
+                    </div>
                 </div>
-                <h3>The Practitioner</h3>
-                <p><strong>Clinical Authority & Sovereign Case Vaults.</strong> Replaces fragmented appointment and telehealth portals with an immutable, top-tier clinical suite.</p>
-                <div class="elite-features">
-                    <ul>
-                        <li><strong style="color: var(--brand-electric-blue);">Top-Tier Trust Feed:</strong> 80dp verified avatars, legal title honorifics (Dr., MD), and 1-tap live slot booking.</li>
-                        <li><strong style="color: var(--brand-electric-blue);">Clinical Case Vault:</strong> Immutable, on-device encrypted history for medical records, diagnoses, and lab results.</li>
-                        <li><strong style="color: var(--brand-electric-blue);">Pre-Qualifying Intake Triage:</strong> Server-Driven UI dynamic forms that screen patients before consultation.</li>
-                    </ul>
+            
+                <!-- Phone Chassis Frame -->
+                <div class="practitioner-phone-col">
+                    <div class="practitioner-ambient-glow"></div>
+                    <div class="practitioner-phone-chassis">
+                        <div class="phone-glare"></div>
+                        <video 
+                            id="practitionerVideo" 
+                            class="practitioner-video-player" 
+                            playsinline 
+                            webkit-playsinline
+                            muted 
+                            loop 
+                            autoplay 
+                            preload="metadata">
+                            <source src="assets/practitioner_ui.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                    </div>
                 </div>
             </div>
 
@@ -3651,6 +3761,7 @@
             // High-Performance Unified Video Viewport Culler
             const allVideos = [
                 commercialVideo,
+                document.getElementById('practitionerVideo'),
                 document.getElementById('personaDemoVideo'),
                 document.getElementById('searchEngineVideo'),
                 document.getElementById('wedgeStrategyVideo'),
