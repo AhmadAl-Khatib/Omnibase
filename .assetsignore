@@ -1,0 +1,8 @@
+.git
+.git/**
+.github
+.wrangler
+node_modules
+*.backup
+*.log
+update_podcast.js
