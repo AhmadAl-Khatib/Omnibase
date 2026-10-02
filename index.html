@@ -2475,6 +2475,120 @@
                 padding: 14px 16px;
             }
         }
+
+        /* =========================================================================
+           22. CINEMA-GRADE VOLUMETRIC STUDIO LIGHTING
+           ========================================================================= */
+        .podcast-lighting-rig {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+            mix-blend-mode: screen;
+            opacity: 0.45;
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .podcast-card.is-playing .podcast-lighting-rig {
+            opacity: 0.85;
+        }
+
+        .studio-light-beam {
+            position: absolute;
+            top: -20%;
+            left: 20%;
+            width: 600px;
+            height: 450px;
+            background: radial-gradient(ellipse at center, rgba(0, 145, 255, 0.35) 0%, rgba(160, 133, 255, 0.18) 40%, transparent 70%);
+            filter: blur(55px);
+            transform: translate3d(0, 0, 0);
+            animation: slowAtmosphereDrift 18s infinite ease-in-out alternate;
+            will-change: transform, opacity;
+        }
+
+        .studio-tungsten-glow {
+            position: absolute;
+            bottom: 5%;
+            right: 15%;
+            width: 480px;
+            height: 320px;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.08) 45%, transparent 70%);
+            filter: blur(65px);
+            transform: translate3d(0, 0, 0);
+            animation: warmLampBreathe 14s infinite ease-in-out alternate;
+            will-change: transform, opacity;
+        }
+
+        .studio-anamorphic-streak {
+            position: absolute;
+            top: 38%;
+            left: -60%;
+            width: 220%;
+            height: 90px;
+            background: linear-gradient(
+                90deg, 
+                transparent 0%, 
+                rgba(0, 145, 255, 0.0) 25%, 
+                rgba(0, 145, 255, 0.15) 45%, 
+                rgba(255, 255, 255, 0.35) 50%, 
+                rgba(160, 133, 255, 0.18) 55%, 
+                rgba(0, 145, 255, 0.0) 75%, 
+                transparent 100%
+            );
+            transform: rotate(-7deg) translate3d(0, 0, 0);
+            filter: blur(14px);
+            opacity: 0.3;
+            animation: cinemaLensPass 22s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
+        }
+
+        .podcast-card.is-playing .studio-light-beam {
+            animation: slowAtmosphereDrift 18s infinite ease-in-out alternate, audioBreath 6s infinite ease-in-out;
+        }
+
+        @keyframes slowAtmosphereDrift {
+            0% {
+                transform: translate3d(-60px, -20px, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(40px, 30px, 0) scale(1.12);
+            }
+            100% {
+                transform: translate3d(-30px, 50px, 0) scale(0.95);
+            }
+        }
+
+        @keyframes warmLampBreathe {
+            0% {
+                transform: translate3d(20px, 20px, 0) scale(0.95);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate3d(-30px, -15px, 0) scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        @keyframes cinemaLensPass {
+            0% {
+                transform: rotate(-7deg) translate3d(-25%, -20px, 0);
+                opacity: 0.15;
+            }
+            50% {
+                transform: rotate(-5deg) translate3d(15%, 15px, 0);
+                opacity: 0.45;
+            }
+            100% {
+                transform: rotate(-7deg) translate3d(-25%, -20px, 0);
+                opacity: 0.15;
+            }
+        }
+
+        @keyframes audioBreath {
+            0%, 100% { filter: blur(55px) brightness(1); }
+            50% { filter: blur(48px) brightness(1.25); }
+        }
 </style>
 </head>
 <body>
@@ -3100,6 +3214,12 @@
                         loading="lazy"
                     >
                     <div class="podcast-vignette"></div>
+                    <!-- ✨ CINEMA-GRADE VOLUMETRIC LIGHTING RIG ✨ -->
+                    <div class="podcast-lighting-rig" aria-hidden="true">
+                        <div class="studio-light-beam"></div>
+                        <div class="studio-tungsten-glow"></div>
+                        <div class="studio-anamorphic-streak"></div>
+                    </div>
 
                     <!-- Top Bar: Status & Waveform Indicator -->
                     <div class="podcast-top-bar">
